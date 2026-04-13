@@ -1,0 +1,319 @@
+/* PREVENT ANY DIMMING */
+ion-content {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* ================= HEADER ================= */
+.doctor-header {
+  background: #4a8e92;
+  color: white;
+  padding: 12px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctor-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.doctor-info h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.doctor-info p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* LEGEND INSIDE HEADER */
+.header-legend {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.legend {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.legend.revisit { background: #9ae6b4; color: #064e3b; }
+.legend.new { background: #bfdbfe; color: #1e3a8a; }
+.legend.reallocated { background: #e9d5ff; color: #581c87; }
+.legend.na { background: #fecaca; color: #7f1d1d; }
+.legend.break { background: #fde68a; color: #78350f; }
+.legend.waiting { background: #c17ff4; color: #1e3a8a; }
+.legend.online { background: #fde68a; color: #78350f; }
+.legend.walkin { background: #fde68a; color: #78350f; }
+
+/* ================= DATE NAV ================= */
+.date-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* ================= SCROLL WRAPPER ================= */
+.slot-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ================= TABLE ================= */
+// .slot-table {
+//   // min-width: 900px; /* forces horizontal scroll on mobile */
+//   display: flex;
+//   flex-direction: column;
+//   gap: 6px;
+//   padding: 20px;
+// }
+
+/* ================= IMPROVED GRID ================= */
+.slot-table {
+  display: grid;
+  padding: 15px;
+  gap: 8px;
+
+  /* MOBILE VIEW: 2 items per row */
+  grid-template-columns: repeat(2, 1fr);
+
+  /* TABLET/DESKTOP VIEW: 4 items per row */
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Remove the .slot-row styles since we are letting the grid flow naturally */
+.slot-row {
+  display: contents; /* This effectively "ignores" the row div container */
+}
+
+// .slot-cell {
+//   /* ... keep your previous slot-cell styling ... */
+
+// }
+
+/* ONE ROW = 4 SLOTS (LIKE LEGACY SCREEN) */
+// .slot-row {
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 6px;
+// }
+
+/* ================= SLOT CELL ================= */
+.slot-cell {
+  background: #c7f0d0; /* default revisit */
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 90px;
+  font-size: 12px;
+  cursor: pointer;
+
+    min-height: 90px;
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+}
+
+/* TIME BAR (FIXED – NO DARK OVERLAY) */
+.slot-time {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 4px 6px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* BODY */
+.slot-body {
+  padding: 6px;
+}
+
+.patient-name {
+  font-weight: 700;
+}
+
+.patient-info {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.patient-id {
+  font-size: 11px;
+}
+
+/* ================= STATUS COLORS ================= */
+.slot-cell.revisit { background: #c7f0d0; }
+.slot-cell.new { background: #dbeeff; }
+.slot-cell.reallocated { background: #edd7fa; }
+.slot-cell.na { background: #ffe3e3; }
+.slot-cell.break { background: #fff3bf; }
+
+
+
+
+/* ================= SUMMARY STATS BAR ================= */
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #1f5c6b; /* Navy blue from image */
+  color: white;
+  text-align: center;
+  margin: 10px 20px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .stat-item {
+    padding: 8px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    &:last-child { border-right: none; }
+    
+    .label { font-size: 11px; display: block; margin-bottom: 2px; }
+    .count { font-weight: 800; font-size: 16px; }
+  }
+}
+
+/* ================= UPDATED SLOT CELL ================= */
+.slot-cell {
+  border: 1px solid #c1c1c1;
+  border-radius: 4px;
+  min-height: 80px; /* Reduced to match image */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.1s;
+
+  &:active { transform: scale(0.98); }
+
+  .slot-time {
+    background: #e2e8f0; /* Greyish header in image */
+    padding: 2px 8px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    .slot-index {
+      background: #1f5c6b;
+      color: white;
+      border-radius: 50%;
+      width: 35px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+  }
+
+  .slot-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4px;
+    font-weight: 600;
+    
+    .patient-id { font-size: 13px; color: #444; }
+    .patient-name { font-size: 14px; color: #702963; text-transform: uppercase; }
+    .patient-phone { font-size: 13px; color: #444;}
+    
+    .break { font-size: 18px; color: #ffffff; }
+  }
+}
+
+/* MATCHING IMAGE COLORS EXACTLY */
+.slot-time.revisit,.slot-cell.revisit { background: #d9f2e1 !important; } /* Light Green */
+.slot-time.reallocated,.slot-cell.reallocated { background: #f3e5f5 !important; } /* Light Purple */
+.slot-time.new,.slot-cell.new { background: #e3f2fd !important; } /* Light Blue */
+.slot-time.empty,.slot-cell.empty { background: #f8fafc; }
+
+.slot-time.break,.slot-cell.break { background: #fde68a !important;color: black; } /* Light Green */
+.slot-time.waiting,.slot-cell.waiting { background: #fde68a !important;color: black; } 
+.slot-time.online,.slot-cell.online { background: #f45def !important;color: black; } 
+.slot-time.walkin,.slot-cell.walkin { background: #fde68a !important;color: black; } 
+
+
+.fullscreen-modal {
+  --width: 90%;
+  --height: 90%;
+}
+
+
+
+.merged-slot{
+  border: 2px solid #5c6bc0;
+  background: linear-gradient(135deg,#e8eaf6,#f3f4ff);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.merged-slot .slot-index{
+  background:#3949ab;
+  color:#fff;
+  padding:2px 6px;
+  border-radius:6px;
+  font-size:11px;
+}
+
+
+
+
+.no-data-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.no-data-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 18px;
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+
+  border: 1px solid #e8edf3;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+  ion-icon {
+    font-size: 70px;
+    color: #c7d2e2;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-weight: 800;
+    color: #1c315b;
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  ion-button {
+    --border-radius: 10px;
+    font-weight: 600;
+  }
+}

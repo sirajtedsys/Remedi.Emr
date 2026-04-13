@@ -1,0 +1,55 @@
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+
+@import url('https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap');
+/* ===============================
+   COLOR PALETTE
+================================= */
+
+:root {
+
+  /* Font Family */
+  
+  --font-main: "Geom", sans-serif;
+
+  /* Font Sizes */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 20px;
+  --font-xl: 24px;
+  --font-xxl: 32px;
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+    /* Backgrounds */
+    --bg-sidebar: #19647e;
+    --bg-topheader: #c2dce7;
+    --bg-content-area: #efe5e4;
+  
+    /* Text Colors */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #ffffff;
+  
+    /* Border */
+    --border-light: #e2e8f0;
+
+  
+    /* Shadows */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
+  
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+  
+    /* scroll */
+    --scroll-bar: #19647e;
+  }

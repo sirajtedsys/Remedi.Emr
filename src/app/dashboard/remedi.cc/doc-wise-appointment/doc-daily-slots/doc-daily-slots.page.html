@@ -1,0 +1,158 @@
+<!-- <ion-content> -->
+  <div class="doctor-header">
+    <div class="header-top">
+      <div class="doctor-info">
+        <!-- <ion-avatar slot="start"><img src="assets/avatar.png" /></ion-avatar> -->
+        <div>
+          <h2>{{CalenderData.DoctName}}</h2>
+          <!-- <p>DERMATOLOGIST</p> -->
+        </div>
+      </div>
+
+      <ion-button fill="clear" (click)="goBack()" color="dark" size="small">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        Back To Appointments Calendar</ion-button>
+    </div>
+
+    <div class="header-legend">
+      <span class="legend revisit">Revisit Booking</span>
+      <span class="legend new">New Patient Booking</span>
+      <span class="legend reallocated">Reallocated Booking</span>
+      <span class="legend na">Doctor Not Available</span>
+      <span class="legend break">Break</span>
+      <span class="legend waiting">Waiting</span>
+      <span class="legend online">Online Token</span>
+      <span class="legend walkin">Walkin</span>
+    </div>
+  </div>
+
+  <div class="date-nav">
+    <ion-button fill="clear" (click)="prevDay()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <div class="date-display">
+      <span class="date-box">{{ selectedDate | date:'dd MMM yyyy' }}</span>
+      <span class="day-box">{{ selectedDate | date:' EEEE' }}</span>
+    </div>
+    <ion-button fill="clear" (click)="nextDay()"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+  </div>
+
+  <div class="summary-bar">
+    <div class="stat-item"><span class="label">Total</span><span class="count"
+        *ngIf="DocScheduleList.length>0">{{DocScheduleList[0].token}}</span></div>
+    <div class="stat-item"><span class="label">Re-Visit</span><span class="count">{{RevisitCount}}</span></div>
+    <div class="stat-item"><span class="label">New</span><span class="count">{{NewRegCount}}</span></div>
+    <div class="stat-item"><span class="label">Balance</span><span class="count">{{BalanceToken}}</span></div>
+  </div>
+
+  <div class="slot-table">
+    <div class="slot-row" *ngFor="let row of slotRows;let j = index">
+      <div class="slot-cell" *ngFor="let slot of row; let i = index" (click)="onSlotClick(slot)"
+        [ngClass]=" slot.breakSlot?'break': slot.tokenDetils==undefined?'empty':slot.tokenDetils.reallo=='Y'?'reallocated' : slot.tokenDetils.bk_New_Reg == 'Y' ? 'new' : 'revisit'"
+        (click)="onSlotClick(slot)">
+
+        <!-- <div class="slot-time">
+          <span class="slot-index"> {{ slot.tokenNo}}</span>
+          {{ slot.slot }}
+        </div> -->
+        <div class="slot-time" [ngClass]=" slot.breakSlot?'break': slot.tokenDetils==undefined?'empty':slot.tokenDetils.reallo=='Y'?'reallocated' : slot.tokenDetils.bk_New_Reg == 'Y' ? 'new' : 'revisit'">
+
+          <!-- merged tokens -->
+          <span class="slot-index" *ngIf="slot.merged">
+            {{slot.tokenRange}}
+          </span>
+
+          <!-- single token -->
+          <span class="slot-index" *ngIf="!slot.merged">
+            {{slot.tokenNo}}
+          </span>
+
+          {{ slot.slot }}
+        </div>
+
+
+        <div class="slot-body" *ngIf="slot.tokenDetils">
+          <div class="patient-id">{{ slot.tokenDetils.pati_Opno }}</div>
+          <div class="patient-name">{{ slot.tokenDetils.bk_Pat_Name }}</div>
+          <div class="patient-phone">{{ slot.tokenDetils.bk_Contact_No }}</div>
+        </div>
+        <div class="slot-body" *ngIf="slot.breakSlot">
+          <!-- <div class="patient-id">{{ slot }}</div> -->
+          <div class="break">BREAK</div>
+          <!-- <div class="patient-phone">{{ slot.tokenDetils.pati_Mobile }}</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 🔴 DATA NOT FOUND -->
+<div class="no-data-wrapper" *ngIf="slotRows.length === 0">
+
+  <div class="no-data-card">
+    <ion-icon name="calendar-clear-outline"></ion-icon>
+
+    <h2>No Data Found</h2>
+    <p>No schedule or bookings available for selected Date.</p>
+
+    <!-- <ion-button fill="outline" color="primary" (click)="reloadData()">
+      Refresh
+    </ion-button> -->
+  </div>
+
+</div>
+
+
+
+  <ion-modal cssClass="fullscreen-modal" [isOpen]="isModalOpen" (didDismiss)="onModalDismiss()">
+
+    <ng-template>
+
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Preview</ion-title>
+          <ion-buttons slot="end">
+            <!-- PRINT -->
+            <!-- <ion-button fill="clear" (click)="printPrescription()">
+              <ion-icon name="print-outline" aria-label="Print"> </ion-icon>
+            </ion-button> -->
+
+            <!-- CLOSE -->
+            <ion-button fill="clear" (click)="closeModal()">
+              <ion-icon color="danger" name="close-circle-outline" size="large" aria-label="Close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding" *ngIf="modalType=='reg'">
+        <!-- YOUR CONTENT -->
+        <!-- <app-prescription-print-format #printComponent [emrDocId]="PrintEmrDocID" [PatientId]="PrintPatientId"
+          [empId]="PrintDocId">
+
+        </app-prescription-print-format> -->
+        <app-patient-booking-registration [DoctorId]="this.CalenderData.DoctId??''"
+          [BranchId]="this.CalenderData.BranchId??''" [doctorName]="this.CalenderData.DoctName??''"
+          [selectedDate]="this.selectedDate" [tokenNumber]="this.SelectedToken" [EmpId]="this.CalenderData.empId??''"
+          (closePopup)="closeModal()">
+
+        </app-patient-booking-registration>
+      </ion-content>
+
+       <ion-content class="ion-padding" *ngIf="modalType=='cancel'">
+        <!-- YOUR CONTENT -->
+        <!-- <app-prescription-print-format #printComponent [emrDocId]="PrintEmrDocID" [PatientId]="PrintPatientId"
+          [empId]="PrintDocId">
+
+        </app-prescription-print-format> -->
+        <app-appointment-actions [DoctorId]="this.CalenderData.DoctId??''"
+          [BranchId]="this.CalenderData.BranchId??''" [doctorName]="this.CalenderData.DoctName??''"
+          [selectedDate]="this.selectedDate" [tokenNumber]="this.SelectedToken" [EmpId]="this.CalenderData.empId??''" [bookingId]="this.SelectedBookingId"
+          (closePopup)="closeModal()"></app-appointment-actions>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+
+
+
+<!-- </ion-content> -->

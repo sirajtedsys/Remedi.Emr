@@ -1,0 +1,34 @@
+<ion-content class="ion-no-padding gradient-bg">
+
+  <div class="url-input-container ion-text-center">
+    <h2>Enter URL</h2>
+
+    <ion-card class="form-card">
+      <ion-card-content>
+        <ion-item lines="none" class="select-item">
+          <ion-select [(ngModel)]="ur" interface="popover" placeholder="Select Protocol">
+            <ion-select-option value="http://">http</ion-select-option>
+            <ion-select-option value="https://">https</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none" class="input-item">
+          <ion-input
+            [(ngModel)]="Url"
+            name="url"
+            id="url"
+            placeholder="e.g., 192.0.0.0:8100"
+            clear-input="true"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" class="confirm-btn" (click)="AddUrl()">
+          <ion-icon name="link-outline" slot="start"></ion-icon>
+          Confirm URL
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

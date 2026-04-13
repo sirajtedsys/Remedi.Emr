@@ -1,0 +1,208 @@
+
+
+      <div class="preview-body">
+<div class="search-card">
+
+  <div class="search-title">
+    Procedure Details
+  </div>
+
+  <div class="form-grid">
+
+    <!-- START DATE -->
+    <div class="form-group">
+      <label>Start Date<span class="required">*</span></label>
+      <input type="date" [(ngModel)]="pn.StartDate">
+    </div>
+
+    <!-- END DATE -->
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="date" [(ngModel)]="pn.EndDate">
+    </div>
+
+    <!-- SELECT 1 -->
+    <div class="form-group">
+      <label>Procedure</label>
+      <select [(ngModel)]="pn.PrcId" name="prcId" disabled="true">
+        <!-- <option value="" >Select</option> -->
+        <option *ngFor="let item of ProcedureList" [value]="item.id">{{item.name}}</option>
+        <!-- <option value="type2">Type 2</option> -->
+      </select>
+    </div>
+
+    <!-- SELECT 2 -->
+    <div class="form-group">
+      <label>Machine</label>
+      <select [(ngModel)]="pn.PrcBkMachineId">
+        <option value="">Select</option>
+        <option *ngFor="let item of MachineList" [value]="item.id">{{item.name}}</option>
+        <!-- <option value="">Select</option>
+        <option value="1">Machine 1</option>
+        <option value="2">Machine 2</option> -->
+      </select>
+    </div>
+
+    <!-- REMARKS 1 -->
+    <div class="form-group full">
+      <label>Notes <span class="required">*</span> </label>
+      <textarea rows="2" [(ngModel)]="pn.Note" placeholder="Enter Notes"></textarea>
+    </div>
+
+    <!-- REMARKS 2 -->
+    <div class="form-group full">
+      <label>Comments</label>
+      <textarea rows="2" [(ngModel)]="pn.Comments" placeholder="Enter Comments"></textarea>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ACTION BUTTONS -->
+<div class="action-buttons">
+
+  <ion-button class="edit-btn" fill="outline" (click)="clearProcedureNote()">
+    <ion-icon name="create-outline"></ion-icon>
+    Clear
+  </ion-button>
+
+  <ion-button class="save-btn" (click)="saveProcedureNote()">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
+    Save
+  </ion-button>
+
+</div>
+</div>
+
+
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonButton, IonIcon } from '@ionic/angular/standalone';
+import { ProcedureNote } from 'src/app/shared/class/remedi.cc/procedure-note/procedure-note';
+import { LookUp } from 'src/app/shared/interfaces/lookup/lookup';
+import { ProcedureNoteService } from 'src/app/shared/services/remedi.cc/procedure-note.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import { firstValueFrom } from 'rxjs';
+import { TherapistPrcNote } from 'src/app/shared/interfaces/remedi.cc/procedure-notes/therapist-prc-notes';
+
+@Component({
+  selector: 'app-procedure-note',
+  templateUrl: './procedure-note.page.html',
+  styleUrls: ['./procedure-note.page.scss'],
+  standalone: true,
+  imports: [IonIcon, IonButton, CommonModule, FormsModule]
+})
+export class ProcedureNotePage implements OnInit, OnChanges {
+
+  @Input() ProcedureList: LookUp[] = []
+  @Input() MachineList: LookUp[] = []
+  @Input() pn = new ProcedureNote()
+  @Output() close = new EventEmitter<any>();
+
+
+
+
+  constructor(
+    private prcService: ProcedureNoteService,
+    private notificationService: NotificationService,
+    private datePipe: DatePipe
+  ) { }
+
+  ngOnInit() {
+  }
+
+
+  ngOnChanges() {
+    console.log(this.pn)
+    if (this.pn.NoteId == 0) {
+      // this.pn.prC_ID=this.ProcedureList[0].id
+      this.GetTherapistNote(this.pn.PrcId, this.pn.BillHdrId)
+
+    }
+  }
+
+
+  async GetTherapistNote(prcId: any, BillhdrId: any) {
+    (await this.prcService.GetTherapistNote(prcId,BillhdrId)).subscribe(res => {
+      console.log(res)
+      if(res.length==0)
+      {
+        return
+      }
+      let data:TherapistPrcNote=res[0]
+      this.pn.Comments=data.comments??''
+      this.pn.Note=data.note
+      this.pn.StartDate= this.datePipe.transform(data.startDate, 'yyyy-MM-dd') ?? data.startDate
+      this.pn.EndDate=data.endDate
+      this.pn.PrcBkMachineId=(data.prcBkMachineId??0).toString();
+    })
+  }
+
+
+
+async saveProcedureNote() {
+
+  try {
+
+    if(this.pn.StartDate==null)
+    {
+      this.notificationService.showNotification('Please select start date', 'error');
+      return
+    }
+
+    if(this.pn.Note==null || this.pn.Note=='')
+    {
+      this.notificationService.showNotification('Please Enter Note', 'error');
+      return
+    }
+
+    let data: { message: string; status: number };
+
+    if (!this.pn.NoteId || this.pn.NoteId === 0) {
+
+      data = await firstValueFrom(
+        await this.prcService.insertProcedureNote(this.pn)
+      );
+
+    } else {
+
+      data = await firstValueFrom(
+        await this.prcService.UpdateProcedureNote(this.pn)
+      );
+
+    }
+
+    console.log(this.pn);
+
+    if (data.status === 200) {
+      this.notificationService.showNotification(data.message, 'success');
+      this.closeModal();
+    } else {
+      this.notificationService.showNotification(data.message, 'error');
+    }
+
+  } catch (error) {
+    console.error(error);
+    this.notificationService.showNotification('Something went wrong', 'error');
+  }
+}
+
+
+clearProcedureNote() {
+  this.pn.Note = '';
+  this.pn.Comments = '';
+  this.pn.StartDate = null;
+  this.pn.EndDate = null;
+  this.pn.PrcBkMachineId = '';
+}
+
+
+closeModal() {
+  this.close.emit({ success: false });
+}
+
+
+
+}

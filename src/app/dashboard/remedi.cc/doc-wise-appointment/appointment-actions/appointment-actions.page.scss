@@ -1,0 +1,257 @@
+/**
+ * THEME VARIABLES
+ * These define the palette used across your assessment and registration forms.
+ */
+:host {
+  --theme-bg: #e8f1f2;                /* Page background */
+  --theme-teal-light: #cef1f3;        /* Form container background */
+  --theme-teal-header: #9fc3c5;       /* Accordion/Segment background */
+  --theme-navy: #091835;              /* Primary text and borders */
+  --theme-blue-accent: #5c7fbc;       /* Active states and icons */
+  --theme-gradient: linear-gradient(135deg, #22565a 0%, #22565a 100%);
+  --theme-footer-gradient: linear-gradient(to top, rgba(207, 241, 243, 0.95), rgba(207, 241, 243, 0.85));
+}
+
+/* =========================================
+   1. PAGE & CONTAINER LAYOUT
+   ========================================= */
+ion-content {
+  --background: var(--theme-bg);
+}
+
+.reg-container {
+  background: var(--theme-teal-light);
+  margin: 10px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 16px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--theme-navy);
+}
+
+/* =========================================
+   2. PATIENT HEADER & ACCORDIONS
+   ========================================= */
+.selected-patient-container {
+  margin: 15px 10px;
+
+  .patient-accordion {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(48, 63, 159, 0.15);
+    background: var(--theme-gradient);
+    border: 1px solid #e0e4f0;
+
+    &.accordion-expanding, &.accordion-expanded {
+      margin-bottom: 10px;
+    }
+  }
+
+  .accordion-header-item {
+    --background: var(--theme-gradient);
+    --padding-start: 12px;
+    --min-height: 70px;
+    color: white;
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+
+      .avatar-box img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        background: #fff;
+      }
+
+      .primary-info {
+        flex-grow: 1;
+        h2 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+        p { margin: 5px 0 0; display: flex; gap: 8px; }
+      }
+    }
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    &.op { background: rgba(255, 255, 255, 0.2); color: #fff; }
+    &.age { background: #ffca28; color: #333; }
+  }
+
+  .accordion-body {
+    background: #fdfdff;
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      label { font-size: 11px; color: var(--theme-blue-accent); text-transform: uppercase; font-weight: 700; }
+      span { font-size: 14px; color: #2c3e50; font-weight: 600; }
+    }
+  }
+}
+
+/* =========================================
+   3. FORM INPUTS & SELECTS
+   ========================================= */
+ion-item[fill="outline"] {
+  --background: transparent !important;
+  --color: var(--theme-navy) !important;
+  margin-bottom: 10px;
+
+  ion-label, ion-input, ion-select, ion-textarea {
+    color: var(--theme-navy) !important;
+  }
+}
+
+ion-item::part(native) {
+  border-radius: 8px;
+}
+
+/* =========================================
+   4. SMART RADIO GRID (Option Grid)
+   ========================================= */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 10px 0;
+
+  ion-item {
+    --background: transparent !important;
+    --min-height: 44px;
+    border: 1.5px solid var(--theme-navy) !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
+    --inner-border-width: 0;
+
+    ion-label {
+      font-size: 12px !important;
+      color: var(--theme-navy) !important;
+      
+    }
+    ion-radio{
+      color: var(--theme-navy) !important;
+      
+    }
+
+    &.item-has-focus, &:has(ion-radio.radio-checked), &:has(ion-checkbox.checkbox-checked) {
+      border-color: var(--theme-blue-accent) !important;
+      background: rgba(92, 127, 188, 0.1) !important;
+    }
+  }
+
+  ion-radio, ion-checkbox {
+    --color: var(--theme-navy);
+    --color-checked: var(--theme-blue-accent);
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =========================================
+   5. TABS / SEGMENTS
+   ========================================= */
+.patient-segment {
+  margin: 10px;
+  border-radius: 10px;
+  background: var(--theme-teal-header);
+  --background: var(--theme-teal-header);
+
+  ion-segment-button {
+    --color: var(--theme-navy);
+    --color-checked: white;
+    --indicator-color: #22565a;
+    font-weight: 700;
+  }
+}
+
+/* =========================================
+   6. FLOATING FOOTER & BUTTONS
+   ========================================= */
+.floating-submit-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--theme-footer-gradient);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.submit-btn {
+  --background: #008028; /* Green for Save */
+  --color: white;
+  font-weight: 700;
+  height: 48px;
+  border-radius: 10px;
+}
+
+
+.search-dropdown {
+  // position: relative;
+  // top: 60px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  max-height: 260px;
+  overflow: auto;
+  // z-index: 9999;
+  border: 1px solid #e2e8f0;
+}
+
+.search-dropdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.search-dropdown th {
+  background: #22565a;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+}
+
+.search-dropdown td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: black;
+}
+
+.search-dropdown tr:hover {
+  background: #f1f5f9;
+  cursor: pointer;
+}

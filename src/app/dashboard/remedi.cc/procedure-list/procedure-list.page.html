@@ -1,0 +1,177 @@
+<div class="left-content">
+
+
+  <div class="table-header-actions">
+    <div class="datepicker-group">
+      <label for="dateFilter">From Date</label>
+      <div class="input-wrapper">
+        <input [(ngModel)]="fromDate" type="date" id="dateFilter" class="custom-datepicker" />
+      </div>
+    </div>
+
+    <div class="datepicker-group">
+      <label for="dateFilter">To Date</label>
+      <div class="input-wrapper">
+        <input [(ngModel)]="toDate" type="date" id="dateFilter" class="custom-datepicker" />
+      </div>
+    </div>
+
+    <div class="datepicker-group">
+      <label for="prcSelect">Select Procedures</label>
+      <ion-select style="color: black;" [(ngModel)]="selectedPrcIds" multiple="true" placeholder="Select Procedures"
+        interface="popover" class="custom-multiselect">
+        <ion-select-option *ngFor="let prc of ProceduresList" [value]="prc.id">
+          {{ prc.name }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+
+
+    <div class="search-button">
+      <ion-button (click)="onSearch()" fill="solid" color="primary">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+
+
+
+    <div class="table-meta">
+      Showing {{ EMRPatientsList.length }} Patients
+    </div>
+  </div>
+  <div class="table-container" *ngIf="EMRPatientsList.length > 0;else noData">
+    <table class="custom-table">
+
+      <thead>
+        <tr>
+          <!-- <th></th> -->
+          <!-- <th *ngFor="let head of tableHeads">{{ head }}</th> -->
+          <th>#</th>
+          <th>Hosp#</th>
+          <th>Patient</th>
+          <th>Age/Gender</th>
+          <th>Test</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <!-- DESKTOP TABLE ROW -->
+        <tr *ngFor="let row of EMRPatientsList;let i =index" class="desktop-row">
+          <td>{{i+1}}</td>
+          <td>{{row.hosP_NO}}</td>
+          <td>{{row.patientname}}</td>
+          <td>{{row.ag}}/{{row.bilL_GENDER}}</td>
+          <td>{{row.testname}}</td>
+
+          <td>
+            <ion-button (click)="openProcedureNotes(row)" fill="clear" slot="start" title="Procedure Note">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </ion-button>
+          </td>
+
+
+
+        </tr>
+
+
+        <!-- MOBILE CARD VIEW -->
+
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+  <div class="mobile-tabs-wrapper">
+    <div class="mobile-cards" *ngIf="EMRPatientsList.length > 0">
+
+      <div class="patient-card" *ngFor="let row of EMRPatientsList;let i =index">
+
+        <!-- Top Section -->
+        <div class="card-top">
+          <div class="token">
+            <span class="label">hosp#</span>
+            <span class="value">{{ row.hosP_NO }}</span>
+          </div>
+
+          <div class="visit">
+            <span class="label">age/Gender</span>
+            <span class="value">{{ row.ag }}/{{ row.bilL_GENDER }}</span>
+          </div>
+        </div>
+
+        <!-- NEW DETAILS SECTION -->
+        <div class="card-details">
+
+          <div class="detail-item">
+            <span class="detail-label">Patient</span>
+            <span class="detail-value">{{ row.patientname }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Test </span>
+            <span class="detail-value">{{ row.testname}}</span>
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<ion-modal class="full-preview-modal" [isOpen]="modalOpen" (didDismiss)="closeModal()">
+
+  <ng-template>
+
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{modalType}}</ion-title>
+        <ion-buttons slot="end">
+          <!-- PRINT -->
+          <!-- <ion-button fill="clear" (click)="printPrescription()">
+              <ion-icon name="print-outline" aria-label="Print"> </ion-icon>
+            </ion-button> -->
+
+          <!-- CLOSE -->
+          <ion-button fill="clear" (click)="closeModal()">
+            <ion-icon color="danger" name="close-circle-outline" size="large" aria-label="Close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ng-container class="ion-padding" *ngIf="modalType=='procedure-note'">
+
+      <app-procedure-note [ProcedureList]="ProceduresList" [MachineList]="MachineList" [pn]="pn"
+        (close)="onModalClose($event)"></app-procedure-note>
+
+
+    </ng-container>
+
+  </ng-template>
+</ion-modal>
+
+
+
+
+<ng-template #noData>
+  <app-no-data>
+
+  </app-no-data>
+</ng-template>

@@ -1,0 +1,193 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Appontment Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ng-container  class="page-bg">
+
+  <!--  FILTER CARD -->
+  <div class="card filter-card">
+    <div class="filter-grid">
+
+      <!-- DATE -->
+      <div class="field">
+        <label class="top-label">From Date</label>
+        <div class="form-item">
+          <mat-form-field class="custom-date-field">
+            <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate" />
+            <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #fromPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="field">
+        <label class="top-label">To Date</label>
+        <div class="form-item">
+          <mat-form-field class="custom-date-field">
+            <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate" />
+            <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+            <mat-datepicker #toPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="field">
+        <label class="top-label">Visit Type</label>
+        <div class="form-item">
+          <div class="dropdown-section">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Select Type</mat-label>
+              <mat-select [(ngModel)]="selectedType" (selectionChange)="onTypeChange()">
+                <mat-option value="0">Both</mat-option>
+                <mat-option value="1">New Visit</mat-option>
+                <mat-option value="2">Re Visit</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+      <div class="field">
+        <!-- <div class="form-item"> -->
+        <ion-button color="primary" (click)="appointmentData()">
+          <ion-icon slot="icon-only" [icon]="searchOutline"></ion-icon>
+        </ion-button>
+      </div>
+      <!-- </div> -->
+
+      <!-- BUTTON -->
+      <!-- <div class="btn-wrap">
+        <ion-button class="show-btn" (click)="listall()">
+          <ion-icon name="eye-outline"></ion-icon> Show
+        </ion-button>
+      </div> -->
+
+    </div>
+  </div>
+
+
+<div class="table-card card desktop-table" *ngIf="appData.length > 0">
+
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>App Time</th>
+          <th>Visit Date</th>
+          <th>Token</th>
+          <th>Patient#</th>
+          <th>Visit</th>
+          <th>Patient Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Mobile</th>
+          <th>Status</th>
+          <th>Booked Date</th>
+          <th>Remarks</th>
+          <th>Last Emr</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let o of appData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ o.visiT_TIME }}</td>
+          <td>{{ o.vdate}}</td>
+          <td>{{ o.bK_TOKEN_NO  }}</td>
+          <td>{{ o['patienT#'] }}</td>
+          <td>{{ o.reG_TYPE }}</td>
+          <td>{{ o.patient }}</td>
+          <td>{{ o.age }}</td>
+          <td>{{ o.patI_GENDER }}</td>
+          <td>{{ o.mobile }}</td>
+          <td>{{ o.status }}</td>
+          <td>{{ o.bookeD_DATE }}</td>
+          <td>{{ o.bR_REMARKS }}</td>
+          <td>{{ o.oldoP_NO }}</td>
+          <td>
+           <!--  <ion-badge
+              [color]="o.status === 'Cancelled' ? 'danger' :
+                       o.status === 'Delivered' ? 'success' :
+                       o.status === 'Billed' ? 'warning' : 'primary'">
+              {{ o.status }}
+            </ion-badge>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<!-- MOBILE CARD VIEW -->
+
+  <!-- MOBILE CARD VIEW -->
+<div class="mobile-cards" *ngIf="appData.length > 0">
+
+  <div class="appt-card" *ngFor="let o of appData; let i = index">
+
+    <!-- ROW 1 : Token + Time -->
+    <div class="row1">
+      <div class="token">
+        Token {{ o.bK_TOKEN_NO }}
+      </div>
+      <div class="time">
+        {{ o.visiT_TIME }}
+      </div>
+    </div>
+
+    <!-- ROW 2 : Name -->
+    <div class="patient-name">
+      {{ o.patient }}
+    </div>
+
+    <!-- ROW 3 : Age + Gender -->
+    <div class="mini-info">
+      <span>{{ o.age }} yrs</span>
+      <span>{{ o.patI_GENDER }}</span>
+      <span class="visit-badge">{{ o.reG_TYPE }}</span>
+    </div>
+
+    <!-- ROW 4 : Date -->
+    <div class="date-row">
+      Visit: {{ o.vdate }}
+    </div>
+
+    <!-- ROW 5 : Mobile -->
+    <div class="mobile">
+      📞 {{ o.mobile }}
+    </div>
+
+    <!-- ROW 6 : Status -->
+    <div class="status-row">
+      <span class="status-badge"
+            [ngClass]="{
+              'status-new': o.status === 'New',
+              'status-confirmed': o.status === 'Confirmed',
+              'status-cancelled': o.status === 'Cancelled'
+            }">
+        {{ o.status }}
+      </span>
+    </div>
+
+    <!-- ROW 7 : Remarks -->
+    <div class="remarks" *ngIf="o.bR_REMARKS">
+      📝 {{ o.bR_REMARKS }}
+    </div>
+
+    <!-- ROW 8 : EMR -->
+    <div class="emr" *ngIf="o['patienT#']">
+      patient#: {{o['patienT#'] }}
+    </div>
+
+    <!-- ROW 9 : Booked -->
+    <div class="booked">
+      Booked: {{ o.bookeD_DATE }}
+    </div>
+
+  </div>
+</div>
+
+</ng-container>

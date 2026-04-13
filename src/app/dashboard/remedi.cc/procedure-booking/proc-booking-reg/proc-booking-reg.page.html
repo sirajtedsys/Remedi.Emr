@@ -1,0 +1,293 @@
+<!-- <ng-template> -->
+  
+      <!-- HEADER -->
+      <!-- <div class="preview-header">
+        <h2>Preview</h2>
+  
+        <ion-icon
+          name="close-circle-outline"
+          class="close-icon"
+          (click)="closePreview()">
+        </ion-icon>
+      </div> -->
+  
+      <div class="preview-body">
+  
+       
+        <div class="preview-banner">
+          <img src="assets/icon/man.png" alt=""/>
+        </div>
+  
+     
+        <div class="patient-tabs">
+
+          <button
+            class="tab"
+            [class.active]="activeTab === 'registered'"
+            (click)="setTab('registered')">
+        
+            REGISTERED PATIENT
+          </button>
+        
+          <button
+            class="tab"
+            [class.active]="activeTab === 'new'"
+            (click)="setTab('new')">
+        
+            NEW PATIENT
+          </button>
+        
+        </div>
+        
+        
+        <!-- ===============================
+             REGISTERED PATIENT FORM
+        ================================ -->
+        
+        <div class="search-card" *ngIf="activeTab === 'registered'">
+        
+          <div class="search-title">
+            Search By
+          </div>
+        
+          <div class="search-options">
+        
+            <label class="radio-option">
+              <span>OP#</span>
+              <input type="radio" name="searchType">
+            </label>
+        
+            <label class="radio-option active">
+              <span>Name</span>
+              <input type="radio" name="searchType" checked>
+            </label>
+        
+            <label class="radio-option">
+              <span>ID No</span>
+              <input type="radio" name="searchType">
+            </label>
+        
+          </div>
+        
+        
+          <div class="search-input">
+        
+            <label>OP# / Name / ID No</label>
+        
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              (focus)="showPatientTable = true"
+              (keyup)="filterPatients()"
+              (blur)="hideTable()"
+              placeholder="Search patient">
+        
+            
+            <!-- AUTOCOMPLETE -->
+            <div class="autocomplete-table" *ngIf="showPatientTable">
+        
+              <div class="desktop-table">
+        
+                <div class="table-header">
+                  <span>OP No</span>
+                  <span>Name</span>
+                  <span>Gender</span>
+                  <span>Age</span>
+                  <span>Id No</span>
+                  <span>Mobile</span>
+                  <span>Address</span>
+                </div>
+        
+                <div
+                  class="table-row"
+                  *ngFor="let patient of filteredPatients"
+                  (click)="selectPatient(patient)">
+        
+                  <span>{{patient.op}}</span>
+                  <span>{{patient.name}}</span>
+                  <span>{{patient.gender}}</span>
+                  <span>{{patient.age}}</span>
+                  <span>{{patient.id}}</span>
+                  <span>{{patient.mobile}}</span>
+                  <span>{{patient.address}}</span>
+        
+                </div>
+        
+              </div>
+        
+        
+              <!-- MOBILE -->
+              <div
+                class="mobile-card"
+                *ngFor="let patient of filteredPatients"
+                (click)="selectPatient(patient)">
+        
+                <div class="card-top">
+                  <span class="op">{{patient.op}}</span>
+                  <span class="gender">{{patient.gender}}</span>
+                </div>
+        
+                <div class="name">
+                  {{patient.name}}
+                </div>
+        
+                <div class="details">
+                  <span>Age: {{patient.age}}</span>
+                  <span>Mobile: {{patient.mobile}}</span>
+                </div>
+        
+                <div class="address">
+                  {{patient.address}}
+                </div>
+        
+              </div>
+        
+            </div>
+        
+          </div>  
+        
+        
+          <!-- EXTRA FORM -->
+          <div class="form-grid">
+        
+            <div class="form-group">
+              <label>Mobile No</label>
+              <input type="number" placeholder="Enter mobile">
+            </div>
+        
+            <div class="form-group">
+              <label>Id Type</label>
+        
+              <select>
+                <option>Select</option>
+                <option>Aadhar</option>
+                <option>Driving License</option>
+                <option>Passport</option>
+              </select>
+        
+            </div>
+        
+            <div class="form-group">
+              <label>ID No</label>
+              <input type="text" placeholder="Enter ID number">
+            </div>
+        
+            <div class="form-group">
+              <label>Token</label>
+        
+              <select>
+                <option>2 (09:05 AM)</option>
+                <option>3 (09:10 AM)</option>
+                <option>4 (09:15 AM)</option>
+              </select>
+        
+            </div>
+        
+            <div class="form-group full">
+              <label>Remarks</label>
+              <textarea rows="2" placeholder="Enter remarks"></textarea>
+            </div>
+        
+          </div>
+        
+        </div>
+        
+        
+        
+        <!-- ===============================
+                NEW PATIENT FORM
+        ================================ -->
+        
+        <div class="search-card new-patient-form" *ngIf="activeTab === 'new'">
+        
+          <div class="search-title">
+            New Patient Details
+          </div>
+        
+          <div class="form-grid">
+        
+            <div class="form-group">
+              <label>Patient Name</label>
+              <input type="text" placeholder="Enter patient name">
+            </div>
+        
+            <div class="form-group">
+              <label>Gender</label>
+              <select>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+        
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" placeholder="Enter age">
+            </div>
+        
+            <div class="form-group">
+              <label>Mobile No</label>
+              <input type="number" placeholder="Enter mobile number">
+            </div>
+        
+            <div class="form-group">
+              <label>ID Type</label>
+              <select>
+                <option>Aadhar</option>
+                <option>Driving License</option>
+                <option>Passport</option>
+              </select>
+            </div>
+        
+            <div class="form-group">
+              <label>ID No</label>
+              <input type="text" placeholder="Enter ID number">
+            </div>
+        
+            <div class="form-group full">
+              <label>Address</label>
+              <textarea rows="2" placeholder="Enter address"></textarea>
+            </div>
+        
+            <div class="form-group">
+              <label>Token</label>
+              <select>
+                <option>2 (09:05 AM)</option>
+                <option>3 (09:10 AM)</option>
+                <option>4 (09:15 AM)</option>
+              </select>
+            </div>
+        
+            <div class="form-group full">
+              <label>Remarks</label>
+              <textarea rows="2" placeholder="Enter remarks"></textarea>
+            </div>
+        
+          </div>
+        
+        </div>
+  
+    
+  <div class="action-buttons">
+  
+    <ion-button
+      class="edit-btn"
+      fill="outline"
+     >
+     <ion-icon name="create-outline"></ion-icon>
+      EDIT
+    </ion-button>
+    
+
+    <ion-button
+      class="save-btn">
+
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      Save
+
+    </ion-button>
+
+  </div>
+      </div>
+  
+    <!-- </ng-template> -->

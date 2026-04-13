@@ -1,0 +1,28 @@
+<div class="right-column desktop-view">
+
+  <h2 class="right-heading">Appointment Status</h2>
+
+  <div class="list-section">
+    <div class="list-item" *ngFor="let item of listItems">
+      <span>{{ item.label }}</span>
+      <ion-badge [ngClass]="item.colorClass">
+        {{ item.value }}
+      </ion-badge>
+    </div>
+  </div>
+
+  <!-- <div class="info-section">
+    <div class="info-row" *ngFor="let info of infoData">
+      <div class="info-label">{{ info.label }}</div>
+      <div class="info-value">{{ info.value }}</div>
+    </div>
+  </div>
+
+  <div class="info-section section-two">
+    <div class="info-row" *ngFor="let info of infoSectionTwo">
+      <div class="info-label">{{ info.label }}</div>
+      <div class="info-value">{{ info.value }}</div>
+    </div>
+  </div> -->
+
+</div>

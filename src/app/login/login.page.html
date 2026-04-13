@@ -1,0 +1,82 @@
+<ion-content fullscreen class="login-page">
+
+  <!-- Animated Background -->
+  <div class="ai-bg">
+    <div class="pulse-circle"></div>
+    <div class="pulse-circle delay"></div>
+
+    <svg class="ecg-line" viewBox="0 0 800 100">
+      <path d="M0 50 L100 50 L130 20 L160 80 L190 40 L220 50 L800 50" />
+    </svg>
+  </div>
+
+  <!-- Glass Card -->
+  <div class="login-card">
+
+    <div class="logo-section">
+      <img src="assets/icon/logo-remidi.png">
+      <h1>REMEDI EMR</h1>
+      <p>Smart Healthcare Access</p>
+    </div>
+
+    <form  [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <!-- ROLE SELECTOR -->
+      <div class="role-selector">
+
+        <div class="role-card" *ngFor="let role of roles" [class.active]="selectedRole === role.value"
+          (click)="selectRole(role.value)">
+          <ion-icon [name]="role.icon"></ion-icon>
+          <span>{{ role.label }}</span>
+        </div>
+
+      </div>
+      <div class="input-box">
+        <ion-icon name="mail-outline"></ion-icon>
+        <input type="email" placeholder="Email Address"  formControlName="email" name="email" required />
+      </div>
+
+      <div class="input-box">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <input [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password"
+          name="password" required />
+        <ion-icon class="eye" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" (click)="togglePassword()">
+        </ion-icon>
+      </div>
+
+      <div class="input-box select-box" *ngIf="SectionListDup.length > 0">
+
+        <ion-icon name="reorderThree"></ion-icon>
+
+        <ion-select interface="popover" placeholder="Select Section"  [(ngModel)]="SelectedSection" name="section" id="section"
+         [ngModelOptions]="{ standalone: true }">
+
+          <ion-select-option [value]="u.id"  *ngFor="let u of SectionList">{{ u.name }} </ion-select-option>
+          <!-- <ion-select-option value="pharmacy">Pharmacy</ion-select-option>
+          <ion-select-option value="lab">Laboratory</ion-select-option>
+          <ion-select-option value="admin">Admin</ion-select-option> -->
+
+        </ion-select>
+
+      </div>
+
+      <ion-button expand="block" type="submit" class="login-btn">
+       Login
+      </ion-button>
+
+
+       <ion-button
+  fill="clear"
+  class="forgot-btn"
+  type="button"     
+  (click)="ChangeConfig()"
+  *ngIf="checkEnvType()"
+>
+  <span>Change app Configuration </span>
+  <ion-icon name="help-circle-outline" class="config-icon"></ion-icon>
+</ion-button>
+
+    </form>
+
+  </div>
+
+</ion-content>

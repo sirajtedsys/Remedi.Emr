@@ -1,0 +1,47 @@
+<ion-content class="dashboard-wrapper">
+
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <app-sidebar [isCollapsed]="isCollapsed">
+    </app-sidebar>
+
+    <!-- (toggleMenu)="toggleMenu($event)" -->
+
+    <div class="main-area" [class.expanded]="isCollapsed">
+
+      <!-- HEADER -->
+      <app-dashboard-header (toggleSidebar)="toggleSidebar()">
+      </app-dashboard-header>
+
+      <div class="content-area">
+
+        <div class="main-section">
+          <!-- <app-patient-table>
+          </app-patient-table>
+
+          <app-mobile-card>
+
+          </app-mobile-card> -->
+
+          <div class="left-column">
+            <div class="left-content">
+              <!-- <div class="table-container"> -->
+            <router-outlet></router-outlet>
+          <!-- </div> -->
+          </div>
+          </div>
+
+          <!-- RIGHT SIDE -->
+          <app-appointment-status [listItems]="listItems">
+          </app-appointment-status>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

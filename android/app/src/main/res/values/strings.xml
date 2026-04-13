@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">remedi-EMR</string>
+    <string name="title_activity_main">remedi-EMR</string>
+    <string name="package_name">com.tedsys.remedi_emr</string>
+    <string name="custom_url_scheme">com.tedsys.remedi_emr</string>
+</resources>

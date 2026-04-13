@@ -1,0 +1,7 @@
+{
+  "name": "remedi-EMR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

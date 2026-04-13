@@ -1,0 +1,152 @@
+<!-- <ion-content> -->
+  <ion-card class="filter-card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="" size-md="9"  *ngIf="LoginedAsDoctor">
+
+        </ion-col >
+
+        <ion-col size="12" size-md="3"  *ngIf="!LoginedAsDoctor">
+          <ion-item lines="none">
+            <ion-label position="stacked">Branch</ion-label>
+            <ion-select placeholder="Choose Branch" (ionChange)="onBranchChange($event)" [(ngModel)]="selectedBranch"  name="selectedbranch" id="selecetedbrancj">
+              <!-- <ion-select-option value="">Select Department</ion-select-option> -->
+              <ion-select-option [value]="items.id" *ngFor="let items of BranchList">{{items.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+
+
+        <ion-col size="12" size-md="3" *ngIf="!LoginedAsDoctor">
+          <ion-item lines="none">
+            <ion-label position="stacked">Department</ion-label>
+            <ion-select placeholder="Choose Department" (ionChange)="onDepartmentChange($event)" [(ngModel)]="selectedDepartment"  name="selecteddpt" id="selecetedpr">
+              <!-- <ion-select-option value="">Select Department</ion-select-option> -->
+              <ion-select-option [value]="items.id"
+                *ngFor="let items of DepartmentList">{{items.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="12" size-md="3"  *ngIf="!LoginedAsDoctor">
+          <ion-item lines="none">
+            <ion-label position="stacked">Doctor</ion-label>
+            <ion-select placeholder="Choose Doctor" (ionChange)="onDoctorChange($event)" [(ngModel)]="selectedDoctor" name="selecteddoc" id="seleceteddoc">
+
+              <ion-select-option [value]="items.doct_Id"
+                *ngFor="let items of DoctorList">{{items.emp_Offl_Name}}</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+
+        <ion-col size="5" size-md="1">
+          <ion-item lines="none">
+            <ion-label position="stacked">Year</ion-label>
+            <ion-select placeholder="Choose Year" (ionChange)="onYearChange($event)" [(ngModel)]="selectedYearId"
+              name="selectedYear" id="selectedYear">
+              <ion-select-option [value]="items.id" *ngFor="let items of yearsList">{{items.name}}</ion-select-option>
+
+
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6" size-md="2"  >
+          <ion-item lines="none">
+            <ion-label position="stacked">Month</ion-label>
+            <ion-select placeholder="Choose Month" interface="alert" (ionChange)="onMonthChange($event)"
+              [(ngModel)]="selectedMonthId" name="selectedMonthId" id="selectedMonthId">
+              <ion-select-option [value]="items.id" *ngFor="let items of monthList">{{items.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <div class="calendar-header" style="color:black;">
+    <ion-icon name="chevron-back-outline" [class.disabled]="isPrevDisabled()"
+      (click)="!isPrevDisabled() && prevMonth()">
+    </ion-icon>
+
+    <h2>{{ getSelectedMonth() }} {{ selectedYear }}</h2>
+
+    <ion-icon name="chevron-forward-outline" [class.disabled]="isNextDisabled()"
+      (click)="!isNextDisabled() && nextMonth()">
+    </ion-icon>
+  </div>
+
+
+  <div class="web-only calendar-wrapper" *ngIf="isWebCalendar">
+
+    <!-- Weekday Header -->
+    <div class="weekdays">
+      <div style="color: black;" *ngFor="let d of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']">
+        {{ d }}
+      </div>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="calendar-grid">
+
+      <div class="day-card " *ngFor="let day of calendarDays" [class.empty-cell]="!day.date"
+        [class.off-day]="day.noConsultation" (click)="onDateClick(day)">
+
+        <!-- Empty cell (before month start) -->
+        <ng-container *ngIf="day.date; else emptyCell">
+
+          <!-- Date -->
+          <div style="color: black;" class="date">{{ day.date }}</div>
+
+          <!-- OFF DAY -->
+          <div *ngIf="day.noConsultation" class="off-label">
+            OFF
+          </div>
+
+          <!-- AVAILABLE DAY -->
+          <ng-container *ngIf="!day.noConsultation">
+            <div *ngIf="selectedDoctor!=''" class="pill success">Total : {{ day.total }}</div>
+            <div *ngIf="selectedDoctor!=''" class="pill dark">Booked : {{day.booked }}</div>
+            <div *ngIf="selectedDoctor!=''" class="pill primary">Available : {{ day.available }}</div>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-template #emptyCell></ng-template>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="mobile-only" *ngIf="!isWebCalendar">
+    <div class="calendar-list">
+      <ng-container *ngFor="let day of calendarDays"  >
+        <span (click)="onDateClick(day)">
+        <ion-card *ngIf="day.date">
+          <ion-item lines="full">
+            <ion-label>
+              <p>{{ months[selectedMonthIndex] }} {{ selectedYear }}</p>
+              <h2>Day {{ day.date }}</h2>
+            </ion-label>
+            <ion-badge slot="end" color="success" *ngIf="!day.noConsultation">
+              {{day.available}} Available
+            </ion-badge>
+          </ion-item>
+
+          <ion-card-content *ngIf="!day.noConsultation">
+            <div class="pill success" style="color: #0d5a24;">Total: {{day.total}} | Booked: {{day.booked}}</div>
+          </ion-card-content>
+
+          <ion-card-content *ngIf="day.noConsultation" class="ion-text-center">
+            <ion-note color="danger" style="font-weight: 600;">No Consultation Scheduled</ion-note>
+          </ion-card-content>
+        </ion-card>
+        </span>
+      </ng-container>
+    </div>
+  </div>
+<!-- </ion-content> -->

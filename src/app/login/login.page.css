@@ -1,0 +1,275 @@
+.login-page {
+  --background: radial-gradient(circle at 20% 20%, #0f2027, #081018 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+ion-content.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-content.login-page::part(scroll) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.ai-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pulse-circle {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.15), transparent 70%);
+  border-radius: 50%;
+  animation: pulse 6s infinite ease-in-out;
+}
+
+.pulse-circle:nth-child(1) {
+  top: 15%;
+  left: 10%;
+}
+
+.pulse-circle.delay {
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+.ecg-line {
+  position: absolute;
+  bottom: 25%;
+  width: 200%;
+  stroke: #00f5ff;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.7;
+  animation: ecgMove 4s linear infinite;
+}
+
+@keyframes ecgMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.login-card {
+  position: relative;
+  width: 95%;
+  max-width: 420px;
+  padding: 45px 40px;
+  border-radius: 28px;
+  backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.15), inset 0 0 25px rgba(0, 255, 255, 0.05);
+  color: #ffffff;
+  z-index: 10;
+  animation: cardFade 0.8s ease forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes cardFade {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.logo-section {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.logo-section ion-icon {
+  font-size: 46px;
+  color: #00f5ff;
+  filter: drop-shadow(0 0 12px #00f5ff);
+}
+
+.logo-section h1 {
+  margin-top: 12px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.logo-section p {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* =====================================================
+   role selector 
+===================================================== */
+.role-selector {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.role-card {
+  flex: 1;
+  padding: 14px 10px;
+  text-align: center;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+}
+
+.role-card ion-icon {
+  font-size: 22px;
+  color: #00f5ff;
+  transition: 0.3s;
+}
+
+.role-card span {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  border-color: #00f5ff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.role-card.active {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: #00f5ff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.role-card.active ion-icon {
+  filter: drop-shadow(0 0 8px #00f5ff);
+  transform: scale(1.1);
+}
+
+@media (max-width: 576px) {
+  .role-selector {
+    gap: 8px;
+  }
+  .role-card {
+    padding: 12px 6px;
+  }
+  .role-card span {
+    font-size: 12px;
+  }
+}
+.input-box {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-box ion-icon {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-size: 18px;
+  color: #00f5ff;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 45px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
+}
+
+.eye {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  cursor: pointer;
+  color: #00f5ff;
+  transition: 0.2s ease;
+}
+
+.eye:hover {
+  transform: scale(1.1);
+}
+
+.login-btn {
+  margin-top: 15px;
+  height: 48px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  --background: linear-gradient(135deg, #00f5ff, #007bff);
+  --border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  --background: linear-gradient(135deg, #007bff , #00f5ff);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .login-card {
+    padding: 35px 30px;
+  }
+}
+/* Mobile */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 30px 25px;
+    border-radius: 22px;
+  }
+  .logo-section h1 {
+    font-size: 22px;
+  }
+  .input-box input {
+    font-size: 13px;
+  }
+}
+/* Small Mobile */
+@media (max-width: 400px) {
+  .login-card {
+    padding: 25px 20px;
+  }
+}/*# sourceMappingURL=login.page.css.map */

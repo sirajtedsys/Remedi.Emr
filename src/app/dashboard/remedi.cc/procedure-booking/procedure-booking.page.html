@@ -1,0 +1,178 @@
+<div class="procedure-page">
+
+  <!-- HEADER -->
+  <div class="page-title">
+    Procedure Booking
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+
+    <div class="filter-item">
+      <label>Procedure Room</label>
+      <ion-select interface="popover" [(ngModel)]="selectedRoom" (ngModelChange)="onRoomSelectionChange($event)">
+        <ion-select-option *ngFor="let room of RoomsList" [value]="room.id">{{ room.name }}</ion-select-option>
+        <!-- <ion-select-option>ROOM 2</ion-select-option>
+        <ion-select-option>ROOM 3</ion-select-option> -->
+      </ion-select>
+    </div>
+
+    
+    <div class="filter-item">
+  <label>Select Date</label>
+  <ion-datetime-button datetime="datePicker11"></ion-datetime-button>
+</div>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime
+      id="datePicker11"
+      presentation="date"
+      [(ngModel)]="selectedDate"
+      (ionChange)="onDateChange($event)"
+      >
+    </ion-datetime>
+  </ng-template>
+</ion-modal>
+<!-- (ionChange)="onDateChange($event)" -->
+
+    <div class="filter-actions">
+      <ion-button size="small" color="success">
+        <ion-icon name="eye-outline"></ion-icon>
+        Show
+      </ion-button>
+
+      <ion-button size="small" color="warning">
+        Clear
+      </ion-button>
+    </div>
+
+  </div>
+
+
+
+  <!-- PROCEDURE GRID -->
+  <div class="procedure-grid">
+
+    <!-- COLUMN -->
+    <div class="procedure-column" *ngFor="let item of MachineAndSlots">
+
+      <div class="column-header">
+        {{item.MachineName}}
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat">
+          <span>Total</span>
+          <strong>144</strong>
+        </div>
+
+        <div class="stat">
+          <span>Booked</span>
+          <strong>2</strong>
+        </div>
+
+        <div class="stat">
+          <span>Balance</span>
+          <strong>142</strong>
+        </div>
+      </div>
+
+
+      <!-- SLOT -->
+      <div class="slot-card booked" *ngFor="let slot of item.Slots" (click)="onSlotClick(slot)">
+
+        <div class="slot-left">
+          <div class="slot-number">{{slot.token}}</div>
+          <div class="slot-time">{{slot.tim}}</div>
+        </div>
+
+        <div class="slot-info" *ngIf="slot.prC_BK_ID!=null">
+          <div>01-0000000103</div>
+          <div class="patient">AKHIL</div>
+          <div class="phone">9072873936</div>
+        </div>
+
+           <div class="badge" *ngIf="slot.prC_BK_ID==null">
+          Available
+        </div>
+
+      </div>
+
+
+
+      <!-- AVAILABLE SLOT -->
+
+      <!-- <div class="slot-card available">
+
+        <div class="slot-left">
+          <div class="slot-number">48</div>
+          <div class="slot-time">12:55 PM</div>
+        </div>
+
+     
+
+      </div> -->
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+  <ion-modal class="full-preview-modal"[isOpen]="isModalOpen" (didDismiss)="onModalDismiss()">
+
+    <ng-template>
+
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Preview</ion-title>
+          <ion-buttons slot="end">
+            <!-- PRINT -->
+            <!-- <ion-button fill="clear" (click)="printPrescription()">
+              <ion-icon name="print-outline" aria-label="Print"> </ion-icon>
+            </ion-button> -->
+
+            <!-- CLOSE -->
+            <ion-button fill="clear" (click)="closeModal()">
+              <ion-icon color="danger" name="close-circle-outline" size="large" aria-label="Close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding" *ngIf="modalType=='reg'">
+
+        <app-proc-booking-reg></app-proc-booking-reg>
+        <!-- YOUR CONTENT -->
+        <!-- <app-prescription-print-format #printComponent [emrDocId]="PrintEmrDocID" [PatientId]="PrintPatientId"
+          [empId]="PrintDocId">
+
+        
+
+        </app-prescription-print-format> -->
+        <!-- <app-patient-booking-registration [DoctorId]="this.CalenderData.DoctId??''"
+          [BranchId]="this.CalenderData.BranchId??''" [doctorName]="this.CalenderData.DoctName??''"
+          [selectedDate]="this.selectedDate" [tokenNumber]="this.SelectedToken" [EmpId]="this.CalenderData.empId??''"
+          (closePopup)="closeModal()">
+
+        </app-patient-booking-registration> -->
+      </ion-content>
+
+       <ion-content class="ion-padding" *ngIf="modalType=='cancel'">
+        <!-- YOUR CONTENT -->
+        <!-- <app-prescription-print-format #printComponent [emrDocId]="PrintEmrDocID" [PatientId]="PrintPatientId"
+          [empId]="PrintDocId">
+
+        </app-prescription-print-format> -->
+        <!-- <app-appointment-actions [DoctorId]="this.CalenderData.DoctId??''"
+          [BranchId]="this.CalenderData.BranchId??''" [doctorName]="this.CalenderData.DoctName??''"
+          [selectedDate]="this.selectedDate" [tokenNumber]="this.SelectedToken" [EmpId]="this.CalenderData.empId??''" [bookingId]="this.SelectedBookingId??''"
+          (closePopup)="closeModal()"></app-appointment-actions> -->
+      </ion-content>
+    </ng-template>
+  </ion-modal>

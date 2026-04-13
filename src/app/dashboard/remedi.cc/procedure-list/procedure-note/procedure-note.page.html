@@ -1,0 +1,219 @@
+<div class="preview-body">
+
+  <div class="search-card">
+    <div class="search-title">Procedure & Progress Note</div>
+
+    <div class="form-grid" style="overflow: auto;">
+
+      <!-- A. BASIC SESSION DETAILS -->
+
+      <div class="form-group">
+        <label>Client Name / ID</label>
+        <input type="text" [(ngModel)]="form.clientName">
+      </div>
+
+      <div class="form-group">
+        <label>Therapist Name / ID</label>
+        <input type="text" [(ngModel)]="form.therapistName">
+      </div>
+
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" [(ngModel)]="form.date">
+      </div>
+
+      <div class="form-group">
+        <label>Time</label>
+        <input type="time" [(ngModel)]="form.time">
+      </div>
+
+      <div class="form-group">
+        <label>Session Number</label>
+        <input type="number" [(ngModel)]="form.sessionNo">
+      </div>
+
+      <div class="form-group full">
+        <label>Session Type</label>
+        <div class="radio-group">
+          <label><input type="radio" [(ngModel)]="form.sessionType" value="Initial"> Initial</label>
+          <label><input type="radio" [(ngModel)]="form.sessionType" value="Follow-up"> Follow-up</label>
+          <label><input type="radio" [(ngModel)]="form.sessionType" value="Intensive"> Intensive</label>
+          <label><input type="radio" [(ngModel)]="form.sessionType" value="Review"> Review</label>
+          <label><input type="radio" [(ngModel)]="form.sessionType" value="Maintenance"> Maintenance</label>
+        </div>
+      </div>
+
+      <!-- B. PROCEDURE -->
+
+      <div class="form-group full">
+        <label>Procedure / Device Used</label>
+        <div class="checkbox-group">
+          <label *ngFor="let p of procedures">
+            <input type="checkbox" [(ngModel)]="p.selected"> {{p.name}}
+          </label>
+        </div>
+      </div>
+
+      <!-- C. CATEGORY -->
+
+      <div class="form-group full">
+        <label>Procedure Category</label>
+        <div class="checkbox-group">
+          <label *ngFor="let c of categories">
+            <input type="checkbox" [(ngModel)]="c.selected"> {{c.name}}
+          </label>
+        </div>
+      </div>
+
+      <!-- D. CLINICAL INTENT -->
+
+      <div class="form-group full">
+        <label>Clinical Intent</label>
+        <div class="checkbox-group">
+          <label *ngFor="let intent of intents">
+            <input type="checkbox" [(ngModel)]="intent.selected"> {{intent.name}}
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label>Rationale</label>
+        <textarea rows="2" [(ngModel)]="form.rationale"></textarea>
+      </div>
+
+      <!-- E. PRE SESSION -->
+
+      <div class="form-group">
+        <label>Anxiety (0–10)</label>
+        <input type="number" [(ngModel)]="form.pre.anxiety">
+      </div>
+
+      <div class="form-group">
+        <label>Stress (0–10)</label>
+        <input type="number" [(ngModel)]="form.pre.stress">
+      </div>
+
+      <div class="form-group">
+        <label>Emotional Intensity</label>
+        <input type="number" [(ngModel)]="form.pre.emotion">
+      </div>
+
+      <div class="form-group">
+        <label>Body Discomfort</label>
+        <input type="number" [(ngModel)]="form.pre.body">
+      </div>
+
+      <div class="form-group">
+        <label>Mental Clarity</label>
+        <input type="number" [(ngModel)]="form.pre.clarity">
+      </div>
+
+      <!-- F. PARAMETERS -->
+
+      <div class="form-group">
+        <label>Device Name</label>
+        <input type="text" [(ngModel)]="form.deviceName">
+      </div>
+
+      <div class="form-group">
+        <label>Target Area</label>
+        <input type="text" [(ngModel)]="form.targetArea">
+      </div>
+
+      <div class="form-group">
+        <label>Mode / Protocol</label>
+        <input type="text" [(ngModel)]="form.protocol">
+      </div>
+
+      <div class="form-group">
+        <label>Intensity</label>
+        <input type="text" [(ngModel)]="form.intensity">
+      </div>
+
+      <div class="form-group">
+        <label>Frequency</label>
+        <input type="text" [(ngModel)]="form.frequency">
+      </div>
+
+      <div class="form-group">
+        <label>Duration (min)</label>
+        <input type="number" [(ngModel)]="form.duration">
+      </div>
+
+      <!-- G. OBSERVATION -->
+
+      <div class="form-group full">
+        <label>During Session Observation</label>
+        <textarea rows="2" [(ngModel)]="form.observation"></textarea>
+      </div>
+
+      <!-- H. POST SESSION -->
+
+      <div class="form-group">
+        <label>Post Anxiety</label>
+        <input type="number" [(ngModel)]="form.post.anxiety">
+      </div>
+
+      <div class="form-group">
+        <label>Post Stress</label>
+        <input type="number" [(ngModel)]="form.post.stress">
+      </div>
+
+      <div class="form-group">
+        <label>Body Comfort</label>
+        <input type="number" [(ngModel)]="form.post.body">
+      </div>
+
+      <div class="form-group">
+        <label>Mental Clarity</label>
+        <input type="number" [(ngModel)]="form.post.clarity">
+      </div>
+
+      <!-- I. SOAP -->
+
+      <div class="form-group full">
+        <label>Subjective</label>
+        <textarea rows="2" [(ngModel)]="form.soap.s"></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Objective</label>
+        <textarea rows="2" [(ngModel)]="form.soap.o"></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Assessment</label>
+        <textarea rows="2" [(ngModel)]="form.soap.a"></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label>Plan</label>
+        <textarea rows="2" [(ngModel)]="form.soap.p"></textarea>
+      </div>
+
+      <!-- NEXT SESSION -->
+
+      <div class="form-group">
+        <label>Next Procedure</label>
+        <input type="text" [(ngModel)]="form.nextProcedure">
+      </div>
+
+      <div class="form-group">
+        <label>Time Gap</label>
+        <select [(ngModel)]="form.timeGap">
+          <option>Same week</option>
+          <option>48–72 hours</option>
+          <option>Weekly</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="action-buttons">
+    <ion-button class="edit-btn" fill="outline">Clear</ion-button>
+    <ion-button class="save-btn">Save</ion-button>
+  </div>
+
+</div>

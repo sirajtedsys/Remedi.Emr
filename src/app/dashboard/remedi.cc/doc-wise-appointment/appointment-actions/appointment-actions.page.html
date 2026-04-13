@@ -1,0 +1,168 @@
+<ion-content>
+  <div class="selected-patient-container">
+    <ion-accordion-group value="patient-details">
+      <ion-accordion value="patient-details" class="patient-accordion">
+        <ion-item slot="header" lines="none" class="accordion-header-item">
+          <div class="header-content">
+            <div class="avatar-box">
+              <img src="assets/images/circle-user.png" alt="patient" />
+            </div>
+            <div class="primary-info">
+              <h2>{{ patientData?.patient }}</h2>
+              <p>
+                <span class="badge op">OP: {{ patientData?.opnumber }}</span>
+                <span class="badge age">{{ patientData?.patI_AGE }} yrs / {{ patientData?.patI_GENDER }}</span>
+              </p>
+            </div>
+            <div class="token-badge">
+              <small>Token</small>
+              <span>{{ tokenNumber }}</span>
+            </div>
+          </div>
+        </ion-item>
+        <div class="ion-padding accordion-body" slot="content">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <div class="detail-item">
+                  <label>Appointment Date</label>
+                  <span>{{ selectedDate | date: 'dd/MM/yyyy' }}</span>
+                </div>
+              </ion-col>
+              <ion-col size="6">
+                <div class="detail-item">
+                  <label>Status</label>
+                  <span class="status-text">{{ currentStatus }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <ion-segment [(ngModel)]="activeTab" class="patient-segment">
+    <ion-segment-button value="reallocate">Reallocate</ion-segment-button>
+    <ion-segment-button value="call">Call</ion-segment-button>
+    <ion-segment-button value="cancel">Cancel/Confirm</ion-segment-button>
+    <ion-segment-button value="edit">Edit</ion-segment-button>
+  </ion-segment>
+
+  <div class="reg-container ion-padding">
+
+    <div *ngIf="activeTab === 'reallocate'" class="form-grid">
+      <ion-item fill="outline">
+        <ion-label position="floating">New Date</ion-label>
+        <ion-input type="date" [(ngModel)]="REANewDate" [min]="Today" (ngModelChange)="onDocOrDateSelect()"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="floating">Doctor Name</ion-label>
+        <ion-select [(ngModel)]="READoctor"  (ngModelChange)="onDocOrDateSelect()">
+          <ion-select-option *ngFor="let doc of DoctorList" [value]="doc.doct_Id" >{{ doc.emp_Offl_Name
+            }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Token</ion-label>
+        <ion-select [(ngModel)]="REAToken" >
+          <ion-select-option *ngFor="let doc of TokenTimeList" [value]="doc.token">{{ doc.token_1 }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div *ngIf="activeTab === 'call'" class="form-grid">
+      <div class="full-width">
+        <span class="section-title">Status</span>
+        <ion-radio-group [(ngModel)]="CallConnectStatus">
+          <div class="option-grid">
+            <ion-item lines="none"><ion-radio value="Y">Call Picked</ion-radio></ion-item>
+            <ion-item lines="none"><ion-radio value="N">Not Picked</ion-radio></ion-item>
+          </div>
+        </ion-radio-group>
+      </div>
+      <ion-item fill="outline" class="full-width">
+        <ion-label position="floating">Remarks</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="CallRemarks"></ion-textarea>
+      </ion-item>
+
+      <div class="full-width" style="margin-bottom: 20px;">
+        <div class="search-dropdown" *ngIf="CallhistoryList.length > 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sl.No</th>
+                    
+                    <th>Called By</th>
+                    <th>Called On</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let p of CallhistoryList;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{p.called_By}}</td>
+                    <td>{{p.called_On | date:'dd/MMM/yyyy hh:mm a'}}</td>
+                    <td>{{p.called_Remarks}}</td>
+                    <td>{{p.connect_Status}}</td>        
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="activeTab === 'cancel'" class="form-grid">
+      <ion-item fill="outline" class="full-width">
+        <ion-label position="floating">Reason for Cancellation</ion-label>
+        <ion-select [(ngModel)]="CancelReason">
+          <ion-select-option *ngFor="let item of CancelStatusList" [value]="item.id">{{item.name}}</ion-select-option>
+          <!-- <ion-select-option value="doctor">Doctor Unavailable</ion-select-option> -->
+        </ion-select>
+      </ion-item>
+      <ion-item fill="outline" class="full-width">
+        <ion-label position="floating">Remarks</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="CancelRemarks"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <div *ngIf="activeTab === 'edit'" class="form-grid">
+      <ion-item fill="outline">
+        <ion-label position="floating">ID No</ion-label>
+        <ion-input type="text" [(ngModel)]="actionData.reallocateDate"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Mobile No</ion-label>
+        <ion-input type="number" [(ngModel)]="actionData.reallocateDate"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+</ion-content>
+
+<ion-footer class="floating-submit-footer ion-no-border">
+  <ion-row>
+    <ion-col [size]="activeTab === 'cancel' ? 4 : 8">
+      <ion-button expand="block" (click)="processAction()" [color]="activeTab==='cancel'?'danger':'success'">
+        <ion-icon name="checkmark-circle-outline" *ngIf="activeTab !== 'cancel'"   slot="start"></ion-icon>
+        {{ activeTab | titlecase }}
+      </ion-button>
+    </ion-col>
+    <ion-col size="4" *ngIf="activeTab === 'cancel'">
+      <ion-button expand="block" (click)="processConfirmInCancelTab()" color="success">
+        <!-- <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon> -->
+        Confirm
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button expand="block" fill="outline" color="medium" (click)="dismiss()">
+        Clear
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

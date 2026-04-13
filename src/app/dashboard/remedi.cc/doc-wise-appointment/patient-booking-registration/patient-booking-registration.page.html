@@ -1,0 +1,298 @@
+<ion-content>
+
+  <!-- HEADER -->
+  <!-- <div class="modal-header-info">
+    <div class="doc-meta">
+      <h2>{{ doctorName }}</h2>
+      <p>{{ selectedDate | date:'dd/MM/yyyy' }} {{ selectedTime }}</p>
+    </div>
+
+    <div class="token-display">
+      <h3>Token : {{ tokenNumber }}</h3>
+    </div>
+  </div> -->
+
+
+  <!-- <div class="selected-patient-container"> -->
+  <div class="doctor-header">
+    <div class="header-top">
+      <div class="doctor-info">
+        <ion-avatar slot="start"><img src="assets/icon/man.png" /></ion-avatar>
+        <div>
+          <h2>{{doctorName}}</h2>
+          <!-- <p>DERMATOLOGIST</p> -->
+        </div>
+      </div>
+      <!-- <ion-button fill="clear"  (click)="goBack()" size="small">Back To Appointments Calendar</ion-button> -->
+    </div>
+  </div>
+  <!-- </div> -->
+  <!-- PATIENT TYPE -->
+  <ion-segment [(ngModel)]="patientType" class="patient-segment" (ngModelChange)="onPatientTypeChange($event)">
+    <ion-segment-button value="registered">
+      <ion-label>Registered Patient</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="new">
+      <ion-label>New Patient</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- FORM CONTAINER -->
+  <div class="reg-container">
+
+    <!-- ================= REGISTERED PATIENT ================= -->
+    <ng-container *ngIf="patientType === 'registered'">
+      <div class="form-grid">
+
+        <div class="full-width">
+          <span class="section-title">Search By</span>
+          <!-- <ion-item fill="outline">
+            <ion-label position="floating">OP# / Name /ID No</ion-label>
+            <ion-input [(ngModel)]="bookingData.hospitalNo"></ion-input>
+          </ion-item> -->
+          <ion-radio-group [(ngModel)]="SearchBy" (ngModelChange)="onSearchByChange($event)">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="op">OP#</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="name">Name</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="id">ID No</ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+          <div class="search-box">
+            <ion-item fill="outline">
+              <ion-label position="floating">OP# / Name / ID No</ion-label>
+              <ion-input [(ngModel)]="SearchValue" (ionInput)="onSearchChange($event)">
+              </ion-input>
+            </ion-item>
+
+            <!-- SEARCH RESULT TABLE -->
+            <div class="search-dropdown" *ngIf="patientList.length > 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>OP No</th>
+                    <th>Name</th>
+                    
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Id No</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let p of patientList" (click)="selectPatient(p)">
+                    <td>{{p.pati_Opno??p.opno}}</td>
+                    <td>{{p.patiName??p.pati_Name}}</td>
+                    <td>{{p.pati_Gender}}</td>
+                    <td>{{p.pati_Age}}</td>                    
+                    <td>{{p.idCardNo}}</td>
+                    <td>{{p.mobNo}}</td>
+                    <td>{{p.address??p.pati_Address}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Patient Name</ion-label>
+          <ion-input [(ngModel)]="bd.BkPatName"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Age</ion-label>
+          <ion-input type="text" [(ngModel)]="bd.BkPatAge"></ion-input>
+        </ion-item>
+        <ion-item fill="outline">
+          <ion-label position="floating">Mobile No</ion-label>
+          <ion-input [(ngModel)]="bd.BkContactNo"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Id Type</ion-label>
+          <ion-select [(ngModel)]="bd.BrIdNo">
+            <ion-select-option value="">Select Id Type</ion-select-option>
+            <ion-select-option [value]="items.id" *ngFor="let items of IdCardList">{{items.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">ID No</ion-label>
+          <ion-input [(ngModel)]="bd.BrIdNo"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Token</ion-label>
+          <ion-select multiple [(ngModel)]="bd.TokenNosSelected">
+
+            <ion-select-option [value]="items.token"
+              *ngFor="let items of TokenTimeList">{{items.token_1}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item fill="outline" class="full-width">
+          <ion-label position="floating">Remarks</ion-label>
+          <ion-textarea rows="2" [(ngModel)]="bd.BrRemarks"></ion-textarea>
+        </ion-item>
+
+      </div>
+    </ng-container>
+
+    <!-- ================= NEW PATIENT ================= -->
+    <ng-container *ngIf="patientType === 'new'">
+      <div class="form-grid">
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Full Name</ion-label>
+          <ion-input [(ngModel)]="bd.BkPatName"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Age</ion-label>
+          <ion-input type="number" [(ngModel)]="bd.BkPatAge"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Gender</ion-label>
+          <ion-select [(ngModel)]="bd.BkPatGender">
+            <ion-select-option value="M">Male</ion-select-option>
+            <ion-select-option value="F">Female</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Mobile</ion-label>
+          <ion-input [(ngModel)]="bd.BkContactNo"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="bd.BrEmailId"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">ID Type</ion-label>
+          <ion-select [(ngModel)]="bd.BrIdType" name="idtype" id="idtype">
+            <ion-select-option value="">Select Id Type</ion-select-option>
+            <ion-select-option [value]="items.id" *ngFor="let items of IdCardList">{{items.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">ID No</ion-label>
+          <ion-input [(ngModel)]="bd.BrIdNo"></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Token</ion-label>
+          <ion-select multiple [(ngModel)]="bd.TokenNosSelected">
+            <!-- <ion-select-option value="" >Select Token Type</ion-select-option> -->
+            <ion-select-option [value]="items.token"
+              *ngFor="let items of TokenTimeList">{{items.token_1}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item fill="outline" class="full-width">
+          <ion-label position="floating">Remarks</ion-label>
+          <ion-textarea rows="2" [(ngModel)]="bd.BrRemarks"></ion-textarea>
+        </ion-item>
+
+      </div>
+    </ng-container>
+
+    <!-- COMMON FIELDS -->
+    <div class="form-grid">
+
+      <div class="full-width">
+        <span class="section-title">Appointment Type</span>
+        <ion-radio-group [(ngModel)]="bd.OpnAdvBookType">
+          <div class="option-grid">
+            <ion-item lines="none"><ion-radio value="S">Single</ion-radio></ion-item>
+            <ion-item lines="none"><ion-radio value="G">Group</ion-radio></ion-item>
+          </div>
+        </ion-radio-group>
+      </div>
+
+      <div class="full-width">
+        <span class="section-title">Pay Type</span>
+        <ion-radio-group [(ngModel)]="bd.BrPayType">
+          <div class="option-grid">
+            <ion-item lines="none"><ion-radio value="C">Cash</ion-radio></ion-item>
+            <ion-item lines="none"><ion-radio value="I">Insurance</ion-radio></ion-item>
+          </div>
+        </ion-radio-group>
+      </div>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Procedure</ion-label>
+        <ion-select multiple [(ngModel)]="bd.DoctProc">
+          <!-- <ion-select-option value="consult">Consultation</ion-select-option>
+          <ion-select-option value="therapy">Therapy</ion-select-option> -->
+        </ion-select>
+      </ion-item>
+
+      <ion-item fill="outline">
+        <ion-label position="floating">Token Type</ion-label>
+        <ion-select [(ngModel)]="bd.AttId">
+          <!-- <ion-select-option value="" >Select Token Type</ion-select-option> -->
+          <ion-select-option [value]="items.atT_ID"
+            *ngFor="let items of TokenTypeList">{{items.atT_NAME}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+
+
+      <ion-item fill="outline" class="full-width">
+        <ion-label position="floating">Message to Doctor</ion-label>
+        <ion-textarea rows="2" [(ngModel)]="bd.BrMessages"></ion-textarea>
+      </ion-item>
+
+
+           <div class="full-width">
+        <span class="section-title">Send SMS Messages</span>
+        <ion-radio-group [(ngModel)]="bd.OpnSmsAllow">
+          <div class="option-grid">
+            <ion-item lines="none"><ion-radio value="Y">Yes</ion-radio></ion-item>
+            <ion-item lines="none"><ion-radio value="N">No</ion-radio></ion-item>
+          </div>
+        </ion-radio-group>
+      </div>
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+  <!-- FOOTER -->
+<ion-footer class="floating-submit-footer ion-no-border" >
+  <ion-row >
+    <ion-col>
+      <ion-button expand="block" class="submit-btn" (click)="save()">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Save
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button expand="block" fill="outline" color="medium" (click)="clear()">
+        Clear
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
+
+
+</ion-content>
+

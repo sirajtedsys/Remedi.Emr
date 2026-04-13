@@ -1,0 +1,107 @@
+<div class="mobile-tabs-wrapper">
+
+  <!-- Tabs -->
+  <div class="mobile-tabs">
+    <div class="tabs-inner">
+
+      <div class="tab-indicator" [style.transform]="'translateX(' + (selectedIndex * 100) + '%)'">
+      </div>
+
+      <div class="tab-btn" [class.active]="selectedIndex === 0" (click)="selectTab(0)">
+        ALL
+      </div>
+
+      <div class="tab-btn" [class.active]="selectedIndex === 1" (click)="selectTab(1)">
+        WALK IN
+      </div>
+
+      <div class="tab-btn" [class.active]="selectedIndex === 2" (click)="selectTab(2)">
+        SAVE
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="mobile-cards">
+
+    <div class="patient-card" *ngFor="let row of filteredMobileData()" [ngClass]="row.categoryClass">
+
+      <!-- Top Section -->
+      <div class="card-top">
+        <div class="token">
+          <span class="label">Token</span>
+          <span class="value">{{ row.values[0] }}</span>
+        </div>
+
+        <div class="visit">
+          <span class="label">Visit</span>
+          <span class="value">{{ row.values[1] }}</span>
+        </div>
+      </div>
+
+      <!-- NEW DETAILS SECTION -->
+      <div class="card-details">
+
+        <div class="detail-item">
+          <span class="detail-label">Patient</span>
+          <span class="detail-value">{{ row.values[3] }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Patient #</span>
+          <span class="detail-value">{{ row.values[2] }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Sex / Age</span>
+          <span class="detail-value">{{ row.values[6] }}</span>
+        </div>
+
+        <div class="detail-item">
+          <span class="detail-label">Department</span>
+          <span class="detail-value">Ortho</span>
+        </div>
+
+      </div>
+
+      <div class="card-badge">
+        <span class="first-badge">
+          <a href="">FIRST</a>
+        </span>
+      </div>
+
+      <!-- Bottom Icon Section -->
+      <div class="card-icons">
+
+        <div class="icon-item">
+          <img src="assets/icon/vitals.png">
+        </div>
+
+        <div class="icon-item">
+          <img src="assets/icon/allergy.png">
+        </div>
+
+        <div class="icon-item">
+          <img src="assets/icon/comment.png">
+        </div>
+
+        <div class="icon-item">
+          <img src="assets/icon/insurance.png">
+        </div>
+
+        <div class="icon-item">
+          <img src="assets/icon/mark.png">
+        </div>
+
+        <div class="icon-item">
+          <img src="assets/icon/call.png">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

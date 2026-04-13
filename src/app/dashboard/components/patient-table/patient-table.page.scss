@@ -1,0 +1,42 @@
+.table-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+  padding: 0 5px;
+}
+
+.datepicker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.datepicker-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.custom-datepicker {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  // color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.custom-datepicker:focus {
+  border-color: #007bff; /* Primary color */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.table-meta {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}

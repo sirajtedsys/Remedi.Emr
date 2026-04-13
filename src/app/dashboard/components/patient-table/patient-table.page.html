@@ -1,0 +1,71 @@
+
+
+<div class="table-header-actions">
+  <div class="datepicker-group">
+    <!-- <label for="dateFilter">Filter by Date</label> -->
+    <div class="input-wrapper">
+      <input 
+      [(ngModel)]="fromDate"
+        type="date" 
+        id="dateFilter" 
+        (change)="onDateChange($event)" 
+        class="custom-datepicker"
+      />
+      </div>
+  </div>
+  
+  <div class="table-meta">
+    Showing {{ EMRPatientsList.length }} Patients
+  </div>
+</div>
+<div class="table-container">
+  <table class="custom-table">
+
+    <thead>
+      <tr>
+        <!-- <th></th> -->
+        <th *ngFor="let head of tableHeads">{{ head }}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <!-- DESKTOP TABLE ROW -->
+    <tr *ngFor="let row of EMRPatientsList" class="desktop-row">
+
+  <td *ngFor="let head of tableHeads">
+
+    <!-- FIRST BADGE -->
+    <ng-container *ngIf="head === ''; else otherCells">
+      <span class="first-badge">
+        <a href="">FIRST</a>
+      </span>
+    </ng-container>
+
+    <ng-template #otherCells>
+
+      <!-- ICON COLUMN -->
+      <ng-container *ngIf="iconColumns[head]; else textCell">
+        <img [src]="iconColumns[head]" class="td-icon" />
+      </ng-container>
+
+      <!-- TEXT COLUMN -->
+      <ng-template #textCell>
+        {{ row[columnMap[head]] }}
+      </ng-template>
+
+    </ng-template>
+
+  </td>
+
+</tr>
+
+
+      <!-- MOBILE CARD VIEW -->
+
+
+    </tbody>
+
+  </table>
+
+</div>

@@ -1,0 +1,93 @@
+ <aside class="sidebar" [class.collapsed]="isCollapsed">
+      <div class="medical-advanced-bg">
+
+
+
+        <!-- ECG SVG Line -->
+        <svg class="ecg-line" viewBox="0 0 500 100" preserveAspectRatio="none">
+          <path d="M0 50 
+                   L40 50 
+                   L60 20 
+                   L80 80 
+                   L100 40 
+                   L120 50 
+                   L200 50 
+                   L220 25 
+                   L240 75 
+                   L260 45 
+                   L280 50 
+                   L500 50" />
+        </svg>
+
+      </div>
+      <!-- Brand Logo -->
+      <div class="brand">
+        <img src="assets/icon/logo-remidi.png" alt="Brand Logo" (click)="navigateTo('dashboard')">
+        <h2 *ngIf="!isCollapsed">Remedi-EMR</h2>
+      </div>
+
+      <!-- Menu -->
+      <ul class="menu">
+
+        <!-- Dashboard -->
+        <li>
+          <a (click)="navigateTo('procedure-booking')">
+            <ion-icon name="grid-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">Procedure Booking</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="navigateTo('procedure-list')">
+            <ion-icon name="list-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">Procedure List</span>
+          </a>
+        </li>
+        <li *ngFor="let items of AllbmTabs" >
+          <a (click)="navigateTo(items.taB_LINK)">
+            <ion-icon name="clipboard-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">{{ items.taB_NAME}}</span>
+          </a>
+        </li>
+        <!-- <li>
+          <a href="">
+            <ion-icon name="clipboard-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">Observation List</span>
+          </a>
+        </li> -->
+        <!-- Dropdown Menu -->
+        <!-- <li>
+          <a (click)="toggleMenu('management')">
+            <ion-icon name="layers-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">Management</span>
+            <ion-icon class="arrow-icon" [class.rotate]="openMenu === 'management'" *ngIf="!isCollapsed"
+              [name]="openMenu === 'management' ? 'chevron-up-outline' : 'chevron-down-outline'">
+            </ion-icon>
+
+          </a>
+
+          <ul class="submenu" *ngIf="openMenu === 'management' && !isCollapsed">
+            <li><a href=""> Users </a></li>
+            <li><a href=""> Reports </a></li>
+            <li><a href="">Analytics </a></li>
+          </ul>
+        </li> -->
+
+        <!-- Another Dropdown -->
+        <!-- <li>
+          <a (click)="toggleMenu('settings')">
+            <ion-icon name="settings-outline"></ion-icon>
+            <span *ngIf="!isCollapsed">Settings</span>
+            <ion-icon *ngIf="!isCollapsed"
+              [name]="openMenu === 'settings' ? 'chevron-up-outline' : 'chevron-down-outline'">
+            </ion-icon>
+          </a>
+
+          <ul class="submenu" *ngIf="openMenu === 'settings' && !isCollapsed">
+            <li> <a href="">Profile</a></li>
+            <li><a href="">Security</a></li>
+            <li><a href="">Notifications</a></li>
+          </ul>
+        </li> -->
+
+      </ul>
+    </aside>

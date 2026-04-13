@@ -1,0 +1,255 @@
+/* Updated Theme Variables for White/Mint Background */
+:root {
+  --ion-color-primary: #1c315b; /* Navy/Black for headers and text */
+  --accent-blue: #5c7fbc;      /* Royal blue for icons/buttons */
+  --bg-gradient-start: #ffffff;
+  --bg-gradient-end: #f0f7f8;
+  --text-dark: #1a1a1b;        /* Almost black */
+  --text-muted: #4a4a4a;       /* Dark grey */
+}
+
+ion-content {
+  --background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+}
+
+/* Header & Text Improvements */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin: 16px 0;
+    // color: var(--text-dark) !important;
+
+  h2 {
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 800;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  ion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    color: var(--accent-blue);
+    background: #fff;
+    border: 1px solid #eee;
+
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  ion-icon:hover {
+    background: #f1f5fb;
+    transform: scale(1.08);
+  }
+}
+
+
+.weekdays div {
+  color: var(--text-dark); /* Changed from grey to dark */
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Premium White Cards */
+.day-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0; /* Subtle border for definition on white */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  
+  .date {
+    // color: var(--text-dark) !important;
+    font-size: 16px;
+    font-weight: 800;
+  }
+}
+
+/* Updated Pill Text Colors */
+.pill {
+  font-weight: 700; /* Bolder text for readability */
+  letter-spacing: 0.3px;
+  
+  &.success { 
+    background: #e6f4ea; 
+    color: #0d5a24; /* Darker green */
+  }
+  &.primary { 
+    background: #e8f0fe; 
+    color: #164da1; /* Darker blue */
+  }
+  &.dark { 
+    background: #f1f3f4; 
+    color: #202124; /* Pure dark */
+  }
+  &.danger {
+    background: #feeaea;
+    color: #9d1c1c;
+    border: 1px solid #f9d2d2;
+  }
+}
+
+/* Filter Card Refinement */
+.filter-card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  
+  ion-label {
+    color: var(--text-dark) !important;
+    font-weight: 600 !important;
+  }
+  
+  ion-select {
+    color: var(--text-dark);
+    --placeholder-color: var(--text-muted);
+  }
+}
+
+/* Mobile Card Text */
+.calendar-list ion-card {
+  background: white;
+  h2 {
+    color: var(--text-dark);
+    font-weight: 800;
+  }
+  p {
+    color: var(--text-muted);
+  }
+}
+
+
+
+
+/* ===== WRAPPER ===== */
+.calendar-wrapper {
+  margin-top: 16px;
+}
+
+/* ===== WEEKDAYS ===== */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f7f9fb;
+  border-radius: 12px;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+
+  div {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    // color: var(--text-dark)!important;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+}
+
+/* ===== CALENDAR GRID ===== */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  
+}
+
+/* ===== DAY CARD ===== */
+.day-card {
+    cursor: pointer;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px;
+  min-height: 130px;
+  border: 1px solid #e6e9ee;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  }
+}
+
+/* ===== EMPTY CELLS ===== */
+.empty-cell {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* ===== DATE ===== */
+.date {
+  font-size: 18px;
+  font-weight: 800;
+//   color: var(--text-dark) !important;
+  margin-bottom: 10px;
+}
+
+/* ===== OFF DAY ===== */
+.off-day {
+  background: #fff5f5;
+  border: 1px dashed #f3bcbc;
+}
+
+.off-label {
+  text-align: center;
+  margin-top: 30px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 13px;
+  color: #9d1c1c;
+  background: #feeaea;
+}
+
+/* ===== PILLS ===== */
+.pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 3px;
+}
+
+/* Colors already match your theme */
+.pill.success {
+  background: #e6f4ea;
+  color: #0d5a24;
+}
+
+.pill.dark {
+  background: #f1f3f4;
+  color: #202124;
+}
+
+.pill.primary {
+  background: #e8f0fe;
+  color: #164da1;
+}
+
+
+ion-select {
+//   --size: 16px;
+  --background: transparent;
+}
+
+ion-item[lines="none"] {
+  --background: transparent !important;
+  --color: #091835 !important;
+  margin-bottom: 10px; /* Spacing between form fields */
+}
