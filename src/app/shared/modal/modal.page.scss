@@ -1,0 +1,59 @@
+.modal-header-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  /* Ensure the header takes the full width of its parent (.modal-content) */
+  width: 100%;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-grow: 1; /* Allows the title to take up remaining space */
+}
+
+.btn-back,
+.btn-done {
+  flex-shrink: 0; /* Prevents the buttons from shrinking */
+}
+
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+//   .search-box {
+    // margin-bottom: 1rem;
+//   }
+
+  .search-box input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+
+  .modal-content {
+    max-height: 90vh; /* Limits the modal height */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-dialog {
+//   /*
+//   max-width: 100%; /* Remove or comment this line */
+//   */
+  margin: 1.75rem auto; /* Ensures it's centered */
+}
+
+.modal-body {
+  max-height: 70vh; /* Limits modal body height */
+  overflow-y: auto; /* Enables scrolling */
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right:10px
+}
+

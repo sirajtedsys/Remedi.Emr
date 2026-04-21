@@ -31,7 +31,7 @@
     <tbody>
 
       <!-- DESKTOP TABLE ROW -->
-    <tr *ngFor="let row of EMRPatientsList" class="desktop-row">
+    <tr *ngFor="let row of EMRPatientsList" class="desktop-row" (click)="NavigatetPatientdetails(row)">
 
   <td *ngFor="let head of tableHeads">
 

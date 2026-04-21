@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Review Days</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<!-- 
+<ion-content class="ion-padding review-bg"> -->
+<ng-content class="ion-padding review-bg">
+<form [formGroup]="reviewForm">
+
+  <!-- Review Days Row -->
+  <div class="row-flex">
+    <ion-item fill="outline">
+      <ion-label position="floating">Review Days</ion-label>
+      <ion-input type="number" formControlName="reviewDays"></ion-input>
+    </ion-item>
+
+    <ion-button class="go-btn" (click)="calculateDate()">
+      Go
+    </ion-button>
+  </div>
+
+  <!-- Review Date -->
+  <ion-item fill="outline">
+    <ion-label position="floating">Next Review Date</ion-label>
+    <ion-input formControlName="reviewDate" readonly></ion-input>
+  </ion-item>
+
+  <!-- Remarks -->
+  <ion-item fill="outline">
+    <ion-label position="floating">Remarks</ion-label>
+    <ion-textarea rows="5" formControlName="remarks"></ion-textarea>
+  </ion-item>
+
+  <!-- Submit -->
+<div class="btn-row">
+  <!-- Submit -->
+  <ion-button expand="block" class="submit-btn" (click)="submit()">
+    Submit
+  </ion-button>
+
+  <!-- Clear -->
+  <ion-button expand="block" fill="outline" class="clear-btn" (click)="clearForm()">
+    Clear
+  </ion-button>
+</div>
+
+
+</form>
+
+
+  <div class="full-width" style="margin-bottom: 20px;">
+        <div class="search-dropdown" *ngIf="reviewList.length > 0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sl.No</th>
+                    
+                    <th>Reviewed By</th>
+                    <th>Reviewed On</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let p of reviewList;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{p.emp_Offl_Name}}</td>
+                    <td>{{p.doct_Review_Date | date:'dd/MMM/yyyy'}}</td>
+                    <td>{{p.remarks}}</td>
+                    <td>
+                      <ion-button (click)="editReview(p)">Edit</ion-button>
+                      <!-- <ion-button (click)="deleteReview(p.review_Id)">Delete</ion-button> -->
+                    </td>        
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      </div>
+
+      </ng-content>
+<!-- </ion-content> -->

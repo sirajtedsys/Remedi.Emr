@@ -1,0 +1,52 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header-custom ">
+        <button type="button" (click)="DismissModal()" class="btn  btn-back" data-bs-dismiss="modal">
+        <i class="fa fa-arrow-left"></i> Back
+        </button>
+        <h5 class="modal-title text-center">{{ModalHeader}}</h5>
+        <button type="button" class="btn btn-success btn-done" (click)="Save()">
+          Submit
+        </button>
+      
+      </div>
+        <div class="row mx-1 mb-0">
+          <div class="col-12"> 
+          
+         <div class="search-box" >
+          <input type="text" id="searchInput" placeholder="Search..." name="searchQuery" [(ngModel)]="searchQuery" (input)="filterDropdown()"/>
+        </div>
+        </div>
+        
+        </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <!-- Search Box -->
+       
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table table-hover" id="dataTable">
+            <thead class="table-dark">
+              <tr>
+                @if (CheckType=='radio') {
+                  <th >#</th>
+                }
+                @if (CheckType=='check') {
+                <th ><input class="cpoint" type="checkbox" [checked]="SelectedList==filteredData" (change)="SelectAll($event)"></th>
+                }
+                <th *ngFor="let items of Headers">{{items}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let lists of filteredData;let i =index" >
+                <td  ><input type="checkbox"class="cpoint" [checked]="SelectedList.includes(lists)" (change)="SingleSelection($event,lists)"></td>
+                <td *ngFor="let items of Fields">{{lists[items]}}</td>
+              </tr>
+         
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>

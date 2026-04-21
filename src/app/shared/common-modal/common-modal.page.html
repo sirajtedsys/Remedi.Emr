@@ -1,0 +1,61 @@
+<ion-header class="modal-header-custom">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button (click)="DismissModal()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Back
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">
+      {{ ModalHeader }}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="success" (click)="Save()">
+        Submit
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Search Box -->
+  <ion-item lines="none" class="search-box">
+    <ion-input
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (ionInput)="filterDropdown()"
+    ></ion-input>
+  </ion-item>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th *ngIf="CheckType == 'radio'">#</th>
+          <th *ngIf="CheckType == 'check'">
+            <ion-checkbox
+              [checked]="SelectedList.length === filteredData.length"
+              (ionChange)="SelectAll($event)"
+            ></ion-checkbox>
+          </th>
+          <th *ngFor="let header of Headers">{{ header }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of filteredData; let i = index">
+          <td>
+            <ion-checkbox
+              [checked]="SelectedList.includes(item)"
+              (ionChange)="SingleSelection($event, item)"
+            ></ion-checkbox>
+          </td>
+          <td *ngFor="let field of Fields">{{ item[field] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

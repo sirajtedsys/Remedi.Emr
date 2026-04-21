@@ -1,0 +1,194 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Progress Note</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-container class="patient-msg-content">
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <!-- TWO COLUMN LAYOUT -->
+<ion-grid>
+  <ion-row>
+
+    <ion-col size="12" size-md="6">
+      <ion-item>
+        <ion-label position="stacked">Progress Note</ion-label>
+        <ion-textarea
+          rows="4"
+          [(ngModel)]="progressNote.progress_Note"
+          placeholder="Progress Note">
+        </ion-textarea>
+      </ion-item>
+    </ion-col>
+
+    <!-- Advice -->
+    <ion-col size="12" size-md="6">
+      <ion-item>
+        <ion-label position="stacked">Advice</ion-label>
+        <ion-textarea
+          rows="4"
+          [(ngModel)]="progressNote.advice"
+          placeholder="Advice">
+        </ion-textarea>
+      </ion-item>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+<ion-grid class="ion-margin-top">
+  <ion-row class="ion-align-items-center ion-justify-content-start">
+    
+    <ion-col size="12" size-md="2">
+      <ion-button
+        expand="block"
+        class="save-btn"
+        (click)="Submit()">
+        {{ isEditMode ? 'Update' : 'Save' }}
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="12" size-md="2">
+      <ion-button
+        expand="block"
+        color="medium"
+           class="save-btn"
+        fill="outline"
+        (click)="clearForm()">
+        Clear
+      </ion-button>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+
+
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+<!-- <ion-card *ngIf="progressNoteList.length > 0" class="table-wrapper ion-hide-md-down prescribed-card">
+
+    <ion-grid>
+      <ion-row class="table-header">
+        <ion-col size="1">Slno</ion-col>
+        <ion-col size="3">Progress Note</ion-col>
+        <ion-col size="3">Advice</ion-col>
+          <ion-col size="2">Date</ion-col>
+        <ion-col size="3"></ion-col>
+      </ion-row>
+
+      <ion-row
+        *ngFor="let items of progressNoteList; let i = index"
+        class="table-row"
+      >
+        <ion-col size="1">{{ i + 1 }}</ion-col>
+        <ion-col size="3">{{ items.progressNote }}</ion-col>
+        <ion-col size="3">{{ items.advice }}</ion-col>
+          <ion-col size="2">{{ items.createDate | date:'dd/MM/yyyy' }}</ion-col>
+        <ion-col size="3">
+       
+        <ion-col size="3">
+  <ion-button
+    *ngIf="isTodayNote(items)"
+    size="small"
+    fill="outline"
+    (click)="editNote(items)"
+  >
+    Edit
+  </ion-button>
+</ion-col>
+
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card> -->
+
+  <div class="table-container" *ngIf="progressNoteList.length > 0">
+
+  <table class="custom-table">
+
+    <thead>
+      <tr>
+        <th>Slno</th>
+        <th>Progress Note</th>
+        <th>Advice</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of progressNoteList; let i = index">
+
+        <td>{{ i + 1 }}</td>
+
+        <td >
+          {{ item.progressNote || '-' }}
+        </td>
+
+        <td >
+          {{ item.advice || '-' }}
+        </td>
+
+        <td >
+          {{ item.createDate | date:'dd/MM/yyyy' }}
+        </td>
+
+        <td>
+          <ion-button
+            *ngIf="isTodayNote(item)"
+            size="small"
+            fill="outline"
+            (click)="editNote(item)">
+            Edit
+          </ion-button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+  <!-- MOBILE VIEW -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="progressNoteList?.length">
+
+  <div class="patient-block"
+       *ngFor="let item of progressNoteList; let i = index">
+
+    <div class="block-header">
+      <span>#{{ i + 1 }}</span>
+      <span>Date: {{ item.createDate | date:'dd/MM/yyyy' }}</span>
+    </div>
+
+    <div class="block-content">
+      <p><b>Progress Note:</b></p>
+      <p>{{ item.progressNote || '-' }}</p>
+
+      <p><b>Advice:</b></p>
+      <p>{{ item.advice || '-' }}</p>
+    </div>
+
+    <div class="block-footer">
+      <ion-button
+        *ngIf="isTodayNote(item)"
+        size="small"
+        fill="outline"
+        (click)="editNote(item)">
+        Edit
+      </ion-button>
+    </div>
+
+  </div>
+</div>
+
+
+
+</ng-container>

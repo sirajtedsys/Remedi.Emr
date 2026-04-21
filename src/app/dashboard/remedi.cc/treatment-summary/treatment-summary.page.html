@@ -1,0 +1,360 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Treatment Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- <ion-content class="procedure-page"> -->
+  <ng-container class="procedure-page">
+  <!-- <ion-grid> -->
+  <ion-row class="ion-margin-top">
+
+    <!-- LEFT COLUMN: Previous Visits -->
+    <ion-col size-md="3" size="12">
+      <ion-card
+        style="border: 1px solid #007bff; border-radius: 8px; background-color: #f5faff; height: 100%;color:#000000">
+        <ion-card-header>
+          <ion-card-title class="ion-text-primary">Previous Visits</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <!-- test -->
+          <!-- <div 
+  *ngFor="let items of previsitlist; let i = index" 
+  class="list-item d-flex align-items-center border-top py-2 small"
+  (click)="onVisit(items)"
+  [class.bg-primary]="items === selectedPrevisitItem"
+  [class.text-white]="items === selectedPrevisitItem"
+  style="cursor: pointer;"
+    [ngClass]="{'selected-row': items === selectedPrevisitItem}"
+>
+  <div *ngFor="let line of items.prvstlist?.split('|')">
+  {{ line }}
+</div> -->
+
+          <div *ngFor="let items of previsitlist" class="visit-item" (click)="onVisit(items)"
+            [class.selected-row]="items === selectedPrevisitItem">
+            <div *ngFor="let line of splitVisitText(items.prvstlist)" class="visit-line">
+              {{ line }}
+            </div>
+          </div>
+
+
+          <!-- <div 
+  *ngFor="let items of previsitlist"
+  (click)="onVisit(items)"
+  [ngClass]="{'selected-row': items === selectedPrevisitItem}"
+></div> -->
+          <ng-template #noVisits>
+            <p class="ion-text-center ion-text-muted">No previous visits found.</p>
+          </ng-template>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <!-- RIGHT COLUMN: Patient Details -->
+    <ion-col size-md="9" size="12">
+      <!-- <ion-card style="border: 1px solid #c77b7b; background-color: #fff;color:#000000">
+        <ion-card-header>
+          <ion-card-title class="ion-text-danger">Patient Details</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <strong>Name:</strong> {{ patientDetails?.patientname || patientDetails?.patI_NAME || '—' }}
+              </ion-col>
+              <ion-col size="6">
+                <strong>OP No:</strong> {{ patientDetails?.patI_OPNO || '—' }}
+              </ion-col>
+              <ion-col size="6">
+                <strong>Age/Gender:</strong> {{ patientDetails?.age || patientDetails?.patI_AGE || '—' }}/{{
+                patientDetails?.gender || patientDetails?.patI_GENDER || '—' }}
+              </ion-col>
+              <ion-col size="6" *ngIf="!hideContactNo">
+                <strong>Phone:</strong> {{ patientDetails?.patI_MOBILE || patientDetails?.mobno || '—' }}
+              </ion-col>
+              <ion-col size="6">
+                <strong>Doctor:</strong> {{ patientDetails?.docT_NAME || patientDetails?.emP_OFFL_NAME || '—' }}
+              </ion-col>
+              <ion-col size="6">
+                <strong>Visit Date:</strong> {{ patientDetails?.opvisiT_DATE | date: 'dd/MM/yyyy, h:mm a' }}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card> -->
+      <ion-card>
+        <!-- <ion-text class="ion-text-bold" *ngIf="presProcedurelist.length > 0">
+  Prescribed Procedures
+</ion-text>
+
+<ion-card *ngIf="presProcedurelist.length > 0" class="ion-margin-top">
+  <ion-card-content>
+
+       <ion-grid class="ion-text-bold ion-text-small ion-padding-bottom">
+      <ion-row>
+        <ion-col size="1">Slno</ion-col>
+        <ion-col size="3">Procedure</ion-col>
+        <ion-col size="2">Date</ion-col>
+        <ion-col size="1">Qty</ion-col>
+        <ion-col size="3">Remarks</ion-col>
+        <ion-col size="2">Status</ion-col>
+      </ion-row>
+    </ion-grid>
+ 
+    <ion-grid>
+      <ion-row
+        *ngFor="let item of presProcedurelist; let i = index"
+        class="ion-align-items-center border-top ion-padding-vertical ion-text-small"
+      >
+        <ion-col size="1">{{ i + 1 }}</ion-col>
+        <ion-col size="3">{{ item.prC_NAME }}</ion-col>
+        <ion-col size="2">
+          {{ item.createddt | date:'dd/MM/yyyy' }}
+        </ion-col>
+        <ion-col size="1">{{ item.quantity }}</ion-col>
+        <ion-col size="3">{{ item.remarks || '-' }}</ion-col>
+        <ion-col size="2">{{ item.status }}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-content>
+</ion-card>
+
+<ion-text class="ion-text-bold" *ngIf="medDetList.length > 0">
+  Prescribed Medicines
+</ion-text>
+
+<ion-card *ngIf="medDetList.length > 0" class="ion-margin-top">
+  <ion-card-content>
+    <ion-grid class="ion-text-bold ion-text-small ion-padding-bottom">
+      <ion-row>
+        <ion-col size="1">Slno</ion-col>
+        <ion-col size="2">Medicine</ion-col>
+        <ion-col size="2">Dosage</ion-col>
+        <ion-col size="2">Route</ion-col>
+        <ion-col size="1">Freq</ion-col>
+        <ion-col size="1">Days</ion-col>
+        <ion-col size="1">Qty</ion-col>
+        <ion-col size="2">Remarks</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row
+        *ngFor="let item of medDetList; let i = index"
+        class="ion-align-items-center border-top ion-padding-vertical ion-text-small"
+      >
+        <ion-col size="1">{{ i + 1 }}</ion-col>
+        <ion-col size="2">{{ item.mgeN_NAME }}</ion-col>
+        <ion-col size="2">{{ item.meD_DOS_NAME }}</ion-col>
+        <ion-col size="2">{{ item.meD_ROUTE_NAME }}</ion-col>
+        <ion-col size="1">{{ item.freQ_NAME }}</ion-col>
+        <ion-col size="1">{{ item.duration }}</ion-col>
+        <ion-col size="1">{{ item.toT_QTY }}</ion-col>
+        <ion-col size="2">{{ item.remarks || '-' }}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-content>
+</ion-card> -->
+
+        <!-- <ion-card *ngIf="presProcedurelist.length > 0" class="table-wrapper ion-hide-md-down section-card procedure-card">
+          <ion-card-header class="section-header">
+            <ion-card-title>Prescribed Procedures</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-grid class="table-header">
+              <ion-row>
+                <ion-col size="1">Slno</ion-col>
+                <ion-col size="3">Procedure</ion-col>
+                <ion-col size="2">Date</ion-col>
+                <ion-col size="1">Qty</ion-col>
+                <ion-col size="3">Remarks</ion-col>
+                <ion-col size="2">Status</ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid>
+              <ion-row *ngFor="let item of presProcedurelist; let i = index" class="table-row">
+                <ion-col size="1">{{ i + 1 }}</ion-col>
+                <ion-col size="3">{{ item.prC_NAME }}</ion-col>
+                <ion-col size="2">{{ item.createddt | date:'dd/MM/yyyy' }}</ion-col>
+                <ion-col size="1">{{ item.quantity }}</ion-col>
+                <ion-col size="3">{{ item.remarks || '-' }}</ion-col>
+                <ion-col size="2">{{ item.status }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card> -->
+<h3 class="section-title"  *ngIf="presProcedurelist?.length">Prescribed Procedures</h3>
+        <div class="table-container" *ngIf="presProcedurelist?.length">
+  <table class="custom-table">
+
+    <thead>
+      <tr>
+        <th>Sl No</th>
+        <th>Procedure</th>
+        <th>Date</th>
+        <th>Qty</th>
+        <th>Remarks</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of presProcedurelist; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.prC_NAME }}</td>
+        <td>{{ item.createddt | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.remarks || '-' }}</td>
+        <td>{{ item.status }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+        <!-- MOBILE VIEW : PRESCRIBED PROCEDURES -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="presProcedurelist?.length">
+
+  <div class="patient-block"
+       *ngFor="let item of presProcedurelist; let i = index">
+
+    <!-- Header -->
+    <div class="block-header">
+      <span>#{{ i + 1 }}</span>
+      <span>{{ item.status }}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="block-content">
+      <p><b>Procedure:</b></p>
+      <p>{{ item.prC_NAME }}</p>
+
+      <p><b>Quantity:</b></p>
+      <p>{{ item.quantity }}</p>
+
+      <p><b>Remarks:</b></p>
+      <p>{{ item.remarks || '-' }}</p>
+
+      <p><b>Date:</b></p>
+      <p>{{ item.createddt | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+  </div>
+</div>
+
+        <!-- <ion-card *ngIf="medDetList.length > 0" class=" table-wrapper ion-hide-md-down section-card medicine-card">
+          <ion-card-header class="section-header">
+            <ion-card-title>Prescribed Medicines</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-grid class="table-header">
+              <ion-row>
+                <ion-col size="1">Slno</ion-col>
+                <ion-col size="2">Medicine</ion-col>
+                <ion-col size="2">Dosage</ion-col>
+                <ion-col size="2">Route</ion-col>
+                <ion-col size="1">Freq</ion-col>
+                <ion-col size="1">Days</ion-col>
+                <ion-col size="1">Qty</ion-col>
+                <ion-col size="2">Remarks</ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid>
+              <ion-row *ngFor="let item of medDetList; let i = index" class="table-row">
+                <ion-col size="1">{{ i + 1 }}</ion-col>
+                <ion-col size="2">{{ item.mgeN_NAME }}</ion-col>
+                <ion-col size="2">{{ item.meD_DOS_NAME }}</ion-col>
+                <ion-col size="2">{{ item.meD_ROUTE_NAME }}</ion-col>
+                <ion-col size="1">{{ item.freQ_NAME }}</ion-col>
+                <ion-col size="1">{{ item.duration }}</ion-col>
+                <ion-col size="1">{{ item.toT_QTY }}</ion-col>
+                <ion-col size="2">{{ item.remarks || '-' }}</ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card> -->
+
+        <div class="table-container" *ngIf="medDetList?.length">
+  <table class="custom-table">
+
+    <thead>
+      <tr>
+        <th>Sl No</th>
+        <th>Medicine</th>
+        <th>Dosage</th>
+        <th>Route</th>
+        <th>Freq</th>
+        <th>Days</th>
+        <th>Qty</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of medDetList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.mgeN_NAME }}</td>
+        <td>{{ item.meD_DOS_NAME }}</td>
+        <td>{{ item.meD_ROUTE_NAME }}</td>
+        <td>{{ item.freQ_NAME }}</td>
+        <td>{{ item.duration }}</td>
+        <td>{{ item.toT_QTY }}</td>
+        <td>{{ item.remarks || '-' }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+        <!-- MOBILE VIEW : PRESCRIBED MEDICINES -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="medDetList?.length">
+
+  <div class="patient-block"
+       *ngFor="let item of medDetList; let i = index">
+
+    <!-- Header -->
+    <div class="block-header">
+      <span>#{{ i + 1 }} </span>
+      <span>{{ item.mgeN_NAME }}</span>
+    </div>
+
+    <!-- Content -->
+    <div class="block-content">
+      <p><b>Dosage:</b> {{ item.meD_DOS_NAME }}</p>
+      <p><b>Route:</b> {{ item.meD_ROUTE_NAME }}</p>
+
+      <p>
+        <b>Frequency:</b> {{ item.freQ_NAME }}
+        &nbsp;•&nbsp;
+        <b>Days:</b> {{ item.duration }}
+      </p>
+
+      <p>
+        <b>Quantity:</b> {{ item.toT_QTY }}
+      </p>
+
+      <p><b>Remarks:</b> {{ item.remarks || '-' }}</p>
+    </div>
+
+  </div>
+</div>
+
+
+      </ion-card>
+
+    </ion-col>
+
+
+
+
+  </ion-row>
+</ng-container>
+
+  <!-- </ion-grid> -->
+
+
+<!-- </ion-content> -->

@@ -1,0 +1,90 @@
+
+
+<div class="selected-patient-container">
+
+
+  <ion-accordion-group>
+
+    <ion-accordion value="patient-details" class="patient-accordion">
+
+      <ion-item slot="header" lines="none" class="accordion-header-item">
+        <div class="header-content">
+          <div class="avatar-box">
+    
+            <img src="assets/images/circle-user.png" alt="patient" />
+          </div>
+          <div class="primary-info">
+            <h2>{{ patientData.patientname || 'No Patient Selected' }}</h2>
+            <p>
+              <span class="badge op">OP: {{ patientData.patI_OPNO }}</span>
+              <span class="badge age">{{ patientData.age }} yrs / {{ patientData.gender }}</span>
+            </p>
+          </div>
+
+          <ion-button fill="clear" class="header-menu-btn" (click)="toggleMenu(); $event.stopPropagation()">
+            <ion-icon slot="icon-only" name="menu-outline" ></ion-icon>
+          </ion-button>
+        </div>
+      </ion-item>
+
+      <div class="ion-padding accordion-body" slot="content">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" size-md="3">
+              <div class="detail-item">
+                <label>Department</label>
+                <span>{{ patientData.departmenT_NAME }}</span>
+              </div>
+            </ion-col>
+            <ion-col size="6" size-md="3">
+              <div class="detail-item">
+                <label>Consulting Doctor</label>
+                <span>{{ patientData.docT_NAME || '—' }}</span>
+              </div>
+            </ion-col>
+      
+            <ion-col size="6" size-md="3">
+              <div class="detail-item">
+                <label> Visit Date</label>
+                <span>{{ patientData.vsT_TIME  }}</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <!-- OFFCANVAS MENU -->
+  <div class="offcanvas-menu" [class.open]="menuOpen">
+
+    <div class="menu-header">
+      Patient Menu
+      <ion-icon name="close-outline" (click)="toggleMenu()"></ion-icon>
+    </div>
+
+    <ul>
+    
+      <li (click)="NavigateTo('npassessment')"><ion-icon name="pulse"></ion-icon> Neuro-Psychobiological Assessment</li>
+      <li (click)="NavigateTo('treatment-summary')"><ion-icon name="pulse"></ion-icon> Treatment Summary</li>
+      <!-- <li  (click)="NavigateTo('treatment-summary')"><ion-icon name="medkit"></ion-icon> Medications</li> -->
+      <li (click)="NavigateTo('patient-message')"><ion-icon name="pulse"></ion-icon> Patient Message</li>
+      <li (click)="NavigateTo('progress-note')"><ion-icon name="medkit"></ion-icon> Progress Note</li>
+      <li (click)="NavigateTo('orders')"><ion-icon  name="flask"></ion-icon> Order Test</li>
+      <li (click)="NavigateTo('digital-intake')"><ion-icon name="clipboard"></ion-icon> Digital Intake Assessment</li>
+      <li (click)="NavigateTo('next-review')"><ion-icon name="clipboard"></ion-icon> Review</li>
+
+    </ul>
+
+  </div>
+
+  <!-- BACKDROP -->
+  <div class="menu-backdrop" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+</div>
+<!-- <ng-container> -->
+
+  <!-- <ion-app> -->
+    <router-outlet></router-outlet>
+  <!-- </ion-app> -->
+<!-- </ng-container> -->

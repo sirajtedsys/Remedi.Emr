@@ -1,0 +1,1913 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Order Test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- 🔴 ion-content IS REQUIRED FOR SCROLLING -->
+<!-- <ion-content fullscreen="true"> -->
+  <ng-content fullscreen="true">
+
+  <!-- ================= LAB + RADIOLOGY ================= -->
+  <ion-grid class="table-wrapper ion-hide-md-down" >
+
+    <ion-row>
+        <!-- <ion-col size="6"  *ngIf="orderSections.lab">
+
+        <ion-grid class="table">
+          <ion-row class="table-header">
+            <ion-col size="1"><ion-checkbox    [(ngModel)]="selectAllLab" (ionChange)="toggleAllLab()"></ion-checkbox></ion-col>
+            <ion-col size="3">Lab Test</ion-col>
+            <ion-col size="1">QTY</ion-col>
+            <ion-col size="2">Date</ion-col>
+            <ion-col size="3">Remarks</ion-col>
+            <ion-col size="1">Urgent</ion-col>
+            <ion-col size="1">Delete</ion-col>
+          </ion-row>
+          <ion-row class="table-row"
+                   *ngFor="let row of labTests; let i = index">
+
+            <ion-col size="1">
+              <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+            </ion-col>
+
+          <ion-col size="3" style="position: relative;">
+            <ion-input
+              placeholder="Lab Test"
+              [(ngModel)]="row.test"
+              (ionInput)="labSelection(row.test, i)"
+              (ionFocus)="labSelection(row.test, i)" (ionChange)="onRowChange(row)">
+            </ion-input>
+
+            <ion-list *ngIf="row.labList?.length" class="autocomplete-list">
+              <ion-item
+                button
+                *ngFor="let lab of row.labList"
+                (click)="selectLabTest(lab, i)">
+                {{ lab.name }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+
+            <ion-col size="1">
+              <ion-input
+                type="number"
+                [(ngModel)]="row.qty" (ionChange)="onRowChange(row)">
+              </ion-input>
+            </ion-col>
+
+            <ion-col size="2">
+              <ion-input
+                type="date"
+                [(ngModel)]="row.date">
+              </ion-input>
+            </ion-col>
+
+            <ion-col size="3">
+              <ion-textarea
+                rows="1"
+                autoGrow
+                placeholder="Remarks"
+                [(ngModel)]="row.remarks" (ionChange)="onRowChange(row)">
+              </ion-textarea>
+            </ion-col>
+
+            <ion-col size="1">
+              <ion-checkbox [(ngModel)]="row.urgent" (ionChange)="onRowChange(row)"></ion-checkbox>
+            </ion-col>
+
+            <ion-col size="1" class="ion-text-center">
+              <ion-icon
+  name="trash-outline"
+  color="danger"
+  (click)="deleteRow(labTests, i, 'Lab')">
+</ion-icon>
+
+            </ion-col>
+
+          </ion-row>
+          <ion-row  class="table-row">
+            <ion-col size="3">
+              <ion-button size="small" expand="block" (click)="saveLab()">
+                Save & Add
+              </ion-button>
+            </ion-col>
+          <ion-col size="7"></ion-col>
+            <ion-col size="2" class="ion-text-end">
+              <ion-button
+                fill="clear"
+                color="success"
+                (click)="addRow()" style="align-items: right;">
+                <ion-icon name="add-circle" size="large"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-row>
+       </ion-grid>
+        <ion-grid class="sub-section ion-margin-top">
+          <ion-row>
+            <ion-col size="6">
+              <ion-label  class="sub-label">Other Lab Investigation</ion-label>
+               <ion-textarea  rows="2"  [(ngModel)]="otherLabInvestigation"  placeholder="Other Lab Investigation"></ion-textarea>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-label  class="sub-label">Comments</ion-label>
+               <ion-textarea  rows="2"  [(ngModel)]="labComments"  placeholder="Comments"></ion-textarea>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col> -->
+      <div class="table-container" *ngIf="orderSections.lab">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>
+          <ion-checkbox [(ngModel)]="selectAllLab"
+                        (ionChange)="toggleAllLab()">
+          </ion-checkbox>
+        </th>
+        <th>Lab Test</th>
+        <th>QTY</th>
+        <th>Date</th>
+        <th>Remarks</th>
+        <th>Urgent</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+      <tr *ngFor="let row of labTests; let i = index">
+
+        <td>
+          <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+        </td>
+
+        <td class="relative-cell">
+          <ion-input
+            placeholder="Lab Test"
+            [(ngModel)]="row.test"
+            (ionInput)="labSelection(row.test, i)"
+            (ionFocus)="labSelection(row.test, i)"
+            (ionChange)="onRowChange(row)">
+          </ion-input>
+
+          <!-- AUTOCOMPLETE -->
+          <ion-list *ngIf="row.labList?.length"
+                    class="autocomplete-list">
+            <ion-item button
+                      *ngFor="let lab of row.labList"
+                      (click)="selectLabTest(lab, i)">
+              {{ lab.name }}
+            </ion-item>
+          </ion-list>
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.qty"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="date"
+                     [(ngModel)]="row.date">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-textarea rows="1"
+                        autoGrow
+                        [(ngModel)]="row.remarks"
+                        (ionChange)="onRowChange(row)">
+          </ion-textarea>
+        </td>
+
+        <td class="text-center">
+          <ion-checkbox [(ngModel)]="row.urgent"
+                        (ionChange)="onRowChange(row)">
+          </ion-checkbox>
+        </td>
+
+        <td class="text-center">
+          <ion-icon name="trash-outline"
+                    color="danger"
+                    (click)="deleteRow(labTests, i, 'Lab')">
+          </ion-icon>
+        </td>
+
+      </tr>
+
+      <!-- FOOTER ROW -->
+      <tr class="footer-row">
+        <td colspan="2">
+          <ion-button size="small"
+                      expand="block"
+                      (click)="saveLab()">
+            Save & Add
+          </ion-button>
+        </td>
+
+        <td colspan="4"></td>
+
+        <td class="text-right">
+          <ion-button fill="clear"
+                      color="success"
+                      (click)="addRow()">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>
+
+
+     
+      <!-- ================= RADIOLOGY ================= -->
+ <!-- <ion-col size="6" *ngIf="orderSections.radiology">
+
+  <ion-grid class="table">
+
+    <ion-row class="table-header">
+      <ion-col size="1">
+        <ion-checkbox
+          [(ngModel)]="selectAllRadiology"
+          (ionChange)="toggleAllRadiology()">
+        </ion-checkbox>
+      </ion-col>
+      <ion-col size="3">Radiology Test</ion-col>
+      <ion-col size="1">QTY</ion-col>
+      <ion-col size="2">Date</ion-col>
+      <ion-col size="3">Remarks</ion-col>
+      <ion-col size="1">Urgent</ion-col>
+      <ion-col size="1">Delete</ion-col>
+    </ion-row>
+
+    <ion-row class="table-row" *ngFor="let row of radiologyTests; let i = index">
+
+      <ion-col size="1">
+        <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+      </ion-col>
+
+      <ion-col size="3" style="position: relative;">
+        <ion-input
+          placeholder="Radiology Test"
+          [(ngModel)]="row.test"
+          (ionInput)="radiologySelection(row.test, i)"
+          (ionFocus)="radiologySelection(row.test, i)"  (ionChange)="onRowChange(row)">
+        </ion-input>
+
+        <ion-list *ngIf="row.radList?.length" class="autocomplete-list">
+          <ion-item
+            button
+            *ngFor="let rad of row.radList"
+            (click)="selectRadiologyTest(rad, i)">
+            {{ rad.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="1">
+        <ion-input type="number" [(ngModel)]="row.qty"  (ionChange)="onRowChange(row)"></ion-input>
+      </ion-col>
+
+      <ion-col size="2">
+        <ion-input type="date" [(ngModel)]="row.date"  (ionChange)="onRowChange(row)"></ion-input>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-textarea
+          rows="1"
+          autoGrow
+          placeholder="Remarks"
+          [(ngModel)]="row.remarks"  (ionChange)="onRowChange(row)">
+        </ion-textarea>
+      </ion-col>
+
+      <ion-col size="1">
+        <ion-checkbox [(ngModel)]="row.urgent"  (ionChange)="onRowChange(row)"></ion-checkbox>
+      </ion-col>
+
+      <ion-col size="1" class="ion-text-center">
+     
+        <ion-icon
+  name="trash-outline"
+  color="danger"
+  (click)="deleteRow(radiologyTests, i, 'Radiology')">
+</ion-icon>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+<ion-row class="table-row">
+  <ion-col size="3">
+    <ion-button size="small" expand="block" (click)="saveRadiology()">
+      Save & Add
+    </ion-button>
+  </ion-col>
+
+  <ion-col size="7"></ion-col>
+
+  <ion-col size="2" class="ion-text-end">
+    <ion-button
+      fill="clear"
+      color="success"
+      (click)="addRadiologyRow()">
+      <ion-icon name="add-circle" size="large"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+
+  <ion-grid class="sub-section ion-margin-top">
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="sub-label">Other Radiology Investigation</ion-label>
+         <ion-textarea  rows="2"  [(ngModel)]="otherRadiologyInvestigation"  placeholder="Other Radiology Investigation"></ion-textarea>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="sub-label">Comments</ion-label>
+        <ion-textarea  rows="2"  [(ngModel)]="radiologyComments"  placeholder="Comments"></ion-textarea>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-col> -->
+
+<div class="table-container" *ngIf="orderSections.radiology">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>
+          <ion-checkbox
+            [(ngModel)]="selectAllRadiology"
+            (ionChange)="toggleAllRadiology()">
+          </ion-checkbox>
+        </th>
+        <th>Radiology Test</th>
+        <th>QTY</th>
+        <th>Date</th>
+        <th>Remarks</th>
+        <th>Urgent</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+
+      <!-- ROWS -->
+      <tr *ngFor="let row of radiologyTests; let i = index">
+
+        <td>
+          <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+        </td>
+
+        <!-- INPUT + AUTOCOMPLETE -->
+        <td class="relative-cell">
+          <ion-input
+            placeholder="Radiology Test"
+            [(ngModel)]="row.test"
+            (ionInput)="radiologySelection(row.test, i)"
+            (ionFocus)="radiologySelection(row.test, i)"
+            (ionChange)="onRowChange(row)">
+          </ion-input>
+
+          <ion-list *ngIf="row.radList?.length"
+                    class="autocomplete-list">
+            <ion-item button
+                      *ngFor="let rad of row.radList"
+                      (click)="selectRadiologyTest(rad, i)">
+              {{ rad.name }}
+            </ion-item>
+          </ion-list>
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.qty"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="date"
+                     [(ngModel)]="row.date"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-textarea
+            rows="1"
+            autoGrow
+            [(ngModel)]="row.remarks"
+            (ionChange)="onRowChange(row)">
+          </ion-textarea>
+        </td>
+
+        <td class="text-center">
+          <ion-checkbox [(ngModel)]="row.urgent"
+                        (ionChange)="onRowChange(row)">
+          </ion-checkbox>
+        </td>
+
+        <td class="text-center">
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            (click)="deleteRow(radiologyTests, i, 'Radiology')">
+          </ion-icon>
+        </td>
+
+      </tr>
+
+      <!-- FOOTER -->
+      <tr class="footer-row">
+
+        <td colspan="2">
+          <ion-button size="small"
+                      expand="block"
+                      (click)="saveRadiology()">
+            Save & Add
+          </ion-button>
+        </td>
+
+        <td colspan="4"></td>
+
+        <td class="text-right">
+          <ion-button fill="clear"
+                      color="success"
+                      (click)="addRadiologyRow()">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- OTHER RADIOLOGY SECTION (KEEP OUTSIDE TABLE) -->
+  <div class="sub-section">
+
+    <div class="sub-grid">
+      <div>
+        <label class="sub-label">Other Radiology Investigation</label>
+        <ion-textarea
+          rows="2"
+          [(ngModel)]="otherRadiologyInvestigation"
+          placeholder="Other Radiology Investigation">
+        </ion-textarea>
+      </div>
+
+      <div>
+        <label class="sub-label">Comments</label>
+        <ion-textarea
+          rows="2"
+          [(ngModel)]="radiologyComments"
+          placeholder="Comments">
+        </ion-textarea>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- <ion-grid class="table-wrapper table ion-hide-md-down ion-margin-top"  *ngIf="orderSections.procedure">
+
+  <ion-row class="table-header">
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="selectAllProcedure" (ionChange)="toggleAllProcedure()"></ion-checkbox>
+    </ion-col>
+    <ion-col size="2">Procedure</ion-col>
+    <ion-col size="1">Rate</ion-col>
+    <ion-col size="1">Disc%</ion-col>
+    <ion-col size="1">Disc Amt</ion-col>
+    <ion-col size="1">QTY</ion-col>
+    <ion-col size="1">Date</ion-col>
+    <ion-col size="2">Remarks</ion-col>
+    <ion-col size="1">Urgent</ion-col>
+    <ion-col size="1">Delete</ion-col>
+  </ion-row>
+
+  <ion-row class="table-row" *ngFor="let row of procedures; let i = index">
+
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+    </ion-col>
+
+    <ion-col size="2"  class="proc-col" style="position: relative;">
+  <ion-input
+    placeholder="Procedure"
+    [(ngModel)]="row.procedure"
+    (ionInput)="procselection(row.procedure, i,3)"
+    (ionFocus)="procselection(row.procedure, i,3)"  (ionChange)="onRowChange(row)">
+  </ion-input>
+
+<ion-list *ngIf="row.procList?.length" class="autocomplete-list">
+
+  <ion-item style="background-color: rgb(204, 209, 228);color:#22565a">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6"><b>Name</b></ion-col>
+        <ion-col size="3" class="text-right"><b>Rate</b></ion-col>
+        <ion-col size="3" class="text-right"><b>Discount %</b></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item
+    button
+    class="proc-item"
+    *ngFor="let proc of row.procList"
+    (click)="selectProcedure(proc, i)">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">{{ proc.name }}</ion-col>
+        <ion-col size="3" class="text-right">₹{{ proc.prC_RATE || 0 }}</ion-col>
+        <ion-col size="3" class="text-right">{{ proc.ratE_DISC || 0 }}%</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-item>
+</ion-list>
+
+</ion-col>
+
+
+    <ion-col size="1">
+      <ion-input type="number" [(ngModel)]="row.rate"  (ionChange)="onRowChange(row)"></ion-input>
+    </ion-col>
+
+    <ion-col size="1">
+      <ion-input type="number" [(ngModel)]="row.discountPercent"  (ionChange)="onRowChange(row)"></ion-input>
+    </ion-col>
+
+    <ion-col size="1">
+      <ion-input type="number" [(ngModel)]="row.discountAmount"  (ionChange)="onRowChange(row)"></ion-input>
+    </ion-col>
+
+    <ion-col size="1">
+      <ion-input type="number" [(ngModel)]="row.qty"  (ionChange)="onRowChange(row)"></ion-input>
+    </ion-col>
+
+    <ion-col size="1">
+      <ion-input type="date" [(ngModel)]="row.date"  (ionChange)="onRowChange(row)"></ion-input>
+    </ion-col>
+
+    <ion-col size="2">
+      <ion-textarea rows="1" autoGrow placeholder="Remarks"
+        [(ngModel)]="row.remarks"  (ionChange)="onRowChange(row)"></ion-textarea>
+    </ion-col>
+
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="row.urgent"  (ionChange)="onRowChange(row)"></ion-checkbox>
+    </ion-col>
+
+    <ion-col size="1" class="ion-text-center">
+   
+      <ion-icon
+  name="trash-outline"
+  color="danger"
+  (click)="deleteRow(procedures, i, 'Procedure')">
+</ion-icon>
+
+    </ion-col>
+
+  </ion-row>
+
+
+<ion-row  class="table-row">
+    <ion-col size="2">
+          <ion-button size="small" expand="block" (click)="saveProcedures()">
+        Save & Add
+      </ion-button>
+    </ion-col>
+    <ion-col size="8"></ion-col>
+    <ion-col size="2" class="ion-text-end">
+      <ion-button
+        fill="clear"
+        color="success"
+        (click)="addProcedureRow()" style="align-items: right;">
+        <ion-icon name="add-circle" size="large"></ion-icon>
+      </ion-button>
+    </ion-col>
+</ion-row>
+</ion-grid> -->
+
+<div class="table-container" *ngIf="orderSections.procedure">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>
+          <ion-checkbox
+            [(ngModel)]="selectAllProcedure"
+            (ionChange)="toggleAllProcedure()">
+          </ion-checkbox>
+        </th>
+        <th>Procedure</th>
+        <th>Rate</th>
+        <th>Disc%</th>
+        <th>Disc Amt</th>
+        <th>QTY</th>
+        <th>Date</th>
+        <th>Remarks</th>
+        <th>Urgent</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+
+      <!-- ROWS -->
+      <tr *ngFor="let row of procedures; let i = index">
+
+        <td>
+          <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+        </td>
+
+        <!-- PROCEDURE INPUT + AUTOCOMPLETE -->
+        <td class="relative-cell">
+
+          <ion-input
+            placeholder="Procedure"
+            [(ngModel)]="row.procedure"
+            (ionInput)="procselection(row.procedure, i,3)"
+            (ionFocus)="procselection(row.procedure, i,3)"
+            (ionChange)="onRowChange(row)">
+          </ion-input>
+
+          <!-- AUTOCOMPLETE DROPDOWN -->
+          <ion-list *ngIf="row.procList?.length"
+                    class="autocomplete-list">
+
+            <!-- HEADER -->
+            <ion-item class="auto-header">
+              <div class="auto-grid">
+                <span>Name</span>
+                <span>Rate</span>
+                <span>Disc%</span>
+              </div>
+            </ion-item>
+
+            <!-- DATA -->
+            <ion-item button
+                      *ngFor="let proc of row.procList"
+                      (click)="selectProcedure(proc, i)">
+
+              <div class="auto-grid">
+                <span>{{ proc.name }}</span>
+                <span>₹{{ proc.prC_RATE || 0 }}</span>
+                <span>{{ proc.ratE_DISC || 0 }}%</span>
+              </div>
+
+            </ion-item>
+
+          </ion-list>
+
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.rate"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.discountPercent"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.discountAmount"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="number"
+                     [(ngModel)]="row.qty"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-input type="date"
+                     [(ngModel)]="row.date"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <td>
+          <ion-textarea rows="1"
+                        autoGrow
+                        [(ngModel)]="row.remarks"
+                        (ionChange)="onRowChange(row)">
+          </ion-textarea>
+        </td>
+
+        <td class="text-center">
+          <ion-checkbox [(ngModel)]="row.urgent"
+                        (ionChange)="onRowChange(row)">
+          </ion-checkbox>
+        </td>
+
+        <td class="text-center">
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            (click)="deleteRow(procedures, i, 'Procedure')">
+          </ion-icon>
+        </td>
+
+      </tr>
+
+      <!-- FOOTER -->
+      <tr class="footer-row">
+
+        <td colspan="2">
+          <ion-button size="small"
+                      expand="block"
+                      (click)="saveProcedures()">
+            Save & Add
+          </ion-button>
+        </td>
+
+        <td colspan="6"></td>
+
+        <td colspan="2" class="text-right">
+          <ion-button fill="clear"
+                      color="success"
+                      (click)="addProcedureRow()">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>
+  
+
+  <!-- ================= TREATMENT PACKAGE ================= -->
+<!-- <ion-grid class="table-wrapper table ion-hide-md-down ion-margin-top"
+          *ngIf="orderSections.treatment">
+
+  <ion-row class="table-header">
+    <ion-col size="1">
+      <ion-checkbox></ion-checkbox>
+    </ion-col>
+    <ion-col size="4">Treatment Package</ion-col>
+    <ion-col size="2">Package Rate</ion-col>
+    <ion-col size="3">Remarks</ion-col>
+    <ion-col size="1">Delete</ion-col>
+  </ion-row>
+  <ion-row class="table-row"
+           *ngFor="let row of treatment; let i = index">
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+    </ion-col>
+
+<ion-col size="4" style="position: relative;">
+  <ion-input
+  placeholder="Treatment Package"
+  [(ngModel)]="row.packageName"
+  (ionInput)="treatmentSelection(row.packageName, i)">
+</ion-input>
+
+
+  <ion-list *ngIf="row.packageList?.length"
+            class="autocomplete-list">
+    <ion-item
+      button
+      *ngFor="let pkg of row.packageList"
+      (click)="selectTreatment(pkg, i)">
+
+      {{ pkg.pkG_NAME }}
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-col>
+
+    <ion-col size="2">
+      <ion-input
+        type="number"
+        [(ngModel)]="row.rate"
+        (ionChange)="onRowChange(row)">
+      </ion-input>
+    </ion-col>
+
+ 
+    <ion-col size="3">
+      <ion-input
+        placeholder="Remarks"
+        [(ngModel)]="row.remarks"
+        (ionChange)="onRowChange(row)">
+      </ion-input>
+    </ion-col>
+
+    <ion-col size="1" class="ion-text-center">
+      <ion-icon
+        name="trash-outline"
+        color="danger"
+        (click)="deleteTreatment(treatment, i)">
+      </ion-icon>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="table-row">
+    <ion-col size="3">
+      <ion-button size="small" expand="block"
+                  (click)="saveTreatment()">
+        Save & Add
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="7"></ion-col>
+
+    <ion-col size="2" class="ion-text-end">
+      <ion-button fill="clear"
+                  color="success"
+                  (click)="addTreatmentRow()">
+        <ion-icon name="add-circle" size="large"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-grid> -->
+
+<div class="table-container" *ngIf="orderSections.treatment">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>
+          <ion-checkbox></ion-checkbox>
+        </th>
+    
+        <th>Treatment Package</th>
+        <th>Package Rate</th>
+        <th>Remarks</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+
+      <!-- ROWS -->
+      <tr *ngFor="let row of treatment; let i = index">
+
+        <!-- SELECT -->
+        <td>
+          <ion-checkbox [(ngModel)]="row.selected"></ion-checkbox>
+        </td>
+
+        <!-- PACKAGE NAME + AUTOCOMPLETE -->
+        <td class="relative-cell">
+
+          <ion-input
+            placeholder="Treatment Package"
+            [(ngModel)]="row.packageName"
+            (ionInput)="treatmentSelection(row.packageName, i)">
+          </ion-input>
+
+          <!-- AUTOCOMPLETE -->
+          <ion-list *ngIf="row.packageList?.length"
+                    class="autocomplete-list">
+
+            <ion-item button
+                      *ngFor="let pkg of row.packageList"
+                      (click)="selectTreatment(pkg, i)">
+              {{ pkg.pkG_NAME }}
+            </ion-item>
+
+          </ion-list>
+
+        </td>
+
+        <!-- RATE -->
+        <td>
+          <ion-input
+            type="number"
+            [(ngModel)]="row.rate"
+            (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <!-- REMARKS -->
+        <td>
+          <ion-input
+            placeholder="Remarks"
+            [(ngModel)]="row.remarks"
+            (ionChange)="onRowChange(row)">
+          </ion-input>
+        </td>
+
+        <!-- DELETE -->
+        <td class="text-center">
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            (click)="deleteTreatment(treatment, i)">
+          </ion-icon>
+        </td>
+
+      </tr>
+     <!-- FOOTER -->
+        <!-- <div class="table-footer">
+    <ion-button size="small" (click)="saveTreatment()">
+      Save & Add
+    </ion-button>
+
+    <ion-button fill="clear" color="success"
+      (click)="addTreatmentRow()">
+      <ion-icon name="add-circle" size="large"></ion-icon>
+    </ion-button>
+  </div> -->
+
+
+ <tr class="footer-row">
+
+        <td colspan="2">
+          <ion-button size="small"
+                      expand="block"
+                      (click)="saveTreatment()">
+            Save & Add
+          </ion-button>
+        </td>
+
+        <td colspan="6"></td>
+
+        <td colspan="2" class="text-right">
+          <ion-button fill="clear"
+                      color="success"
+                      (click)="addTreatmentRow()">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </td>
+
+      </tr>
+
+
+ 
+      <!-- <tr class="footer-row">
+
+        <td colspan="2">
+          <ion-button size="small"
+                      expand="block"
+                      (click)="saveTreatment()">
+            Save & Add
+          </ion-button>
+        </td>
+
+        <td></td>
+
+        <td colspan="2" class="text-right">
+          <ion-button fill="clear"
+                      color="success"
+                      (click)="addTreatmentRow()">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </td>
+
+      </tr> -->
+
+    </tbody>
+
+  </table>
+</div>
+
+<!-- <ion-grid class="table-wrapper table ion-hide-md-down ion-margin-top"  *ngIf="orderSections.injection">
+  <ion-row class="table-header">
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="selectAllInjection" (ionChange)="toggleAllInjection()"></ion-checkbox>
+    </ion-col>
+    <ion-col size="1">Injection</ion-col>
+    <ion-col size="1">Dosage</ion-col>
+    <ion-col size="1">Route</ion-col>
+    <ion-col size="1">Frequency</ion-col>
+    <ion-col size="1">QTY</ion-col>
+    <ion-col size="1">Date</ion-col>
+    <ion-col size="2">Remarks</ion-col>
+    <ion-col size="1">Urgent</ion-col>
+    <ion-col size="1">TD</ion-col>
+    <ion-col size="1">Delete</ion-col>
+  </ion-row>
+  <ion-row class="table-row" *ngFor="let inj of injections; let i = index">
+
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="inj.selected"></ion-checkbox>
+    </ion-col>
+    <ion-col size="1" style="position: relative;">
+
+  <ion-input
+    placeholder="Injection"
+    [(ngModel)]="inj.injection"
+    (ionInput)="injSelection(inj.injection, i)"
+    (ionFocus)="injSelection(inj.injection, i)"  (ionChange)="onRowChange(inj)">
+  </ion-input>
+  <ion-list *ngIf="inj.injList?.length" class="autocomplete-list">
+    <ion-item
+      button
+      *ngFor="let item of inj.injList"
+      (click)="selectInjection(item, i)">
+      {{ item.name }}
+    </ion-item>
+  </ion-list>
+
+</ion-col>
+    <ion-col size="1">
+      <ion-select interface="popover" placeholder="Select Dosage" [(ngModel)]="inj.dosage">
+        <ion-select-option *ngFor="let d of dosageList" [value]="d.meD_DOS_ID">
+          {{ d.meD_DOS_NAME }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="1">
+      <ion-select interface="popover" placeholder="Select Route" [(ngModel)]="inj.route">
+        <ion-select-option *ngFor="let r of routeList" [value]="r.meD_ROUTE_ID">
+          {{ r.meD_ROUTE_NAME }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="1">
+      <ion-select interface="popover" placeholder="Select Frequency" [(ngModel)]="inj.frequency">
+        <ion-select-option *ngFor="let f of frequencyList" [value]="f.freQ_ID">
+          {{ f.freQ_NAME }}
+        </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="1">
+      <ion-input type="number" min="1" [(ngModel)]="inj.qty"  (ionChange)="onRowChange(inj)"></ion-input>
+    </ion-col>
+    <ion-col size="1">
+      <ion-input type="date" [(ngModel)]="inj.date"  (ionChange)="onRowChange(inj)"></ion-input>
+    </ion-col>
+    <ion-col size="2">
+      <ion-textarea rows="1" autoGrow placeholder="Remarks" [(ngModel)]="inj.remarks"  (ionChange)="onRowChange(inj)"></ion-textarea>
+    </ion-col>
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="inj.urgent"  (ionChange)="onRowChange(inj)"></ion-checkbox>
+    </ion-col>
+    <ion-col size="1">
+      <ion-checkbox [(ngModel)]="inj.td"  (ionChange)="onRowChange(inj)"></ion-checkbox>
+    </ion-col>
+    <ion-col size="1" class="ion-text-center">
+    
+      <ion-icon
+  name="trash-outline"
+  color="danger"
+  (click)="deleteRow(injections, i, 'Injection')">
+</ion-icon>
+
+    </ion-col>
+
+  </ion-row>
+  <ion-row class="table-row">
+    <ion-col size="2">
+      <ion-button size="small" expand="block" (click)="saveInjection()">
+        Save & Add
+      </ion-button>
+    </ion-col>
+    <ion-col size="8"></ion-col>
+    <ion-col size="2" class="ion-text-end">
+      <ion-button
+        fill="clear"
+        color="success"
+        (click)="injections.push(createEmptyInjectionRow())">
+        <ion-icon name="add-circle" size="large"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-grid> -->
+
+<div class="table-container" *ngIf="orderSections.injection">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>
+          <ion-checkbox [(ngModel)]="selectAllInjection" (ionChange)="toggleAllInjection()"></ion-checkbox>
+        </th>
+        <th>Injection</th>
+        <th>Dosage</th>
+        <th>Route</th>
+        <th>Frequency</th>
+        <th>QTY</th>
+        <th>Date</th>
+        <th>Remarks</th>
+        <th>Urgent</th>
+        <th>TD</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+      <tr *ngFor="let inj of injections; let i = index">
+
+        <!-- SELECT -->
+        <td>
+          <ion-checkbox [(ngModel)]="inj.selected"></ion-checkbox>
+        </td>
+
+        <!-- INJECTION INPUT + AUTOCOMPLETE -->
+        <td style="position: relative;">
+          <ion-input
+            placeholder="Injection"
+            [(ngModel)]="inj.injection"
+            (ionInput)="injSelection(inj.injection, i)"
+            (ionFocus)="injSelection(inj.injection, i)"
+            (ionChange)="onRowChange(inj)">
+          </ion-input>
+
+          <ion-list *ngIf="inj.injList?.length" class="autocomplete-list">
+            <ion-item
+              button
+              *ngFor="let item of inj.injList"
+              (click)="selectInjection(item, i)">
+              {{ item.name }}
+            </ion-item>
+          </ion-list>
+        </td>
+
+        <!-- DOSAGE -->
+        <td>
+          <ion-select interface="popover" [(ngModel)]="inj.dosage">
+            <ion-select-option *ngFor="let d of dosageList" [value]="d.meD_DOS_ID">
+              {{ d.meD_DOS_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </td>
+
+        <!-- ROUTE -->
+        <td>
+          <ion-select interface="popover" [(ngModel)]="inj.route">
+            <ion-select-option *ngFor="let r of routeList" [value]="r.meD_ROUTE_ID">
+              {{ r.meD_ROUTE_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </td>
+
+        <!-- FREQUENCY -->
+        <td>
+          <ion-select interface="popover" [(ngModel)]="inj.frequency">
+            <ion-select-option *ngFor="let f of frequencyList" [value]="f.freQ_ID">
+              {{ f.freQ_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </td>
+
+        <!-- QTY -->
+        <td>
+          <ion-input type="number" min="1" [(ngModel)]="inj.qty" (ionChange)="onRowChange(inj)"></ion-input>
+        </td>
+
+        <!-- DATE -->
+        <td>
+          <ion-input type="date" [(ngModel)]="inj.date" (ionChange)="onRowChange(inj)"></ion-input>
+        </td>
+
+        <!-- REMARKS -->
+        <td>
+          <ion-textarea rows="1" autoGrow [(ngModel)]="inj.remarks" (ionChange)="onRowChange(inj)"></ion-textarea>
+        </td>
+
+        <!-- URGENT -->
+        <td>
+          <ion-checkbox [(ngModel)]="inj.urgent" (ionChange)="onRowChange(inj)"></ion-checkbox>
+        </td>
+
+        <!-- TD -->
+        <td>
+          <ion-checkbox [(ngModel)]="inj.td" (ionChange)="onRowChange(inj)"></ion-checkbox>
+        </td>
+
+        <!-- DELETE -->
+        <td class="ion-text-center">
+          <ion-icon
+            name="trash-outline"
+            color="danger"
+            (click)="deleteRow(injections, i, 'Injection')">
+          </ion-icon>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+  <!-- FOOTER ACTIONS -->
+  <div class="table-footer">
+    <ion-button size="small" (click)="saveInjection()">
+      Save & Add
+    </ion-button>
+
+    <ion-button fill="clear" color="success"
+      (click)="injections.push(createEmptyInjectionRow())">
+      <ion-icon name="add-circle" size="large"></ion-icon>
+    </ion-button>
+  </div>
+
+</div>
+
+<!-- //mobile vie -->
+ <!-- ================= MOBILE : LAB ================= -->
+<!-- <div class="mobile-blocks ion-hide-md-up">
+
+  <div class="patient-block">
+
+    <div class="block-header">
+      <span class="sl-no">LAB</span>
+      <span class="op-no">Order</span>
+    </div>
+
+    <div class="block-body">
+      <ion-input placeholder="Lab Test"></ion-input>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input value="1"></ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Date</ion-label>
+          <ion-input type="date" [(ngModel)]="Today"></ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2"></ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="block-footer">
+      <ion-checkbox>Urgent</ion-checkbox>
+      <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
+    </div>
+
+  </div>
+
+  <ion-button expand="block" size="small">Save & Add</ion-button>
+</div> -->
+<!-- <div class="mobile-blocks ion-hide-md-up" *ngIf="orderSections.lab">
+
+  <div
+    class="patient-block"
+    *ngFor="let row of labTests; let i = index">
+
+    <div class="block-header">
+      <span class="sl-no">LAB {{ i + 1 }}</span>
+      <span class="op-no">Order</span>
+    </div>
+ <div class="proc-mobile-col">
+    <ion-input
+      placeholder="Lab Test"
+      [(ngModel)]="row.test"
+      (ionInput)="labSelection(row.test, i)"
+      (ionFocus)="labSelection(row.test, i)">
+    </ion-input>
+
+    <ion-list *ngIf="row.labList?.length" class="autocomplete-list">
+      <ion-item
+        button
+        *ngFor="let lab of row.labList"
+        (click)="selectLabTest(lab, i)">
+        {{ lab.name }}
+      </ion-item>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input type="number" [(ngModel)]="row.qty"></ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Date</ion-label>
+          <ion-input type="date" [(ngModel)]="row.date"></ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2" [(ngModel)]="row.remarks"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <div class="block-footer">
+      <ion-checkbox [(ngModel)]="row.urgent">Urgent</ion-checkbox>
+
+      <ion-icon
+        name="trash-outline"
+        color="danger"
+        (click)="deleteRow(labTests, i, 'Lab')">
+      </ion-icon>
+    </div>
+
+  </div>
+  <ion-button expand="block" size="small" (click)="saveLab()">
+    Save & Add
+  </ion-button>
+</div>
+</div> -->
+<div class="mobile-blocks ion-hide-md-up" *ngIf="orderSections.lab">
+
+  <div class="patient-block"
+       *ngFor="let row of labTests; let i = index">
+
+    <div class="block-header">
+      <span class="sl-no">LAB {{ i + 1 }}</span>
+      <!-- <span class="op-no">Order</span> {{ i + 1 }}-->
+    </div>
+
+    <!-- INPUT + AUTOCOMPLETE -->
+    <div class="proc-mobile-col">
+
+      <ion-input
+        placeholder="Lab Test"
+        [(ngModel)]="row.test"
+        (ionInput)="labSelection(row.test, i)"
+        (ionFocus)="labSelection(row.test, i)">
+      </ion-input>
+
+      <!-- ✅ ADD mobile-auto CLASS -->
+      <ion-list *ngIf="row.labList?.length"
+                class="autocomplete-list mobile-auto">
+
+        <ion-item button
+                  *ngFor="let lab of row.labList"
+                  (click)="selectLabTest(lab, i)">
+          {{ lab.name }}
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <!-- FORM GRID -->
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input type="number"
+                     [(ngModel)]="row.qty">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Date</ion-label>
+          <ion-input type="date"
+                     [(ngModel)]="row.date">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2"
+                        [(ngModel)]="row.remarks"  placeholder="Remarks">
+          </ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <div class="block-footer">
+      <ion-checkbox [(ngModel)]="row.urgent">
+        Urgent
+      </ion-checkbox>
+
+      <ion-icon name="trash-outline"
+                color="danger"
+                (click)="deleteRow(labTests, i, 'Lab')">
+      </ion-icon>
+    </div>
+
+  </div>
+
+  <ion-button expand="block"
+              size="small"
+              (click)="saveLab()">
+    Save & Add
+  </ion-button>
+  <!-- MOBILE : OTHER LAB INVESTIGATION -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="orderSections.lab">
+
+  <div class="patient-block">
+
+    <ion-label class="sub-label">
+      Other Lab Investigation
+    </ion-label>
+
+    <ion-textarea
+      rows="3"
+      [(ngModel)]="otherLabInvestigation"
+      placeholder="Other Lab Investigation">
+    </ion-textarea>
+
+    <ion-label class="sub-label ion-margin-top">
+      Comments
+    </ion-label>
+
+    <ion-textarea
+      rows="3"
+      [(ngModel)]="labComments"
+      placeholder="Comments">
+    </ion-textarea>
+
+  </div>
+
+</div>
+
+
+</div>
+
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="orderSections.radiology">
+
+  <div class="patient-block"
+       *ngFor="let row of radiologyTests; let i = index">
+
+    <div class="block-header">
+      <span class="sl-no">RADIOLOGY {{ i + 1 }}</span>
+      <!-- <span class="op-no">Order</span> -->
+    </div>
+
+    <!-- INPUT + AUTOCOMPLETE -->
+    <div class="proc-mobile-col">
+
+      <ion-input
+        placeholder="Radiology Test"
+        [(ngModel)]="row.test"
+        (ionInput)="radiologySelection(row.test, i)"
+        (ionFocus)="radiologySelection(row.test, i)">
+      </ion-input>
+
+      <ion-list *ngIf="row.radList?.length"
+                class="autocomplete-list mobile-auto">
+
+        <ion-item button
+                  *ngFor="let rad of row.radList"
+                  (click)="selectRadiologyTest(rad, i)">
+          {{ rad.name }}
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input type="number"
+                     [(ngModel)]="row.qty">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Date</ion-label>
+          <ion-input type="date"
+                     [(ngModel)]="row.date">
+          </ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2"
+                        [(ngModel)]="row.remarks"  placeholder="Remarks">
+          </ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <div class="block-footer">
+      <ion-checkbox [(ngModel)]="row.urgent">
+        Urgent
+      </ion-checkbox>
+
+      <ion-icon name="trash-outline"
+                color="danger"
+                (click)="deleteRow(radiologyTests, i, 'Radiology')">
+      </ion-icon>
+    </div>
+
+  </div>
+
+  <ion-button expand="block"
+              size="small"
+              (click)="saveRadiology()">
+    Save & Add
+  </ion-button>
+<!-- MOBILE : OTHER RADIOLOGY -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="orderSections.radiology">
+
+  <div class="patient-block">
+
+    <ion-label class="sub-label">
+      Other Radiology Investigation
+    </ion-label>
+
+    <ion-textarea
+      rows="3"
+      [(ngModel)]="otherRadiologyInvestigation"
+      placeholder="Other Radiology Investigation">
+    </ion-textarea>
+
+    <ion-label class="sub-label ion-margin-top">
+      Comments
+    </ion-label>
+
+    <ion-textarea
+      rows="3"
+      [(ngModel)]="radiologyComments"
+      placeholder="Comments">
+    </ion-textarea>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- ================= MOBILE : PROCEDURE ================= -->
+<div class="mobile-blocks ion-hide-md-up" *ngIf="orderSections.procedure">
+
+  <div *ngFor="let row of procedures; let i = index" class="patient-block">
+
+    <div class="block-header">
+      <span class="sl-no">PROCEDURE {{ i + 1 }}</span>
+      <!-- <span class="op-no">Order</span> -->
+    </div>
+
+    <!-- Procedure input with autocomplete -->
+  <div class="proc-mobile-col">
+    <ion-input
+      placeholder="Procedure"
+      [(ngModel)]="row.procedure"
+      (ionInput)="procselection(row.procedure, i,3)"
+      (ionFocus)="procselection(row.procedure, i,3)">
+    </ion-input>
+
+    <ion-list *ngIf="row.procList?.length" class="autocomplete-list">
+      <ion-item
+        button
+        class="proc-item"
+        *ngFor="let proc of row.procList"
+        (click)="selectProcedure(proc, i)">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">{{ proc.name }}</ion-col>
+            <ion-col size="3" class="text-right">₹{{ proc.prC_RATE || 0 }}</ion-col>
+            <ion-col size="3" class="text-right">{{ proc.ratE_DISC || 0 }}%</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>Rate</ion-label>
+          <ion-input type="number" [(ngModel)]="row.rate"></ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input type="number" [(ngModel)]="row.qty"></ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Date</ion-label>
+          <ion-input type="date" [(ngModel)]="row.date"></ion-input>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Discount %</ion-label>
+          <ion-input type="number" [(ngModel)]="row.discountPercent"></ion-input>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2" [(ngModel)]="row.remarks" placeholder="Remarks"></ion-textarea>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-checkbox [(ngModel)]="row.urgent">Urgent</ion-checkbox>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-icon name="trash-outline" color="danger" (click)="removeProcedureRow(i)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <ion-button expand="block" size="small" (click)="addProcedureRow()">Save & Add</ion-button>
+    <ion-button fill="clear"
+              class="add-row-btn"
+              (click)="addProcedureRow()">
+    <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+  </ion-button>
+
+  
+</div>
+
+
+<!-- ================= MOBILE : TREATMENT PACKAGE ================= -->
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="orderSections.treatment">
+
+  <div class="patient-block"
+       *ngFor="let row of treatment; let i = index">
+
+    <div class="block-header">
+      <span class="sl-no">TREATMENT {{ i + 1 }}</span>
+    </div>
+
+    <!-- Package Input + Autocomplete -->
+    <div class="proc-mobile-col">
+
+      <ion-input
+        placeholder="Treatment Package"
+        [(ngModel)]="row.packageName"
+        (ionInput)="treatmentSelection(row.packageName, i)"
+        (ionFocus)="treatmentSelection(row.packageName, i)">
+      </ion-input>
+
+      <!-- Autocomplete List -->
+      <ion-list *ngIf="row.packageList?.length"
+                class="autocomplete-list mobile-auto">
+
+        <ion-item button
+                  *ngFor="let pkg of row.packageList"
+                  (click)="selectTreatment(pkg, i)">
+          {{ pkg.pkG_NAME }}
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <!-- Form Grid -->
+    <ion-grid>
+      <ion-row>
+
+        <!-- Rate -->
+        <ion-col size="6">
+          <ion-label>Package Rate</ion-label>
+          <ion-input type="number"
+                     [(ngModel)]="row.rate"
+                     (ionChange)="onRowChange(row)">
+          </ion-input>
+        </ion-col>
+
+        <!-- Remarks -->
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2"
+                        [(ngModel)]="row.remarks"
+                        placeholder="Remarks"
+                        (ionChange)="onRowChange(row)">
+          </ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <!-- Footer -->
+    <div class="block-footer">
+
+      <ion-checkbox [(ngModel)]="row.selected">
+        Select
+      </ion-checkbox>
+
+      <ion-icon name="trash-outline"
+                color="danger"
+                (click)="deleteTreatment(treatment, i)">
+      </ion-icon>
+
+    </div>
+
+  </div>
+
+  <!-- Save & Add -->
+  <ion-button expand="block"
+              size="small"
+              (click)="saveTreatment()">
+    Save & Add
+  </ion-button>
+  <!-- Add Row Icon -->
+  <ion-button fill="clear"
+              class="add-row-btn"
+              (click)="addTreatmentRow()">
+    <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+  </ion-button>
+</div>
+
+
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="orderSections.injection">
+
+  <div class="patient-block"
+       *ngFor="let inj of injections; let i = index">
+
+    <div class="block-header">
+      <span class="sl-no">INJECTION {{ i + 1 }}</span>
+      <span class="op-no">Injection</span>
+    </div>
+
+    <!-- Injection Name + Autocomplete -->
+    <div class="proc-mobile-col">
+
+      <ion-input
+        placeholder="Injection Name"
+        [(ngModel)]="inj.injection"
+        (ionInput)="injSelection(inj.injection, i)"
+        (ionFocus)="injSelection(inj.injection, i)"
+        (ionChange)="onRowChange(inj)">
+      </ion-input>
+
+      <ion-list *ngIf="inj.injList?.length"
+                class="autocomplete-list mobile-auto">
+
+        <ion-item button
+                  *ngFor="let item of inj.injList"
+                  (click)="selectInjection(item, i)">
+          {{ item.name }}
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <ion-grid>
+      <ion-row>
+
+        <!-- Dosage -->
+        <ion-col size="6">
+          <ion-label>Dosage</ion-label>
+          <ion-select interface="popover"
+                      [(ngModel)]="inj.dosage"
+                      (ionChange)="onRowChange(inj)">
+            <ion-select-option
+              *ngFor="let d of dosageList"
+              [value]="d.meD_DOS_ID">
+              {{ d.meD_DOS_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <!-- Route -->
+        <ion-col size="6">
+          <ion-label>Route</ion-label>
+          <ion-select interface="popover"
+                      [(ngModel)]="inj.route"
+                      (ionChange)="onRowChange(inj)">
+            <ion-select-option
+              *ngFor="let r of routeList"
+              [value]="r.meD_ROUTE_ID">
+              {{ r.meD_ROUTE_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <!-- Frequency -->
+        <ion-col size="6">
+          <ion-label>Frequency</ion-label>
+          <ion-select interface="popover"
+                      [(ngModel)]="inj.frequency"
+                      (ionChange)="onRowChange(inj)">
+            <ion-select-option
+              *ngFor="let f of frequencyList"
+              [value]="f.freQ_ID">
+              {{ f.freQ_NAME }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <!-- Qty -->
+        <ion-col size="6">
+          <ion-label>Qty</ion-label>
+          <ion-input type="number"
+                     min="1"
+                     [(ngModel)]="inj.qty"
+                     (ionChange)="onRowChange(inj)">
+          </ion-input>
+        </ion-col>
+
+        <!-- Date -->
+        <ion-col size="12">
+          <ion-label>Date</ion-label>
+          <ion-input type="date"
+                     [(ngModel)]="inj.date"
+                     (ionChange)="onRowChange(inj)">
+          </ion-input>
+        </ion-col>
+
+        <!-- Remarks -->
+        <ion-col size="12">
+          <ion-label>Remarks</ion-label>
+          <ion-textarea rows="2"
+                        [(ngModel)]="inj.remarks" placeholder="Remarks" 
+                        (ionChange)="onRowChange(inj)">
+          </ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+    <!-- Footer -->
+    <div class="block-footer">
+
+      <div>
+        <ion-checkbox [(ngModel)]="inj.urgent"
+                      (ionChange)="onRowChange(inj)">
+          Urgent
+        </ion-checkbox>
+
+        <ion-checkbox [(ngModel)]="inj.td"
+                      (ionChange)="onRowChange(inj)">
+          TD
+        </ion-checkbox>
+      </div>
+
+      <ion-icon name="trash-outline"
+                color="danger"
+                (click)="deleteRow(injections, i, 'Injection')">
+      </ion-icon>
+
+    </div>
+
+  </div>
+
+  <!-- Save & Add -->
+  <ion-button expand="block"
+              size="small"
+              (click)="saveInjection()">
+    Save & Add
+  </ion-button>
+
+</div>
+
+
+
+  <ion-button expand="block" class="headbg"  (click)="saveOrder()">
+  Save Order
+</ion-button>
+</ng-content>
+<!-- </ion-content> -->

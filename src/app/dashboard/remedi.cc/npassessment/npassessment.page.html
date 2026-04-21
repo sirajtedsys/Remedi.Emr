@@ -1,0 +1,1618 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Neuro-Psychobiological Assessment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- <ion-content class="ion-padding"> -->
+    <ng-container class="ion-padding">
+  <form [formGroup]="assessmentForm">
+
+    <!-- MAIN ACCORDION -->
+    <ion-accordion-group value="main">
+
+      <ion-accordion value="main">
+        <ion-item slot="header">
+          <ion-label><b>CLIENT IDENTIFICATION & PRESENTING CONCERNS</b></ion-label>
+        </ion-item>
+
+        <div slot="content" class="">
+          <!-- 1.2 PRESENTING COMPLAINTS -->
+          <!-- <ion-accordion value="complaints"> -->
+          <ion-item slot="header">
+            <ion-label>1.1 Presenting Complaints</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="presentingComplaints">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Main reason for seeking support</ion-label>
+              <ion-textarea formControlName="reason"></ion-textarea>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Duration of concern</ion-label>
+              <ion-input formControlName="duration"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Intensity (0–10)</ion-label>
+              <ion-input type="number" formControlName="intensity"></ion-input>
+            </ion-item>
+
+            <ion-list-header>
+              <ion-label>Frequency</ion-label>
+            </ion-list-header>
+
+            <ion-radio-group formControlName="frequency">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Daily</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Weekly</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Sometimes</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Rare</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Triggers / Recent events</ion-label>
+              <ion-input formControlName="triggers"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Impact on daily functioning</ion-label>
+              <ion-input formControlName="impact"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 1.3 CLIENT NARRATIVE -->
+          <!-- <ion-accordion value="narrative"> -->
+          <ion-item slot="header">
+            <ion-label>1.2 Client Narrative</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="clientNarrative">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">In your own words</ion-label>
+              <ion-textarea formControlName="ownWords"></ion-textarea>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">What would you like to change or improve?</ion-label>
+              <ion-textarea formControlName="improvementGoals"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 1.4 CURRENT ENVIRONMENT -->
+          <!-- <ion-accordion value="environment"> -->
+          <ion-item slot="header">
+            <ion-label>1.3 Current Environment</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="currentEnvironment">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Work stress / job satisfaction</ion-label>
+              <ion-input formControlName="workStress"></ion-input>
+            </ion-item>
+
+            <ion-list-header>
+              <ion-label>Social support</ion-label>
+            </ion-list-header>
+
+            <ion-radio-group formControlName="socialSupport">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Strong</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Moderate</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Low</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">None</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Living environment</ion-label>
+              <ion-input formControlName="livingEnvironment"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Current life transitions</ion-label>
+              <ion-input formControlName="lifeTransitions"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <!-- ===================== SECTION 2 ===================== -->
+    <ion-accordion-group value="mentalStatusMain">
+
+      <ion-accordion value="mentalStatusMain">
+        <ion-item slot="header">
+          <ion-label><b>CONSCIOUSNESS, AWARENESS &amp; MENTAL STATUS</b></ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="mentalStatus">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+
+          <!-- 2.1 CONSCIOUS AWARENESS -->
+          <!-- <ion-accordion value="awareness"> -->
+          <ion-item slot="header">
+            <ion-label>2.1 Conscious Awareness (Client)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="consciousAwareness">
+
+            <ion-list-header>
+              <ion-label>Able to stay present during tasks?</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="presentDuringTasks">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Yes</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Sometimes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header>
+              <ion-label>Dissociation / zoning out / depersonalization</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="dissociationLevel">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Mild</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Moderate</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Severe</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header>
+              <ion-label>Feel connected to body and emotions?</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="bodyEmotionConnection">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Yes</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Sometimes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 2.2 MENTAL STATUS EXAM -->
+          <!-- <ion-accordion value="mse"> -->
+          <ion-item slot="header">
+            <ion-label>2.2 Mental Status Examination (Clinician)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="mentalStatusExam">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Appearance &amp; behavior</ion-label>
+              <ion-input formControlName="appearanceBehavior"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Speech (rate / tone / clarity)</ion-label>
+              <ion-input formControlName="speech"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Mood (reported)</ion-label>
+              <ion-input formControlName="mood"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Affect (observed)</ion-label>
+              <ion-input formControlName="affect"></ion-input>
+            </ion-item>
+
+            <!-- Thought Process -->
+            <!-- <div formGroupName="thoughtProcess"> -->
+            <ion-list-header><ion-label>Thought process</ion-label></ion-list-header>
+            <ion-radio-group formControlName="thoughtProcess">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Logical</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Tangential</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Disorganized</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Flight of ideas</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="logical"></ion-checkbox><ion-label>Logical</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="tangential"></ion-checkbox><ion-label>Tangential</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="disorganized"></ion-checkbox><ion-label>Disorganized</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="flightOfIdeas"></ion-checkbox><ion-label>Flight
+                    of ideas</ion-label></ion-item>
+              </div> -->
+
+            <!-- </div> -->
+
+            <!-- Thought Content -->
+            <!-- <div formGroupName="thoughtContent"> -->
+            <ion-list-header><ion-label>Thought content</ion-label></ion-list-header>
+            <ion-radio-group formControlName="thoughtContent">
+              <div class="option-grid">
+
+                <ion-item lines="none"><ion-radio value="A">Worry / rumination</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="B">Obsessions</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="C">Delusions</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="D">Suicidal ideation</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="E">Self-harm</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="F">None</ion-radio></ion-item>
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="worryRumination"></ion-checkbox><ion-label>Worry
+                    / rumination</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="obsessions"></ion-checkbox><ion-label>Obsessions</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="delusions"></ion-checkbox><ion-label>Delusions</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="suicidalIdeation"></ion-checkbox><ion-label>Suicidal
+                    ideation</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="selfHarm"></ion-checkbox><ion-label>Self-harm</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="none"></ion-checkbox><ion-label>None</ion-label></ion-item>
+              </div> -->
+
+            <!-- </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+            <!-- Perception -->
+            <!-- <div formGroupName="perception"> -->
+            <ion-list-header><ion-label>Perception</ion-label></ion-list-header>
+            <ion-radio-group formControlName="perception">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Normal</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="B">Derealization</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="C">Hallucinations</ion-radio></ion-item>
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="normal"></ion-checkbox><ion-label>Normal</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="derealization"></ion-checkbox><ion-label>Derealization</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="hallucinations"></ion-checkbox><ion-label>Hallucinations</ion-label></ion-item>
+              </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">If hallucinations, specify</ion-label>
+              <ion-input formControlName="hallucinationDetails"></ion-input>
+            </ion-item>
+            <!-- </div> -->
+
+            <!-- Cognition -->
+            <div formGroupName="cognition">
+              <ion-list-header><ion-label>Cognition</ion-label></ion-list-header>
+
+              <ion-radio-group formControlName="orientation">
+                <div class="option-grid">
+                  <ion-item lines="none"><ion-radio value="A">Orientation intact</ion-radio> </ion-item>
+                  <ion-item lines="none"><ion-radio value="B">Orientation impaired</ion-radio> </ion-item>
+                </div>
+              </ion-radio-group>
+
+              <ion-radio-group formControlName="memory">
+
+                <div class="option-grid">
+                  <ion-item lines="none"><ion-radio value="A">Memory intact</ion-radio> </ion-item>
+                  <ion-item lines="none"><ion-radio value="B">Memory Impaired</ion-radio> </ion-item>
+                </div>
+              </ion-radio-group>
+
+              <ion-radio-group formControlName="attention">
+                <div class="option-grid">
+                  <ion-item lines="none"><ion-radio value="A">Attention intact</ion-radio> </ion-item>
+                  <ion-item lines="none"><ion-radio value="B">Attention impaired</ion-radio> </ion-item>
+                </div>
+              </ion-radio-group>
+
+              <ion-item fill="outline">
+                <ion-label position="floating">Insight &amp; judgment</ion-label>
+                <ion-input formControlName="insightJudgment"></ion-input>
+              </ion-item>
+
+            </div>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <!-- ===================== SECTION 3 ===================== -->
+    <ion-accordion-group value="developmentalMain">
+
+      <ion-accordion value="developmentalMain">
+        <ion-item slot="header">
+          <ion-label><b>DEVELOPMENTAL NEUROHISTORY</b></ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="developmentalNeurohistory">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+
+          <!-- 3.1 EARLY LIFE MILESTONES -->
+          <!-- <ion-accordion value="earlyLife"> -->
+          <ion-item slot="header">
+            <ion-label>3.1 Early Life Milestones</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="earlyLifeMilestones">
+
+            <ion-list-header>
+              <ion-label>Prenatal / birth complications</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="prenatalComplications">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header>
+              <ion-label>Attachment with primary caregiver</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="attachmentStyle">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Secure</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Anxious</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Avoidant</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Disorganized</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Unclear</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header>
+              <ion-label>Developmental milestones</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="developmentalMilestones">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Normal</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Delayed</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Early emotion regulation pattern</ion-label>
+              <ion-input formControlName="earlyEmotionRegulation"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 3.2 CHILDHOOD & ADOLESCENCE -->
+          <!-- <ion-accordion value="childhood"> -->
+          <ion-item slot="header">
+            <ion-label>3.2 Childhood &amp; Adolescence</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="childhoodAdolescence">
+
+            <ion-list-header>
+              <ion-label>Trauma / neglect / abuse</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="traumaHistory">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Academics / peer relationships</ion-label>
+              <ion-input formControlName="academicsPeerRelations"></ion-input>
+            </ion-item>
+
+            <!-- <div formGroupName="childhoodCoping"> -->
+            <ion-list-header>
+              <ion-label>Childhood coping</ion-label>
+            </ion-list-header>
+
+            <ion-radio-group formControlName="childhoodCoping">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Withdrawal</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Fight</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">People-pleasing</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Overachieving</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="withdrawal"></ion-checkbox> </ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="fight"></ion-checkbox><ion-label>Fight</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="peoplePleasing"></ion-checkbox><ion-label>People-pleasing</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="overachieving"></ion-checkbox><ion-label>Overachieving</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="other"></ion-checkbox><ion-label>Other</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 3.3 ADULT DEVELOPMENT -->
+          <!-- <ion-accordion value="adult"> -->
+          <ion-item slot="header">
+            <ion-label>3.3 Adult Development</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="adultDevelopment">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Identity formation notes</ion-label>
+              <ion-textarea formControlName="identityFormation"></ion-textarea>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Major turning points</ion-label>
+              <ion-input formControlName="majorTurningPoints"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Relationship / intimacy history</ion-label>
+              <ion-input formControlName="relationshipHistory"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Role models / significant figures</ion-label>
+              <ion-input formControlName="roleModels"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+
+    <!-- ===================== SECTION 4 ===================== -->
+    <ion-accordion-group value="functionalMain">
+
+      <ion-accordion value="functionalMain">
+        <ion-item slot="header">
+          <ion-label><b>FUNCTIONAL NEUROBIOLOGY, HORMONE &amp; GENETIC MAPPING</b></ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="functionalNeurobiology">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+
+          <!-- 4.1 NEUROENDOCRINE SYMPTOM CHECKLIST -->
+          <!-- <ion-accordion value="neuroendocrine"> -->
+          <ion-item slot="header">
+            <ion-label>4.1 Neuroendocrine Symptom Checklist</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="neuroendocrineChecklist">
+
+            <!-- Cortisol / Stress -->
+            <!-- <div formGroupName="cortisolStress"> -->
+            <ion-list-header><ion-label>Cortisol / Stress</ion-label></ion-list-header>
+            <ion-radio-group formControlName="cortisolStress">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Fatigue on waking</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Mid-day crash</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Anxiety / irritability</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Sleep difficulty</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="fatigueOnWaking"></ion-checkbox> <ion-label>Fatigue on waking</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="midDayCrash"></ion-checkbox><ion-label>Mid-day crash</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="anxietyIrritability"></ion-checkbox><ion-label>Anxiety / irritability</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="sleepDifficulty"></ion-checkbox><ion-label>Sleep difficulty</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+            <!-- Thyroid / Metabolism -->
+            <!-- <div formGroupName="thyroidMetabolism"> -->
+            <ion-list-header><ion-label>Thyroid / Metabolism</ion-label></ion-list-header>
+            <ion-radio-group formControlName="thyroidMetabolism">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Weight change</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Cold / heat intolerance</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Hair thinning</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Constipation / brain fog</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="weightChange"></ion-checkbox><ion-label>Weight change</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="coldHeatIntolerance"></ion-checkbox><ion-label>Cold / heat intolerance</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="hairThinning"></ion-checkbox><ion-label>Hair thinning</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="constipationBrainFog"></ion-checkbox><ion-label>Constipation / brain fog</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+            <!-- Sex Hormones -->
+            <!-- <div formGroupName="sexHormones"> -->
+            <ion-list-header><ion-label>Sex Hormones</ion-label></ion-list-header>
+            <ion-radio-group formControlName="sexHormones">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">PMS / PMDD</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">ibido change</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Acne / hirsutism</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Irregular periods</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="pmsPmdd"></ion-checkbox><ion-label>PMS /
+                    PMDD</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="libidoChange"></ion-checkbox><ion-label>Libido   change</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="acneHirsutism"></ion-checkbox><ion-label>Acne / hirsutism</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="irregularPeriods"></ion-checkbox><ion-label>Irregular
+                    periods</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+            <!-- Insulin / Blood Sugar -->
+            <!-- <div formGroupName="insulinBloodSugar"> -->
+            <ion-list-header><ion-label>Insulin / Blood Sugar</ion-label></ion-list-header>
+            <ion-radio-group formControlName="insulinBloodSugar">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Sugar cravings</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Mood changes after meals</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Food-related energy swings</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Irregular periods</ion-radio> </ion-item> -->
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="sugarCravings"></ion-checkbox><ion-label>Sugar cravings</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="moodAfterMeals"></ion-checkbox><ion-label>Mood  changes after meals</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="energySwings"></ion-checkbox><ion-label>Food-related energy swings</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+            <!-- Oxytocin / Bonding -->
+            <!-- <div formGroupName="oxytocinBonding"> -->
+            <ion-list-header><ion-label>Oxytocin / Vasopressin / Bonding</ion-label></ion-list-header>
+            <ion-radio-group formControlName="oxytocinBonding">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Emotional closeness difficulty</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Trust issues / withdrawal</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Aversion to touch</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Irregular periods</ion-radio> </ion-item> -->
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="emotionalClosenessDifficulty"></ion-checkbox><ion-label>Emotional closeness difficulty</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox formControlName="trustIssues"></ion-checkbox><ion-label>Trust issues / withdrawal</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox formControlName="aversionToTouch"></ion-checkbox><ion-label>Aversion
+                  to touch</ion-label></ion-item>
+            </div> -->
+            <!-- </div> -->
+
+            <!-- Melatonin / Sleep -->
+            <!-- <div formGroupName="melatoninSleep"> -->
+            <ion-list-header><ion-label>Melatonin / Sleep</ion-label></ion-list-header>
+            <ion-radio-group formControlName="melatoninSleep">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Trouble winding down</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Restless sleep</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Sleep-wake inversion</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Irregular periods</ion-radio> </ion-item> -->
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+                <ion-item lines="none"><ion-checkbox formControlName="troubleWindingDown"></ion-checkbox><ion-label>Trouble winding down</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="restlessSleep"></ion-checkbox><ion-label>Restless sleep</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="sleepWakeInversion"></ion-checkbox><ion-label>Sleep-wake inversion</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 4.2 INFLAMMATORY SYMPTOMS -->
+          <!-- <ion-accordion value="inflammatory"> -->
+          <ion-item slot="header">
+            <ion-label>4.2 Inflammatory Symptoms</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="inflammatorySymptoms">
+            <ion-radio-group formControlName="inflammatorySymptoms">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Joint / muscle pain</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Restless sleep</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Sleep-wake inversion</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Frequent infections</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="E">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid"> -->
+
+            <!-- <ion-item lines="none"><ion-checkbox formControlName="jointMusclePain"></ion-checkbox><ion-label>Joint /
+                  muscle pain</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox formControlName="chronicFatigue"></ion-checkbox><ion-label>Chronic
+                  fatigue</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox formControlName="skinIssues"></ion-checkbox><ion-label>Skin
+                  issues</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="frequentInfections"></ion-checkbox><ion-label>Frequent
+                  infections</ion-label></ion-item> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+            <!-- </div> -->
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 4.3 GUT–BRAIN AXIS -->
+          <!-- <ion-accordion value="gutbrain"> -->
+          <ion-item slot="header">
+            <ion-label>4.3 Gut–Brain Axis</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="gutBrainAxis">
+
+            <!-- <div formGroupName="digestiveIssues"> -->
+            <ion-radio-group formControlName="digestiveIssues">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">IBS</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Bloating</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Gas</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <!-- <div class="option-grid">
+                <ion-list-header><ion-label>Digestive issues</ion-label></ion-list-header>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="ibs"></ion-checkbox><ion-label>IBS</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="bloating"></ion-checkbox><ion-label>Bloating</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="gas"></ion-checkbox><ion-label>Gas</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="constipation"></ion-checkbox><ion-label>Constipation</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox formControlName="looseStools"></ion-checkbox><ion-label>Loose
+                    stools</ion-label></ion-item>
+                <ion-item lines="none"><ion-checkbox
+                    formControlName="other"></ion-checkbox><ion-label>Other</ion-label></ion-item>
+              </div> -->
+            <!-- </div> -->
+
+            <ion-list-header><ion-label>Antibiotic overuse history</ion-label></ion-list-header>
+            <ion-radio-group formControlName="antibioticOveruse">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Food intolerances suspected</ion-label>
+              <ion-input formControlName="foodIntolerances"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Emotional changes linked to gut</ion-label>
+              <ion-input formControlName="emotionalGutLink"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 4.4 GENETIC & EPIGENETIC INFLUENCES -->
+          <!-- <ion-accordion value="genetic"> -->
+          <ion-item slot="header">
+            <ion-label>4.4 Genetic &amp; Epigenetic Influences</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="geneticEpigenetic">
+
+            <ion-list-header><ion-label>Family history mental illness</ion-label></ion-list-header>
+            <ion-radio-group formControlName="familyMentalIllness">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header><ion-label>Neurodevelopmental (Autism/ADHD) in family</ion-label></ion-list-header>
+            <ion-radio-group formControlName="neurodevelopmentalFamily">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Genetic conditions known</ion-label>
+              <ion-input formControlName="geneticConditions"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Family history addiction / trauma / suicide</ion-label>
+              <ion-input formControlName="familyAddictionTrauma"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Temperament traits inherited</ion-label>
+              <ion-input formControlName="temperamentTraits"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Early stress / trauma shaping development</ion-label>
+              <ion-input formControlName="earlyStressImpact"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Genetic test results (MTHFR / COMT / BDNF etc.)</ion-label>
+              <ion-input formControlName="geneticTestResults"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <!-- ===================== SECTION 5 ===================== -->
+    <ion-accordion-group value="emotionalMain">
+
+      <ion-accordion value="emotionalMain">
+        <ion-item slot="header">
+          <ion-label>
+            <b>EMOTIONAL NEUROSCIENCE DOMAINS (Client + Clinician)</b>
+          </ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="emotionalNeuroscience">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+
+          <!-- 5.1 AMYGDALA -->
+          <!-- <ion-accordion value="amygdala"> -->
+          <ion-item slot="header">
+            <ion-label>5.1 Amygdala (Threat)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="amygdala">
+
+            <ion-radio-group formControlName="amygdala">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Fight / flight / freeze frequent</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Hypervigilance</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Difficulty feeling safe</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose  stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+
+              <ion-item lines="none"><ion-checkbox formControlName="fightFlightFreeze"></ion-checkbox><ion-label>Fight
+                  / flight / freeze frequent</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="hypervigilance"></ion-checkbox><ion-label>Hypervigilance</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="difficultyFeelingSafe"></ion-checkbox><ion-label>Difficulty feeling
+                  safe</ion-label></ion-item>
+            </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 5.2 HIPPOCAMPUS -->
+          <!-- <ion-accordion value="hippocampus"> -->
+          <ion-item slot="header">
+            <ion-label>5.2 Hippocampus (Memory / Context)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="hippocampus">
+            <ion-radio-group formControlName="hippocampus">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Flashbacks / flooding</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Poor context integration</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Repeating emotional loop</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose  stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="flashbacksFlooding"></ion-checkbox><ion-label>Flashbacks /
+                  flooding</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="poorContextIntegration"></ion-checkbox><ion-label>Poor
+                  context
+                  integration</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="repeatingEmotionalLoops"></ion-checkbox><ion-label>Repeating emotional
+                  loops</ion-label></ion-item>
+            </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 5.3 PREFRONTAL CORTEX -->
+          <!-- <ion-accordion value="pfc"> -->
+          <ion-item slot="header">
+            <ion-label>5.3 Prefrontal Cortex (Executive Control)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="prefrontalCortex">
+
+            <ion-radio-group formControlName="prefrontalCortex">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Impulsivity</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Emotion regulation difficulty</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Planning / decision difficulty</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose  stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+
+            <!-- <div class="option-grid">
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="impulsivity"></ion-checkbox><ion-label>Impulsivity</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="emotionRegulationDifficulty"></ion-checkbox><ion-label>Emotion regulation
+                  difficulty</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="planningDecisionDifficulty"></ion-checkbox><ion-label>Planning / decision
+                  difficulty</ion-label></ion-item>
+            </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 5.4 ANTERIOR CINGULATE -->
+          <!-- <ion-accordion value="acc"> -->
+          <ion-item slot="header">
+            <ion-label>5.4 Anterior Cingulate (Social pain / Guilt)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="anteriorCingulate">
+
+            <ion-radio-group formControlName="anteriorCingulate">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Excess guilt / self-blame</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Rejection sensitivity</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Empathic overload</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose  stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="excessGuiltSelfBlame"></ion-checkbox><ion-label>Excess
+                  guilt /
+                  self-blame</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="rejectionSensitivity"></ion-checkbox><ion-label>Rejection
+                  sensitivity</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox formControlName="empathicOverload"></ion-checkbox><ion-label>Empathic
+                  overload</ion-label></ion-item>
+            </div> -->
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 5.5 INSULA -->
+          <!-- <ion-accordion value="insula"> -->
+          <ion-item slot="header">
+            <ion-label>5.5 Insula (Interoception)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="insula">
+            <ion-radio-group formControlName="insula">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Body disconnection</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Difficulty naming emotions</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Low body-based self-regulation</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">Constipation</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Loose  stools</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Other</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+
+            <!-- <div class="option-grid">
+              <ion-item lines="none"><ion-checkbox formControlName="bodyDisconnection"></ion-checkbox><ion-label>Body
+                  disconnection</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="difficultyNamingEmotions"></ion-checkbox><ion-label>Difficulty naming
+                  emotions</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="lowBodyBasedSelfRegulation"></ion-checkbox><ion-label>Low body-based
+                  self-regulation</ion-label></ion-item>
+            </div> -->
+            <ion-item fill="outline">
+              <ion-label position="floating">Notes</ion-label>
+              <ion-textarea formControlName="notes"></ion-textarea>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+
+    <!-- ===================== SECTION 6 ===================== -->
+    <ion-accordion-group value="personalityMain">
+
+      <ion-accordion value="personalityMain">
+        <ion-item slot="header">
+          <ion-label>
+            <b>PERSONALITY MAPPING &amp; CORE TRAITS</b>
+          </ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="personalityMapping">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+
+          <!-- 6.1 SELF-IMAGE & BELIEFS -->
+          <!-- <ion-accordion value="selfImage"> -->
+          <ion-item slot="header">
+            <ion-label>6.1 Self-Image &amp; Beliefs</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="selfImageBeliefs">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">How do you describe yourself?</ion-label>
+              <ion-input formControlName="selfDescription"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Core beliefs about worth / safety / identity</ion-label>
+              <ion-input formControlName="coreBeliefs"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Beliefs limiting wellbeing</ion-label>
+              <ion-input formControlName="limitingBeliefs"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 6.2 TRAIT RATINGS -->
+          <!-- <ion-accordion value="traits"> -->
+          <ion-item slot="header">
+            <ion-label>6.2 Trait Ratings (1–5)</ion-label>
+          </ion-item>
+
+          <div slot="content" class="" formGroupName="traitRatings">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Introversion / Extraversion (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="introversionExtraversion"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Openness (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="openness"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Emotional reactivity (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="emotionalReactivity"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Self-discipline / routine (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="selfDiscipline"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Empathy / compassion (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="empathyCompassion"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Risk-taking / sensation seeking (1–5)</ion-label>
+              <ion-input type="number" min="1" max="5" formControlName="riskTaking"></ion-input>
+            </ion-item>
+
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 6.3 COPING STYLES -->
+          <!-- <ion-accordion value="coping"> -->
+          <ion-item slot="header">
+            <ion-label>6.3 Coping Styles (Tick)</ion-label>
+          </ion-item>
+
+          <!-- <div slot="content" class="" formGroupName="copingStyles"> -->
+
+          <ion-radio-group formControlName="copingStyles">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A">Avoidance / withdrawal</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B">Overthinking / rationalization</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C">Humor / intellectualization</ion-radio></ion-item>
+              <!-- <ion-item lines="none"><ion-radio value="D">Aggression / blame</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="E">Spiritual bypassing</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="F">People-pleasing</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="G">Perfectionism</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="H">Other</ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+          <ion-radio-group formControlName="copingStylesChk">
+            <div class="option-grid">
+              <!-- <ion-item lines="none"><ion-radio value="A">Avoidance / withdrawal</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B">Overthinking / rationalization</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C">Humor / intellectualization</ion-radio></ion-item> -->
+              <ion-item lines="none"><ion-radio value="A">Aggression / blame</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B">Spiritual bypassing</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C">People-pleasing</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="D">Perfectionism</ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="E">Other</ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+          <!-- <div class="option-grid">
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="avoidanceWithdrawal"></ion-checkbox><ion-label>Avoidance /
+                  withdrawal</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="overthinkingRationalization"></ion-checkbox><ion-label>Overthinking /
+                  rationalization</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="humorIntellectualization"></ion-checkbox><ion-label>Humor /
+                  intellectualization</ion-label></ion-item>
+
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="aggressionBlame"></ion-checkbox><ion-label>Aggression
+                  /
+                  blame</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="spiritualBypassing"></ion-checkbox><ion-label>Spiritual
+                  bypassing</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="peoplePleasing"></ion-checkbox><ion-label>People-pleasing</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="perfectionism"></ion-checkbox><ion-label>Perfectionism</ion-label></ion-item>
+              <ion-item lines="none"><ion-checkbox
+                  formControlName="other"></ion-checkbox><ion-label>Other</ion-label></ion-item>
+            </div> -->
+          <!-- </div> -->
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+
+
+    <!-- ===================== SECTION 7 ===================== -->
+    <ion-accordion-group value="section7p">
+      <ion-accordion value="section7p">
+        <ion-item slot="header">
+          <ion-label><b> SOMATIC, EMOTIONAL & SENSORIAL EXPRESSIONS</b></ion-label>
+        </ion-item>
+
+        <div slot="content" class="" formGroupName="section7">
+
+          <!-- <ion-accordion-group [multiple]="true"> -->
+          <!-- 7.1 Body–Mind Mapping -->
+          <!-- <ion-accordion value="bodyMind"> -->
+          <ion-item slot="header">
+            <ion-label>7.1 Body–Mind Mapping</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="bodyMindMapping">
+            <ion-item fill="outline" class="ion-margin-bottom">
+              <ion-label position="floating">Main tension areas</ion-label>
+              <ion-input formControlName="tensionAreas"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline" class="ion-margin-bottom">
+              <ion-label position="floating">Body symptoms changing with emotions</ion-label>
+              <ion-input formControlName="bodyEmotionChanges"></ion-input>
+            </ion-item>
+
+            <ion-list-header>
+              <ion-label>History of body-based trauma</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="bodyTraumaHistory">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="B">Yes</ion-radio></ion-item>
+              </div>
+            </ion-radio-group>
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 7.2 Emotion Regulation History -->
+          <!-- <ion-accordion value="emotionRegu"> -->
+          <ion-item slot="header">
+            <ion-label>7.2 Emotion Regulation History</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="emotionRegulation">
+
+            <ion-radio-group formControlName="childhoodEmotions">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Suppressed</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="B">Punished</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="C">Allowed</ion-radio></ion-item>
+                <ion-item lines="none"><ion-radio value="D">Unpredictable</ion-radio></ion-item>
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+              <ion-item *ngFor="let e of childhoodEmotionOptions" lines="none">
+                <ion-checkbox [checked]="childhoodEmotionsArray.includes(e)"
+                  (ionChange)="onChildhoodEmotionChange($event, e)">
+                </ion-checkbox>
+                <ion-label>{{ e }}</ion-label>
+              </ion-item>
+            </div> -->
+            <ion-item fill="outline" class="ion-margin-top">
+              <ion-label position="floating">Anger handling now</ion-label>
+              <ion-input formControlName="angerHandling"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline" class="ion-margin-top">
+              <ion-label position="floating">Sadness handling now</ion-label>
+              <ion-input formControlName="sadnessHandling"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline" class="ion-margin-top">
+              <ion-label position="floating">Fear handling now</ion-label>
+              <ion-input formControlName="fearHandling"></ion-input>
+            </ion-item>
+
+            <ion-list-header>
+              <ion-label>Style</ion-label>
+            </ion-list-header>
+            <ion-radio-group formControlName="regulationStyle">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Avoidance</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Expression</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Both</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Shutdown</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- 7.3 Sensory Profile -->
+          <!-- <ion-accordion value="sensoryPro"> -->
+          <ion-item slot="header">
+            <ion-label>7.3 Sensory Profile</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="sensoryProfile">
+            <!-- <div class="option-grid">
+              <ion-item *ngFor="let s of sensoryOptions; let i = index" lines="none">
+                <ion-checkbox [checked]="sensitivitiesArray.includes(s)" (ionChange)="onSensitivityChange($event, s)">
+                </ion-checkbox>
+                <ion-label>{{ s }}</ion-label>
+              </ion-item>
+            </div> -->
+
+            <ion-radio-group formControlName="sensitivities">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Sound</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Light</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Touch</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Smell</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="e">Crowds</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">None</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline" class="ion-margin-top">
+              <ion-label position="floating">Overload triggers</ion-label>
+              <ion-input formControlName="overloadTriggers"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline" class="ion-margin-top">
+              <ion-label position="floating">Calming preferences</ion-label>
+              <ion-input formControlName="calmingPreferences"></ion-input>
+            </ion-item>
+          </div>
+          <!-- </ion-accordion> -->
+
+          <!-- </ion-accordion-group> -->
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+
+
+    <!-- <form [formGroup]="assessmentForm"> -->
+
+    <!-- ===================== SECTION 8 ===================== -->
+    <ion-accordion-group value="lifestyleBehavior">
+      <ion-accordion value="lifestyleBehavior">
+        <ion-item slot="header">
+          <ion-label><b> LIFESTYLE & BVEHAVIORAL PATTERNS </b></ion-label>
+        </ion-item>
+        <div slot="content" class="" formGroupName="lifeStyleBehaviour">
+
+          <!-- <h3>8.1 Daily Routine</h3> -->
+          <ion-item slot="header">
+            <ion-label>8.1 Daily Routine</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="dailyRoutine">
+            <ion-item fill="outline">
+              <ion-label position="floating">Morning habits</ion-label>
+              <ion-input formControlName="morningHabits"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Evening wind-down</ion-label>
+              <ion-input formControlName="eveningWindDown"></ion-input>
+            </ion-item>
+
+            <ion-list-header><ion-label>Screen time / day</ion-label></ion-list-header>
+            <!-- <div class="option-grid">
+              <ion-item lines="none" *ngFor="let s of ['<2h','2-4h','4-6h','6+h']">
+                <ion-checkbox [value]="s" (ionChange)="onCheckboxChange($event,'screenTime','lifestyleBehavior')">
+                </ion-checkbox>
+                <ion-label>{{ s }}</ion-label>
+              </ion-item>
+            </div> -->
+
+            <ion-radio-group formControlName="screenTime">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A"> &lt; 2h </ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">2-4h</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">4-6h</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">6+h</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-list-header><ion-label>Caffeine</ion-label></ion-list-header>
+
+            <ion-radio-group formControlName="caffeine">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A"> None </ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">1</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">2</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">3+ cups/day</ion-radio> </ion-item>
+                <!-- <ion-item lines="none"><ion-radio value="D">3+</ion-radio> </ion-item> -->
+              </div>
+            </ion-radio-group>
+            <!-- <div class="option-grid">
+              <ion-item lines="none" *ngFor="let c of ['None','1','2','3+ cups/day']">
+                <ion-checkbox [value]="c" (ionChange)="onCheckboxChange($event,'caffeine','lifestyleBehavior')">
+                </ion-checkbox>
+                <ion-label>{{ c }}</ion-label>
+              </ion-item>
+            </div> -->
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Alcohol / substances</ion-label>
+              <ion-input formControlName="alcoholSubstances"></ion-input>
+            </ion-item>
+          </div>
+
+          <ion-item slot="header">
+            <ion-label>8.2 Sleep & Recovery</ion-label>
+          </ion-item>
+          <!-- <h3></h3> -->
+          <div class="ion-padding" slot="content" formGroupName="sleepRecovery">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Sleep hours</ion-label>
+              <ion-input formControlName="sleepHours"></ion-input>
+            </ion-item>
+
+            <ion-list-header><ion-label>Sleep quality</ion-label></ion-list-header>
+            <!-- <div class="option-grid">
+              <ion-item lines="none" *ngFor="let q of ['Restorative','Light','Broken','Insomnia']">
+                <ion-checkbox [value]="q" (ionChange)="onCheckboxChange($event,'sleepQuality','lifestyleBehavior')">
+                </ion-checkbox>
+                <ion-label>{{ q }}</ion-label>
+              </ion-item>
+            </div> -->
+
+            <ion-radio-group formControlName="sleepQuality">
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A"> Restorative </ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Light</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Broken</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Insomnia</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Dreams / nightmares</ion-label>
+              <ion-input formControlName="dreamsNightmares"></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- <h3>/h3> -->
+
+          <ion-item slot="header">
+            <ion-label>8.3 Nutrition</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="nutrition">
+
+            <ion-list-header><ion-label>Meal Regularity</ion-label></ion-list-header>
+            <ion-radio-group formControlName="mealRegularity">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Regular</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Irregular</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+            <ion-list-header><ion-label>Protein/Fiber</ion-label></ion-list-header>
+            <ion-radio-group formControlName="proteinFiber">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Adequate</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Low</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Unsure</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+            <ion-list-header><ion-label>Emotional Eating</ion-label></ion-list-header>
+            <ion-radio-group formControlName="emotionalEating">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">No</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Sometimes</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Unsure</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Restriction/binge patterns</ion-label>
+              <ion-input formControlName="restrictionBinge"></ion-input>
+            </ion-item>
+
+          </div>
+
+          <!-- <h3></h3> -->
+          <ion-item slot="header">
+            <ion-label>8.4 Activity</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="activity">
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Activity type & frequency</ion-label>
+              <ion-input formControlName="activityTypeFrequency"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Exercise effect on mood</ion-label>
+              <ion-input formControlName="exerciseEffectMood"></ion-input>
+            </ion-item>
+
+            <ion-list-header><ion-label>Body connection</ion-label></ion-list-header>
+
+            <ion-radio-group formControlName="bodyConnection">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Strong</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Moderate</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Low</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+          </div>
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <!-- ===================== SECTION 9 ===================== -->
+
+
+    <ion-accordion-group value="clientGoals">
+      <ion-accordion value="clientGoals">
+        <ion-item slot="header">
+          <ion-label><b> CLIENT GOALS, INSIGHT & MOTIVATION </b></ion-label>
+        </ion-item>
+        <div slot="content" class="" formGroupName="clientGoals">
+
+
+          <!-- <div formGroupName="clientGoals"> -->
+
+          <!-- <h3></h3> -->
+          <ion-item slot="header">
+            <ion-label>9.1 Self-Reflection</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="selfReflection">
+
+
+            <ion-item fill="outline">
+              <ion-label position="floating">What do you most want to understand about yourself?</ion-label>
+              <ion-input formControlName="selfUnderstanding"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">What does healing look like for you?</ion-label>
+              <ion-input formControlName="healingDefinition"></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- <h3></h3> -->
+
+          <ion-item slot="header">
+            <ion-label>9.2 Therapeutic Direction</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="therapeuticDirection">
+            <ion-list-header><ion-label>Preferred Modalities</ion-label></ion-list-header>
+
+            <!-- <div class="option-grid">
+              <ion-item lines="none" *ngFor="let p of ['Talk','Somatic','Breathwork','Movement','Devices','Mixed']">
+                <ion-checkbox [value]="p" (ionChange)="onCheckboxChange($event,'preferredModalities','clientGoals')">
+                </ion-checkbox>
+                <ion-label>{{ p }}</ion-label>
+              </ion-item>
+            </div> -->
+
+                 <ion-radio-group formControlName="preferredModalities">
+
+              <div class="option-grid">
+                <ion-item lines="none"><ion-radio value="A">Talk</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="B">Somatic</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="C">Breathwork</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="D">Movement</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="E">Devices</ion-radio> </ion-item>
+                <ion-item lines="none"><ion-radio value="F">Mixed</ion-radio> </ion-item>
+              </div>
+            </ion-radio-group>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Previous therapy experience</ion-label>
+              <ion-input formControlName="previousTherapy"></ion-input>
+            </ion-item>
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Readiness for inner work (0–10)</ion-label>
+              <ion-input type="number" formControlName="readinessForInnerWork"></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- <h3></h3> -->
+
+          <ion-item slot="header">
+            <ion-label>9.3 Growth Vision</ion-label>
+          </ion-item>
+
+          <div class="ion-padding" slot="content" formGroupName="lfh">
+
+
+            <ion-item fill="outline">
+              <ion-label position="floating">Life after healing</ion-label>
+              <ion-input formControlName="lifeAfterHealing"></ion-input>
+            </ion-item>
+          </div>
+
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+
+    <!-- </form> -->
+
+
+
+
+
+
+
+
+
+
+  </form>
+  </ng-container>
+<!-- </ion-content> -->
+
+<!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="primary" (click)="onSubmitAssessment()">
+    <ion-icon name="checkmark-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+
+
+<ion-footer class="floating-submit-footer">
+  <ion-button expand="block" class="submit-btn" (click)="onSubmitAssessment()">
+    Submit Assessment
+  </ion-button>
+</ion-footer>

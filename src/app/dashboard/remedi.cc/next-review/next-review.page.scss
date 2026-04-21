@@ -1,0 +1,126 @@
+.review-bg{
+  --background:#cef1f3;
+}
+
+.row-flex{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.go-btn{
+  margin-top:18px;
+  height:45px;
+  --background:#5c7fbc;
+  --color:white;
+  border-radius:8px;
+}
+
+/* Same style as your existing form */
+ion-item{
+  margin-bottom:14px;
+}
+
+ion-item::part(native){
+  border-radius:8px;
+}
+
+// .submit-btn{
+//   --background:#008028;
+//   --color:white;
+//   height:48px;
+//   font-weight:600;
+//   border-radius:10px;
+//   margin-top:20px;
+// }
+
+// .clear-btn{
+//   --background:#800000;
+//   --color:white;
+//   height:48px;
+//   font-weight:600;
+//   border-radius:10px;
+//   margin-top:20px;
+// }
+
+.btn-row{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+
+.submit-btn{
+  flex:1;
+  --background:#008028;
+  --color:white;
+  height:48px;
+  font-weight:600;
+  border-radius:10px;
+}
+
+.clear-btn{
+  flex:1;
+  --color:#d32f2f;
+  --border-color:#d32f2f;
+  height:48px;
+  font-weight:600;
+  border-radius:10px;
+}
+
+
+
+// ion-content {
+//   --background: #5c7fbc !important;
+//   --color: white !important; /* Optional: adjust for better contrast */
+//    .radio-icon{
+//     stroke: white;
+//    }
+// }
+
+ion-content  ion-item[fill="outline"],ion-item[lines="none"] {
+  --background: transparent !important;
+  --color: #091835 !important;
+  margin-bottom: 10px; /* Spacing between form fields */
+}
+
+
+
+.search-dropdown {
+  // position: relative;
+  // top: 60px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  max-height: 260px;
+  overflow: auto;
+  // z-index: 9999;
+  border: 1px solid #e2e8f0;
+}
+
+.search-dropdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.search-dropdown th {
+  background: #22565a;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+}
+
+.search-dropdown td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: black;
+}
+
+.search-dropdown tr:hover {
+  background: #f1f5f9;
+  cursor: pointer;
+}

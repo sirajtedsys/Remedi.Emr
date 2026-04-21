@@ -1,0 +1,534 @@
+/* =========================================
+   PAGE BACKGROUND
+========================================= */
+ion-content.page-bg {
+  --background: #fff4f4 !important;
+  padding: 15px;
+}
+
+ion-content.page-bg::part(background) {
+  background: #e8eaf6 !important;
+}
+
+/* =========================================
+     HEADER
+  ========================================= */
+.header {
+  ion-toolbar {
+    --background: #3f51b5;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  ion-title {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff7f7;
+  }
+
+  .emr-btn {
+    --background: #303f9f;
+    --border-radius: 10px;
+    font-weight: 500;
+    padding: 0 14px;
+    color: #fff7f7;
+    height: 36px;
+  }
+}
+
+/* =========================================
+     CARD BASE
+  ========================================= */
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e7ebf3;
+  transition: 0.25s ease;
+  margin: 20px 20px;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* =========================================
+     FILTER GRID
+  ========================================= */
+/* FIX SEARCH BUTTON POSITION */
+// .filter-grid ion-button {
+//   height: 44px;
+//   width: 48px;
+//   --border-radius: 10px;
+//   margin-top: 18px; /* aligns with inputs */
+// }
+.filter-grid {
+  display: grid;
+  /* Keep your 4-column layout */
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 16px;
+  /* This pushes the button to the bottom of the row, 
+     matching the bottom of the input boxes */
+  align-items: flex-end;
+  padding: 10px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    /* Material fields have a default bottom margin for hints, 
+     we remove it to align with the button */
+    mat-form-field {
+      width: 100%;
+      margin-bottom: -1.25em;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .input-box {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+
+      background: #fff;
+      font-size: 14px;
+    }
+    .filter-grid ion-button {
+      --border-radius: 10px;
+      height: 40px; /* Match the height of your mat-form-field */
+      margin: 0; /* Remove manual margins */
+      --padding-start: 12px;
+      --padding-end: 12px;
+    }
+
+    /* ============================
+   CUSTOM DATEPICKER FIELD
+============================= */
+    .custom-date-field {
+      width: 100%;
+
+      /* Background-color for the field */
+      .mat-mdc-text-field-wrapper {
+        background: #ece7f7 !important;
+        border-radius: 10px !important;
+        min-height: 40px !important;
+        padding: 0px 10px !important;
+      }
+
+      /* Reduce input height */
+      .mat-mdc-form-field-infix {
+        padding: 1px 0 !important;
+      }
+
+      input.mat-mdc-input-element {
+        height: 15px !important;
+        font-size: 15px !important;
+      }
+
+      .mat-datepicker-toggle-default-icon {
+        width: 5px !important;
+        height: 5px !important;
+      }
+
+      .mat-mdc-icon-button {
+        width: 10px !important;
+        height: 10px !important;
+      }
+    }
+
+    /* Remove unwanted underline */
+    .custom-date-field .mat-mdc-text-field-wrapper {
+      background: #ece7f7 !important;
+      border-radius: 10px !important;
+      height: 40px !important; /* Force consistency */
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .btn-wrap {
+    display: flex;
+    align-items: flex-end;
+
+    .show-btn {
+      --background: linear-gradient(135deg, #3f51b5, #303f9f);
+      --border-radius: 12px;
+      font-weight: 600;
+      width: 100%;
+      height: 44px;
+      color: #fff;
+      gap: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+// .filter-grid {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr auto; // 👈 4 columns
+//   gap: 16px;
+//   align-items: end; // align button properly
+// }
+
+/* =========================================
+     STATUS CARD
+  ========================================= */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+
+  .status-box {
+    background: #c5cae9;
+    padding: 16px 10px;
+    text-align: center;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    transition: 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    span {
+      display: block;
+      margin-top: 6px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1565d8;
+    }
+  }
+
+  .booked span {
+    color: #3b82f6;
+  }
+  .confirmed span {
+    color: #16a34a;
+  }
+  .cancelled span {
+    color: #dc2626;
+  }
+  .arrived span {
+    color: #0284c7;
+  }
+  .waitlisted span {
+    color: #a855f7;
+  }
+}
+
+/* =========================================
+     SECTION TITLE
+  ========================================= */
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 20px 20px 12px;
+}
+
+/* =========================================
+     TABLE CARD
+  ========================================= */
+.table-card {
+  padding: 18px;
+
+  .table-search {
+    width: 100%;
+    margin-bottom: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    --padding-start: 14px;
+    --padding-end: 14px;
+    height: 44px;
+    background: #fff;
+    font-size: 14px;
+  }
+}
+
+/* =========================================
+     TABLE STYLING
+  ========================================= */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+
+  th {
+    background: #1a6b87;
+    padding: 12px 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff7f7;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 12px 10px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  tr:hover td {
+    background: #f9fafb;
+  }
+}
+
+/* =========================================
+     RESPONSIVE FIXES
+  ========================================= */
+@media (max-width: 600px) {
+  .card {
+    padding: 14px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  }
+
+  .table {
+    font-size: 12px;
+
+    td,
+    th {
+      padding: 8px;
+    }
+  }
+}
+
+ion-modal {
+  --height: 80%;
+  --border-radius: 12px;
+}
+
+.service-log-modal {
+  --height: 40%;
+  --max-height: 50%;
+  --width: 80%;
+  --border-radius: 12px;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: flex-end;
+}
+
+.show-btn {
+  width: 44px; // square button
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+}
+
+/* ===============================
+   MOBILE CARD VIEW
+================================ */
+.mobile-cards {
+  display: none;
+}
+
+.appt-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid #3f51b5;
+}
+
+/* ROW 1 */
+.row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.token {
+  font-weight: 700;
+  font-size: 15px;
+  color: #3f51b5;
+}
+
+.time {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* NAME */
+.patient-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 6px 0;
+  color: #111;
+}
+
+/* MINI INFO */
+.mini-info {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+/* VISIT BADGE */
+.visit-badge {
+  background: #e8eaf6;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #3949ab;
+}
+
+/* DATE */
+.date-row {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+/* MOBILE */
+.mobile {
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+/* STATUS */
+.status-row {
+  margin-bottom: 6px;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* STATUS COLORS */
+.status-new {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-confirmed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* REMARKS */
+.remarks {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+/* EMR */
+.emr {
+  font-size: 12px;
+  font-weight: 600;
+  color: #009688;
+}
+
+/* BOOKED */
+.booked {
+  font-size: 11px;
+  color: #888;
+}
+
+/* ===============================
+   RESPONSIVE SWITCH
+================================ */
+@media (max-width: 768px) {
+  .desktop-table {
+    display: none !important;
+  }
+
+  .mobile-cards {
+    display: block;
+    padding: 6px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-cards {
+    display: none !important;
+  }
+
+  .desktop-table {
+    display: block;
+  }
+}
+
+
+.custom-date-field {
+  width: 100%;
+
+  .mat-mdc-form-field-flex {
+    background-color: #ece7f7 !important;  // ✅ your desired color
+    border-radius: 10px;
+    height: 44px;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    background: transparent !important; // prevent double layer
+  }
+
+  .mat-mdc-form-field-infix {
+    padding: 0 !important;
+  }
+
+  input.mat-mdc-input-element {
+    font-size: 14px;
+    height: 100%;
+  }
+}
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  text-align: center;
+  height: 100%;              /* or 100vh if full screen */
+}

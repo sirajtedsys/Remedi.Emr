@@ -280,7 +280,7 @@ ion-content.page-bg::part(background) {
   overflow: hidden;
 
   th {
-    background: #7986cb;
+    background: #1a6b87;
     padding: 12px 10px;
     font-size: 13px;
     text-transform: uppercase;
@@ -498,3 +498,30 @@ ion-modal {
     display: block;
   }
 }
+
+
+.custom-date-field {
+  width: 100%;
+
+  .mat-mdc-form-field-flex {
+    background-color: #ece7f7 !important;  // ✅ your desired color
+    border-radius: 10px;
+    height: 44px;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    background: transparent !important; // prevent double layer
+  }
+
+  .mat-mdc-form-field-infix {
+    padding: 0 !important;
+  }
+
+  input.mat-mdc-input-element {
+    font-size: 14px;
+    height: 100%;
+  }
+}
+

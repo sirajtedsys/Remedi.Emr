@@ -1,0 +1,280 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Patient Message Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-container  class="page-bg">
+<!-- <ion-content > -->
+    <!--  FILTER CARD -->
+  <div class="card filter-card">
+    <div class="filter-grid">
+
+      <!-- DATE -->
+      <div class="field">
+      <div class="datepicker-group">
+        <label for="dateFilter">From Date</label>
+        <div class="input-wrapper">
+          <input [(ngModel)]="fromDate" type="date" id="dateFilter" class="custom-datepicker" />
+        </div>
+     </div>
+      </div>
+  
+
+      <div class="field">
+      <div class="datepicker-group">
+      <label for="dateFilter">To Date</label>
+      <div class="input-wrapper">
+        <input [(ngModel)]="toDate" type="date" id="dateFilter" class="custom-datepicker" />
+      </div>
+    </div>
+     
+      </div>
+      <div class="field">
+        <!-- <label class="top-label">Visit Type</label> -->
+        <div class="form-item">
+        <ion-label position="stacked">Status</ion-label>
+          <ion-select     [(ngModel)]="reqStatus" placeholder="Select status"  interface="popover" (ionChange)="onStatusChange()">
+            <ion-select-option value="R">Request</ion-select-option>
+            <ion-select-option value="A">Approved</ion-select-option>
+            <ion-select-option value="J">Rejected</ion-select-option>
+          </ion-select>
+
+        </div>
+      </div>
+      <div class="field">
+        <!-- <div class="form-item"> -->
+        <ion-button color="primary" (click)="viewPatientRequest()">
+         <ion-icon slot="icon-only" [icon]="searchOutline"></ion-icon>
+        </ion-button>
+      </div>
+      <!-- </div> -->
+
+      <!-- BUTTON -->
+      <!-- <div class="btn-wrap">
+        <ion-button class="show-btn" (click)="listall()">
+          <ion-icon name="eye-outline"></ion-icon> Show
+        </ion-button>
+      </div> -->
+
+    </div>
+  </div>
+
+ 
+
+
+  
+
+<!-- DESKTOP TABLE -->
+<!-- <ion-grid class="table-wrapper ion-hide-md-down" 
+          *ngIf="PatientList?.length">
+
+
+  <ion-row class="table-header ion-text-bold"  style="background-color: #7986CB;color:rgb(255, 250, 251);font-size:17 px;">
+    <ion-col size="0.5">Sl</ion-col>
+    <ion-col size="1">OP No</ion-col>
+    <ion-col size="1.5">Patient</ion-col>
+    <ion-col size="1.5">Age / Gender</ion-col>
+    <ion-col size="1">Message</ion-col>
+    <ion-col size="1">Edit Msg</ion-col>
+    <ion-col size="1">Status</ion-col>
+    <ion-col size="1.5">Remarks</ion-col>
+    <ion-col size="1">Created By</ion-col>
+    <ion-col size="1">Created On</ion-col>
+    <ion-col size="1" *ngIf="reqStatus === 'R'">Action</ion-col>
+  </ion-row>
+  <ion-row class="table-row"
+           *ngFor="let item of PatientList; let i = index">
+    <ion-col size="0.5">{{ i + 1 }}</ion-col>
+    <ion-col size="1">
+      <span class="op-badge">{{ item.opnumber }}</span>
+    </ion-col>
+    <ion-col size="1.5">
+      <div class="patient-cell">
+        <img src="assets/images/circle-user.png" width="20px" height="20px" class="tbl-ico" />
+        {{ item.patient }}
+      </div>
+    </ion-col>
+    <ion-col size="1.5">
+      {{ item.pati_Age }} / {{ item.pati_Gender }}
+    </ion-col>
+    <ion-col size="1">{{ item.old_Msg }}</ion-col>
+    <ion-col size="1">{{ item.new_Msg }}</ion-col>
+    <ion-col size="1">{{ item.status }}</ion-col>
+    <ion-col size="1.5" >{{ item.remarks }}</ion-col>
+    <ion-col size="1">{{ item.create_User }}</ion-col>
+    <ion-col size="1" >{{ item.create_Date | date:'dd/MM/yyyy hh:mm a' }}</ion-col>
+
+    <ion-col size="1" *ngIf="reqStatus === 'R'">
+      <ion-button size="small"
+        (click)="editPatientMessage(item,
+          item.edit_Status === 'Edit' ? 'e' : 'd')">
+        {{ item.edit_Status === 'Edit' ? 'Edit' : 'Delete' }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->
+<div class="table-container" *ngIf="PatientList?.length">
+  <table class="custom-table">
+
+    <!-- HEADER -->
+    <thead>
+      <tr>
+        <th>Sl</th>
+        <th>OP No</th>
+        <th>Patient</th>
+        <th>Age / Gender</th>
+        <th>Message</th>
+        <th>Edit Msg</th>
+        <th>Status</th>
+        <th>Remarks</th>
+        <th>Created By</th>
+        <th>Created On</th>
+        <th *ngIf="reqStatus === 'R'">Action</th>
+      </tr>
+    </thead>
+
+    <!-- BODY -->
+    <tbody>
+      <tr *ngFor="let item of PatientList; let i = index">
+
+        <td>{{ i + 1 }}</td>
+
+        <td>
+          <span class="op-badge">{{ item.opnumber }}</span>
+        </td>
+
+        <td>
+          <div class="patient-cell">
+            <img src="assets/images/circle-user.png" width="20" height="20" />
+            {{ item.patient }}
+          </div>
+        </td>
+
+        <td>
+          {{ item.pati_Age }} / {{ item.pati_Gender }}
+        </td>
+
+        <td>{{ item.old_Msg }}</td>
+        <td>{{ item.new_Msg }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.remarks }}</td>
+        <td>{{ item.create_User }}</td>
+
+        <td>
+          {{ item.create_Date | date:'dd/MM/yyyy hh:mm a' }}
+        </td>
+
+        <td *ngIf="reqStatus === 'R'">
+          <button class="action-btn"
+            (click)="editPatientMessage(item, item.edit_Status === 'Edit' ? 'e' : 'd')">
+            {{ item.edit_Status === 'Edit' ? 'Edit' : 'Delete' }}
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<div class="mobile-blocks ion-hide-md-up"
+     *ngIf="PatientList?.length">
+
+  <div class="patient-block"
+       *ngFor="let item of PatientList; let i = index">
+
+    <div class="block-header">
+      <span>#{{ i + 1 }}</span>
+      <span>OP: {{ item.opnumber }}</span>
+    </div>
+
+    <div class="block-body">
+      <img src="assets/images/circle-user.png" class="tbl-ico" />
+      <div class="patient-info">
+        <div class="name">{{ item.patient }}</div>
+        <div class="details">
+          {{ item.pati_Age }} yrs • {{ item.pati_Gender }}
+        </div>
+      </div>
+    </div>
+
+    <div class="block-content">
+      <p><b>Message:</b> {{ item.old_Msg }}</p>
+      <p><b>Edit Msg:</b> {{ item.new_Msg }}</p>
+      <p><b>Status:</b> {{ item.status }}</p>
+      <p><b>Remarks:</b> {{ item.remarks }}</p>
+         <p><b>Created User:</b> {{ item.create_User }}</p>
+            <p><b>Created Date:</b> {{ item.create_Date | date:'dd/MM/yyyy hh:mm a' }}</p>
+    </div>
+
+    <div class="block-footer" *ngIf="reqStatus === 'R'">
+      <ion-button size="small"
+        (click)="editPatientMessage(item,
+          item.edit_Status === 'Edit' ? 'e' : 'd')">
+        {{ item.edit_Status === 'Edit' ? 'Edit' : 'Delete' }}
+      </ion-button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!PatientList || PatientList.length === 0" class="no-data-container">
+  <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+  <h2>No Data Found</h2>
+ 
+</div>
+
+
+<ion-content class="mews-page">
+
+  <ion-modal [isOpen]="showMewsModal" cssClass="mews-modal">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="primary">
+         <ion-buttons slot="end">
+      <ion-button (click)="closeMewsModal()">Close</ion-button>
+    </ion-buttons>
+        </ion-buttons>
+        <ion-title> Patient Message</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+
+        <ion-item>
+          <ion-label position="stacked">Old Message</ion-label>
+          <ion-input [value]="selectedMessage?.old_Msg" disabled></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Status</ion-label>
+          <ion-select [(ngModel)]="selectedMessage.status" placeholder="Select status" interface="popover">
+            <ion-select-option value="Approved">Approved</ion-select-option>
+            <ion-select-option value="Rejected">Rejected</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+<ion-item *ngIf="modalAction === 'e'">
+  <ion-label position="stacked">New Message</ion-label>
+  <ion-input [(ngModel)]="selectedMessage.new_Msg" placeholder="Enter new message"></ion-input>
+</ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Remarks</ion-label>
+          <ion-input [(ngModel)]="selectedMessage.remarks" placeholder="Enter remarks"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block"  (click)="saveEdit()">
+          Save
+        </ion-button>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+
+
+</ion-content>
+</ng-container>

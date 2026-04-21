@@ -1,0 +1,733 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Digital Intake Assessment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content class="ion-padding"> -->
+  <ng-container class="ion-padding">
+  <form [formGroup]="assessmentForm">
+
+    <ion-accordion-group expand="inset">
+      <!-- ================= PRESENTING CONCERNS ================= -->
+      <ion-accordion value="concerns">
+        <ion-item slot="header">
+          <ion-label><b>Presenting Concerns</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="presentingComplaints">
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Primary Complaint</ion-label>
+            <ion-textarea formControlName="primaryComplaint"></ion-textarea>
+          </ion-item>
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Duration</ion-label>
+            <ion-input formControlName="duration"></ion-input>
+          </ion-item>
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Subjective Severity (0–10)</ion-label>
+            <ion-input type="number" formControlName="severity"></ion-input>
+          </ion-item>
+
+          <!-- Triggers -->
+          <!-- <ion-list-header><ion-label>Identified Triggers</ion-label></ion-list-header> -->
+          <ion-list-header>
+            <ion-label>Identified Triggers</ion-label>
+          </ion-list-header>
+
+          <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','presentingComplaints.triggers')"
+                (ionChange)="onCheckboxChange($event,'presentingComplaints.triggers')">
+                Work
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','presentingComplaints.triggers')"
+                (ionChange)="onCheckboxChange($event,'presentingComplaints.triggers')">
+                Sleep
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','presentingComplaints.triggers')"
+                (ionChange)="onCheckboxChange($event,'presentingComplaints.triggers')">
+                Relationships
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('D','presentingComplaints.triggers')"
+                (ionChange)="onCheckboxChange($event,'presentingComplaints.triggers')">
+                Health
+              </ion-checkbox>
+            </ion-item>
+          </div>
+          <!-- <ion-list-header>
+            <ion-label>Identified Triggers</ion-label>
+          </ion-list-header>
+          <ion-radio-group formControlName="triggers">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Work</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Sleep</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="C"> <ion-label>Relationships</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="D"> <ion-label>Health</ion-label>
+                </ion-radio></ion-item>
+            
+            </div> -->
+          <!-- </ion-radio-group> -->
+
+
+
+          <!-- Functional Impact -->
+          <ion-list-header><ion-label>Functional Impact</ion-label></ion-list-header>
+
+          <ion-radio-group formControlName="functionalImpact">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Sleep</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Work</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="C"> <ion-label>Relationships</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="D"> <ion-label>Daily Routine</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Relationships</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+
+
+        </div>
+      </ion-accordion>
+
+
+      <!-- ================= MENTAL STATUS EXAMINATION ================= -->
+      <ion-accordion value="mental">
+        <ion-item slot="header">
+          <ion-label><b>Mental Status Examination</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="mentalStatusExam">
+
+          <!-- Appearance -->
+          <ion-list-header><ion-label>Appearance</ion-label></ion-list-header>
+          <ion-radio-group formControlName="appearance">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Appropriate</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Dishevelled</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Anxious</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>
+            <ion-label>Speech</ion-label>
+          </ion-list-header>
+
+          <ion-radio-group formControlName="speech">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Normal</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Slow</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="C"> <ion-label>Pressured</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <!-- Mood -->
+          <ion-list-header><ion-label>Mood</ion-label></ion-list-header>
+          <ion-radio-group formControlName="mood">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Euthymic</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Low</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="C"> <ion-label>Anxious</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <!-- Affect -->
+          <ion-list-header><ion-label>Affect</ion-label></ion-list-header>
+          <ion-radio-group formControlName="affect">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Congruent</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Restricted</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Limited</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+          <!-- Thought Process -->
+          <ion-list-header><ion-label>Thought Process</ion-label></ion-list-header>
+          <ion-radio-group formControlName="thoughtProcess">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Logical</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Ruminative</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Limited</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+
+          <!-- Perception -->
+          <ion-list-header><ion-label>Perception</ion-label></ion-list-header>
+          <ion-radio-group formControlName="perception">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Normal</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Altered</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Limited</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+          <!-- <ion-radio-group formControlName="perception"></ion-radio-group> -->
+
+          <!-- Cognition -->
+          <ion-list-header><ion-label>Cognition</ion-label></ion-list-header>
+          <ion-radio-group formControlName="cognition">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Oriented ×3</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Mild Difficulty</ion-label>
+                </ion-radio></ion-item>
+              <!-- <ion-item lines="none"> <ion-radio value="C">Limited</ion-label>
+                </ion-radio></ion-item> -->
+            </div>
+          </ion-radio-group>
+
+          <!-- <ion-radio-group formControlName="cognition"></ion-radio-group> -->
+
+          <!-- Insight -->
+          <ion-list-header><ion-label>Insight</ion-label></ion-list-header>
+
+          <ion-radio-group formControlName="insight">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Good</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Fair</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="C"> <ion-label>Limited</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+          <!-- <ion-radio-group formControlName="insight"></ion-radio-group> -->
+
+          <!-- Judgment -->
+
+          <ion-list-header><ion-label>Judgement</ion-label></ion-list-header>
+          <ion-radio-group formControlName="judgment">
+            <div class="option-grid">
+
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Intact</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Compromised</ion-label>
+                </ion-radio></ion-item>
+
+            </div>
+
+          </ion-radio-group>
+
+
+
+        </div>
+      </ion-accordion>
+
+      <ion-accordion value="safety">
+        <ion-item slot="header">
+          <ion-label><b>Safety Screening</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="safetyScreening">
+
+          <ion-list-header>Suicidal Ideation</ion-list-header>
+          <ion-radio-group formControlName="suicidalIdeation">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>No</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"> <ion-radio value="B"> <ion-label>Yes</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>Homicidal Ideation</ion-list-header>
+          <ion-radio-group formControlName="homicidalIdeation">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>No</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"> <ion-label>Yes</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+          <ion-list-header>Overall Risk Level</ion-list-header>
+          <ion-radio-group formControlName="overallRisk">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>Low</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"> <ion-label>Moderate</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"> <ion-label>High</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+          <ion-list-header>Protective Factors Present:</ion-list-header>
+          <ion-radio-group formControlName="protectiveFactors">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"> <ion-label>No</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"> <ion-label>Yes</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+        </div>
+      </ion-accordion>
+
+
+      <ion-accordion value="NeuroEndocrine ">
+        <ion-item slot="header">
+          <ion-label><b>Neuro-Endocrine Regulation Flags (Clinical Observation Based)</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="neuroEndocrine">
+
+          <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text">Cortisol pattern
+                    disruption
+                    (AM fatigue / midday crash)</span></ion-label>
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text"> Thyroid-related symptoms</span>
+                </ion-label>
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text"> Sex-hormone related
+                    mood
+                    variation </span>
+                </ion-label>
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('D','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text"> Insulin / glucose
+                    instability
+                    (post-meal
+                    drop)</span></ion-label>
+              </ion-checkbox>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('E','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text">
+
+                    Oxytocin-linked social withdrawal / low trust</span>
+                </ion-label>
+              </ion-checkbox>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('F','neuroEndocrine.neuroEndocrine')"
+                (ionChange)="onCheckboxChange($event,'neuroEndocrine.neuroEndocrine')">
+                <ion-label> <span class="scroll-text"> Delayed melatonin
+                    rhythm (sleep onset
+                    delay)</span></ion-label>
+              </ion-checkbox>
+            </ion-item>
+          </div>
+
+
+
+
+        </div>
+
+      </ion-accordion>
+
+      <ion-accordion value="gutBrain">
+        <ion-item slot="header">
+          <ion-label><b>Inflammation & Gut-Brain Signals</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="gutBrain">
+
+          <ion-list-header>Inflammatory Indicators</ion-list-header>
+          <ion-radio-group formControlName="inflammatoryIndicators">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> No</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Suspected</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>Gut-Brain Axis Indicators</ion-list-header>
+          <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','gutBrain.gutBrain')"
+                (ionChange)="onCheckboxChange($event,'gutBrain.gutBrain')">
+                <!-- <ion-label> <span 
+                    class="scroll-text"> -->
+                    Bloating
+                  <!-- </span> </ion-label> -->
+                
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','gutBrain.gutBrain')"
+                (ionChange)="onCheckboxChange($event,'gutBrain.gutBrain')">
+               <ion-label> <span 
+                    class="scroll-text">Antibiotic history</span> </ion-label> 
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','gutBrain.gutBrain')"
+                (ionChange)="onCheckboxChange($event,'gutBrain.gutBrain')">
+                <ion-label> <span 
+                    class="scroll-text">Food sensitivity</span> </ion-label>
+                
+              </ion-checkbox>
+            </ion-item>
+
+          </div>
+          <!-- <ion-radio-group formControlName="gutBrain">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Bloating </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Antibiotic history</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Food sensitivity</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group> -->
+
+
+
+        </div>
+      </ion-accordion>
+
+
+      <ion-accordion value="lifeStyle">
+        <ion-item slot="header">
+          <ion-label><b>Lifestyle Snapshot</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="lifeStyle">
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Average Sleep Duration(hrs/night)</ion-label>
+            <ion-input type="number" formControlName="avgSleep"></ion-input>
+          </ion-item>
+
+          <ion-list-header>Sleep Quality</ion-list-header>
+          <ion-radio-group formControlName="sleepQuality">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Good </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Fair </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Poor</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+          <ion-list-header>Diet Pattern</ion-list-header>
+          <ion-radio-group formControlName="dietPattern">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Regular </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Irregular</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>Physical Activity</ion-list-header>
+          <ion-radio-group formControlName="physicalActivity">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> None </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> 1–2×/week</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> ≥3×/week</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>Substances</ion-list-header>
+          <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','lifeStyle.substances')"
+                (ionChange)="onCheckboxChange($event,'lifeStyle.substances')">
+                Caffeine
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','lifeStyle.substances')"
+                (ionChange)="onCheckboxChange($event,'lifeStyle.substances')">
+                Nicotine
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','lifeStyle.substances')"
+                (ionChange)="onCheckboxChange($event,'lifeStyle.substances')">
+                Alcohol
+              </ion-checkbox>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('D','lifeStyle.substances')"
+                (ionChange)="onCheckboxChange($event,'lifeStyle.substances')">
+                None
+              </ion-checkbox>
+            </ion-item>
+
+          </div>
+          <!-- <ion-radio-group formControlName="substances">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Caffeine </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Nicotine </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Alcohol </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="D"><ion-label> None </ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group> -->
+
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Daily Screen Exposure(hrs/day)</ion-label>
+            <ion-input type="number" formControlName="screenTime"></ion-input>
+          </ion-item>
+
+
+
+        </div>
+      </ion-accordion>
+
+
+      <ion-accordion value="sensorySomatic">
+        <ion-item slot="header">
+          <ion-label><b>Sensory & Somatic Awareness</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="sensorySomatic">
+
+          <ion-list-header>Interoceptive Awareness Issues</ion-list-header>
+
+          <ion-radio-group formControlName="awarnessIssue">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Yes</ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> No</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+          <ion-list-header>Sensory Sensitivity</ion-list-header>
+            <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','sensorySomatic.sensitivity')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.sensitivity')">
+                Sound
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','sensorySomatic.sensitivity')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.sensitivity')">
+                Light
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','sensorySomatic.sensitivity')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.sensitivity')">
+                Touch
+              </ion-checkbox>
+            </ion-item>
+      
+
+          </div>
+          <!-- <ion-radio-group formControlName="sensitivity">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Sound </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Light </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Touch</ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group> -->
+
+          <ion-list-header>Common Tension Areas</ion-list-header>
+          <div class="option-grid">
+            <ion-item lines="none">
+              <ion-checkbox value="A" [checked]="isTriggerChecked('A','sensorySomatic.tensionArea')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.tensionArea')">
+                Neck
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="B" [checked]="isTriggerChecked('B','sensorySomatic.tensionArea')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.tensionArea')">
+                Shoulders
+              </ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-checkbox value="C" [checked]="isTriggerChecked('C','sensorySomatic.tensionArea')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.tensionArea')">
+                Jaw
+              </ion-checkbox>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-checkbox value="D" [checked]="isTriggerChecked('D','sensorySomatic.tensionArea')"
+                (ionChange)="onCheckboxChange($event,'sensorySomatic.tensionArea')">
+                Lower Back
+              </ion-checkbox>
+            </ion-item>
+
+          </div>
+
+        </div>
+      </ion-accordion>
+
+
+
+      <ion-accordion value="goal">
+        <ion-item slot="header">
+          <ion-label><b>Goals & Preferences</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="goal">
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Client-Stated Goal</ion-label>
+            <ion-input type="text" formControlName="statedGoal"></ion-input>
+          </ion-item>
+
+          <ion-list-header>Preferred Regulation Modalities</ion-list-header>
+          <ion-radio-group formControlName="regulations">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Psychoeducation </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Somatic </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Breathwork </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="D"><ion-label> Other </ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+          <ion-item fill="outline">
+            <ion-label position="floating">Other</ion-label>
+            <ion-input type="number" formControlName="regulationsOther"></ion-input>
+          </ion-item>
+
+
+          <ion-list-header>Readiness for Change</ion-list-header>
+          <ion-radio-group formControlName="readyForChange">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Low </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Moderate </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> High </ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+
+
+        </div>
+      </ion-accordion>
+
+
+
+      <ion-accordion value="clinical">
+        <ion-item slot="header">
+          <ion-label><b>Clinician Section</b></ion-label>
+        </ion-item>
+
+        <div slot="content" formGroupName="clinical">
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Clinical Impression</ion-label>
+            <ion-textarea type="text" formControlName="impression"></ion-textarea>
+          </ion-item>
+
+          <ion-list-header>Initial Regulation Plan</ion-list-header>
+          <ion-radio-group formControlName="regulations">
+            <div class="option-grid">
+              <ion-item lines="none"><ion-radio value="A"><ion-label> Psychoeducation </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="B"><ion-label> Somatic </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="C"><ion-label> Breathwork </ion-label>
+                </ion-radio></ion-item>
+              <ion-item lines="none"><ion-radio value="D"><ion-label> Other </ion-label>
+                </ion-radio></ion-item>
+            </div>
+          </ion-radio-group>
+          <ion-item fill="outline">
+            <ion-label position="floating">Follow-Up Interval (days)</ion-label>
+            <ion-input type="number" formControlName="folowUp"></ion-input>
+          </ion-item>
+        </div>
+      </ion-accordion>
+
+
+    </ion-accordion-group>
+
+    <!-- SAVE -->
+    <ion-button expand="block" class="headbg" (click)="saveAssessment()">
+      Save Assessment
+    </ion-button>
+
+  </form>
+  <!-- </ng-container>  -->
+<!-- </ion-content> -->

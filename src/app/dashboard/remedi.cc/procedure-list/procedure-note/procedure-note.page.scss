@@ -1,0 +1,160 @@
+ .title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #1a0101;
+  }
+   .subtitle {
+    font-weight: bold;
+    font-size: 17px;
+    color: #010033;
+  }
+    .subtitle_ {
+    font-weight: bold;
+    font-size: 16px;
+    color: #01010f;
+  }
+
+
+  .form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+   gap: 40px;
+}
+
+.form-group label {
+  font-size: 14px;        /* size */
+  color: #050505;            /* text color */
+  font-weight: 600;       /* semi-bold */
+  margin-bottom: 4px;
+//   display: block;
+}
+
+
+// .form-group.inline {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   gap: 12px;
+//   margin-bottom: 14px;
+// }
+
+// .form-group.inline label {
+//   width: 180px;   /* fixed width for perfect alignment */
+//   font-weight: 500;
+// }
+
+// .form-group.inline input {
+//   width: 60px;
+//   height: 28px;
+//   padding: 2px 6px;
+//   text-align: center;
+// }
+
+// .form-group.inline .unit {
+//   min-width: 30px;
+//   font-weight: 500;
+// }
+// .pre-session-grid {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 20px 60px;
+// }
+
+.pre-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.pre-row label {
+  font-weight: 500;
+  width: 200px;
+}
+
+/* underline style input */
+.input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-line input {
+  width: 120px;
+  border: none;
+  border-bottom: 1px solid #333;
+  outline: none;
+  text-align: center;
+  background: transparent;
+}
+
+.input-line span {
+  font-size: 14px;
+}
+
+// .pre-grid {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+//   gap: 40px 60px; /* row gap / column gap */
+// }
+.pre-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 30px 40px;
+}
+
+@media (max-width: 992px) {
+  .pre-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .pre-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.obs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 10px 30px;
+  margin-bottom: 20px;
+}
+
+.obs-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.param-row {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-bottom: 14px;
+}
+
+.param-row label {
+  width: 220px;   // fixed label width for alignment
+  font-weight: 500;
+}
+
+.param-row input {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid #444;
+  background: transparent;
+  outline: none;
+.param-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* reduce from 16px */
+}
+
+.param-row label {
+  width: 140px;   /* reduce from 220px */
+  margin: 0;      /* remove extra spacing */
+}}

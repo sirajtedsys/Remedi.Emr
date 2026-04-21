@@ -1,0 +1,324 @@
+
+:root{
+  
+        --ion-item-background: #d12c2c;
+}
+
+ion-item {
+  margin-bottom: 14px;
+}
+
+ion-item::part(native) {
+  border-radius: 8px;
+}
+
+
+
+ion-label {
+  font-size: 18px;
+}
+
+ion-accordion-group ion-accordion-group {
+  border-left: 4px solid var(--ion-color-primary);
+  padding-left: 12px;
+  margin-top: 12px;
+  // background-color: #cef1f3;
+}
+
+form{
+  background-color: #cef1f3;
+}
+ion-accordion {
+  
+  background-color: #cef1f3;
+  
+}
+
+ion-list-header{
+
+    --color: #1c315b;
+}
+
+.ionicon{
+stroke: #14351d;
+}
+
+//* 1. TOP-LEVEL (MAIN) ACCORDION HEADER */
+/* This targets the header item that is a direct child of the first accordion level */
+ion-accordion-group > ion-accordion > ion-item[slot="header"] {
+  --background: #9fc3c5 !important;
+  --color: black !important;
+}
+
+
+
+/* 2. NESTED (SUB) ACCORDION HEADER */
+/* This targets an accordion item that is inside another accordion's content */
+ion-accordion div[slot="content"] > ion-item[slot="header"] {
+  --background: #5c7fbc !important;
+  --color: white !important; /* Optional: adjust for better contrast */
+   .radio-icon{
+    stroke: white;
+   }
+}
+div[slot="content"]{
+  padding: 5px;
+}
+
+/* 3. FORM ITEMS INSIDE THE CONTENT */
+/* Targets ion-items with fill="outline" inside any accordion content div */
+ion-accordion div[slot="content"] ion-item[fill="outline"],ion-item[lines="none"] {
+  --background: transparent !important;
+  --color: #091835 !important;
+  margin-bottom: 10px; /* Spacing between form fields */
+}
+
+/* Target the text color of the input and label specifically */
+ion-accordion div[slot="content"] ion-item[fill="outline"] ion-label,
+ion-accordion div[slot="content"] ion-item[fill="outline"] ion-input {
+  color: #091835 !important;
+  // padding: 10px;
+}
+
+
+
+
+
+
+/* =========================================
+   SMART RADIO GRID (AUTO WRAP)
+========================================= */
+
+ion-radio-group {
+  display: grid !important;
+
+  /* Max 3 columns, auto-wrap */
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)) !important;
+
+  gap: 8px !important;
+  width: 100% !important;
+  margin: 10px 0 !important;
+  padding: 0 !important;
+}
+
+/* Radio item box */
+ion-radio-group ion-item {
+  width: 100% !important;
+  --min-height: 44px !important;
+  --background: transparent !important;
+
+  border: 1.5px solid #091835 !important;
+  border-radius: 8px !important;
+
+  --inner-border-width: 0;
+  --box-shadow: none;
+  margin: 0 !important;
+}
+
+/* Inner padding fix */
+ion-radio-group ion-item::part(native) {
+  padding-left: 8px !important;
+  padding-right: 6px !important;
+}
+
+/* Label */
+ion-radio-group ion-label {
+  font-size: 12px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #091835 !important;
+}
+
+/* Radio icon */
+ion-radio {
+  --color: #091835;
+  --color-checked: #5c7fbc;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Selected state */
+ion-radio-group ion-item:has(ion-radio.radio-checked) {
+  border-color: #5c7fbc !important;
+  background: rgba(92, 127, 188, 0.1) !important;
+}
+
+
+/* =========================================
+   OPTION GRID (RADIO + CHECKBOX)
+========================================= */
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Item box */
+.option-grid ion-item {
+  --background: transparent;
+  --min-height: 44px;
+
+  border: 1.5px solid #091835;
+  border-radius: 8px;
+
+  margin: 0;
+  --inner-border-width: 0;
+  --box-shadow: none;
+}
+
+/* Padding fix */
+.option-grid ion-item::part(native) {
+  padding: 6px 8px;
+}
+
+/* Label */
+// .option-grid ion-label {
+//   font-size: 12px;
+//   white-space: nowrap;
+//   // overflow: hidden;
+//   text-overflow: ellipsis;
+//   color: #091835;
+// }
+.option-grid ion-label {
+  font-size: 12px;
+  color: #091835;
+
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* inner scrolling text */
+.option-grid ion-label span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 8s linear infinite;
+}
+
+/* animation */
+@keyframes scrollText {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Radio */
+.option-grid ion-radio {
+  --color: #091835;
+  --color-checked: #5c7fbc;
+  width: 16px;
+  height: 16px;
+}
+
+/* Checkbox */
+.option-grid ion-checkbox {
+  --size: 16px;
+  --checkbox-background: transparent;
+  --checkbox-background-checked: #5c7fbc;
+  --border-color: #091835;
+  --border-color-checked: #5c7fbc;
+}
+
+/* Selected state (radio OR checkbox) */
+.option-grid ion-item:has(
+  ion-radio.radio-checked,
+  ion-checkbox.checkbox-checked
+) {
+  border-color: #5c7fbc;
+  background: rgba(92, 127, 188, 0.1);
+}
+
+
+
+.floating-submit-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  // padding: 12px 16px;
+  background: linear-gradient(
+    to top,
+    rgba(207, 241, 243, 0.95),
+    rgba(207, 241, 243, 0.85)
+  );
+
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.submit-btn {
+  --background: #008028;
+  --background-activated: #4868a3;
+  --background-hover: #6f8fd0;
+  --color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  height: 48px;
+}
+
+ion-title {
+  color:#22565a;
+}
+
+
+
+
+/* 1. The Container - Static by default */
+.option-grid ion-label {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Dots show only if needed */
+  position: relative;
+}
+
+/* 2. The Text Span */
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  /* No animation here by default */
+}
+
+/* 3. The Trigger - ONLY scrolls when hovered or active */
+/* This prevents the "ghost scrolling" on wide screens */
+ion-item:hover .scroll-text,
+ion-item:active .scroll-text {
+  display: inline-block;
+  width: auto;
+  animation: scrollOnDemand 8s linear infinite;
+}
+
+/* 4. The Animation Logic */
+@keyframes scrollOnDemand {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(0); } /* Wait so they can read the start */
+  70% { transform: translateX(-30%); } /* Adjust this % based on longest text */
+  100% { transform: translateX(0); } /* Smooth return to start */
+}
+
+/* 5. Responsive Fix: Disable animation on large screens where text fits */
+@media (min-width: 992px) {
+  /* If your grid columns expand on web, we disable the animation 
+     unless the text is truly massive */
+  .option-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  }
+}
+
+  ion-title {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff7f7;
+  }

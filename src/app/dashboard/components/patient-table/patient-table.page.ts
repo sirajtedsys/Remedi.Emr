@@ -173,24 +173,6 @@ export class PatientTablePage implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   LoadingFns() {
     this.Today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.fromDate = this.Today
@@ -473,8 +455,9 @@ export class PatientTablePage implements OnInit {
   }
 
   NavigatetPatientdetails(patient: PatientListDatewiseItem): void {
-    let remedicc = false
-    let remediemr = true
+    console.log(this.patient)
+    let remedicc = true
+    let remediemr = false
 
     if (remedicc) {
       this.router.navigate(['/dashboard/patient-data'], {
@@ -730,6 +713,7 @@ setLast7Days() {
   // this.loadPatientsByDate(d);
 }
 
+  
 // onDateChange(event: any) {
 //   // this.loadPatientsByDate(event.value);
 // }

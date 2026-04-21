@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Appontment Details</ion-title>
+    <ion-title>Appointment Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,31 +12,45 @@
 
       <!-- DATE -->
       <div class="field">
-        <label class="top-label">From Date</label>
-        <div class="form-item">
+        <!-- <label class="top-label">From Date</label> -->
+               <div class="datepicker-group">
+      <label for="dateFilter">From Date</label>
+      <div class="input-wrapper">
+        <input [(ngModel)]="fromDate" type="date" id="dateFilter" class="custom-datepicker" />
+      </div>
+    </div>
+        <!-- <div class="form-item">
           <mat-form-field class="custom-date-field">
             <input matInput [matDatepicker]="fromPicker" [(ngModel)]="fromDate" />
             <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
             <mat-datepicker #fromPicker></mat-datepicker>
           </mat-form-field>
-        </div>
+        </div> -->
       </div>
+  
+
       <div class="field">
-        <label class="top-label">To Date</label>
-        <div class="form-item">
+        <!-- <label class="top-label">To Date</label> -->
+            <div class="datepicker-group">
+      <label for="dateFilter">To Date</label>
+      <div class="input-wrapper">
+        <input [(ngModel)]="toDate" type="date" id="dateFilter" class="custom-datepicker" />
+      </div>
+    </div>
+        <!-- <div class="form-item">
           <mat-form-field class="custom-date-field">
             <input matInput [matDatepicker]="toPicker" [(ngModel)]="toDate" />
             <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
             <mat-datepicker #toPicker></mat-datepicker>
           </mat-form-field>
-        </div>
+        </div> -->
       </div>
       <div class="field">
-        <label class="top-label">Visit Type</label>
+        <!-- <label class="top-label">Visit Type</label> -->
         <div class="form-item">
           <div class="dropdown-section">
             <mat-form-field appearance="fill" class="full-width">
-              <mat-label>Select Type</mat-label>
+              <mat-label>Visit Type</mat-label>
               <mat-select [(ngModel)]="selectedType" (selectionChange)="onTypeChange()">
                 <mat-option value="0">Both</mat-option>
                 <mat-option value="1">New Visit</mat-option>

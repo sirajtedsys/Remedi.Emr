@@ -31,7 +31,9 @@ export class ProcedureBookingPage implements OnInit {
   MachineList: LookUp[] = [];
   selectedRoom: string = '';
   MachineTokens: MachineToken[] = []
-  
+   Today:any
+    fromDate:any
+    datePicker11:any
   modalType: 'reg' | 'cancel' = 'reg'
 
   MachineAndSlots: MachineSlots[] = []
@@ -47,6 +49,8 @@ export class ProcedureBookingPage implements OnInit {
   }
 
   ngOnInit() {
+          this.Today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.datePicker11=this.Today
     this.getEmployeeBranch()
   }
 

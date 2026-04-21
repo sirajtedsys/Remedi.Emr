@@ -1,13 +1,14 @@
 <div class="preview-body">
 
   <div class="search-card">
-    <div class="search-title">Procedure & Progress Note</div>
-
+    <div class="title">Procedure & Progress Note</div>
+    <br>
+      <div class="subtitle">A. BASIC SESSION DETAILS</div>
     <div class="form-grid" style="overflow: auto;">
 
       <!-- A. BASIC SESSION DETAILS -->
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Client Name / ID</label>
         <input type="text" [(ngModel)]="form.clientName">
       </div>
@@ -15,8 +16,9 @@
       <div class="form-group">
         <label>Therapist Name / ID</label>
         <input type="text" [(ngModel)]="form.therapistName">
-      </div>
+      </div> -->
 
+      <div class="form-row">
       <div class="form-group">
         <label>Date</label>
         <input type="date" [(ngModel)]="form.date">
@@ -31,6 +33,22 @@
         <label>Session Number</label>
         <input type="number" [(ngModel)]="form.sessionNo">
       </div>
+    </div>
+
+      <!-- <div class="form-group">
+        <label>Date</label>
+        <input type="date" [(ngModel)]="form.date">
+      </div>
+
+      <div class="form-group">
+        <label>Time</label>
+        <input type="time" [(ngModel)]="form.time">
+      </div>
+
+      <div class="form-group">
+        <label>Session Number</label>
+        <input type="number" [(ngModel)]="form.sessionNo">
+      </div> -->
 
       <div class="form-group full">
         <label>Session Type</label>
@@ -44,9 +62,10 @@
       </div>
 
       <!-- B. PROCEDURE -->
+    <div class="subtitle">B. PROCEDURE / DEVICE USED</div>
 
       <div class="form-group full">
-        <label>Procedure / Device Used</label>
+        <!-- <label>Procedure / Device Used</label> -->
         <div class="checkbox-group">
           <label *ngFor="let p of procedures">
             <input type="checkbox" [(ngModel)]="p.selected"> {{p.name}}
@@ -55,9 +74,11 @@
       </div>
 
       <!-- C. CATEGORY -->
+       
+    <div class="subtitle">C. PROCEDURE CATEGORY</div>
 
       <div class="form-group full">
-        <label>Procedure Category</label>
+        <!-- <label>Procedure Category</label> -->
         <div class="checkbox-group">
           <label *ngFor="let c of categories">
             <input type="checkbox" [(ngModel)]="c.selected"> {{c.name}}
@@ -66,9 +87,12 @@
       </div>
 
       <!-- D. CLINICAL INTENT -->
-
+       
+    <div class="subtitle">D. CLINICAL INTENT</div><br>
+     <div class="subtitle_"> Primary Target </div>
+     
       <div class="form-group full">
-        <label>Clinical Intent</label>
+        <!-- <label>Clinical Intent</label> -->
         <div class="checkbox-group">
           <label *ngFor="let intent of intents">
             <input type="checkbox" [(ngModel)]="intent.selected"> {{intent.name}}
@@ -82,118 +106,355 @@
       </div>
 
       <!-- E. PRE SESSION -->
+    <div class="subtitle">E. PRE SESSION </div><br>
+    <div class="subtitle_">Client-Reported (0–10) </div><br>
 
-      <div class="form-group">
-        <label>Anxiety (0–10)</label>
-        <input type="number" [(ngModel)]="form.pre.anxiety">
+     
+      <div class="pre-grid"> 
+      <div class="pre-row">
+        <label>Anxiety</label>
+
+        <div class="input-line">
+          <input type="number" [(ngModel)]="form.pre.anxiety"  min="0" max="10">
+          <span class="unit"> /10</span>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Stress (0–10)</label>
-        <input type="number" [(ngModel)]="form.pre.stress">
+      <div class="pre-row">
+        <label>Stress</label>
+
+        <div class="input-line">
+          <input type="number" [(ngModel)]="form.pre.stress"  min="0" max="10">
+          <span class="unit">/10</span>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="pre-row">
         <label>Emotional Intensity</label>
-        <input type="number" [(ngModel)]="form.pre.emotion">
+        <div class="input-line">
+          <input type="number" [(ngModel)]="form.pre.emotion" min="0" max="10">
+          <span class="unit">/10</span>
+        </div>
       </div>
-
-      <div class="form-group">
+      </div>
+      <div class="pre-grid"> 
+      <div class="pre-row">
         <label>Body Discomfort</label>
-        <input type="number" [(ngModel)]="form.pre.body">
+        <div class="input-line">
+          <input type="number" [(ngModel)]="form.pre.body" min="0" max="10">
+          <span class="unit">/10</span>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="pre-row">
         <label>Mental Clarity</label>
-        <input type="number" [(ngModel)]="form.pre.clarity">
+        <div class="input-line">
+          <input type="number" [(ngModel)]="form.pre.clarity" min="0" max="10">
+          <span class="unit">/10</span>
+        </div>
       </div>
 
-      <!-- F. PARAMETERS -->
+      </div>   
+<div class="subtitle_">Therapist Observation</div><br>
 
-      <div class="form-group">
+    <div class="obs-grid">
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.hyper"> Hyperaroused</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.hypo"> Hypoaroused</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.restless"> Restless</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.fatigued"> Fatigued</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.calm"> Calm</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.attentive"> Attentive</label>
+
+      <label><input type="checkbox" [(ngModel)]="form.obs.dissociated"> Dissociated</label>
+
+    </div>
+      <br>
+            <!-- F. PARAMETERS -->
+             
+    <div class="subtitle">F. DEVICE / THERAPY PARAMETERS</div><br>
+    <div class="subtitle_"> For Device-Based Procedures </div><br>
+    
+
+      <div  class="param-row">
         <label>Device Name</label>
         <input type="text" [(ngModel)]="form.deviceName">
       </div>
 
-      <div class="form-group">
+      <div  class="param-row">
         <label>Target Area</label>
         <input type="text" [(ngModel)]="form.targetArea">
       </div>
 
-      <div class="form-group">
+      <div  class="param-row">
         <label>Mode / Protocol</label>
         <input type="text" [(ngModel)]="form.protocol">
       </div>
 
-      <div class="form-group">
+      <div  class="param-row">
         <label>Intensity</label>
         <input type="text" [(ngModel)]="form.intensity">
       </div>
 
-      <div class="form-group">
+      <div  class="param-row">
         <label>Frequency</label>
         <input type="text" [(ngModel)]="form.frequency">
       </div>
 
-      <div class="form-group">
+      <div  class="param-row">
         <label>Duration (min)</label>
         <input type="number" [(ngModel)]="form.duration">
       </div>
 
+      <!-- ✅ NEW PHYSIOTHERAPY SECTION -->
+      <!-- <div class="section-title">For Physiotherapy</div>
+
+      <div class="param-row">
+        <label>Exercise Type</label>
+        <input type="text" [(ngModel)]="form.physio.exercise">
+      </div>
+
+      <div class="param-row">
+        <label>Body Part</label>
+        <input type="text" [(ngModel)]="form.physio.bodyPart">
+      </div>
+
+      <div class="param-row">
+        <label>Repetitions</label>
+        <input type="number" [(ngModel)]="form.physio.reps">
+      </div>
+
+      <div class="param-row">
+        <label>Sets</label>
+        <input type="number" [(ngModel)]="form.physio.sets">
+      </div>
+
+      <div class="param-row">
+        <label>Duration (min)</label>
+        <input type="number" [(ngModel)]="form.physio.duration">
+      </div> -->
+
+      <!-- PSYCHOTHERAPY -->
+      <div class="section-title">For Psychotherapy<br><BR>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" [(ngModel)]="form.therapy.cbt"> CBT</label>
+        <label><input type="checkbox" [(ngModel)]="form.therapy.act"> ACT</label>
+        <label><input type="checkbox" [(ngModel)]="form.therapy.dbt"> DBT</label>
+        <label><input type="checkbox" [(ngModel)]="form.therapy.sfbt"> SFBT</label>
+        <label><input type="checkbox" [(ngModel)]="form.therapy.mindfulness"> Mindfulness</label>
+        <label><input type="checkbox" [(ngModel)]="form.therapy.trance"> Trance</label>
+      </div></div>
+  
+
+        <div class="section-title">Session Focus<BR><BR>
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.thoughtPatterns">
+          Thought patterns
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.emotionalProcessing">
+          Emotional processing
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.behaviouralActivation">
+          Behavioural activation
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.acceptance">
+          Acceptance
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.grounding">
+          Grounding
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="form.sessionFocus.insight">
+          Insight development
+        </label>
+      </div>
+    </div>
+
+      <div class="form-group full">
+        <label>Key Technique Used</label>
+        <textarea rows="2" [(ngModel)]="form.therapy.technique"></textarea>
+      </div>
+
       <!-- G. OBSERVATION -->
+      
+    <div class="subtitle">G. DURING SESSION OBSERVATION</div><br>
 
-      <div class="form-group full">
-        <label>During Session Observation</label>
-        <textarea rows="2" [(ngModel)]="form.observation"></textarea>
+    <div class="subtitle_">Client Engagement</div><br>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.engagement.active"> Active</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.engagement.passive"> Passive</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.engagement.resistant"> Resistant</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.engagement.highlyReceptive"> Highly receptive</label>
+    </div>
+
+    <br>
+
+    <div class="subtitle_">Notable Responses</div><br>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.responses.increasedCalm"> Increased calm</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.responses.emotionalRelease"> Emotional release</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.responses.fatigue"> Fatigue</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.responses.heightenedAwareness"> Heightened awareness</label>
+      <label><input type="checkbox" [(ngModel)]="form.duringSession.responses.noAdverseReaction"> No adverse reaction</label>
+
+      <label>
+        <input type="checkbox" [(ngModel)]="form.duringSession.responses.mildDiscomfort">
+        Mild discomfort
+      </label>
+    </div><br>
+
+    <div class="subtitle">H. POST-SESSION RESPONSE (MANDATORY)</div><br>
+
+    <div class="subtitle_">Client Feedback (0–10)</div><br>
+
+    <div class="pre-grid">
+
+      <div class="pre-row">
+        <label>Anxiety</label>
+        <div class="input-line">
+          <input type="number" min="0" max="10" [(ngModel)]="form.postSession.anxiety">
+          <span>/10</span>
+        </div>
       </div>
 
-      <!-- H. POST SESSION -->
-
-      <div class="form-group">
-        <label>Post Anxiety</label>
-        <input type="number" [(ngModel)]="form.post.anxiety">
+      <div class="pre-row">
+        <label>Stress</label>
+        <div class="input-line">
+          <input type="number" min="0" max="10" [(ngModel)]="form.postSession.stress">
+          <span>/10</span>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Post Stress</label>
-        <input type="number" [(ngModel)]="form.post.stress">
+      <div class="pre-row">
+        <label>Body comfort</label>
+        <div class="input-line">
+          <input type="number" min="0" max="10" [(ngModel)]="form.postSession.bodyComfort">
+          <span>/10</span>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Body Comfort</label>
-        <input type="number" [(ngModel)]="form.post.body">
+      <div class="pre-row">
+        <label>Mental clarity</label>
+        <div class="input-line">
+          <input type="number" min="0" max="10" [(ngModel)]="form.postSession.mentalClarity">
+          <span>/10</span>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Mental Clarity</label>
-        <input type="number" [(ngModel)]="form.post.clarity">
-      </div>
+    </div>
 
-      <!-- I. SOAP -->
+    <br>
 
-      <div class="form-group full">
-        <label>Subjective</label>
-        <textarea rows="2" [(ngModel)]="form.soap.s"></textarea>
-      </div>
+    <div class="subtitle_">Observed Change</div><br>
 
-      <div class="form-group full">
-        <label>Objective</label>
-        <textarea rows="2" [(ngModel)]="form.soap.o"></textarea>
-      </div>
+    <div class="checkbox-group">
+      <label><input type="checkbox" [(ngModel)]="form.postSession.observedChange.improvedRegulation"> Improved regulation</label>
+      <label><input type="checkbox" [(ngModel)]="form.postSession.observedChange.mildImprovement"> Mild improvement</label>
+      <label><input type="checkbox" [(ngModel)]="form.postSession.observedChange.neutral"> Neutral</label>
+      <label><input type="checkbox" [(ngModel)]="form.postSession.observedChange.temporaryDiscomfort"> Temporary discomfort</label>
+      <label><input type="checkbox" [(ngModel)]="form.postSession.observedChange.needsAdjustment"> Needs protocol adjustment</label>
+    </div>
+<br>
 
-      <div class="form-group full">
-        <label>Assessment</label>
-        <textarea rows="2" [(ngModel)]="form.soap.a"></textarea>
-      </div>
+    <div class="subtitle">I. PROGRESS NOTE – SOAP FORMAT</div><br>
 
-      <div class="form-group full">
-        <label>Plan</label>
-        <textarea rows="2" [(ngModel)]="form.soap.p"></textarea>
-      </div>
+<div class="form-group full">
+  <label>S – Subjective</label>
+  <textarea rows="2" [(ngModel)]="form.subjective"></textarea>
+</div>
 
+<div class="form-group full">
+  <label>O – Objective</label>
+  <textarea rows="2" [(ngModel)]="form.objective"></textarea>
+</div>
+
+<div class="form-group full">
+  <label>A – Assessment</label>
+  <textarea rows="2" [(ngModel)]="form.sassessment"></textarea>
+</div>
+
+<div class="form-group full">
+  <label>P – Plan</label>
+</div>
+
+<div class="checkbox-group">
+  <label><input type="checkbox" [(ngModel)]="form.plan.continueProtocol"> Continue same protocol</label>
+  <label><input type="checkbox" [(ngModel)]="form.plan.modifyIntensity"> Modify intensity / parameters</label>
+  <label><input type="checkbox" [(ngModel)]="form.plan.combinePsychotherapy"> Combine with psychotherapy</label>
+  <label><input type="checkbox" [(ngModel)]="form.plan.shiftProcedure"> Shift to another neuro-procedure</label>
+  <label><input type="checkbox" [(ngModel)]="form.plan.homePractice"> Home practice advised</label>
+</div><br>
+
+<div class="param-row">
+  <label>Notes</label><br>
+  <input type="text" [(ngModel)]="form.plan.notes">
+</div>
+<br>
+   <div class="subtitle">J. SAFETY & COMPLIANCE</div><br>
+  <label>Adverse effects</label>	<BR>
+<div class="checkbox-group">
+  <label><input type="radio" name="adverse" [(ngModel)]="form.safety.adverseEffects" value="none"> None</label>
+  <label><input type="radio" name="adverse" [(ngModel)]="form.safety.adverseEffects" value="mild"> Mild</label>
+  <label><input type="radio" name="adverse" [(ngModel)]="form.safety.adverseEffects" value="moderate"> Moderate</label>
+</div><BR>
+
+<div class="param-row" *ngIf="form.safety.adverseEffects === 'moderate'">
+  <label>Document</label>
+  <input type="text" [(ngModel)]="form.safety.adverseNote">
+</div>
+
+<br>
+<label>Client tolerated procedure: </label><BR>
+<div class="checkbox-group">
+  <label><input type="radio" name="tolerated" [(ngModel)]="form.safety.tolerated" value="yes"> Yes</label>
+  <label><input type="radio" name="tolerated" [(ngModel)]="form.safety.tolerated" value="monitoring"> Needs monitoring</label>
+</div><BR>
+<br>
       <!-- NEXT SESSION -->
+       <div class="subtitle">K. NEXT SESSION</div><br>
 
-      <div class="form-group">
+<div class="param-row">
+  <label>Suggested Next Procedure</label>
+  <input type="text" [(ngModel)]="form.nextSession.procedure">
+</div><br>
+<label>Time gap</label><br>
+<div class="checkbox-group">
+  <label><input type="radio" name="gap" [(ngModel)]="form.nextSession.timeGap" value="sameWeek"> Same week</label>
+  <label><input type="radio" name="gap" [(ngModel)]="form.nextSession.timeGap" value="48-72"> 48–72 hours</label>
+  <label><input type="radio" name="gap" [(ngModel)]="form.nextSession.timeGap" value="weekly"> Weekly</label>
+</div><br>
+<div class="subtitle">L. DIGITAL / MANUAL SIGN-OFF</div><br>
+
+<div class="param-row">
+  <label>Therapist Signature</label>
+  <input type="text" [(ngModel)]="form.signOff.therapistSignature">
+</div>
+
+<div class="param-row">
+  <label>Date & Time</label>
+  <input type="datetime-local" [(ngModel)]="form.signOff.dateTime">
+</div>
+
+      <!-- <div class="form-group">
         <label>Next Procedure</label>
         <input type="text" [(ngModel)]="form.nextProcedure">
       </div>
@@ -208,12 +469,12 @@
       </div>
 
     </div>
-  </div>
+  </div> -->
 
   <!-- ACTION BUTTONS -->
   <div class="action-buttons">
     <ion-button class="edit-btn" fill="outline">Clear</ion-button>
-    <ion-button class="save-btn">Save</ion-button>
+    <ion-button class="save-btn"(click)="saveProcedureNote()">Save</ion-button>
   </div>
 
 </div>

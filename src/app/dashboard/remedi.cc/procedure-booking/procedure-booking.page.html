@@ -20,7 +20,8 @@
     
     <div class="filter-item">
   <label>Select Date</label>
-  <ion-datetime-button datetime="datePicker11"></ion-datetime-button>
+  <!-- <ion-datetime-button datetime="datePicker11"></ion-datetime-button> -->
+    <input style="color:black" [(ngModel)]="datePicker11" type="date" id="dateFilter" class="custom-datepicker" />
 </div>
 
 <ion-modal [keepContentsMounted]="true">

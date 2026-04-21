@@ -9,6 +9,7 @@ import { PatientTestInfo } from 'src/app/shared/interfaces/patient-list/patient-
 import { NoDataPage } from "src/app/components/no-data/no-data.page";
 import { ProcedureNotePage } from "./procedure-note/procedure-note.page";
 import { ProcedureNote } from 'src/app/shared/class/remedi.cc/procedure-note/procedure-note';
+import { ProcrequestService } from 'src/app/shared/services/procrequest.service';
 // import { IonModal } from '@ionic/angular/common';
 
 @Component({
@@ -37,7 +38,7 @@ export class ProcedureListPage implements OnInit {
   constructor(
     private patientListService:PatientlistService,
     private lookupService: LookupService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,private proc: ProcrequestService,
   ) { 
     this.fromDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.toDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
