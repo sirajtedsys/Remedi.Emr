@@ -164,62 +164,100 @@ safety: {
        this.pageLoaders()
   }
   async pageLoaders() {
-   this.getProcedureDevice()
-  this.getProcedureCategory()
-  this.getClinicalIntent()
+  //  this.getProcedureDevice()
+  // this.getProcedureCategory()
+  // this.getClinicalIntent()
+  //   this.getLastNote();
+    await this.getProcedureDevice();
+  await this.getProcedureCategory();
+  await this.getClinicalIntent();
+  await this.getLastNote(); 
   }
   ngOnChanges(changes: SimpleChanges): void {
     
   }
 
   ngOnInit(): void {
-    
+    this.setCurrentDateTime()
   }
 
+// async getProcedureDevice() {
+//   (await this.proc.getProcedureDevice()).subscribe((data: any) => {
+//     console.log(data);
+
+//     if (data && data.length > 0) {
+
+//       this.procedureDeviceList = data;
+
+//       // 🔥 MAP API DATA TO UI CHECKBOX FORMAT
+//       this.procedures = data.map((item: any) => ({
+//         id: item.devicE_ID,
+//         name: item.procedurE_NAME,
+//         selected: false
+//       }));
+
+//     } else {
+//       this.procedures = [];
+//     }
+
+//   }, (error: any) => {
+//     console.error(error);
+//   });
+// }
+
 async getProcedureDevice() {
-  (await this.proc.getProcedureDevice()).subscribe((data: any) => {
-    console.log(data);
+  return new Promise((resolve) => {
+    this.proc.getProcedureDevice().then(obs => {
+      obs.subscribe((data: any) => {
 
-    if (data && data.length > 0) {
+        this.procedures = data.map((item: any) => ({
+          id: item.devicE_ID,
+          name: item.procedurE_NAME,
+          selected: false
+        }));
 
-      this.procedureDeviceList = data;
-
-      // 🔥 MAP API DATA TO UI CHECKBOX FORMAT
-      this.procedures = data.map((item: any) => ({
-        id: item.devicE_ID,
-        name: item.procedurE_NAME,
-        selected: false
-      }));
-
-    } else {
-      this.procedures = [];
-    }
-
-  }, (error: any) => {
-    console.error(error);
+        resolve(true);
+      });
+    });
   });
 }
 
+// async getProcedureCategory() {
+//   (await this.proc.getProcedureCategory()).subscribe((data: any) => {
+//     console.log(data);
+
+//     if (data && data.length > 0) {
+
+//       this.procedureCategoryList = data;
+
+//       this.categories = data.map((item: any) => ({
+//         id: item.categorY_ID,           // ✅ correct
+//         name: item.prO_CATEGORY_NAME,   // ✅ correct
+//         selected: false
+//       }));
+
+//     } else {
+//       this.categories = [];
+//     }
+
+//   }, (error: any) => {
+//     console.error(error);
+//   });
+// }
 async getProcedureCategory() {
-  (await this.proc.getProcedureCategory()).subscribe((data: any) => {
-    console.log(data);
+  return new Promise((resolve) => {
+    this.proc.getProcedureCategory().then(obs => {
+      obs.subscribe((data: any) => {
 
-    if (data && data.length > 0) {
+        this.categories = data.map((item: any) => ({
+          id: item.categorY_ID,
+          name: item.prO_CATEGORY_NAME,
+          selected: false
+        }));
 
-      this.procedureCategoryList = data;
-
-      this.categories = data.map((item: any) => ({
-        id: item.categorY_ID,           // ✅ correct
-        name: item.prO_CATEGORY_NAME,   // ✅ correct
-        selected: false
-      }));
-
-    } else {
-      this.categories = [];
-    }
-
-  }, (error: any) => {
-    console.error(error);
+        resolve(true);
+      });
+    });
   });
 }
 
@@ -337,10 +375,11 @@ async getClinicalIntent() {
 
 
   async saveProcedureNote() {
-
   const payload = {
-    patientId: 'UCHM00000006767', 
-
+    // patientId: 'UCHM00000006767', 
+      proNoteId: this.form.proNoteId, 
+     patientId: 'UCHM00000000562', 
+     emrDocid: 'UCHM00000014903', 
     sessionDate: this.form.date,
     sessionTime: this.form.time,
     sessionNumber: this.form.sessionNo?.toString(),
@@ -448,8 +487,9 @@ async getClinicalIntent() {
 
   (await this.proc.saveProcedureNote(payload)).subscribe({
     next: (res: any) => {
-         this.notificationService.showNotification('Patient Message submitted successfully!');
+         this.notificationService.showNotification('Procedure Progress Note submitted successfully!');
       console.log('Saved:', res);
+        this.getLastNote(); 
     },
     error: (err: any) => {
       console.error(err);
@@ -467,6 +507,156 @@ mapSessionType(type: string): string {
     case 'Intensive': return 'N';
     case 'Review': return 'R';
     case 'Maintenance': return 'M';
+    default: return '';
+  }
+}
+
+setCurrentDateTime() {
+  const now = new Date();
+
+  const offset = now.getTimezoneOffset();
+  const local = new Date(now.getTime() - (offset * 60000));
+
+  this.form.date = local.toISOString().slice(0, 16);
+}
+
+async getLastNote() {
+  const patiId = 'UCHM00000000562';
+  const emrDocId = 'UCHM00000014903';
+
+  (await this.proc.getLastProcedureNote(patiId, emrDocId)).subscribe({
+    next: (res: any) => {
+console.log(res)
+      // if (res.Status !== 200 || !res.Data) return;
+console.log(res.data)
+const note = res.data;
+        this.form.proNoteId = note.proNoteId; 
+      // ✅ BASIC FIELDS
+      this.form.date = note.sessionDate
+        ? new Date(note.sessionDate).toISOString().slice(0, 16)
+        : '';
+
+        // this.form.date = new Date(note.sessionDate).toISOString().slice(0, 16);
+        
+      this.form.sessionNo = note.sessionNumber;
+      // this.form.sessionType = note.sessionType;
+      this.form.sessionType = this.mapSessionTypeReverse(note.sessionType);
+      this.form.rationale = note.intentRationale;
+
+      // ✅ PRE SESSION
+      this.form.pre.anxiety = note.preAnxiety;
+      this.form.pre.stress = note.preStress;
+      this.form.pre.emotion = note.preIntensity;
+      this.form.pre.body = note.preDiscomfort;
+      this.form.pre.clarity = note.preClarity;
+
+      // ✅ OBS
+      this.form.obs.hyper = note.hyperaroused === 'Y';
+      this.form.obs.hypo = note.hypoaroused === 'Y';
+      this.form.obs.restless = note.restless === 'Y';
+      this.form.obs.fatigued = note.fatigued === 'Y';
+      this.form.obs.calm = note.calm === 'Y';
+      this.form.obs.attentive = note.attentive === 'Y';
+      this.form.obs.dissociated = note.dissociated === 'Y';
+
+      // ✅ DEVICE PARAMS
+      this.form.deviceName = note.deviceName;
+      this.form.targetArea = note.targetArea;
+      this.form.protocol = note.modeProtocol;
+      this.form.intensity = note.intensity;
+      this.form.frequency = note.frequency;
+      this.form.duration = note.duration;
+
+      // ✅ THERAPY
+      this.form.therapy.cbt = note.cbt === 'Y';
+      this.form.therapy.act = note.act === 'Y';
+      this.form.therapy.dbt = note.dbt === 'Y';
+      this.form.therapy.sfbt = note.sfbt === 'Y';
+      this.form.therapy.mindfulness = note.mindfullness === 'Y';
+      this.form.therapy.trance = note.trance === 'Y';
+      this.form.therapy.technique = note.keyTechnique;
+
+      // ✅ SESSION FOCUS
+      this.form.sessionFocus.thoughtPatterns = note.thoughtPatterns === 'Y';
+      this.form.sessionFocus.emotionalProcessing = note.emotionalProcessing === 'Y';
+      this.form.sessionFocus.behaviouralActivation = note.behavioural === 'Y';
+      this.form.sessionFocus.acceptance = note.acceptance === 'Y';
+      this.form.sessionFocus.grounding = note.grounding === 'Y';
+      this.form.sessionFocus.insightDevelopment = note.insight === 'Y';
+
+      // ✅ DURING SESSION
+      this.form.duringSession.engagement.active = note.clientActive === 'Y';
+      this.form.duringSession.engagement.passive = note.clientPassive === 'Y';
+      this.form.duringSession.engagement.resistant = note.clientResistant === 'Y';
+      this.form.duringSession.engagement.highlyReceptive = note.clientReceptive === 'Y';
+
+      this.form.duringSession.responses.increasedCalm = note.incCalm === 'Y';
+      this.form.duringSession.responses.emotionalRelease = note.emotRelease === 'Y';
+      this.form.duringSession.responses.fatigue = note.fatigue === 'Y';
+      this.form.duringSession.responses.heightenedAwareness = note.awareness === 'Y';
+      this.form.duringSession.responses.noAdverseReaction = note.adverse !== 'Y';
+      this.form.duringSession.responses.mildDiscomfort = note.mildDiscomfort === 'Y';
+
+      // ✅ POST SESSION
+      this.form.postSession.anxiety = note.feedbackAnxiety;
+      this.form.postSession.stress = note.feedbackStress;
+      this.form.postSession.bodyComfort = note.feedbakckComfort;
+      this.form.postSession.mentalClarity = note.feedbakckClarity;
+
+      this.form.postSession.observedChange.improvedRegulation = note.improvedRegulation === 'Y';
+      this.form.postSession.observedChange.mildImprovement = note.mildImprovement === 'Y';
+      this.form.postSession.observedChange.neutral = note.neutral === 'Y';
+      this.form.postSession.observedChange.temporaryDiscomfort = note.discomfort === 'Y';
+      this.form.postSession.observedChange.needsAdjustment = note.protocol === 'Y';
+
+      // ✅ PLAN
+      this.form.plan.continueProtocol = note.continueProtocol === 'Y';
+      this.form.plan.modifyIntensity = note.modifyIntensity === 'Y';
+      this.form.plan.combinePsychotherapy = note.psychotherapy === 'Y';
+      this.form.plan.shiftProcedure = note.neuroProcedure === 'Y';
+      this.form.plan.homePractice = note.homePractice === 'Y';
+      this.form.plan.notes = note.notes;
+
+      // ✅ SAFETY
+      this.form.safety.adverseEffects = note.adverseEffects;
+      this.form.safety.adverseNote = note.document;
+      this.form.safety.tolerated = note.clientProcedures;
+
+      // ✅ NEXT SESSION
+      this.form.nextSession.procedure = note.suggestedProcedure;
+      this.form.nextSession.timeGap = note.timeGap;
+
+
+      this.form.subjective = note.subjective;
+this.form.objective = note.objective;
+this.form.assessment = note.assessment;
+
+
+      // ✅ CHECKBOX TABLES
+      this.procedures.forEach(x => {
+        x.selected = res.deviceIds.includes(x.id);
+      });
+      
+
+      this.categories.forEach(x => {
+        x.selected = res.categoryIds.includes(x.id);
+      });
+
+      this.intents.forEach(x => {
+        x.selected = res.intentIds.includes(x.id);
+      });
+
+    },
+    error: (err: any) => console.error(err)
+  });
+}
+mapSessionTypeReverse(val: string): string {
+  switch (val) {
+    case 'I': return 'Initial';
+    case 'F': return 'Follow-up';
+    case 'N': return 'Intensive';
+    case 'R': return 'Review';
+    case 'M': return 'Maintenance';
     default: return '';
   }
 }
