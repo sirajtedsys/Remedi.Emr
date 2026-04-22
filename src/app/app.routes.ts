@@ -250,7 +250,15 @@ export const routes: Routes = [
   {
     path: 'item-list-table',
     loadComponent: () => import('./shared/item-list-table/item-list-table.page').then(m => m.ItemListTablePage)
+  },  {
+    path: 'know-case',
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/know-case/know-case.page').then( m => m.KnowCasePage)
   },
+  {
+    path: 'symptoms',
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/symptoms/symptoms.page').then( m => m.SymptomsPage)
+  },
+
 
 
 

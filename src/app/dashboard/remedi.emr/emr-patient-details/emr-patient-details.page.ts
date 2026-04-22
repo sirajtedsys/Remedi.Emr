@@ -46,7 +46,7 @@ import { SharedDataService } from 'src/app/shared/services/shared-data.service';
     IonRouterOutlet, RouterOutlet],
 })
 export class EmrPatientDetailsPage implements OnInit {
-  patientData!: PatientListDatewiseItem;
+  patientData!: PatientListDatewiseItem ;
 
   constructor(private router: Router,private shared:SharedDataService) {
       addIcons({menuOutline,closeOutline,pulse,medkit,flask,clipboard,createOutline,informationCircleOutline,closeCircle,chatbubblesOutline,call,print,shareSocial,chevronUpOutline,person,documentText});
@@ -61,15 +61,28 @@ export class EmrPatientDetailsPage implements OnInit {
   }
 
 
+  // fetchDataFromState() {
+  //   // Access the navigation state
+  //   // const navigation = window.history.state;
+  //   const navigation = this.router.getCurrentNavigation();
+  //   this.patientData = navigation?.extras?.state?.['patientData'];
+  //   console.log(this.patientData);
+  //   this.setPatientDataToService(this.patientData)
+  // }
+
   fetchDataFromState() {
-    // Access the navigation state
-    // const navigation = window.history.state;
-    const navigation = this.router.getCurrentNavigation();
-    this.patientData = navigation?.extras?.state?.['patientData'];
-    console.log(this.patientData);
-    this.setPatientDataToService(this.patientData)
+  const navigation = this.router.getCurrentNavigation();
+
+  if (navigation?.extras?.state?.['patientData']) {
+    this.patientData = navigation.extras.state['patientData'];
+    this.shared.setPatient(this.patientData);
+  } else {
+    // 🔥 fallback after refresh
+    this.patientData = this.shared.getPatient();
   }
 
+  console.log(this.patientData);
+}
 
   setPatientDataToService(data:PatientListDatewiseItem){
     // store in service for child access

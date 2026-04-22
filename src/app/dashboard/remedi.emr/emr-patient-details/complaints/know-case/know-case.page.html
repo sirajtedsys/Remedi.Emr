@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Know Case</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="section-title">Know Case of (K/C/O)</div>
+
+  <!-- LIST -->
+  <div class="case-list">
+
+    <div class="case-card" *ngFor="let item of caseslist; let i = index">
+
+      <!-- Row 1 -->
+      <div class="row-top">
+        <span class="slno">{{ i + 1 }}</span>
+
+        <ion-checkbox
+          [(ngModel)]="item.CaseCheck"
+          (ionChange)="AddOrRemoveCaseCheck($event,i)">
+        </ion-checkbox>
+
+        <div class="code">{{ item.CaseCode }}</div>
+      </div>
+
+      <!-- Case Name -->
+      <div class="case-name">
+        {{ item.CaseName }}
+      </div>
+
+      <!-- Medication -->
+      <ion-item fill="outline" class="small-item">
+        <ion-label position="stacked">Medications</ion-label>
+        <ion-input
+          [(ngModel)]="item.Medication"
+          placeholder="Enter medications">
+        </ion-input>
+      </ion-item>
+
+      <!-- Treatment -->
+      <div class="treatment-row">
+        <span>On Treatment</span>
+        <ion-checkbox
+          [checked]="item.TreatmentSts == 'Y'"
+          (ionChange)="P_REGULAR($event,i)">
+        </ion-checkbox>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Others -->
+  <ion-item fill="outline" class="mt-10">
+    <ion-label position="stacked">Others</ion-label>
+    <ion-input
+      [(ngModel)]="Remarksnote"
+      placeholder="Enter other conditions">
+    </ion-input>
+  </ion-item>
+
+  <!-- Save -->
+  <ion-button expand="block" color="success" class="mt-10" (click)="Submit()">
+    Save
+  </ion-button>
+
+</ion-content>

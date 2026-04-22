@@ -44,18 +44,23 @@ export class ComplaintService {
 
 
   SaveComplaint(cd: any) {
-
     return this.apiservice.post('emrcomplaint/save-complaint', cd)
   }
 
 
 
   ExecuteSpOnlineVitalStatusUpd(cd: any) {
-
     return this.apiservice.post('emrcomplaint/ExecuteSpOnlineVitalStatusUpd', cd.vital)
+  }
 
 
 
+    SaveKnowCase(cd: any) {
+    return this.apiservice.post('emrcomplaint/save-know-case', cd)
+  }
+
+    GetAllCases() {
+    return this.apiservice.get('emrcomplaint/active-case-details');
   }
 
 }

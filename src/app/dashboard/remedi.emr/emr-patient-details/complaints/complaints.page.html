@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title>Complaints</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ng-container class="emr-bg ion-padding">
 
-  <div class="section-card">
-    <div class="grid-5">
+  <div style="margin-top: 10px;">
+    <div class="grid-4">
       <ion-item fill="outline">
         <ion-label position="stacked">Hght(Cm)</ion-label>
         <ion-input type="number" (input)="calculateBMI('h')" [(ngModel)]="vit.height1"></ion-input>
@@ -27,6 +27,10 @@
         <ion-label position="stacked">IBW(kg)</ion-label>
         <ion-input readonly value="0" [(ngModel)]="IBW"></ion-input>
       </ion-item>
+
+    </div>
+
+    <div class="grid-4 mt-10">
       <div class="split-input">
         <ion-item fill="outline">
           <ion-label position="stacked">BP(LT) (mmHg)</ion-label>
@@ -36,9 +40,6 @@
           <ion-input placeholder="Diastolic " [(ngModel)]="vit.maxBpLeft"></ion-input>
         </ion-item>
       </div>
-    </div>
-
-    <div class="grid-5 mt-10">
       <div class="split-input">
         <ion-item fill="outline">
           <ion-label position="stacked">BP(RT) (mmHg)</ion-label>
@@ -59,7 +60,12 @@
             [value]="items.blD_GRP_ID">{{items.blD_GRP_NAME}}</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item fill="outline">
+     
+    </div>
+
+    <div class="grid-4 mt-10">
+
+       <ion-item fill="outline">
         <ion-label position="stacked">SpO2:(%)</ion-label>
         <ion-input type="number" [(ngModel)]="vit.pSpo2"></ion-input>
       </ion-item>
@@ -67,9 +73,7 @@
         <ion-label position="stacked">GRBS(mg/dl)</ion-label>
         <ion-input type="number" [(ngModel)]="vit.pGrbs"></ion-input>
       </ion-item>
-    </div>
 
-    <div class="grid-temp mt-10">
       <div class="temp-group">
         <ion-item fill="outline">
           <ion-label position="stacked">Temp</ion-label>
@@ -86,7 +90,11 @@
         <ion-label position="stacked">Resp(breaths/min)</ion-label>
         <ion-input type="number" [(ngModel)]="vit.rr1"></ion-input>
       </ion-item>
-      <ion-item fill="outline">
+  
+    </div>
+
+    <div class="grid-4 mt-10">
+          <ion-item fill="outline">
         <ion-label position="stacked">Pain Assessment</ion-label>
         <ion-select value="0" [(ngModel)]="vit.pPainAssessment">
           <ion-select-option value="0">0 - No Pain</ion-select-option>
@@ -107,7 +115,7 @@
     </div>
   </div>
 
-  <div class="grid-3">
+  <div class="grid-3 mt-10" *ngIf="false">
     <div class="section-group">
       <div class="label-with-btn">
         <span class="custom-label">KNOW CASE OF(K/C/O)</span>
@@ -138,6 +146,57 @@
       </div>
       <ion-textarea fill="outline" [(ngModel)]="cd.ALLERGYDTLS" rows="3" class="custom-textarea"></ion-textarea>
     </div>
+  </div>
+
+  <div class="grid-3 mt-10">
+
+
+    <!-- <div class="section-group uniform-section"> -->
+
+    <!-- KNOW CASE -->
+    <div class="section-box">
+      <div class="label-with-btn">
+        <span class="custom-label">KNOW CASE OF(K/C/O)</span>
+        <ion-button size="small" class="edit-btn" (click)="KnowCaseModal=true">
+          <ion-icon name="pencil" style="color: white;"></ion-icon>
+        </ion-button>
+      </div>
+
+      <ion-textarea rows="2" auto-grow="true" class="section-textarea" [(ngModel)]="kn.Remarks">
+      </ion-textarea>
+    </div>
+
+    <!-- SYMPTOMS -->
+    <div class="section-box">
+      <div class="label-with-btn">
+        <span class="custom-label">SYMPTOMS</span>
+        <ion-button size="small" class="edit-btn" (click)="SymptomsModal=true">
+          <ion-icon name="pencil" style="color: white;"></ion-icon>
+        </ion-button>
+      </div>
+
+      <ion-textarea rows="2" auto-grow="true" class="section-textarea" [(ngModel)]="Sym.Remarks">
+      </ion-textarea>
+    </div>
+
+    <!-- ALLERGY -->
+    <div class="section-box">
+      <span class="custom-label">ALLERGY</span>
+
+      <div class="radio-row">
+        <ion-radio-group [(ngModel)]="cd.P_ALLERGY_STATUS">
+          <ion-radio value="NKA"></ion-radio> <ion-label style="color: black;"> No Known</ion-label>
+          <ion-radio value="KA"></ion-radio><ion-label style="color: black;"> Known</ion-label>
+          <ion-radio value="NA"></ion-radio><ion-label style="color: black;"> None</ion-label>
+        </ion-radio-group>
+      </div>
+
+      <ion-textarea rows="2" auto-grow="true" class="section-textarea" [(ngModel)]="cd.ALLERGYDTLS">
+      </ion-textarea>
+    </div>
+
+    <!-- </div> -->
+
   </div>
 
   <div class="grid-3 mt-20">
@@ -215,7 +274,7 @@
         </div>
         <ion-item fill="outline" class="remarks-item" *ngIf="cd.edu === 'yes'">
           <ion-label position="stacked">Education Remarks</ion-label>
-          <ion-textarea placeholder="Enter details..."[(ngModel)]="cd.P_PATI_EDU" rows="2"></ion-textarea>
+          <ion-textarea placeholder="Enter details..." [(ngModel)]="cd.P_PATI_EDU" rows="2"></ion-textarea>
         </ion-item>
       </div>
 
@@ -237,72 +296,82 @@
 
 
 
-<div class="section-card">
-  <div class="section-title icd-title">ICD</div>
-  
-  <div class="icd-container">
-    <div class="icd-header-row hide-mobile">
-      <div class="col-sl">Sl.No</div>
-      <div class="col-code">Code</div>
-      <div class="col-name">Name</div>
-      <div class="col-remarks">Remarks</div>
-      <div class="col-action"></div>
+  <div class="section-card">
+    <div class="section-title icd-title">ICD</div>
+
+    <div class="icd-container">
+      <div class="icd-header-row hide-mobile">
+        <div class="col-sl">Sl.No</div>
+        <div class="col-code">Code</div>
+        <div class="col-name">Name</div>
+        <div class="col-remarks">Remarks</div>
+        <div class="col-action"></div>
+      </div>
+
+      <div class="icd-row" *ngFor="let row of icdlist; let i = index">
+        <div class="col-sl">
+          <ion-label class="show-mobile">Sl.No</ion-label>
+          <ion-input type="number" [value]="i + 1" readonly class="icd-input-flat"></ion-input>
+        </div>
+
+        <div class="input-wrapper">
+
+          <div class="col-code">
+            <ion-label class="show-mobile">Code</ion-label>
+            <ion-input placeholder="Code" (input)="CodeType($event,i)" [value]="row.Code"
+              class="icd-input-flat"></ion-input>
+          </div>
+
+
+          <app-item-list-table *ngIf="row.isDropdownVisible && Index === i && selectedField === 'code'"
+            [DropDownData]="ICdSelectionList" [Headers]="['Name', 'Code']"
+            [Fields]="['icodE_DTLS_NAME', 'icodE_DTLS_CODE']" [gridColumns]="'8fr 2fr'"
+            (itemSelected)="onLocationSelected($event)" class="dropdown-overlay">
+          </app-item-list-table>
+
+        </div>
+
+
+
+        <div class="input-wrapper">
+          <div class="col-name">
+            <ion-label class="show-mobile">Name</ion-label>
+            <ion-input placeholder="Name" (input)="NameType($event,i)" [value]="row.Name"
+              class="icd-input-flat"></ion-input>
+          </div>
+
+          <app-item-list-table *ngIf="row.isDropdownVisible  && Index === i && selectedField === 'name'"
+            [DropDownData]="ICdSelectionList" [Headers]="['Name', 'Code']"
+            [Fields]="['icodE_DTLS_NAME', 'icodE_DTLS_CODE']" [gridColumns]="'8fr 2fr'"
+            (itemSelected)="onLocationSelected($event)" class="dropdown-overlay">
+          </app-item-list-table>
+        </div>
+
+        <div class="col-remarks">
+          <ion-label class="show-mobile">Remarks</ion-label>
+          <ion-textarea placeholder="Remarks" (input)="remarksin($event,i)" [value]="row.remarks" rows="1"
+            class="icd-textarea-flat"></ion-textarea>
+        </div>
+
+        <div class="col-action">
+          <ion-button fill="clear" color="danger" (click)="DeleteRow(i)">
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
     </div>
 
-    <div class="icd-row" *ngFor="let row of icdlist; let i = index">
-      <div class="col-sl">
-        <ion-label class="show-mobile">Sl.No</ion-label>
-        <ion-input type="number" [value]="i + 1" readonly class="icd-input-flat"></ion-input>
-      </div>
-      
-      <div class="col-code">
-        <ion-label class="show-mobile">Code</ion-label>
-        <ion-input placeholder="Code" (input)="CodeType($event,i)" [value]="row.Code"class="icd-input-flat"></ion-input>
-      </div>
-      
-      <div class="col-name">
-        <ion-label class="show-mobile">Name</ion-label>
-        <ion-input placeholder="Name" (input)="NameType($event,i)" [value]="row.Name"  class="icd-input-flat"></ion-input>
-      </div>
-      
-   <!-- <app-item-list-table
-      *ngIf="row.isDropdownVisible"
-      [dropdownData]="ICdSelectionList"
-      [top]="dropdownPosition.top"
-      [left]="dropdownPosition.left"
-      [Field1]="'icodE_DTLS_NAME'"
-      [Field2]="'icodE_DTLS_CODE'"
-      [Header1]="'Name'"
-      [Header2]="'Code'"
-      (itemSelected)="onLocationSelected($event)"
-      (WindowClosed)="OnLOcationdropClose($event)"
-      class="dropdown-overlay">
-    </app-item-list-table> -->
-      
-      <div class="col-remarks">
-        <ion-label class="show-mobile">Remarks</ion-label>
-        <ion-textarea placeholder="Remarks" (input)="remarksin($event,i)" [value]="row.remarks" rows="1" class="icd-textarea-flat"></ion-textarea>
-      </div>
-      
-      <div class="col-action">
-        <ion-button fill="clear" color="danger" (click)="DeleteRow(i)">
-          <ion-icon name="trash" slot="icon-only"></ion-icon>
-        </ion-button>
-      </div>
+
+    <div class="icd-actions mt-10">
+      <ion-button (click)="AddRow()" class="add-btn" size="small">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        Add Row
+      </ion-button>
     </div>
   </div>
-
-
-  <div class="icd-actions mt-10">
-    <ion-button (click)="AddRow()" class="add-btn" size="small">
-      <ion-icon name="add-outline" slot="start"></ion-icon>
-      Add Row
-    </ion-button>
+  <div class="form-footer-btns">
+    <ion-button class="submit-btn">Submit</ion-button>
+    <ion-button class="clear-btn">Clear</ion-button>
   </div>
-</div>
-<div class="form-footer-btns">
-  <ion-button class="submit-btn">Submit</ion-button>
-  <ion-button class="clear-btn">Clear</ion-button>
-</div>
 
 </ng-container>

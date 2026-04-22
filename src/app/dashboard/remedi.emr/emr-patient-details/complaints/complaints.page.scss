@@ -202,11 +202,15 @@ ion-radio {
   font-size: 18px;
 }
 
+
+
 .icd-container {
   color: black;
   border: 1px solid #ccc;
   border-radius: 4px;
-  overflow: hidden;
+  // overflow: hidden;
+  
+  overflow: visible !important;
 }
 
 /* Header for Desktop */
@@ -227,6 +231,7 @@ ion-radio {
   padding: 12px;
   gap: 10px;
   border-bottom: 1px solid #eee;
+  
 
   &:last-child { border-bottom: none; }
 
@@ -290,5 +295,110 @@ ion-radio {
   .form-footer-btns {
     justify-content: flex-start;
     .submit-btn, .clear-btn { flex: none; width: 120px; }
+  }
+}
+
+
+
+
+.input-wrapper {
+  position: relative;
+}
+
+.dropdown-overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  min-width: 350px;
+  max-width: 600px;
+  width: max-content;
+
+  z-index: 9999;
+
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 768px) {
+
+.input-wrapper {
+  position: relative; /* ✅ ALWAYS KEEP THIS */
+}
+
+  .dropdown-overlay {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  .grid-5 {
+    position: relative;
+  }
+
+}
+
+.dropdown-overlay {
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.uniform-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-box {
+  background: #fff;
+  border: 1px solid #e0e6ed;
+  border-radius: 10px;
+  padding: 10px;
+  height: 100%;
+}
+
+/* Make textarea look same as inputs */
+.section-textarea {
+  --background: #f9fbfc;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 14px;
+
+  min-height: 40px;
+  padding: 6px;
+}
+
+/* Fix radio alignment */
+.radio-row {
+  margin: 6px 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Match your existing labels */
+.custom-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f6b78;
+}
+
+
+@media (min-width: 768px) {
+  .grid-3 .section-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    // display: flex;
+  }
+
+  .section-textarea {
+    flex: 1;
   }
 }

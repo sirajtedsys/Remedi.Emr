@@ -13,13 +13,22 @@ export class SharedDataService {
 
   private patientData!: PatientListDatewiseItem;
 
-  setPatient(data: PatientListDatewiseItem) {
-    this.patientData = data;
-  }
+setPatient(data: PatientListDatewiseItem ) {
+  this.patientData = data;
+  localStorage.setItem('Emr-patient', JSON.stringify(data));
+}
 
-  getPatient(): PatientListDatewiseItem {
-    return this.patientData;
-  }
+ getPatient(): PatientListDatewiseItem {
+  if (this.patientData) return this.patientData;
+
+  const stored = localStorage.getItem('Emr-patient');
+  return stored ? JSON.parse(stored) : {} as PatientListDatewiseItem;
+}
+
+clearPatient() {
+  this.patientData = {} as PatientListDatewiseItem;
+  localStorage.removeItem('Emr-patient');
+}
 
 
 

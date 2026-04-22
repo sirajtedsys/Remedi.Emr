@@ -1,0 +1,64 @@
+.section-title {
+  font-weight: 700;
+  color: #1f6b78;
+  margin-bottom: 10px;
+}
+
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e0e6ed;
+}
+
+/* Top row */
+.row-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slno {
+  font-weight: bold;
+  width: 20px;
+}
+
+.code {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Case name */
+.case-name {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Treatment row */
+.treatment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* Smaller ion-item */
+.small-item {
+  margin-top: 8px;
+  --padding-start: 10px;
+  --background: #f9fbfc;
+  --border-radius: 8px;
+}
+
+/* Spacing */
+.mt-10 {
+  margin-top: 10px;
+}

@@ -25,13 +25,14 @@ import { ICDSel } from 'src/app/shared/class/remedi.emr/complaints/ICDSel';
 import { Cases1 } from 'src/app/shared/class/remedi.emr/complaints/Cases1';
 import { Sympt1 } from 'src/app/shared/class/remedi.emr/complaints/Sympt1';
 import { ItemListTablePage } from 'src/app/shared/item-list-table/item-list-table.page';
+// import { A11yModule } from "@angular/cdk/a11y-module.d";
 
 @Component({
   selector: 'app-complaints',
   templateUrl: './complaints.page.html',
   styleUrls: ['./complaints.page.scss'],
   standalone: true,
-  imports: [IonRadioGroup, IonRadio, IonIcon, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonTextarea, IonLabel, IonItem, IonInput, ItemListTablePage]
+  imports: [IonRadioGroup, IonRadio, IonIcon, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonTextarea, IonLabel, IonItem, IonInput, ItemListTablePage,]
 })
 export class ComplaintsPage implements OnInit {
 
@@ -53,7 +54,7 @@ export class ComplaintsPage implements OnInit {
 
   Gender: any;
 
-  patientData!: PatientListDatewiseItem;
+  patientData!: PatientListDatewiseItem ;
   // @Input() SelectedData:any[]=[]
   // @Input() Remarksnote:string=''
   // @Input() EmrdocId:string=''
@@ -69,13 +70,14 @@ export class ComplaintsPage implements OnInit {
   ) {
 
     addIcons({ chevronBackOutline, chevronForwardOutline, closeCircleOutline, arrowBackOutline, pencil, addOutline, trash });
-    this.getPatientDataFromShared()
+   
     // this.getBranch()
     //  this.PAtientData()
   }
 
   ngOnInit() {
     console.log('a')
+     this.getPatientDataFromShared()
   }
 
   getBranch() {
@@ -132,9 +134,9 @@ export class ComplaintsPage implements OnInit {
     // const state = window.history.state;
     this.patientData = this.shared.getPatient()
     console.log(this.patientData);
-    this.pid = this.patientData.patI_ID
-    this.edocId = this.patientData.opvdtlS_DOCTOR_ID
-    this.pEdocId = this.patientData.emR_DOC_ID
+    this.pid = this.patientData?.patI_ID
+    this.edocId = this.patientData?.opvdtlS_DOCTOR_ID
+    this.pEdocId = this.patientData?.emR_DOC_ID
     // this.BranchId = this.patientData.br
     // this.getExistingForm(this.patientData.emR_DOC_ID)
 
@@ -600,7 +602,11 @@ export class ComplaintsPage implements OnInit {
     }
   }
 
+  selectedField:'code' | 'name' = 'code'
+
   CodeType(event: any, i: any) {
+
+    this.selectedField = 'code'
 
     console.log(event.target.value);
 
@@ -613,6 +619,7 @@ export class ComplaintsPage implements OnInit {
     this.icdlist[i].isDropdownVisible = true
     console.log(this.icdlist);
 
+
     let type = 'p'
     let val = event.target.value
     this.GetOnlineICDSelectionAsync(type, val)
@@ -621,7 +628,7 @@ export class ComplaintsPage implements OnInit {
 
   NameType(event: any, i: any) {
 
-
+    this.selectedField = 'name'
 
     console.log(this.dropdownPosition);
     // this.cdr.detectChanges()
@@ -672,11 +679,16 @@ export class ComplaintsPage implements OnInit {
     //  this.isLocationDropdownVisible = true;
   }
   onLocationSelected(selected: any) {
+//     activE_STATUS: "A"
+// icodE_DTLS_CODE: "S82.041"
+// icodE_DTLS_ID: "348"
+// icodE_DTLS_NAME: "Displaced comminuted fracture of right patella, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with routine healing"
+// icodE_ID: "1457"
     console.log(selected);
-    this.icdlist[this.Index].icdCodeId = selected.ICODE_ID
-    this.icdlist[this.Index].icdCodeDtlsId = selected.ICODE_DTLS_ID
-    this.icdlist[this.Index].Code = selected.ICODE_DTLS_CODE
-    this.icdlist[this.Index].Name = selected.ICODE_DTLS_NAME
+    this.icdlist[this.Index].icdCodeId = selected.icodE_ID
+    this.icdlist[this.Index].icdCodeDtlsId = selected.icodE_DTLS_ID
+    this.icdlist[this.Index].Code = selected.icodE_DTLS_CODE
+    this.icdlist[this.Index].Name = selected.icodE_DTLS_NAME
 
 
     // ACTIVE_STATUS: "A"

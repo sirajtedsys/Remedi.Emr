@@ -81,7 +81,7 @@ export class PrescriptionPage implements OnInit {
   EmployeeId: string = ''
 
 
-  patientData!: PatientListDatewiseItem;
+  patientData!: PatientListDatewiseItem | null;
 
   constructor(
     private notificationService: NotificationService,
@@ -137,9 +137,9 @@ export class PrescriptionPage implements OnInit {
     // const state = window.history.state;
     this.patientData = this.shared.getPatient()
     console.log(this.patientData);
-    this.pid = this.patientData.patI_ID
-    this.edocId = this.patientData.opvdtlS_DOCTOR_ID
-    this.pEdocId = this.patientData.emR_DOC_ID
+    this.pid = this.patientData?.patI_ID
+    this.edocId = this.patientData?.opvdtlS_DOCTOR_ID
+    this.pEdocId = this.patientData?.emR_DOC_ID
     // this.BranchId = this.patientData.br
     // this.getExistingForm(this.patientData.emR_DOC_ID)
 

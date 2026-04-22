@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonCard, IonContent, IonHeader, IonIcon, IonInput, IonTitle, IonToolbar, ModalController, IonItem, IonGrid, IonLabel, IonRow, IonCol, IonList, IonButtons, IonSearchbar } from '@ionic/angular/standalone';
+import { ModalController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline, searchOutline } from 'ionicons/icons';
 
@@ -10,7 +10,7 @@ import { closeOutline, searchOutline } from 'ionicons/icons';
   templateUrl: './item-list-table.page.html',
   styleUrls: ['./item-list-table.page.scss'],
   standalone: true,
-  imports: [IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,IonIcon,IonButton,IonCard,IonInput,IonGrid,IonLabel,IonRow,IonCol,IonList,IonButtons,IonItem,IonSearchbar]
+  imports: [CommonModule, FormsModule]
 })
 export class ItemListTablePage implements OnInit {
 

@@ -35,10 +35,10 @@
             <img src="assets/images/circle-user.png" alt="patient" />
           </div>
           <div class="primary-info">
-            <h2>{{ patientData.patientname || 'No Patient Selected' }}</h2>
+            <h2>{{ patientData?.patientname || 'No Patient Selected' }}</h2>
             <p>
-              <span class="badge op">OP: {{ patientData.patI_OPNO }}</span>
-              <span class="badge age">{{ patientData.age }} yrs / {{ patientData.gender }}</span>
+              <span class="badge op">OP: {{ patientData?.patI_OPNO }}</span>
+              <span class="badge age">{{ patientData?.age }} yrs / {{ patientData?.gender }}</span>
             </p>
           </div>
 
@@ -54,13 +54,13 @@
             <ion-col size="6" size-md="3">
               <div class="detail-item">
                 <label>Department</label>
-                <span>{{ patientData.departmenT_NAME }}</span>
+                <span>{{ patientData?.departmenT_NAME }}</span>
               </div>
             </ion-col>
             <ion-col size="6" size-md="3">
               <div class="detail-item">
                 <label>Consulting Doctor</label>
-                <span>{{ patientData.docT_NAME || '—' }}</span>
+                <span>{{ patientData?.docT_NAME || '—' }}</span>
               </div>
             </ion-col>
             <!-- <ion-col size="6" size-md="3">
@@ -72,7 +72,7 @@
             <ion-col size="6" size-md="3">
               <div class="detail-item">
                 <label> Visit Date</label>
-                <span>{{ patientData.vsT_TIME  }}</span>
+                <span>{{ patientData?.vsT_TIME  }}</span>
               </div>
             </ion-col>
           </ion-row>
