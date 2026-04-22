@@ -1,0 +1,196 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Prescription</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ng-container class="review-bg  patient-msg-content">
+
+  <ion-accordion-group>
+
+    <!-- MULTIPLE MEDICINE -->
+    <ion-accordion *ngFor="let medicineForm of medicineForms; let i=index" [value]="i">
+
+      <!-- HEADER -->
+      <ion-item slot="header" class="acc-header">
+        <ion-label>
+          {{ i+1 }} -
+          {{ medicineForm.MedName == '' ? 'Medicine Form ' + (i+1) : medicineForm.MedName }}
+        </ion-label>
+
+        <!-- DELETE -->
+        <ion-button fill="clear" class="delete-btn" *ngIf="medicineForm.MedPslno == 0"
+          (click)="DeleteRow(i); $event.stopPropagation()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <!-- BODY -->
+      <div slot="content" class="acc-body">
+
+        <div class="search-input">
+          <!-- ROW 1 -->
+          <div class="grid-5">
+
+            <div class="input-wrapper">
+              <!-- Generic -->
+              <ion-item fill="outline">
+                <ion-label position="stacked">Generic</ion-label>
+                <ion-input [value]="medicineForm.GenricName" (ionInput)="inputGeneric($event,i)">
+                </ion-input>
+              </ion-item>
+
+              <app-item-list-table *ngIf="medicineForm.firstRowSearch && InputField=='Generic' && SelectedIndex==i" [DropDownData]="DropdownData"
+                [Headers]="SearchHeaders" [Fields]="SearchFileds" [gridColumns]="SearchWebGrids"
+                (itemSelected)="onDropSelected($event)" class="dropdown-overlay">
+              </app-item-list-table>
+            </div>
+
+            <div class="input-wrapper">
+            <!-- Medicine -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Medicine Info<span class="danger">*</span></ion-label>
+              <ion-input [value]="medicineForm.MedName" (ionInput)="inputMedicine($event,i)">
+              </ion-input>
+            </ion-item>
+                    <app-item-list-table *ngIf="medicineForm.firstRowSearch && InputField=='medicine' && SelectedIndex==i" [DropDownData]="DropdownData"
+                [Headers]="SearchHeaders" [Fields]="SearchFileds" [gridColumns]="SearchWebGrids"
+                (itemSelected)="onDropSelected($event)" class="dropdown-overlay">
+              </app-item-list-table>
+            </div>
+
+            <div class="input-wrapper">
+            <!-- Dosage -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Dosage</ion-label>
+              <ion-input [value]="medicineForm.DosNAme" (ionInput)="inputDosage($event,i)">
+              </ion-input>
+            </ion-item>
+                    <app-item-list-table *ngIf="medicineForm.firstRowSearch && InputField=='Dos' && SelectedIndex==i" [DropDownData]="DropdownData"
+                [Headers]="SearchHeaders" [Fields]="SearchFileds" [gridColumns]="SearchWebGrids"
+                (itemSelected)="onDropSelected($event)" class="dropdown-overlay">
+              </app-item-list-table>
+            </div>
+
+            <div class="input-wrapper">
+            <!-- Route -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Route<span class="danger">*</span></ion-label>
+              <ion-input [value]="medicineForm.RouteName" (ionInput)="inputRoute($event,i)">
+              </ion-input>
+            </ion-item>
+                    <app-item-list-table *ngIf="medicineForm.firstRowSearch && InputField=='route' && SelectedIndex==i" [DropDownData]="DropdownData"
+                [Headers]="SearchHeaders" [Fields]="SearchFileds" [gridColumns]="SearchWebGrids"
+                (itemSelected)="onDropSelected($event)" class="dropdown-overlay">
+              </app-item-list-table>
+            </div>
+
+            <div class="input-wrapper">
+            <!-- Frequency -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Frequency<span class="danger">*</span></ion-label>
+              <ion-input [value]="medicineForm.FreqName" (ionInput)="inputFrequancy($event,i)">
+              </ion-input>
+            </ion-item>
+
+            <app-item-list-table *ngIf="medicineForm.firstRowSearch && InputField=='fre' && SelectedIndex==i" [DropDownData]="DropdownData"
+              [Headers]="SearchHeaders" [Fields]="SearchFileds" [gridColumns]="SearchWebGrids"
+              (itemSelected)="onDropSelected($event)" class="dropdown-overlay">
+            </app-item-list-table>
+            </div>
+ 
+          </div>
+
+
+          <!-- ROW 2 -->
+          <div class="grid-6">
+
+            <!-- Duration -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Duration</ion-label>
+              <ion-input type="number" [value]="medicineForm.Durval" (ionInput)="EnterDurVal($event,i)">
+              </ion-input>
+            </ion-item>
+
+            <!-- Duration Type -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Days</ion-label>
+              <ion-select [value]="medicineForm.DurType" (ionChange)="ChangeDur($event,i)">
+                <ion-select-option value="1">Days</ion-select-option>
+                <ion-select-option value="7">Weeks</ion-select-option>
+                <ion-select-option value="30">Months</ion-select-option>
+                <ion-select-option value="365">Years</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <!-- Qty -->
+            <ion-item fill="outline">
+              <ion-label position="stacked">Qty<span class="danger">*</span> </ion-label>
+              <ion-input type="number" [value]="medicineForm.QtyTotal" (ionInput)="EnterQtyTotal($event,i)">
+              </ion-input>
+            </ion-item>
+
+            <!-- Brk Qty -->
+            <div class="chk-group">
+              <ion-checkbox [checked]="medicineForm.PSaleBrkQty==1" (ionChange)="BrqQtyChange($event,i)">
+              </ion-checkbox>
+              <span>Brk Qty</span>
+            </div>
+
+            <!-- TD -->
+            <div class="chk-group">
+              <ion-checkbox [checked]="medicineForm.PTestDose=='Y'" (ionChange)="TDChange($event,i)">
+              </ion-checkbox>
+              <span>TD</span>
+            </div>
+
+            <!-- BF -->
+            <div class="chk-group">
+              <ion-checkbox [checked]="medicineForm.Bf=='Y'" (ionChange)="BfChange($event,i)">
+              </ion-checkbox>
+              <span>BF</span>
+            </div>
+
+            <!-- AF -->
+            <div class="chk-group">
+              <ion-checkbox [checked]="medicineForm.Af=='Y'" (ionChange)="AfChange($event,i)">
+              </ion-checkbox>
+              <span>AF</span>
+            </div>
+
+          </div>
+
+
+          <!-- REMARKS FULL WIDTH -->
+          <div class="remarks-row">
+            <ion-item fill="outline">
+              <ion-label position="stacked">Remarks</ion-label>
+              <ion-input [value]="medicineForm.Rmrks" (ionInput)="EnterRemarks($event,i)">
+              </ion-input>
+            </ion-item>
+          </div>
+
+
+          <!-- DROPDOWN COMPONENT (same old) -->
+
+        </div>
+
+      </div>
+    </ion-accordion>
+
+  </ion-accordion-group>
+
+
+  <!-- ADD + SAVE -->
+  <div class="bottom-row">
+    <ion-button class="add-btn" (click)="Addnewform()">
+      <ion-icon name="add"></ion-icon>
+      Add Medicine
+    </ion-button>
+
+    <ion-button class="save-btn" (click)="Submit()">
+      Save
+    </ion-button>
+  </div>
+
+</ng-container>

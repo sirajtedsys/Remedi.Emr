@@ -1,21 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .main-content {
   --background: #d7ecec;
   --padding-start: 16px;
@@ -271,7 +254,6 @@ ion-input {
 }
 
 .edit-btn,
-
 .save-btn {
   --border-radius: 12px;
   font-weight: 600;
@@ -331,18 +313,13 @@ ion-accordion .item-native ion-icon {
 
 
 
-/* .full-preview-modal {
+.full-preview-modal {
   --width: 95%;
   --height: 95%;
   --border-radius: 12px;
-} */
-
-.full-preview-modal {
-  --width: 90vw;
-  --max-width: 1100px;
-  --height: 80vh;
-  --max-height: 800px;
 }
+
+
 
 
 .preview-header {
@@ -410,7 +387,7 @@ ion-accordion .item-native ion-icon {
 
   background: #a7c3c4;
   border-radius: 8px;
-  /* overflow: hidden; */
+  overflow: hidden;
 
   .tab {
     flex: 1;
@@ -438,15 +415,8 @@ ion-accordion .item-native ion-icon {
   padding: 10px;
   border-radius: 12px;
   color: rgb(0, 0, 0);
+}
 
-  
-}
-@media (max-width:580px){
-  .left-content{
-    /* max-height:600px ; */
-    overflow: auto;
-  }
-}
 .search-title {
   font-size: 14px;
   font-weight: 600;
@@ -502,24 +472,35 @@ ion-accordion .item-native ion-icon {
 }
 
 
-
 .autocomplete-table {
-
-  position: absolute;
-  /* top: 55px; */
-  left: 0;
+  position: relative; /* ✅ VERY IMPORTANT */
   width: 100%;
-
   max-height: 260px;
   overflow-y: auto;
 
-  background: white;
+  background: #efe5e4 !important;
   border-radius: 10px;
-
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  z-index: 1000;
-
 }
+
+
+// .autocomplete-table {
+
+//   position: absolute;
+//   top: 55px;
+//   left: 0;
+//   width: 100%;
+
+//   max-height: 260px;
+//   overflow-y: auto;
+
+//   background: white;
+//   border-radius: 10px;
+
+//   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+//   z-index: 1000;
+
+// }
 
 /* DESKTOP TABLE */
 

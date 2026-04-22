@@ -91,7 +91,7 @@ export const routes: Routes = [
             (m) => m.PatientDataPage
           ),
         children: [
-           { path: '', redirectTo: 'digital-intake', pathMatch: 'full' },
+          { path: '', redirectTo: 'digital-intake', pathMatch: 'full' },
           {
             path: 'digital-intake',
             loadComponent: () =>
@@ -99,32 +99,50 @@ export const routes: Routes = [
                 './dashboard/remedi.cc/digital-intake/digital-intake.page'
               ).then((m) => m.DigitalIntakePage),
           },
-            {
+          {
             path: 'npassessment',
-            loadComponent: () => import('./dashboard/remedi.cc/npassessment/npassessment.page').then( m => m.NpassessmentPage)
+            loadComponent: () => import('./dashboard/remedi.cc/npassessment/npassessment.page').then(m => m.NpassessmentPage)
           },
           {
             path: 'treatment-summary',
-            loadComponent: () => import('./dashboard/remedi.cc/treatment-summary/treatment-summary.page').then( m => m.TreatmentSummaryPage)
+            loadComponent: () => import('./dashboard/remedi.cc/treatment-summary/treatment-summary.page').then(m => m.TreatmentSummaryPage)
           },
-            {
+          {
             path: 'patient-message',
-            loadComponent: () => import('./dashboard/remedi.cc/patient-message/patient-message.page').then( m => m.PatientMessagePage)
+            loadComponent: () => import('./dashboard/remedi.cc/patient-message/patient-message.page').then(m => m.PatientMessagePage)
           },
-            {
-              path: 'progress-note',
-              loadComponent: () => import('./dashboard/remedi.cc/progress-note/progress-note.page').then( m => m.ProgressNotePage)
-            },
-            {
-              path: 'orders',
-              loadComponent: () => import('./dashboard/remedi.cc/orders/orders.page').then( m => m.OrdersPage)
-            },
-            {
-              path: 'next-review',
-              loadComponent: () => import('./dashboard/remedi.cc/next-review/next-review.page').then( m => m.NextReviewPage)
-            },
+          {
+            path: 'progress-note',
+            loadComponent: () => import('./dashboard/remedi.cc/progress-note/progress-note.page').then(m => m.ProgressNotePage)
+          },
+          {
+            path: 'orders',
+            loadComponent: () => import('./dashboard/remedi.cc/orders/orders.page').then(m => m.OrdersPage)
+          },
+          {
+            path: 'next-review',
+            loadComponent: () => import('./dashboard/remedi.cc/next-review/next-review.page').then(m => m.NextReviewPage)
+          },
 
         ],
+      },
+
+
+      {
+        path: 'emr-patient-details',
+        loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/emr-patient-details.page').then(m => m.EmrPatientDetailsPage),
+        children: [
+          { path: '', redirectTo: 'prescription', pathMatch: 'full' },
+          {
+            path: 'prescription',
+            loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/prescription/prescription.page').then(m => m.PrescriptionPage)
+          },
+          {
+            path: 'complaints',
+            loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/complaints.page').then(m => m.ComplaintsPage)
+          },
+
+        ]
       },
     ],
   },
@@ -229,7 +247,11 @@ export const routes: Routes = [
   },
 
 
- 
+  {
+    path: 'item-list-table',
+    loadComponent: () => import('./shared/item-list-table/item-list-table.page').then(m => m.ItemListTablePage)
+  },
+
 
 
 ];

@@ -1,0 +1,308 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Complaints</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ng-container class="emr-bg ion-padding">
+
+  <div class="section-card">
+    <div class="grid-5">
+      <ion-item fill="outline">
+        <ion-label position="stacked">Hght(Cm)</ion-label>
+        <ion-input type="number" (input)="calculateBMI('h')" [(ngModel)]="vit.height1"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Wght(Kg)</ion-label>
+        <ion-input (input)="calculateBMI('w')" [(ngModel)]="vit.weight1" type="number"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">BMI(kg/m2)</ion-label>
+        <ion-input readonly value="0" [(ngModel)]="BMI"></ion-input>
+        <span [ngClass]="BMI >= 18.5 && BMI <= 25?'':'text-danger'">
+          {{BMI<18.5 && BMI> 0.1?'Under Weight':BMI >= 18.5 && BMI <= 25?'Normal Range':BMI>= 25
+              && BMI <= 30?'Over Weight':BMI> 30?'Obese':BMI==0?'':''}}</span>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">IBW(kg)</ion-label>
+        <ion-input readonly value="0" [(ngModel)]="IBW"></ion-input>
+      </ion-item>
+      <div class="split-input">
+        <ion-item fill="outline">
+          <ion-label position="stacked">BP(LT) (mmHg)</ion-label>
+          <ion-input placeholder="Systolic " [(ngModel)]="vit.minBpLeft"></ion-input>
+        </ion-item>
+        <ion-item fill="outline" class="no-label">
+          <ion-input placeholder="Diastolic " [(ngModel)]="vit.maxBpLeft"></ion-input>
+        </ion-item>
+      </div>
+    </div>
+
+    <div class="grid-5 mt-10">
+      <div class="split-input">
+        <ion-item fill="outline">
+          <ion-label position="stacked">BP(RT) (mmHg)</ion-label>
+          <ion-input placeholder="Systolic " [(ngModel)]="vit.minBp"></ion-input>
+        </ion-item>
+        <ion-item fill="outline" class="no-label">
+          <ion-input placeholder="Diastolic " [(ngModel)]="vit.maxBp"></ion-input>
+        </ion-item>
+      </div>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Pulse(bpm)</ion-label>
+        <ion-input type="number" [(ngModel)]="vit.pulse1"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">B.Grp</ion-label>
+        <ion-select interface="popover" [(ngModel)]="vit.BLD_GRP_ID" (change)="onBloodGroupChange($event)">
+          <ion-select-option *ngFor="let items of BloodGroupList"
+            [value]="items.blD_GRP_ID">{{items.blD_GRP_NAME}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">SpO2:(%)</ion-label>
+        <ion-input type="number" [(ngModel)]="vit.pSpo2"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">GRBS(mg/dl)</ion-label>
+        <ion-input type="number" [(ngModel)]="vit.pGrbs"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="grid-temp mt-10">
+      <div class="temp-group">
+        <ion-item fill="outline">
+          <ion-label position="stacked">Temp</ion-label>
+          <ion-input type="number" [(ngModel)]="vit.temp1"></ion-input>
+        </ion-item>
+        <ion-item fill="outline" class="no-label">
+          <ion-select value="C" [(ngModel)]="vit.pTempUnit">
+            <ion-select-option value="C">CELSIUS</ion-select-option>
+            <ion-select-option value="F">FAHRENHEIT</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Resp(breaths/min)</ion-label>
+        <ion-input type="number" [(ngModel)]="vit.rr1"></ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Pain Assessment</ion-label>
+        <ion-select value="0" [(ngModel)]="vit.pPainAssessment">
+          <ion-select-option value="0">0 - No Pain</ion-select-option>
+          <ion-select-option value="1">1-2 - Mild pain</ion-select-option>
+          <ion-select-option value="2">3-6 - Moderate Pain</ion-select-option>
+          <ion-select-option value="3">7-8 - Severe Pain</ion-select-option>
+          <ion-select-option value="4">9-10 -  Worst Pain</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Location</ion-label>
+        <ion-input [(ngModel)]="vit.pLocation"> </ion-input>
+      </ion-item>
+      <ion-item fill="outline">
+        <ion-label position="stacked">Remarks</ion-label>
+        <ion-textarea rows="1" [(ngModel)]="vit.pRemarks"></ion-textarea>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="section-group">
+      <div class="label-with-btn">
+        <span class="custom-label">KNOW CASE OF(K/C/O)</span>
+        <ion-button size="small" class="edit-btn" (click)="KnowCaseModal=true"><ion-icon
+            name="pencil"></ion-icon></ion-button>
+      </div>
+      <ion-textarea fill="outline" rows="3" class="custom-textarea" [(ngModel)]="kn.Remarks"></ion-textarea>
+    </div>
+
+    <div class="section-group">
+      <div class="label-with-btn">
+        <span class="custom-label">SYMPTOMS</span>
+        <ion-button size="small" class="edit-btn" (click)="SymptomsModal=true"><ion-icon
+            name="pencil"></ion-icon></ion-button>
+      </div>
+      <ion-textarea fill="outline" rows="3" [(ngModel)]="Sym.Remarks" class="custom-textarea"></ion-textarea>
+    </div>
+
+    <div class="section-group">
+      <span class="custom-label">Allergy</span>
+      <div class="radio-row">
+        <ion-radio-group value="none" [(ngModel)]="cd.P_ALLERGY_STATUS">
+          <ion-radio (change)="P_ALLERGY_STATUS($event)" value="NKA" label-placement="end">No Known
+            Allergies</ion-radio>
+          <ion-radio (change)="P_ALLERGY_STATUS1($event)" value="KA" label-placement="end">Known</ion-radio>
+          <ion-radio (change)="P_ALLERGY_STATUS2($event)" value="NA" label-placement="end">No Allergies</ion-radio>
+        </ion-radio-group>
+      </div>
+      <ion-textarea fill="outline" [(ngModel)]="cd.ALLERGYDTLS" rows="3" class="custom-textarea"></ion-textarea>
+    </div>
+  </div>
+
+  <div class="grid-3 mt-20">
+    <ion-item fill="outline">
+      <ion-label position="stacked">Cheif Complaint</ion-label>
+      <ion-textarea placeholder="Cheif Complaint" (input)="insert($event,'COMPLNT')" [innerHtml]="cd.COMPLNT"
+        rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Medical History</ion-label>
+      <ion-textarea placeholder="Medical History" (input)="insert($event,'p_mh_Other')" [innerHtml]="cd.p_mh_Other"
+        rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">History of Presenting Complaints</ion-label>
+      <ion-textarea placeholder="History of Presenting Complaints" (input)="insert($event,'HSTRY')"
+        [innerHtml]="cd.HSTRY" rows="3"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div class="grid-3 mt-20">
+    <ion-item fill="outline">
+      <ion-label position="stacked">Systemic Examination</ion-label>
+      <ion-textarea placeholder="Systemic Examination" (input)="insert($event,'SYSTEMIC')" [innerHtml]="cd.SYSTEMIC"
+        rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Physical Examination</ion-label>
+      <ion-textarea placeholder="Physical Examination" (input)="insert($event,'LOCALEX')" [innerHtml]="cd.LOCALEX"
+        rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Family and Personal History</ion-label>
+      <ion-textarea placeholder="Family and Personal History" (input)="insert($event,'P_FAMILY_MED_HISTORY')"
+        [innerHtml]="cd.P_FAMILY_MED_HISTORY" rows="3"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div class="grid-3 mt-20">
+    <ion-item fill="outline">
+      <ion-label position="stacked">Remarks</ion-label>
+      <ion-textarea placeholder="Remarks" (input)="insert($event,'P_OPERTN_NOTE')" [innerHtml]="cd.P_OPERTN_NOTE"
+        rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Provisional Diagnosis</ion-label>
+      <ion-textarea placeholder="Provisional Diagnosis" (input)="insert($event,'ICDDIGNOSIS')"
+        [innerHtml]="cd.ICDDIGNOSIS" rows="3"></ion-textarea>
+    </ion-item>
+    <ion-item fill="outline">
+      <ion-label position="stacked">Current Medication</ion-label>
+      <ion-textarea placeholder="Current Medication" (input)="insert($event,'CURRENT_MEDICATION')"
+        [innerHtml]="cd.CURRENT_MEDICATION" rows="3"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div class="grid-2 mt-20">
+    <ion-item fill="outline">
+      <ion-label position="stacked">Treatment plan</ion-label>
+      <ion-textarea placeholder="Treatment plan" (input)="insert($event,'P_TREATMENT_REMARKS_NEW')"
+        [innerHtml]="cd.P_TREATMENT_REMARKS_NEW" rows="3"></ion-textarea>
+    </ion-item>
+
+
+    <div class="edu-section">
+      <div class="custom-label">Patient And Family Education</div>
+
+      <div class="edu-row-container">
+        <div class="edu-row">
+          <span>Education</span>
+          <ion-radio-group [(ngModel)]="cd.edu" value="no">
+            <ion-radio value="yes" label-placement="end">Yes</ion-radio>
+            <ion-radio value="no" label-placement="end">No</ion-radio>
+          </ion-radio-group>
+        </div>
+        <ion-item fill="outline" class="remarks-item" *ngIf="cd.edu === 'yes'">
+          <ion-label position="stacked">Education Remarks</ion-label>
+          <ion-textarea placeholder="Enter details..."[(ngModel)]="cd.P_PATI_EDU" rows="2"></ion-textarea>
+        </ion-item>
+      </div>
+
+      <div class="edu-row-container">
+        <div class="edu-row">
+          <span>Advice</span>
+          <ion-radio-group [(ngModel)]="cd.adv" value="no">
+            <ion-radio value="yes" label-placement="end">Yes</ion-radio>
+            <ion-radio value="no" label-placement="end">No</ion-radio>
+          </ion-radio-group>
+        </div>
+        <ion-item fill="outline" class="remarks-item" *ngIf="cd.adv === 'yes'">
+          <ion-label position="stacked">Advice Remarks</ion-label>
+          <ion-textarea placeholder="Enter details..." [(ngModel)]="cd.P_PATI_ADVICE" rows="2"></ion-textarea>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="section-card">
+  <div class="section-title icd-title">ICD</div>
+  
+  <div class="icd-container">
+    <div class="icd-header-row hide-mobile">
+      <div class="col-sl">Sl.No</div>
+      <div class="col-code">Code</div>
+      <div class="col-name">Name</div>
+      <div class="col-remarks">Remarks</div>
+      <div class="col-action"></div>
+    </div>
+
+    <div class="icd-row" *ngFor="let row of icdlist; let i = index">
+      <div class="col-sl">
+        <ion-label class="show-mobile">Sl.No</ion-label>
+        <ion-input type="number" [value]="i + 1" readonly class="icd-input-flat"></ion-input>
+      </div>
+      
+      <div class="col-code">
+        <ion-label class="show-mobile">Code</ion-label>
+        <ion-input placeholder="Code" (input)="CodeType($event,i)" [value]="row.Code"class="icd-input-flat"></ion-input>
+      </div>
+      
+      <div class="col-name">
+        <ion-label class="show-mobile">Name</ion-label>
+        <ion-input placeholder="Name" (input)="NameType($event,i)" [value]="row.Name"  class="icd-input-flat"></ion-input>
+      </div>
+      
+   <!-- <app-item-list-table
+      *ngIf="row.isDropdownVisible"
+      [dropdownData]="ICdSelectionList"
+      [top]="dropdownPosition.top"
+      [left]="dropdownPosition.left"
+      [Field1]="'icodE_DTLS_NAME'"
+      [Field2]="'icodE_DTLS_CODE'"
+      [Header1]="'Name'"
+      [Header2]="'Code'"
+      (itemSelected)="onLocationSelected($event)"
+      (WindowClosed)="OnLOcationdropClose($event)"
+      class="dropdown-overlay">
+    </app-item-list-table> -->
+      
+      <div class="col-remarks">
+        <ion-label class="show-mobile">Remarks</ion-label>
+        <ion-textarea placeholder="Remarks" (input)="remarksin($event,i)" [value]="row.remarks" rows="1" class="icd-textarea-flat"></ion-textarea>
+      </div>
+      
+      <div class="col-action">
+        <ion-button fill="clear" color="danger" (click)="DeleteRow(i)">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="icd-actions mt-10">
+    <ion-button (click)="AddRow()" class="add-btn" size="small">
+      <ion-icon name="add-outline" slot="start"></ion-icon>
+      Add Row
+    </ion-button>
+  </div>
+</div>
+<div class="form-footer-btns">
+  <ion-button class="submit-btn">Submit</ion-button>
+  <ion-button class="clear-btn">Clear</ion-button>
+</div>
+
+</ng-container>

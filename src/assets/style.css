@@ -506,7 +506,7 @@ ion-accordion .item-native ion-icon {
 .autocomplete-table {
 
   position: absolute;
-  top: 55px;
+  /* top: 55px; */
   left: 0;
   width: 100%;
 

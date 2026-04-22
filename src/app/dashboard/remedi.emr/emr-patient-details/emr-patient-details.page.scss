@@ -1,0 +1,237 @@
+/* =========================================
+   SELECTED PATIENT ACCORDION
+========================================= */
+.selected-patient-container {
+  margin: 15px 20px;
+  
+  .patient-accordion {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(48, 63, 159, 0.15);
+    background: #ffffff;
+    border: 1px solid #e0e4f0;
+
+    &.accordion-expanding, &.accordion-expanded {
+      margin-bottom: 10px;
+    }
+  }
+
+  
+    // linear-gradient(135deg, #3f51b5 0%, #303f9f 100%);
+  /* Header Styling */
+  .accordion-header-item {
+    --background: linear-gradient(135deg, #22565a 0%, #22565a 100%);
+    --padding-start: 12px;
+    --min-height: 70px;
+    color: white;
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+
+      .avatar-box img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        background: #fff;
+      }
+
+      .primary-info {
+        h2 {
+          margin: 0;
+          font-size: 1.2rem;
+          font-weight: 700;
+          letter-spacing: 0.3px;
+        }
+        p {
+          margin: 5px 0 0;
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+  }
+
+  /* Badges inside header */
+  .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+    &.op { background: rgba(255, 255, 255, 0.2); color: #fff; }
+    &.age { background: #ffca28; color: #333; }
+  }
+
+  /* Body Content Styling */
+  .accordion-body {
+    background: #fdfdff;
+    
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+
+      label {
+        font-size: 11px;
+        color: #7986CB;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      span {
+        font-size: 14px;
+        color: #2c3e50;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* Make it look natural on smaller screens */
+@media (max-width: 576px) {
+  .selected-patient-container {
+    margin: 10px;
+    
+    .accordion-header-item {
+       --min-height: 70px;
+       .primary-info h2 { font-size: 1rem; }
+    }
+  }
+}
+
+//toggle menu
+
+
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100vh;
+  background: linear-gradient(135deg,#30a7a2,#30a7a2);
+  color: #fff;
+  z-index: 2000;
+  transition: .35s ease;
+  padding: 15px;
+  padding-top: 5%;
+  box-shadow: 4px 0 20px rgba(0,0,0,.4);
+// margin-top: 100px;
+  @media(max-width:480px){
+    padding-top: 15%;
+  }
+}
+
+.offcanvas-menu.open {
+  left: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.menu-header ion-icon {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.offcanvas-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.offcanvas-menu li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  cursor: pointer;
+
+  &:hover {
+    background: #50c2ff;
+    border-radius: 5px;
+    padding-left: 10px;
+    transition: ease-in-out .5s;
+    color: #1f9cdf;
+  }
+}
+
+.offcanvas-menu li ion-icon {
+  font-size: 18px;
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 1500;
+}
+
+
+
+.header-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  color: white;
+
+  .primary-info {
+    flex-grow: 1; /* Pushes the menu button to the end */
+  }
+
+  .header-menu-btn {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    margin-right: -10px; /* Aligns with the edge of the card */
+    z-index: 10;
+    color: white;
+    font-size: 30px;
+  }
+}
+
+
+
+
+.menu-btn {
+  background: #30a7a2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: absolute; /* Place it top-left or top-right */
+  top: 15px;
+  left: 15px;
+  z-index: 99;
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  ion-icon {
+    font-size: 24px;
+    color: white;
+  }
+}
+
+

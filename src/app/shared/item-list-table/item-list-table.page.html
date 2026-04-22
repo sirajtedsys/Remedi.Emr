@@ -1,0 +1,90 @@
+<!-- <div class="dropdown-container">
+  <div class="dropdown-card" [style.top]="top" [style.left]="left">
+    
+    <ion-header class="ion-no-border">
+      <ion-toolbar color="light">
+        <ion-searchbar 
+          *ngIf="Search"
+          [(ngModel)]="searchQuery" 
+          (ionInput)="filterDropdown()" 
+          (ionClear)="clearSearch()"
+          placeholder="Search..."
+          class="custom-searchbar">
+        </ion-searchbar>
+        
+        <ion-buttons slot="end">
+          <ion-button color="danger" (click)="closeDropdown()">
+            <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-grid class="header-grid ion-hide-sm-down" *ngIf="filteredData.length > 0">
+      <ion-row>
+        <ion-col *ngIf="Header1">{{Header1}}</ion-col>
+        <ion-col *ngIf="Header2">{{Header2}}</ion-col>
+        <ion-col *ngIf="Header3">{{Header3}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-content class="dropdown-content">
+      <ion-list lines="full">
+        <ion-item button *ngFor="let item of filteredData; trackBy: trackByFn" (click)="selectItem(item)">
+          <ion-label>
+            <div class="item-row">
+              <span class="main-text">{{ item[Field1] }}</span>
+              <span class="sub-text" *ngIf="Field2">{{ item[Field2] }}</span>
+              <span class="detail-text" *ngIf="Field3">{{ item[Field3] }}</span>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="empty-state" *ngIf="filteredData.length === 0">
+        <ion-icon name="search-outline" color="medium" size="large"></ion-icon>
+        <h5>No results found</h5>
+      </div>
+    </ion-content>
+  </div>
+</div> -->
+
+<div class="autocomplete-table">
+
+  <div class="desktop-table">
+
+    <div class="table-header" [ngStyle]="{'grid-template-columns': gridColumns}">
+      <span *ngFor="let header of Headers">{{ header }}</span>
+    </div>
+
+    <div class="table-row" [ngStyle]="{'grid-template-columns': gridColumns}"
+      *ngFor="let item of filteredData; let i = index" (click)="onDataSelected($event, item)">
+      <span *ngFor="let field of Fields"> {{ item[field] }}</span>
+    </div>
+
+  </div>
+<div class="mobile-card" 
+     *ngFor="let item of filteredData; let i = index" 
+     (click)="onDataSelected($event, item)">
+
+  <!-- Top row -->
+  <div class="card-top">
+    <span class="main">
+      {{ item[Fields[0]] }}
+    </span>
+
+    <span class="badge" *ngIf="Fields.length > 1">
+      {{ item[Fields[1]] }}
+    </span>
+  </div>
+
+  <!-- Middle content -->
+  <div class="card-body" *ngIf="Fields.length > 2">
+    <div *ngFor="let field of Fields.slice(2)">
+      <strong>{{ field }}:</strong> {{ item[field] }}
+    </div>
+  </div>
+
+</div>
+
+</div>

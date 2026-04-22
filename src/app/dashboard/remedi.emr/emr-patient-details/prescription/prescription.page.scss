@@ -1,0 +1,373 @@
+.patient-msg-content {
+  text-align: left;
+    background-color: #cef1f3;
+}
+
+/* PAGE BACKGROUND */
+.review-bg{
+  --background:#cef1f3 !important;
+  background:#cef1f3 !important;
+  color:#091835 !important;
+}
+
+/* ACCORDION HEADER */
+.acc-header{
+  --background:#1f6b78 !important;
+  --color:#ffffff !important;
+  background:#1f6b78 !important;
+  color:#fff !important;
+  font-weight:600;
+  border-radius:10px;
+  margin-bottom:8px;
+}
+
+/* DELETE ICON */
+.delete-icon{
+  color:#ff4d4d !important;
+  font-size:20px;
+}
+
+/* ACCORDION BODY */
+.acc-body{
+  background:#cde3e3 !important;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:10px;
+  border:1px solid #bfe3e7;
+}
+
+/* GRID LAYOUT */
+.grid-5{
+  display:grid;
+  grid-template-columns: repeat(5,1fr);
+  gap:12px;
+}
+
+.grid-6{
+  display:grid;
+  grid-template-columns: repeat(8,1fr);
+  gap:12px;
+  margin-top:12px;
+  align-items:center;
+}
+
+/* INPUT ITEMS */
+ion-item{
+  --background:#ffffff !important;
+  --color:#091835 !important;
+  --border-color:#cde7ea !important;
+  margin-bottom:6px;
+  border-radius:8px;
+}
+
+ion-item::part(native){
+  border-radius:8px;
+  background:#ffffff !important;
+  color:#091835 !important;
+}
+
+/* LABEL */
+ion-label{
+  color:#2b4c63 !important;
+  font-weight:500;
+}
+
+/* INPUT TEXT */
+ion-input, ion-select{
+  color:#091835 !important;
+}
+
+/* CHECKBOX GROUP */
+.chk-group{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:18px;
+  font-size:13px;
+  color:#091835;
+}
+
+/* REMARK BOX */
+.remarks-box{
+  grid-column: span 2;
+}
+
+/* BUTTON ROW */
+.bottom-row{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+}
+
+/* ADD MEDICINE BUTTON */
+.add-btn{
+  --background:#28a745 !important;
+  --color:#ffffff !important;
+  height:44px;
+  font-weight:600;
+  border-radius:8px;
+}
+
+/* SAVE BUTTON */
+.save-btn{
+  --background:#2c6f7b !important;
+  --color:#ffffff !important;
+  height:44px;
+  font-weight:600;
+  border-radius:8px;
+  width:140px;
+  z-index: 1;
+}
+
+/* FORCE NO DARK MODE EFFECT */
+:host, ion-content, ion-page{
+  --background:#cef1f3 !important;
+  background:#cef1f3 !important;
+  color:#091835 !important;
+}
+
+/* REMOVE AUTO DARK */
+@media (prefers-color-scheme: dark){
+  ion-content, .review-bg{
+    --background:#cef1f3 !important;
+    background:#cef1f3 !important;
+    color:#091835 !important;
+  }
+
+  ion-item{
+    --background:#ffffff !important;
+    --color:#091835 !important;
+  }
+}
+
+
+ion-accordion {
+  
+  background-color: #cef1f3;
+  
+}
+
+
+/* ---------------- MOBILE RESPONSIVE ---------------- */
+
+/* Tablet */
+@media (max-width: 1024px){
+
+  .grid-5{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .grid-6{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .remarks-box{
+    grid-column: span 2;
+  }
+
+  .bottom-row{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .save-btn,
+  .add-btn{
+    width:100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+  .acc-body{
+    padding:12px;
+  }
+
+  /* all fields single column */
+  .grid-5{
+    grid-template-columns: 1fr;
+    gap:10px;
+  }
+
+  .grid-6{
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+  }
+
+  /* duration + qty full width */
+  .remarks-box{
+    grid-column: span 2;
+  }
+
+  ion-item{
+    margin-bottom:8px;
+  }
+
+  /* checkbox align */
+  .chk-group{
+    margin-top:8px;
+  }
+
+  /* buttons mobile */
+  .bottom-row{
+    flex-direction:column;
+    gap:12px;
+    margin-top:18px;
+  }
+
+  .add-btn,
+  .save-btn{
+    width:100%;
+    height:48px;
+    font-size:15px;
+  }
+
+  /* header text */
+  .acc-header{
+    font-size:16px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px){
+
+  .grid-6{
+    grid-template-columns: 1fr;
+  }
+
+  .remarks-box{
+    grid-column: span 1;
+  }
+
+  .chk-group{
+    font-size:12px;
+  }
+
+}
+
+
+/* header layout */
+.acc-header{
+  --background:#1f6b78 !important;
+  --color:white !important;
+  border-radius:10px;
+  font-weight:600;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* delete button */
+.delete-btn{
+  --color:#ff4d4d !important;
+  margin-left:auto;
+}
+
+.delete-btn ion-icon{
+  font-size:20px;
+}
+
+/* prevent header height change */
+.acc-header ion-label{
+  font-size:16px;
+  font-weight:600;
+}
+
+/* mobile safe */
+@media (max-width:768px){
+  .delete-btn ion-icon{
+    font-size:18px;
+  }
+}
+
+
+/* Ensure the container for the dropdown is the reference point */
+.accordion-body {
+  position: relative; 
+  overflow: visible !important; /* Crucial: prevent the accordion from clipping the dropdown */
+}
+
+/* Ensure the custom component isn't hidden by overflow */
+.custom-accordion-body {
+  overflow: visible !important;
+}
+
+
+/* Target the slot="content" container */
+ion-accordion .ion-accordion-content-wrapper {
+  overflow: visible !important;
+}
+
+.acc-body {
+  position: relative; /* This is the anchor for your dropdown's top/left */
+  overflow: visible !important;
+}
+
+/* Ensure the dropdown overlay isn't being squashed */
+.dropdown-overlay {
+  position: absolute;
+  z-index: 9999;
+  width: 100%;
+}
+
+
+/* VERY IMPORTANT - allow dropdown outside accordion */
+ion-accordion,
+ion-accordion::part(content),
+ion-accordion::part(container),
+ion-accordion::part(native),
+.accordion-body,
+.acc-body {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 99999;
+  // margin-top: 0px;
+
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 768px) {
+
+  .input-wrapper {
+    position: static; /* remove relative */
+  }
+
+  .dropdown-overlay {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  .grid-5 {
+    position: relative;
+  }
+
+}
+
+.dropdown-overlay {
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
