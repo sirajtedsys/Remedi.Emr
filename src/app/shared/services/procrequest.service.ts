@@ -254,5 +254,9 @@ async getProgressNoteList(emrDocId: any) {
   return await this.apiService.post(endpoint, data);
 }
 
+async getLastProcedureNote(patiId: string, emrDocId: string) {
+  let endpoint = `procedurenote/get-last-procedure-note?patiId=${patiId}&emrDocId=${emrDocId}`;
+  return await this.apiService.get(endpoint);
+}
 
 }
