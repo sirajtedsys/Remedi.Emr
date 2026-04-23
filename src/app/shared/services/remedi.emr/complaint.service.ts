@@ -63,4 +63,17 @@ export class ComplaintService {
     return this.apiservice.get('emrcomplaint/active-case-details');
   }
 
+
+
+
+  GetSymptoms(doctId: any) {
+    return this.apiservice.get('emrcomplaint/get-symptoms', { doctId });
+  }
+
+  
+    SaveSymptoms(cd: any) {
+    return this.apiservice.post('emrcomplaint/save-symptoms', cd)
+  }
+
+  //pendigsn know case added desing check, and symptoms desings check and code adding,and previous code check of know case and symptoms for output
 }

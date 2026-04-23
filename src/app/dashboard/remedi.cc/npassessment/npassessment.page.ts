@@ -1,37 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
   IonButton,
-  IonSegment,
-  IonSegmentButton,
   IonLabel,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonItem,
   IonFooter,
-  IonButtons,
   IonAccordionGroup,
   IonAccordion,
-  IonList,
   IonInput,
   IonRadio,
   IonListHeader,
   IonTextarea,
   IonRadioGroup,
-  IonCheckbox,
-  IonFab,
-  IonFabButton,
-  IonIcon,
   // IonCheckboxGroup
 } from '@ionic/angular/standalone';
 //import { NpaService } from 'src/app/shared/services/npa.service';
-import { EmrPatientInfo } from 'src/app/shared/interfaces/patient-list/emr-patient-info';
 import { NpaSubmission } from 'src/app/shared/class/npa-assesment/npa-submission';
 import { NeuroPsychobiologicalAssessment } from 'src/app/shared/interfaces/npa-assesment.ts/NeuroPsychobiologicalAssessment';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
@@ -47,7 +34,6 @@ import { NpaService } from 'src/app/shared/services/npa.service';
   standalone: true,
  imports: [
     IonButton,
-    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
@@ -56,24 +42,14 @@ import { NpaService } from 'src/app/shared/services/npa.service';
     IonInput,
     IonTextarea,
     IonRadioGroup,
-    IonCheckbox,
-    IonFab,
-    IonFabButton,
-    IonIcon,
-    IonSegment,
-    IonSegmentButton,
     IonLabel,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
     IonItem,
     IonFooter,
-    IonButtons,
     ReactiveFormsModule,
     IonAccordionGroup,
-    IonAccordion, IonList,
-    IonRadio, IonListHeader,
-  ],
+    IonAccordion,
+    IonRadio, IonListHeader
+],
 })
 export class NpassessmentPage implements OnInit {
 

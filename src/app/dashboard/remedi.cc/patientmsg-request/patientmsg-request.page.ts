@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,49 +13,39 @@ import {
   IonInput,
   IonSelect,
   IonSelectOption,
-  IonIcon,IonGrid,IonRow,IonCol, IonItem, IonCardContent, IonLabel, IonCard, IonList, IonModal,
-  IonBadge,IonCardHeader,IonCardTitle,IonCardSubtitle, IonTextarea } from '@ionic/angular/standalone';
+  IonIcon,IonItem, IonLabel, IonModal } from '@ionic/angular/standalone';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { LoadingController } from '@ionic/angular';
 import { CommonService } from 'src/app/shared/services/common.service';
 // import { AuthService } from 'src/services/Auth.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CustomToastService } from 'src/app/shared/services/custom-toast.service';
 import { TokenService } from 'src/app/shared/services/token.service';
-import { Login } from 'src/app/shared/class/Login';
-import { Section } from 'src/app/shared/interfaces/lookup/section';
 
 import { PatientlistService } from 'src/app/shared/services/patientlist.service';
 import { DatePipe } from '@angular/common';
-import { AppConfig } from 'src/app/shared/class/app-config';
-import { Subject } from 'rxjs';
-import { firstValueFrom } from 'rxjs';
 
-import { Branch } from 'src/app/shared/interfaces/LoginPage';
-import { SectionDet } from 'src/app/shared/interfaces/lookup/sectiondet';
 import { ActivatedRoute } from '@angular/router';
- import { FilterTablePipe } from "src/app/shared/pipes/filter-table.pipe";
 import { DateFormat } from 'src/app/shared/class/DateFormat';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
-import { DateAdapter, MAT_DATE_FORMATS,MAT_DATE_LOCALE, MatOption } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS,MAT_DATE_LOCALE } from '@angular/material/core';
   import { 
   calendarOutline,
   eyeOutline ,
-  searchOutline,eyeSharp,closeOutline,documentOutline, personCircleOutline, closeCircle, chatbubblesOutline, createOutline, alertCircleOutline } from 'ionicons/icons';
+  searchOutline,eyeSharp,closeOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-patientmsg-request',
   templateUrl: './patientmsg-request.page.html',
   styleUrls: ['./patientmsg-request.page.scss'],
   standalone: true,
- imports: [IonTextarea, IonModal, IonList, IonCard, IonLabel, IonCardContent,
+ imports: [IonModal, IonLabel,
     CommonModule,
     FormsModule,
     IonContent,
@@ -68,15 +58,13 @@ import { DateAdapter, MAT_DATE_FORMATS,MAT_DATE_LOCALE, MatOption } from '@angul
     IonSelect,
     IonSelectOption,
     IonIcon,
-    IonGrid, IonRow, IonCol,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
     MatOptionModule,
-     FilterTablePipe,
-     IonItem,  IonModal,IonBadge,IonCardHeader,IonCardTitle,IonCardSubtitle],
+    IonItem, IonModal],
 providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: DateFormat },

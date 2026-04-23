@@ -56,6 +56,30 @@ ion-app {
 }
 
 
+/* Force light theme everywhere */
+
+// :root {
+//   color-scheme: light;
+// }
+
+// // ion-content,
+// // ion-item,
+// // .case-card,
+// // .table-row {
+// //   --background: #ffffff !important;
+// //   background: #ffffff !important;
+// //   color: #000 !important;
+// // }
+
+// /* Disable dark mode override */
+
+// @media (prefers-color-scheme: dark) {
+//   * {
+//     background-color:#274d86 !important;
+//     color: #000000 !important;
+//   }
+// }
+
 ion-toolbar {
   --background: #2c6f7b;
   --color: #fff;

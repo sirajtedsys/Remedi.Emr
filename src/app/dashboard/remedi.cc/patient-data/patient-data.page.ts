@@ -5,15 +5,10 @@ import {
   IonAccordion,
   IonAccordionGroup,
   IonCol,
-  IonContent,
   IonGrid,
-  IonHeader,
   IonItem,
   IonRow,
-  IonTitle,
-  IonToolbar, IonRouterOutlet, IonApp, IonIcon, IonButton, 
-  IonFab,
-  IonFabButton} from '@ionic/angular/standalone';
+  IonIcon, IonButton} from '@ionic/angular/standalone';
    import {
   createOutline,
   informationCircleOutline,
@@ -23,7 +18,6 @@ import {
   chevronUpOutline,closeOutline, person,documentText,pulse,medkit,menuOutline, flask, clipboard } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Router, RouterOutlet } from '@angular/router';
-import { EmrPatientInfo } from 'src/app/shared/interfaces/patient-list/emr-patient-info';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/patient-list-date-wise-item';
 
@@ -32,11 +26,7 @@ import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/
   templateUrl: './patient-data.page.html',
   styleUrls: ['./patient-data.page.scss'],
   standalone: true,
- imports: [IonButton, IonIcon, IonApp, IonRouterOutlet,
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
+ imports: [IonButton, IonIcon,
     CommonModule,
     FormsModule,
     IonAccordionGroup,
@@ -45,9 +35,7 @@ import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/
     IonGrid,
     IonCol,
     IonRow,
-    IonRouterOutlet,
-    IonFab,
-    IonFabButton, RouterOutlet],
+    RouterOutlet],
 })
 export class PatientDataPage implements OnInit {
 patientData!: PatientListDatewiseItem;

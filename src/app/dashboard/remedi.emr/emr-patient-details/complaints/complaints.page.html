@@ -60,12 +60,12 @@
             [value]="items.blD_GRP_ID">{{items.blD_GRP_NAME}}</ion-select-option>
         </ion-select>
       </ion-item>
-     
+
     </div>
 
     <div class="grid-4 mt-10">
 
-       <ion-item fill="outline">
+      <ion-item fill="outline">
         <ion-label position="stacked">SpO2:(%)</ion-label>
         <ion-input type="number" [(ngModel)]="vit.pSpo2"></ion-input>
       </ion-item>
@@ -90,11 +90,11 @@
         <ion-label position="stacked">Resp(breaths/min)</ion-label>
         <ion-input type="number" [(ngModel)]="vit.rr1"></ion-input>
       </ion-item>
-  
+
     </div>
 
     <div class="grid-4 mt-10">
-          <ion-item fill="outline">
+      <ion-item fill="outline">
         <ion-label position="stacked">Pain Assessment</ion-label>
         <ion-select value="0" [(ngModel)]="vit.pPainAssessment">
           <ion-select-option value="0">0 - No Pain</ion-select-option>
@@ -119,8 +119,8 @@
     <div class="section-group">
       <div class="label-with-btn">
         <span class="custom-label">KNOW CASE OF(K/C/O)</span>
-        <ion-button size="small" class="edit-btn" (click)="KnowCaseModal=true"><ion-icon
-            name="pencil"></ion-icon></ion-button>
+        <!-- <ion-button size="small" class="edit-btn" (click)="KnowCaseModal=true"><ion-icon
+            name="pencil"></ion-icon></ion-button> -->
       </div>
       <ion-textarea fill="outline" rows="3" class="custom-textarea" [(ngModel)]="kn.Remarks"></ion-textarea>
     </div>
@@ -128,8 +128,8 @@
     <div class="section-group">
       <div class="label-with-btn">
         <span class="custom-label">SYMPTOMS</span>
-        <ion-button size="small" class="edit-btn" (click)="SymptomsModal=true"><ion-icon
-            name="pencil"></ion-icon></ion-button>
+        <!-- <ion-button size="small" class="edit-btn" (click)="SymptomsModal=true"><ion-icon
+            name="pencil"></ion-icon></ion-button> -->
       </div>
       <ion-textarea fill="outline" rows="3" [(ngModel)]="Sym.Remarks" class="custom-textarea"></ion-textarea>
     </div>
@@ -157,7 +157,7 @@
     <div class="section-box">
       <div class="label-with-btn">
         <span class="custom-label">KNOW CASE OF(K/C/O)</span>
-        <ion-button size="small" class="edit-btn" (click)="KnowCaseModal=true">
+        <ion-button size="small" class="edit-btn" (click)="openModal('KnowCase')">
           <ion-icon name="pencil" style="color: white;"></ion-icon>
         </ion-button>
       </div>
@@ -170,7 +170,7 @@
     <div class="section-box">
       <div class="label-with-btn">
         <span class="custom-label">SYMPTOMS</span>
-        <ion-button size="small" class="edit-btn" (click)="SymptomsModal=true">
+        <ion-button size="small" class="edit-btn" (click)="openModal('Symptoms')">
           <ion-icon name="pencil" style="color: white;"></ion-icon>
         </ion-button>
       </div>
@@ -375,3 +375,42 @@
   </div>
 
 </ng-container>
+
+
+<ion-modal [isOpen]="isPreviewOpen" (didDismiss)="closePreview()" class="full-preview-modal">
+
+  <ng-template>
+
+    <!-- HEADER -->
+    <div class="preview-header">
+      <h2>Preview</h2>
+
+      <ion-icon name="close-circle-outline" class="close-icon" (click)="closePreview()">
+      </ion-icon>
+    </div>
+
+    <div class="preview-body">
+
+      <ng-container *ngIf="ModalType=='KnowCase'">
+
+        <app-know-case [SelectedData]="SelectedknowCase" [Remarksnote]="kn.Remarks" [EmrdocId]="pEdocId"
+          (itemSelected)="itemselected($event)">
+
+        </app-know-case>
+
+      </ng-container>
+
+
+      <ng-container *ngIf="ModalType=='Symptoms'">
+
+        <app-symptoms [SelectedData]="SelectedSymptoms" [Remarksnote]="Sym.Remarks" 
+              [DoctId]="doctorid" [EmrdocId]="pEdocId"
+          (itemSelected)="itemselected1($event)"></app-symptoms>
+
+      </ng-container>
+
+    </div>
+
+  </ng-template>
+
+</ion-modal>

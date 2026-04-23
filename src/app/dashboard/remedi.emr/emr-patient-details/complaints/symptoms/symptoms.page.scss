@@ -1,0 +1,103 @@
+/* ===== TOOLBAR ===== */
+.custom-toolbar {
+  --background: #1f6b78;
+  --color: #ffffff;
+}
+
+/* ===== TITLE ===== */
+.section-title {
+  font-weight: 700;
+  color: #1f6b78;
+  margin-bottom: 12px;
+}
+
+/* ===== DESKTOP TABLE ===== */
+
+.desktop-table {
+  display: block;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.table-header {
+  background: #1f6b78;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+}
+
+.table-row {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+/* symptom cell */
+.symptom-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== MOBILE CARDS ===== */
+
+.mobile-card-view {
+  display: none;
+}
+
+.symptom-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #e6eef3;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  margin-bottom: 12px;
+}
+
+/* card top */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slno {
+  font-weight: 700;
+  color: #1f6b78;
+}
+
+/* symptom name */
+.symptom-name {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* ===== BUTTON ===== */
+.save-btn {
+  margin-top: 15px;
+  --background: #2c6f7b;
+  --color: #fff;
+  --border-radius: 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-card-view {
+    display: block;
+  }
+
+}

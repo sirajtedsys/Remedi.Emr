@@ -1,56 +1,84 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Know Case</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content class="ion-padding">
 
-  <div class="section-title">Know Case of (K/C/O)</div>
+<!-- <ion-content class="ion-padding"> -->
 
-  <!-- LIST -->
-  <div class="case-list">
+  <!-- <div class="section-title">Know Case of (K/C/O)</div> -->
 
-    <div class="case-card" *ngFor="let item of caseslist; let i = index">
+<!-- DESKTOP TABLE -->
+<div class="desktop-table">
 
-      <!-- Row 1 -->
-      <div class="row-top">
-        <span class="slno">{{ i + 1 }}</span>
+  <div class="table-header">
+    <span>#</span>
+    <span>Select</span>
+    <span>Code</span>
+    <span>Case Name</span>
+    <span>Medications</span>
+    <span>Treatment</span>
+  </div>
 
-        <ion-checkbox
-          [(ngModel)]="item.CaseCheck"
-          (ionChange)="AddOrRemoveCaseCheck($event,i)">
-        </ion-checkbox>
+  <div class="table-row" *ngFor="let item of caseslist; let i = index">
 
-        <div class="code">{{ item.CaseCode }}</div>
-      </div>
+    <span>{{ i + 1 }}</span>
 
-      <!-- Case Name -->
-      <div class="case-name">
-        {{ item.CaseName }}
-      </div>
+    <ion-checkbox
+      [(ngModel)]="item.CaseCheck"
+      (ionChange)="AddOrRemoveCaseCheck($event,i)">
+    </ion-checkbox>
 
-      <!-- Medication -->
-      <ion-item fill="outline" class="small-item">
-        <ion-label position="stacked">Medications</ion-label>
-        <ion-input
-          [(ngModel)]="item.Medication"
-          placeholder="Enter medications">
-        </ion-input>
-      </ion-item>
+    <span>{{ item.caseCode }}</span>
 
-      <!-- Treatment -->
-      <div class="treatment-row">
-        <span>On Treatment</span>
-        <ion-checkbox
-          [checked]="item.TreatmentSts == 'Y'"
-          (ionChange)="P_REGULAR($event,i)">
-        </ion-checkbox>
-      </div>
+    <span>{{ item.caseName }}</span>
 
+    <ion-input
+      [(ngModel)]="item.Medication"
+      placeholder="Enter">
+    </ion-input>
+
+    <ion-checkbox
+      [checked]="item.TreatmentSts == 'Y'"
+      (ionChange)="P_REGULAR($event,i)">
+    </ion-checkbox>
+
+  </div>
+
+</div>
+
+<!-- MOBILE CARDS (your existing UI) -->
+<div class="mobile-card-view">
+
+  <div class="case-card" *ngFor="let item of caseslist; let i = index">
+
+    <div class="row-top">
+      <span class="slno">{{ i + 1 }}</span>
+
+      <ion-checkbox
+        [(ngModel)]="item.CaseCheck"
+        (ionChange)="AddOrRemoveCaseCheck($event,i)">
+      </ion-checkbox>
+
+      <div class="code">{{ item.caseCode }}</div>
+    </div>
+
+    <div class="case-name">
+      {{ item.caseName }}
+    </div>
+
+    <ion-item fill="outline" class="small-item">
+      <ion-label position="stacked">Medications</ion-label>
+      <ion-input [(ngModel)]="item.Medication"></ion-input>
+    </ion-item>
+
+    <div class="treatment-row">
+      <span>On Treatment</span>
+      <ion-checkbox
+        [checked]="item.TreatmentSts == 'Y'"
+        (ionChange)="P_REGULAR($event,i)">
+      </ion-checkbox>
     </div>
 
   </div>
+
+</div>
 
   <!-- Others -->
   <ion-item fill="outline" class="mt-10">
@@ -66,4 +94,4 @@
     Save
   </ion-button>
 
-</ion-content>
+<!-- </ion-content> -->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonButton, IonHeader, IonInput, IonItem, IonLabel, IonTextarea, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonRadioGroup, IonRadio, IonIcon } from '@ionic/angular/standalone';
+import { IonButton, IonHeader, IonInput, IonItem, IonLabel, IonTextarea, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonRadioGroup, IonRadio, IonIcon, IonModal } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
 import { addOutline, arrowBackOutline, chevronBackOutline, chevronForwardOutline, closeCircleOutline, pencil, trash } from 'ionicons/icons';
@@ -25,6 +25,10 @@ import { ICDSel } from 'src/app/shared/class/remedi.emr/complaints/ICDSel';
 import { Cases1 } from 'src/app/shared/class/remedi.emr/complaints/Cases1';
 import { Sympt1 } from 'src/app/shared/class/remedi.emr/complaints/Sympt1';
 import { ItemListTablePage } from 'src/app/shared/item-list-table/item-list-table.page';
+import { KnowCasePage } from "./know-case/know-case.page";
+import { CaseDetails } from 'src/app/shared/interfaces/remedi.emr/complaints/case-details';
+import { KnowcaseDto } from 'src/app/shared/interfaces/remedi.emr/complaints/know-case-dto';
+import { SymptomsPage } from "./symptoms/symptoms.page";
 // import { A11yModule } from "@angular/cdk/a11y-module.d";
 
 @Component({
@@ -32,7 +36,7 @@ import { ItemListTablePage } from 'src/app/shared/item-list-table/item-list-tabl
   templateUrl: './complaints.page.html',
   styleUrls: ['./complaints.page.scss'],
   standalone: true,
-  imports: [IonRadioGroup, IonRadio, IonIcon, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonTextarea, IonLabel, IonItem, IonInput, ItemListTablePage,]
+  imports: [IonModal, IonRadioGroup, IonRadio, IonIcon, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonTextarea, IonLabel, IonItem, IonInput, ItemListTablePage, KnowCasePage, SymptomsPage]
 })
 export class ComplaintsPage implements OnInit {
 
@@ -45,7 +49,6 @@ export class ComplaintsPage implements OnInit {
   pEdocId: any;
   edocId: any;
   alllist: any;
-  encrypteddata: any;
   DoctorId: string = ''
   EmployeeId: string = ''
   vit = new Vitals()
@@ -61,7 +64,6 @@ export class ComplaintsPage implements OnInit {
   BloodGroupList: BloodGroup[] = [];
   constructor(
     private notificationService: NotificationService,
-    private comser: CommonService,
     private authser: AuthService,
     private shared: SharedDataService,
     private compaintService: ComplaintService,
@@ -89,45 +91,6 @@ export class ComplaintsPage implements OnInit {
     }
   }
 
-  PAtientData() {
-    // const grandparentSnapshot = this.route.snapshot.parent;
-    // console.log(this.route);
-    // if (grandparentSnapshot) {
-    //   this.encrypteddata = grandparentSnapshot.params['Id'] || null;
-    //   this.GetdecryptedData(this.encrypteddata)
-    //   // console.log('Extracted doc token from grandparent:', this.doc);
-    // } else {
-    //   console.error('Grandparent route is not available or does not contain "doc" parameter.');
-    // }
-
-  }
-  async GetdecryptedData(val: any) {
-    let dat = this.authser.Decrypt(val)
-    console.log(dat);
-    this.pid = dat.Pid
-    // this.pEdocId=dat.DocId
-    this.edocId = dat.DocId
-    this.doctorid = dat.DoctorId
-    this.VisitId = dat.VisitId
-    this.Gender = dat.Gender
-    this.AddRow()
-    await this.GetPatientDetails()
-    this.GetComplaintDetails(dat.DocId)
-    console.log(dat.DocId);
-    this.GetPAtientVitals(dat.DocId)
-    this.GetAllIcds(dat.DocId)
-    console.log(dat.Pid)
-    console.log(dat.DoctorId)
-    this.GetAllergy(dat.Pid, dat.DoctorId)
-    this.GetEduAdv(dat.DocId)
-    this.GetKnowcase(dat.DocId)
-    this.GetSymptomsDet(dat.DocId)
-    //  await  this.GetuserDetails()
-    // this.den.EmrDocId = this.pEdocId
-    // this.den.Type ='I'
-    // this.getdoctorassessmentlist()
-
-  }
 
 
   async getPatientDataFromShared() {
@@ -205,6 +168,8 @@ export class ComplaintsPage implements OnInit {
 
 
   async GetComplaintDetails(edocId: any) {
+    console.log(edocId);
+    
 
     (await this.compaintService.GetFullEmrAssessment(edocId)).subscribe((data: any) => {
 
@@ -561,9 +526,13 @@ export class ComplaintsPage implements OnInit {
   }
 
 
-  KnowCaseModal: boolean = false
-  SymptomsModal: boolean = false
-
+  ModalType: 'KnowCase' | 'Symptoms' = 'KnowCase'
+  isPreviewOpen: boolean = false
+  // KnowCaseModal: boolean = false
+  // SymptomsModal: boolean = false
+closePreview() {
+  this.isPreviewOpen = false;
+}
 
   // region icd
 
@@ -729,62 +698,42 @@ export class ComplaintsPage implements OnInit {
 
   //region know case modal
 
-  SelectedknowCase: any[] = []
+  SelectedknowCase: Cases1[] = []
 
   itemselected(event: any) {
-    const modalElement = document.getElementById('myModal'); // Replace with your modal's ID
-    // if (modalElement) {
-    //   const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-    //   modalInstance.hide();
-    // }
-    this.KnowCaseModal = false
+ 
+    this.closePreview()
     let data = event
 
     if (data) {
       // data.checkedItems
+      let checkedItems : KnowcaseDto[] = data.checkedItems
       let knowCaseCode = ''
       let codesarr = []
-      for (let i = 0; i < data.checkedItems.length; i++) {
-        codesarr.push(data.checkedItems[i].CaseCode)
+      for (let i = 0; i < checkedItems.length; i++) {
+        codesarr.push(checkedItems[i].caseCode)
       }
       knowCaseCode = codesarr.join(',')
       console.log(knowCaseCode);
       this.kn.knowCaseCode = knowCaseCode;
       this.kn.Remarks = data.remark
       console.log(data.remark)
-      this.SelectedknowCase = data.checkedItems
+      this.SelectedknowCase = checkedItems.map(item => {
+        const case1 = new Cases1();
+        case1.CaseId = Number(item.caseId ?? item.caseId ?? 0);
+        case1.CaseCode = item.caseCode ?? item.caseCode ?? '';
+        case1.CaseName = item.caseName ?? item.caseName ?? '';
+        case1.emrDocId = this.pEdocId ?? '';
+        case1.TreatmentSts = item.TreatmentSts ?? '';
+        case1.Medication = item.Medication ?? '';
+        case1.CaseCheck = true;
+        return case1;
+      });
     }
 
   }
 
-  async openKnowCaseModal() {
-    // const modal = await this.modalController.create({
-    //   component: KnowCasePage,
-    //    cssClass: 'custom-modal',
-    let componentProps = {
-      SelectedData: this.SelectedknowCase,
-      EmrdocId: this.edocId,
-      Remarksnote: this.kn.Remarks
-    }
-
-
-
-    // {
-    //   // data.checkedItems
-    //   let knowCaseCode = ''
-    //   let codesarr = []
-    //   for (let i = 0; i < data.checkedItems.length; i++) {
-    //     codesarr.push(data.checkedItems[i].CaseCode)
-    //   }
-    //   knowCaseCode = codesarr.join(',')
-    //   console.log(knowCaseCode);
-    //   this.kn.knowCaseCode = knowCaseCode;
-    //   this.kn.Remarks = data.remark
-    //   console.log(data.remark)
-    //   this.SelectedknowCase = data.checkedItems
-    // }
-
-  }
+  
   //#endregion know case modal
 
 
@@ -797,7 +746,8 @@ export class ComplaintsPage implements OnInit {
     //   const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
     //   modalInstance.hide();
     // }
-    this.SymptomsModal = false
+    // this.SymptomsModal = false
+    this.closePreview()
     let data = event
     console.log(data)
     if (data) {
@@ -815,49 +765,11 @@ export class ComplaintsPage implements OnInit {
     }
 
   }
-  async openSymptomsModal() {
-    console.log(this.doctorid, this.SelectedSymptoms);
-
-    let componentProps = {
-      SelectedData: this.SelectedSymptoms,
-      EmrdocId: this.edocId,
-      DoctId: this.doctorid,
-      Remarksnote: this.Sym.Remarks
-    }
-
-    let data: any
-    console.log(data);
-    if (data) {
-      // data.checkedItems
-      let SymptomsCode = ''
-      let symptarr = []
-      for (let i = 0; i < data.checkedItems.length; i++) {
-        symptarr.push(data.checkedItems[i].SYMP_NAME)
-
-      }
-      SymptomsCode = symptarr.join(',')
-      console.log(SymptomsCode);
-      // this.Sym.SymptomsName=SymptomsCode;
-      this.Sym.SymptomsName = SymptomsCode;
-      this.Sym.Remarks = data.remark
-      console.log(data.remark)
-      this.SelectedSymptoms = data.checkedItems
-    }
-
-
-  }
+ 
 
   //#endregion Symptoms modal
 
-  // ngOnChanges() {
-  //   if (this.cd.P_ALLERGY_STATUS === 'NKA') {
-  //     this.cd.ALLERGYDTLS = 'No Known Allergies';
-  //   } else if (this.cd.P_ALLERGY_STATUS === 'KA') {
-  //     this.cd.ALLERGYDTLS = 'Known Allergies';
-  //   } else if (this.cd.P_ALLERGY_STATUS === 'NA') {
-  //     this.cd.ALLERGYDTLS = 'No Allergies';
-  //   }
-  // }
+
 
   async GetAllergy(patId: any, docId: any) {
 
@@ -914,11 +826,30 @@ export class ComplaintsPage implements OnInit {
 
     })
   }
+
+
+  openModal(type: typeof this.ModalType) {
+    this.ModalType = type
+    
+    if(type=='KnowCase')
+    {
+
+    }
+    
+    
+    
+    
+    
+    this.isPreviewOpen=true
+  }
+
+
+
   // kns = new Cases1()
   async GetKnowcase(edocId: any) {
 
 
-    (await this.compaintService.GetPatientCases(edocId)).subscribe((data: any) => {
+    (await this.compaintService.GetPatientCases(edocId)).subscribe((data: CaseDetails[]) => {
 
       console.log(data);
       // console.log(data[0].ICD_DIGNOSIS);
@@ -927,20 +858,20 @@ export class ComplaintsPage implements OnInit {
         let code = []
         for (let i = 0; i < data.length; i++) {
           let kns = new Cases1()
-          kns.CaseId = data[i].CASE_ID
-          kns.CaseCode = data[i].CASE_CODE
-          kns.CaseName = data[i].CASE_NAME
+          kns.CaseId =  Number(data[i].casE_ID)
+          kns.CaseCode = data[i].casE_CODE
+          kns.CaseName = data[i].casE_NAME
           // this.kns.emrDocId=data[i].EMR_DOC_ID
-          kns.TreatmentSts = data[i].TREATMENT_STS
-          kns.Medication = data[i].MEDICATIONS
+          kns.TreatmentSts = data[i].treatmenT_STS
+          kns.Medication = data[i].medications
           kns.CaseCheck = true
-          kns.Remarks = data[i].REMARKS
+          kns.Remarks = data[i].remarks
           this.kn.Remarks = kns.Remarks
           console.log(kns.Remarks)
 
           // data[i].CaseCheck= true
 
-          code.push(data[i].CASE_CODE)
+          code.push(data[i].casE_CODE)
           this.SelectedknowCase.push(kns)
 
 

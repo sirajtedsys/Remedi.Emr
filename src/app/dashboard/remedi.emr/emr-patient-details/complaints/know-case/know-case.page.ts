@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonButton, IonCheckbox } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonButton, IonCheckbox, IonInput } from '@ionic/angular/standalone';
 import { Cases } from 'src/app/shared/class/remedi.emr/complaints/Cases';
 import { Knowcase } from 'src/app/shared/class/remedi.emr/complaints/Knowcase';
 import { CommonService } from 'src/app/shared/services/common.service';
@@ -12,13 +12,15 @@ import { AppConfig } from 'src/app/shared/class/app-config';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { ComplaintService } from 'src/app/shared/services/remedi.emr/complaint.service';
 import { PrescriptionService } from 'src/app/shared/services/remedi.emr/prescription.service';
+import { KnowcaseDto } from 'src/app/shared/interfaces/remedi.emr/complaints/know-case-dto';
+import { Cases1 } from 'src/app/shared/class/remedi.emr/complaints/Cases1';
 
 @Component({
   selector: 'app-know-case',
   templateUrl: './know-case.page.html',
   styleUrls: ['./know-case.page.scss'],
   standalone: true,
-  imports: [IonCheckbox, IonButton, IonLabel, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonCheckbox,IonInput, IonButton, IonLabel, IonItem, CommonModule, FormsModule]
 })
 export class KnowCasePage implements OnInit {
 
@@ -38,7 +40,7 @@ export class KnowCasePage implements OnInit {
   Gender: any;
   // Remarksnote:string=''
 
-  @Input() SelectedData: any[] = []
+  @Input() SelectedData: Cases1[] = []
   @Input() Remarksnote: any
   @Input() EmrdocId: string = ''
 
@@ -48,8 +50,6 @@ export class KnowCasePage implements OnInit {
   // @input() Remarks;
 
   constructor(
-    private comser: CommonService,
-    private authser: AuthService,
     private notificationService: NotificationService,
     private compaintService: ComplaintService,
     private prescriptionService: PrescriptionService
@@ -64,6 +64,8 @@ export class KnowCasePage implements OnInit {
   }
 
   SelectedDataCheck() {
+    console.log(this.SelectedData[0].CaseId);
+    
     // this.Remarks = 
     if (this.SelectedData.length > 0) {
       let selectedids = []
@@ -81,7 +83,28 @@ export class KnowCasePage implements OnInit {
         // {
         //   this.caseslist[j].CaseCheck=true
         // }
-        this.caseslist.splice(this.caseslist.findIndex((x: any) => x.CaseId == selectedids[j]), 1, this.SelectedData.filter((x: any) => x.CaseId == selectedids[j])[0])
+        const selectedCase: Cases1 = this.SelectedData.filter((x: Cases1) => x.CaseId == selectedids[j])[0];
+        console.log(selectedCase, "selectedCase");
+        
+        if (selectedCase) {
+          const knowcaseDto: KnowcaseDto = {
+            activeStatus: selectedCase.ActiveStatus ?? '',
+            caseCode: selectedCase.CaseCode ?? '',
+            caseId: selectedCase.CaseId ?? selectedCase.CaseId ?? 0,
+            caseName: selectedCase.CaseName ?? '',
+            CaseCheck: selectedCase.CaseCheck ?? false,
+            Medication: selectedCase.Medication ?? '',
+            TreatmentSts: selectedCase.TreatmentSts ?? '',
+            // add other properties from KnowcaseDto as needed, with fallback/defaults
+          };
+          // console.log(selectedCase, "selectedCase");
+          
+          this.caseslist.splice(
+            this.caseslist.findIndex((x: any) => x.caseId == selectedids[j]),
+            1,
+            knowcaseDto
+          );
+        }
       }
     }
   }
@@ -155,7 +178,7 @@ export class KnowCasePage implements OnInit {
   }
   //region Know Case
   icd = new Cases()
-  caseslist: any[] = []
+  caseslist: KnowcaseDto[] = []
 
   async GetAllCases() {
     (await this.compaintService.GetAllCases()).subscribe((data: any) => {
@@ -179,14 +202,22 @@ export class KnowCasePage implements OnInit {
 
 
   async Submit() {
-    let checkeditems = this.caseslist.filter((x: any) => x.CaseCheck == true);
+    let checkeditems:KnowcaseDto[] = this.caseslist.filter((x: any) => x.CaseCheck == true);
     const remark = this.Remarksnote;
-    console.log(this.EmrdocId);
+    console.log(this.EmrdocId,checkeditems);
+    // return
 
     let lsit = []
     for (let i = 0; i < checkeditems.length; i++) {
+
       this.case = new Cases()
-      this.case = checkeditems[i]
+      this.case.CaseId = checkeditems[i].caseId??0
+      this.case.CaseCode = checkeditems[i].caseCode
+      this.case.CaseName = checkeditems[i].caseName
+      this.case.ActiveStatus = checkeditems[i].activeStatus
+      this.case.Medication = checkeditems[i].Medication
+      this.case.TreatmentSts = checkeditems[i].TreatmentSts
+      // this.case.Remarks = this.Remarksnote
       this.case.emrDocId = this.EmrdocId;
       console.log(this.case.Medication);
       // this.case.TreatmentSts = 
@@ -205,9 +236,9 @@ export class KnowCasePage implements OnInit {
     (await this.compaintService.SaveKnowCase(kn)).subscribe((data: any) => {
       console.log(this.caseslist, "dta");
 
-      if (data.Status == 200) {
+      if (data.status == 200) {
         // Swal.fire(data.Message, '', 'success')
-        this.notificationService.showNotification(data.Message, 'success');
+        this.notificationService.showNotification(data.message, 'success');
 
         // Create an object to hold multiple values
         let dataToSend = {
@@ -221,7 +252,7 @@ export class KnowCasePage implements OnInit {
       }
       else {
         // Swal.fire(data.Message, '', 'warning')
-        this.notificationService.showNotification(data.Message, 'warning');
+        this.notificationService.showNotification(data.message, 'warning');
       }
 
     }, (error: any) => {

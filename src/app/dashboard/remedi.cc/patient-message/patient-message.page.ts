@@ -9,34 +9,24 @@ import {
   IonToolbar,
   IonButton,
   IonButtons,
-  IonInput,
   IonSelect,
   IonSelectOption,
-  IonIcon, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle,
+  IonCard, IonCardHeader, IonCardTitle, IonCardContent, 
   IonList, IonItem, IonLabel, IonTextarea,
   IonCheckbox,IonModal
 } from '@ionic/angular/standalone';
 import { LookupService } from 'src/app/shared/services/lookup.service';
-import { LookUp } from 'src/app/shared/interfaces/lookup/lookup';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 // import { AuthService } from 'src/services/auth.service';
 // import { ModalController, IonicModule } from '@ionic/angular'
-import { PatientVisitInfo } from 'src/app/shared/interfaces/PatientListpage';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CommonService } from 'src/app/shared/services/common.service';
-import { PatientInfo1 } from 'src/app/shared/interfaces/PatientDetailsPage';
 import { Section } from 'src/app/shared/interfaces/lookup/section';
 // import { PatientListService } from 'src/app/shared/services/patient-list.service';
-import { PatientlistService } from 'src/app/shared/services/patientlist.service';
-import { PatientProceduresDto } from 'src/app/shared/interfaces/patient-list/patient-procedure-dto';
 import { ProcrequestService } from 'src/app/shared/services/procrequest.service';
-import { ModalPage } from 'src/app/shared/modal/modal.page';
-import { bmrequest } from 'src/app/shared/class/bmrequest';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
-import { bmchecking } from 'src/app/shared/class/bmchecking';
 import { PatientMsg } from 'src/app/shared/class/patientmsg';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
-import { EmrPatientInfo } from 'src/app/shared/interfaces/patient-list/emr-patient-info';
 import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/patient-list-date-wise-item';
 @Component({
   selector: 'app-patient-message',
@@ -52,14 +42,12 @@ import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/
     IonToolbar,
     IonButton,
     IonButtons,
-    IonInput,
     IonSelect,
     IonSelectOption,
-    IonIcon,
-    IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle,
+    IonCard, IonCardHeader, IonCardTitle, IonCardContent,
     IonList, IonItem, IonLabel, IonTextarea,
-    IonCheckbox,IonModal
-  ]
+    IonCheckbox, IonModal
+]
 })
 export class PatientMessagePage implements OnInit {
 paitentData!:PatientListDatewiseItem

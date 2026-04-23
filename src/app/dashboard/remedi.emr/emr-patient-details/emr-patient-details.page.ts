@@ -5,15 +5,10 @@ import {
   IonAccordion,
   IonAccordionGroup,
   IonCol,
-  IonContent,
   IonGrid,
-  IonHeader,
   IonItem,
   IonRow,
-  IonTitle,
-  IonToolbar, IonRouterOutlet, IonApp, IonIcon, IonButton, 
-  IonFab,
-  IonFabButton} from '@ionic/angular/standalone';
+  IonIcon, IonButton} from '@ionic/angular/standalone';
    import {
   createOutline,
   informationCircleOutline,
@@ -33,8 +28,7 @@ import { SharedDataService } from 'src/app/shared/services/shared-data.service';
   templateUrl: './emr-patient-details.page.html',
   styleUrls: ['./emr-patient-details.page.scss'],
   standalone: true,
-  imports: [IonButton, IonIcon, IonApp, IonRouterOutlet,
-    IonContent,
+  imports: [IonButton, IonIcon,
     CommonModule,
     FormsModule,
     IonAccordionGroup,
@@ -43,7 +37,7 @@ import { SharedDataService } from 'src/app/shared/services/shared-data.service';
     IonGrid,
     IonCol,
     IonRow,
-    IonRouterOutlet, RouterOutlet],
+    RouterOutlet],
 })
 export class EmrPatientDetailsPage implements OnInit {
   patientData!: PatientListDatewiseItem ;

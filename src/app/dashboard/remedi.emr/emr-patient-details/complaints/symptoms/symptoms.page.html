@@ -1,13 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Symptoms</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Symptoms</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+
+<!-- <ion-content class="ion-padding"> -->
+
+  <!-- <div class="section-title">Symptoms List</div> -->
+
+  <!-- ===== DESKTOP TABLE ===== -->
+  <div class="desktop-table">
+
+    <div class="table-header">
+      <span>Sl No</span>
+      <span>Symptoms</span>
+    </div>
+
+    <div class="table-row" *ngFor="let item of symptomslist; let i = index">
+
+      <span>{{ i + 1 }}</span>
+
+      <div class="symptom-cell">
+        <ion-checkbox
+          [(ngModel)]="item.CaseCheck"
+          (ionChange)="AddOrRemoveCaseCheck($event,i)">
+        </ion-checkbox>
+
+        <span>{{ item.SYMP_NAME }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===== MOBILE CARDS ===== -->
+  <div class="mobile-card-view">
+
+    <div class="symptom-card" *ngFor="let item of symptomslist; let i = index">
+
+      <div class="card-top">
+        <span class="slno">{{ i + 1 }}</span>
+
+        <ion-checkbox
+          [(ngModel)]="item.CaseCheck"
+          (ionChange)="AddOrRemoveCaseCheck($event,i)">
+        </ion-checkbox>
+      </div>
+
+      <div class="symptom-name">
+        {{ item.SYMP_NAME }}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Others -->
+  <ion-item fill="outline" class="mt-10">
+    <ion-label position="stacked">Others</ion-label>
+    <ion-input [(ngModel)]="Remarksnote"></ion-input>
+  </ion-item>
+
+  <!-- Save -->
+  <ion-button expand="block" class="save-btn" (click)="Submit()">
+    Save
+  </ion-button>
+
+<!-- </ion-content> -->

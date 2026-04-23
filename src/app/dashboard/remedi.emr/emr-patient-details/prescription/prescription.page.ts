@@ -6,16 +6,12 @@ import {
   IonAccordionGroup,
   IonButton,
   IonCheckbox,
-  IonContent,
-  IonHeader,
   IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonSelect,
   IonSelectOption,
-  IonTitle,
-  IonToolbar,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { trash } from 'ionicons/icons';
@@ -41,10 +37,6 @@ import { ItemListTablePage } from 'src/app/shared/item-list-table/item-list-tabl
   styleUrls: ['./prescription.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     IonAccordion,
@@ -57,9 +49,8 @@ import { ItemListTablePage } from 'src/app/shared/item-list-table/item-list-tabl
     IonCheckbox,
     IonSelect,
     IonSelectOption,
-    ItemListTablePage,
-
-  ],
+    ItemListTablePage
+],
 })
 export class PrescriptionPage implements OnInit {
   medicineForms: Prescription[] = []

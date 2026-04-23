@@ -4,24 +4,16 @@ import { CommonModule, DatePipe } from '@angular/common';
 // import { FormsModule } from '@angular/forms';
 // import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { LookupService } from 'src/app/shared/services/lookup.service';
-import { LookUp } from 'src/app/shared/interfaces/lookup/lookup';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 // import { AuthService } from 'src/services/auth.service';
 // import { ModalController, IonicModule } from '@ionic/angular'
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonButtons, IonInput, IonSelect, IonSelectOption, IonIcon, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonList, IonItem, IonText } from '@ionic/angular/standalone';
-import { PatientVisitInfo } from 'src/app/shared/interfaces/PatientListpage';
+import { IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { CommonService } from 'src/app/shared/services/common.service';
-import { PatientInfo1 } from 'src/app/shared/interfaces/PatientDetailsPage';
 // import { PatientListService } from 'src/app/services/patient-list.service';
 import { PatientlistService } from 'src/app/shared/services/patientlist.service';
-import { PatientProceduresDto } from 'src/app/shared/interfaces/patient-list/patient-procedure-dto';
 // import { ProcrequestService } from 'src/app/shared/services/procrequest.service';
-import { ModalPage } from 'src/app/shared/modal/modal.page';
-import { bmrequest } from 'src/app/shared/class/bmrequest';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EmrPatientInfo } from 'src/app/shared/interfaces/patient-list/emr-patient-info';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/patient-list-date-wise-item';
 import { ProcrequestService } from 'src/app/shared/services/procrequest.service';
@@ -33,19 +25,10 @@ import { ProcrequestService } from 'src/app/shared/services/procrequest.service'
  imports: [
     CommonModule,
     FormsModule,
-    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonButton,
-    IonButtons,
-    IonInput,
-    IonSelect,
-    IonSelectOption,
-    IonIcon,
-    IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle,
-    IonList, IonItem,
-    IonText
+    IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent
 ]
 })
 export class TreatmentSummaryPage implements OnInit {
