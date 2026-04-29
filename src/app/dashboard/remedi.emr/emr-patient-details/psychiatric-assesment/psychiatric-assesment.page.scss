@@ -1,0 +1,27 @@
+/* container */
+.tabs-container {
+  margin: 8px 0;
+}
+
+/* segment style */
+.custom-segment {
+  --background: #eaf6f7;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+/* tab buttons */
+ion-segment-button {
+  --color: #1f6b78;
+  --color-checked: #ffffff;
+  --background-checked: #1f6b78;
+
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* spacing */
+ion-segment-button::part(native) {
+  padding: 6px 10px;
+}

@@ -196,6 +196,18 @@ ion-accordion.accordion-expanded .chevron {
   gap: 14px;
   margin-top: 16px;
 }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
 
 /* INPUT STYLE */
 
@@ -206,6 +218,16 @@ ion-accordion.accordion-expanded .chevron {
   --padding-start: 12px;
   --inner-padding-end: 12px;
   --highlight-color-focused: #19647e;
+}
+
+.custom-item-2 {
+  --border-radius: 12px;
+  --background: #ffffff;
+  --color: #000;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  --highlight-color-focused: #19647e;
+  border:1px solid #cfd8dc;
 }
 
 ion-item {
@@ -314,7 +336,9 @@ ion-input {
 @media (max-width: 480px) {
 
   .grid-5,
-  .grid-4 {
+  .grid-4,
+  .grid-3,
+  .grid-2 {
     grid-template-columns: 1fr;
   }
 

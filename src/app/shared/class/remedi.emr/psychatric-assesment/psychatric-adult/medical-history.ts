@@ -1,0 +1,30 @@
+export class MedicalHistory{
+    EmrDocId:string='';
+    DiabetesMelitus:string='';
+    DmDuration:string='';
+    DmDesc:string='';
+    Hypertension:string='';
+    HypertensionDuration:string='';
+    HypertensionDesc:string='';
+    Dyslipidemia:string='';
+    DyslipidemiaDuration:string='';
+    DyslipidemiaDesc:string='';
+    ThyroidIllness:string='';
+    ThyroidIllnessDuration:string='';
+    ThyroidIllnessDesc:string='';
+    Cad:string='';
+    CadDuration:string='';
+    CadDesc:string='';
+    Cva:string='';
+    CvaDuration:string='';
+    CvaDesc:string='';
+    SeizureDisorder:string='';
+    SeizureDisorderDuration:string='';
+    SeizureDisorderDesc:string='';
+    OtherHistory:string='';
+    OthersDuration:string='';
+    OthersDesc:string='';
+    Medicalhistory:string='';
+    PatientType:string='';
+   
+}

@@ -1,0 +1,33 @@
+export class RelaventFamilyHistory{
+    EmrDocId:string='';
+    Rfh:string='';
+    RfhDesc:string='';
+    Socioeconomicclass:string='';
+    PsychiatricIllness:string='';
+    ProdOfConsanguineous:string='';
+    BirthDevelopmentHstory:string='';
+    BirthDevelopmentHstoryDesc:string='';
+    FullTermDelivery:string='';
+    FullTermDeliveryDesc:string='';
+    HistoryPerinatalInsults:string='';
+    HistoryPerinatalInsultsDesc:string='';
+    DelayDevelopmentMilestones:string='';
+    DelayDevelopmentMilestonesDesc:string='';
+    ChildhoodHstory:string='';
+    ChildhoodHstoryDesc:string='';
+    HistoryHyperactivity:string='';
+    HistoryHyperactivityDesc:string='';
+    HistoryConductProblems:string='';
+    HistoryConductProblemsDesc:string='';
+    BehavProblemsChildhood:string='';
+    BehavProblemsChildhoodDesc:string='';
+    PatientType:string='';
+    Parenting:string='';
+    ParentingStyle:string='';
+    Conflicts:string='';
+    MotorMile:string='';
+    LanguageMile:string='';
+    SelfHelp:string='';
+    BirthWeight:string='';  
+   
+}

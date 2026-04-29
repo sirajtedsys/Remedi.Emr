@@ -1,0 +1,425 @@
+<!-- <ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title>History</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content class="ion-padding"> -->
+
+<!-- <ion-accordion-group expand="inset"> -->
+
+<!-- ================= HISTORY ================= -->
+
+
+<ion-item slot="header" class="section-header">
+  <ion-label>History</ion-label>
+</ion-item>
+
+<!-- <div class="ion-padding" slot="content"> -->
+
+<!-- <div class="input-wrapper"> -->
+<!-- Informant -->
+<div class="grid-2">
+  <ion-item fill="outline" class="custom-item">
+    <ion-label [position]="commonLabelPlacement">
+      Informant <span class="required">*</span>
+    </ion-label>
+    <ion-input [(ngModel)]="ph.Informant"></ion-input>
+  </ion-item>
+
+  <ion-item fill="outline" class="custom-item">
+    <ion-label [position]="commonLabelPlacement">Relationship With Patient</ion-label>
+    <ion-input [(ngModel)]="ph.Relationship"></ion-input>
+  </ion-item>
+
+</div>
+
+
+<ion-item fill="outline" class="custom-item mt-6">
+  <ion-label [position]="commonLabelPlacement">Presenting Complaints</ion-label>
+  <ion-textarea [(ngModel)]="ph.PresentingComplaintsNew"></ion-textarea>
+</ion-item>
+
+
+<div class="grid-3">
+  <div class="card-section">
+    <label class="group-label">Reliability of Information</label>
+    <div class="checkbox-group">
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.Relability==='R'"
+        (ionChange)="CheckboxClick1('Relability','R',$event)">
+        Reliable
+      </ion-checkbox>
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.Relability==='U'"
+        (ionChange)="CheckboxClick1('Relability','U',$event)">
+        Unreliable
+      </ion-checkbox>
+    </div>
+  </div>
+
+
+
+  <div class="card-section">
+
+    <label class="group-label"> Onset of illness</label>
+    <div class="checkbox-group">
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.Onset==='A'" (ionChange)="CheckboxClick1('Onset','A',$event)">
+        Acute
+      </ion-checkbox>
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.Onset==='I'" (ionChange)="CheckboxClick1('Onset','I',$event)">
+        Insidious
+      </ion-checkbox>
+    </div>
+  </div>
+
+
+  <div class="card-section">
+
+    <label class="group-label">Precipitating Factors</label>
+    <div class="checkbox-group">
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.PrecipitatingFactor==='Y'"
+        (ionChange)="CheckboxClick1('PrecipitatingFactor','Y',$event);Check_Label('Y',1)">
+        Yes
+      </ion-checkbox>
+
+      <ion-checkbox labelPlacement="end" [checked]="ph.PrecipitatingFactor==='N'"
+        (ionChange)="CheckboxClick1('PrecipitatingFactor','N',$event);Check_Label('Y',1)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="ph.PrecipitatingFactor==='Y'">
+
+      <ion-item fill="outline" class="custom-item">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea [(ngModel)]="ph.PrecipitatingDesc"></ion-textarea>
+      </ion-item>
+
+    </div>
+  </div>
+
+</div>
+
+<ion-item fill="outline" class="custom-item mt-6">
+  <ion-label [position]="commonLabelPlacement">History of Present Illness</ion-label>
+  <ion-textarea [(ngModel)]="ph.HpiNew"></ion-textarea>
+</ion-item>
+
+
+<div class="card-section">
+
+  <label class="group-label">Relevant Past Psychiatric History</label>
+  <div class="checkbox-group">
+
+    <ion-checkbox labelPlacement="end" [checked]="ph.ReleventPph==='Y'"
+      (ionChange)="CheckboxClick1('ReleventPph','Y',$event);Check_Label('Y',1)">
+      Yes
+    </ion-checkbox>
+
+    <ion-checkbox labelPlacement="end" [checked]="ph.ReleventPph==='N'"
+      (ionChange)="CheckboxClick1('ReleventPph','N',$event);Check_Label('Y',1)">
+      No
+    </ion-checkbox>
+  </div>
+  <div *ngIf="ph.ReleventPph==='Y'">
+
+    <ion-item fill="outline" class="custom-item">
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea [(ngModel)]="ph.ReleventPphDesc"></ion-textarea>
+    </ion-item>
+
+  </div>
+</div>
+
+<!-- </div> -->
+
+<!-- </div> -->
+
+<!-- </ion-accordion> -->
+
+
+<!-- ================= MEDICAL HISTORY ================= -->
+<!-- <ion-accordion value="medical"> -->
+
+<ion-item slot="header" class="section-header">
+  <ion-label>Medical History</ion-label>
+</ion-item>
+
+<!-- <div class="ion-padding" slot="content"> -->
+
+<!-- Diabetes -->
+<div class="grid-3">
+
+
+  <div class="card-section">
+    <!-- // <div class="card-title">Diabetes Mellitus</div> -->
+
+    <label class="group-label">Diabetes Mellitus</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.DiabetesMelitus==='Y'"
+        (ionChange)="CheckboxClick2('DiabetesMelitus','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.DiabetesMelitus==='N'"
+        (ionChange)="CheckboxClick2('DiabetesMelitus','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.DiabetesMelitus==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.DmDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.DmDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">Hypertension</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.Hypertension==='Y'"
+        (ionChange)="CheckboxClick2('Hypertension','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.Hypertension==='N'"
+        (ionChange)="CheckboxClick2('Hypertension','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.Hypertension==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.HypertensionDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.HypertensionDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">Dyslipidemia</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.Dyslipidemia==='Y'"
+        (ionChange)="CheckboxClick2('Dyslipidemia','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.Dyslipidemia==='N'"
+        (ionChange)="CheckboxClick2('Dyslipidemia','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.Dyslipidemia==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.DyslipidemiaDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.DyslipidemiaDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">Thyroid illness</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.ThyroidIllness==='Y'"
+        (ionChange)="CheckboxClick2('ThyroidIllness','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.ThyroidIllness==='N'"
+        (ionChange)="CheckboxClick2('ThyroidIllness','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.ThyroidIllness==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.ThyroidIllnessDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.ThyroidIllnessDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">CAD</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.Cad==='Y'" (ionChange)="CheckboxClick2('Cad','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.Cad==='N'" (ionChange)="CheckboxClick2('Cad','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.Cad==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.CadDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.CadDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">CVA</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.Cva==='Y'" (ionChange)="CheckboxClick2('Cva','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.Cva==='N'" (ionChange)="CheckboxClick2('Cva','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.Cva==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.CvaDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.CvaDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">Seizure disorder</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.SeizureDisorder==='Y'"
+        (ionChange)="CheckboxClick2('SeizureDisorder','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.SeizureDisorder==='N'"
+        (ionChange)="CheckboxClick2('SeizureDisorder','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.SeizureDisorder==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.SeizureDisorderDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.SeizureDisorderDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="card-section">
+    <label class="group-label">Others</label>
+    <div class="checkbox-group">
+      <ion-checkbox labelPlacement="end" [checked]="mh.OtherHistory==='Y'"
+        (ionChange)="CheckboxClick2('OtherHistory','Y',$event)">
+        Yes
+      </ion-checkbox>
+      <ion-checkbox labelPlacement="end" [checked]="mh.OtherHistory==='N'"
+        (ionChange)="CheckboxClick2('OtherHistory','N',$event)">
+        No
+      </ion-checkbox>
+    </div>
+    <div *ngIf="mh.OtherHistory==='Y'" class="sub-grid">
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Duration</ion-label>
+        <ion-input [(ngModel)]="mh.OthersDuration"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" class="custom-item-2">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input [(ngModel)]="mh.OthersDesc"></ion-input>
+      </ion-item>
+    </div>
+
+  </div>
+</div>
+
+
+
+  <div class="grid-3">
+
+    
+<div class="card-section">
+    <!-- Socioeconomic -->
+    <ion-item fill="outline" class="custom-item">
+      <ion-label position="stacked">Socioeconomic class</ion-label>
+      <ion-select [(ngModel)]="rf.Socioeconomicclass">
+        <ion-select-option value="U">Upper</ion-select-option>
+        <ion-select-option value="M">Middle</ion-select-option>
+        <ion-select-option value="L">Lower</ion-select-option>
+      </ion-select>
+    </ion-item>
+</div>
+    <!-- Psychiatric illness -->
+    <div class="card-section">
+      <label class="group-label">Psychiatric illness in family</label>
+      <div class="checkbox-group">
+        <ion-checkbox labelPlacement="end"
+          [checked]="rf.PsychiatricIllness==='Y'"
+          (ionChange)="CheckboxClick3('PsychiatricIllness','Y',$event)">
+          Yes
+        </ion-checkbox>
+
+        <ion-checkbox labelPlacement="end"
+          [checked]="rf.PsychiatricIllness==='N'"
+          (ionChange)="CheckboxClick3('PsychiatricIllness','N',$event)">
+          No
+        </ion-checkbox>
+      </div>
+    </div>
+
+    <!-- Consanguineous -->
+    <div class="card-section">
+      <label class="group-label">Consanguineous marriage</label>
+      <div class="checkbox-group">
+        <ion-checkbox labelPlacement="end"
+          [checked]="rf.ProdOfConsanguineous==='Y'"
+          (ionChange)="CheckboxClick3('ProdOfConsanguineous','Y',$event)">
+          Yes
+        </ion-checkbox>
+
+        <ion-checkbox labelPlacement="end"
+          [checked]="rf.ProdOfConsanguineous==='N'"
+          (ionChange)="CheckboxClick3('ProdOfConsanguineous','N',$event)">
+          No
+        </ion-checkbox>
+      </div>
+    </div>
+
+  </div>
+
+
+<!-- </div> -->
+
+<!-- </ion-accordion> -->
+
+<!-- </ion-accordion-group> -->
+
+<!-- </ion-content> -->

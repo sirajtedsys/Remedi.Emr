@@ -1,0 +1,74 @@
+/* HEADER */
+.custom-toolbar {
+  --background: #1f6b78;
+  --color: #fff;
+}
+
+/* SECTION HEADER */
+.section-header {
+  --background: #19647e;
+  font-weight: 600;
+  color: white;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+// .section-header:hover {
+//   --background: #4c6062;
+//   font-weight: 600;
+//   color: #326b75;
+//   border-radius: 10px;
+// }
+
+/* CARD STYLE */
+.card-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #e6eef3;
+}
+
+.content-section{
+    background: #efe5e4;
+}
+
+/* TITLE */
+.card-title {
+  font-weight: 600;
+  color: #1f6b78;
+  margin-bottom: 8px;
+}
+
+/* CHECKBOX GROUP */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.group-label {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+/* SUB GRID */
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .sub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-accordion {
+
+  margin-top: 10px;
+}

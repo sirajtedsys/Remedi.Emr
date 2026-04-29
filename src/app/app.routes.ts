@@ -141,6 +141,44 @@ export const routes: Routes = [
             path: 'complaints',
             loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/complaints.page').then(m => m.ComplaintsPage)
           },
+          {
+            path: 'psychiatric-assesment',
+            loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatric-assesment.page').then(m => m.PsychiatricAssesmentPage),
+            children: [
+              { path: '', redirectTo: 'psychiatry-adult', pathMatch: 'full' },
+          
+              {
+                path: 'psychiatry-adult',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/psychiatry-adult.page').then(m => m.PsychiatryAdultPage)
+              },
+              {
+                path: 'psychiatry-child',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-child/psychiatry-child.page').then(m => m.PsychiatryChildPage)
+              },
+              {
+                path: 'complaints',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/complaints/complaints.page').then(m => m.ComplaintsPage)
+              },
+              {
+                path: 'order-test',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/order-test/order-test.page').then(m => m.OrderTestPage)
+              },
+              {
+                path: 'medicine-prescription',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/medicine-prescription/medicine-prescription.page').then(m => m.MedicinePrescriptionPage)
+              },
+              {
+                path: 'treatment-plan',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/treatment-plan/treatment-plan.page').then(m => m.TreatmentPlanPage)
+              },
+              {
+                path: 'psychiatry-summary',
+                loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-summary/psychiatry-summary.page').then(m => m.PsychiatrySummaryPage)
+              },
+            ]
+          }
+
+
 
         ]
       },
@@ -250,14 +288,32 @@ export const routes: Routes = [
   {
     path: 'item-list-table',
     loadComponent: () => import('./shared/item-list-table/item-list-table.page').then(m => m.ItemListTablePage)
-  },  {
+  },
+  {
     path: 'know-case',
-    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/know-case/know-case.page').then( m => m.KnowCasePage)
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/know-case/know-case.page').then(m => m.KnowCasePage)
   },
   {
     path: 'symptoms',
-    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/symptoms/symptoms.page').then( m => m.SymptomsPage)
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/complaints/symptoms/symptoms.page').then(m => m.SymptomsPage)
   },
+
+
+  
+  {
+    path: 'p-a-history',
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-history/p-a-history.page').then( m => m.PAHistoryPage)
+  },
+  {
+    path: 'p-a-examination',
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-examination/p-a-examination.page').then( m => m.PAExaminationPage)
+  },
+  {
+    path: 'p-a-formulation',
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-formulation/p-a-formulation.page').then( m => m.PAFormulationPage)
+  },
+
+
 
 
 

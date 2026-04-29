@@ -1,0 +1,70 @@
+/* HEADER */
+.custom-toolbar {
+  --background: #f4f6f9;
+  --color: #fff;
+}
+
+/* SECTION HEADER */
+.section-header {
+  --background: #e8f4f5;
+  font-weight: 600;
+  color: #1f6b78;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+/* CARD STYLE */
+.card-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px;
+  margin-top: 6px;
+  border: 1px solid #e6eef3;
+}
+
+/* TITLE */
+.card-title {
+  font-weight: 600;
+  color: #1f6b78;
+  margin-bottom: 8px;
+}
+
+/* CHECKBOX GROUP */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.group-label {
+  font-weight: 500;
+  margin-right: 10px;
+  color: black;
+}
+
+/* SUB GRID */
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .sub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+.grid-2,.grid-3{
+    margin-top: 6px;
+}
+
+
+.mt-6{
+    margin-top: 6px;
+}
