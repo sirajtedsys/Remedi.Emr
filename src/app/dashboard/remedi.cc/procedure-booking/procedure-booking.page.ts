@@ -87,6 +87,10 @@ export class ProcedureBookingPage implements OnInit {
   }
 
 
+  onShowClick() {
+    this.getMachines(this.selectedRoom, this.Branch.id ?? '')
+  }
+
   async getMachines(roomId: string, branchId: string) {
     (await this.procedureBooking.getMachines(roomId, branchId)).subscribe(async (data: any) => {
       console.log(data);

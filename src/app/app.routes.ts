@@ -146,7 +146,7 @@ export const routes: Routes = [
             loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatric-assesment.page').then(m => m.PsychiatricAssesmentPage),
             children: [
               { path: '', redirectTo: 'psychiatry-adult', pathMatch: 'full' },
-          
+
               {
                 path: 'psychiatry-adult',
                 loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/psychiatry-adult.page').then(m => m.PsychiatryAdultPage)
@@ -299,18 +299,18 @@ export const routes: Routes = [
   },
 
 
-  
+
   {
     path: 'p-a-history',
-    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-history/p-a-history.page').then( m => m.PAHistoryPage)
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-history/p-a-history.page').then(m => m.PAHistoryPage)
   },
   {
     path: 'p-a-examination',
-    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-examination/p-a-examination.page').then( m => m.PAExaminationPage)
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-examination/p-a-examination.page').then(m => m.PAExaminationPage)
   },
   {
     path: 'p-a-formulation',
-    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-formulation/p-a-formulation.page').then( m => m.PAFormulationPage)
+    loadComponent: () => import('./dashboard/remedi.emr/emr-patient-details/psychiatric-assesment/psychiatry-adult/p-a-formulation/p-a-formulation.page').then(m => m.PAFormulationPage)
   },
 
 

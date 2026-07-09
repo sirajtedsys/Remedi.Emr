@@ -10,7 +10,7 @@
 
     <div class="filter-item">
       <label>Procedure Room</label>
-      <ion-select interface="popover" [(ngModel)]="selectedRoom" (ngModelChange)="onRoomSelectionChange($event)">
+      <ion-select interface="popover" style="color:black;" [(ngModel)]="selectedRoom" (ngModelChange)="onRoomSelectionChange($event)">
         <ion-select-option *ngFor="let room of RoomsList" [value]="room.id">{{ room.name }}</ion-select-option>
         <!-- <ion-select-option>ROOM 2</ion-select-option>
         <ion-select-option>ROOM 3</ion-select-option> -->
@@ -38,7 +38,7 @@
 <!-- (ionChange)="onDateChange($event)" -->
 
     <div class="filter-actions">
-      <ion-button size="small" color="success">
+      <ion-button size="small" color="success" (click)="onShowClick()">
         <ion-icon name="eye-outline"></ion-icon>
         Show
       </ion-button>
@@ -82,7 +82,7 @@
 
 
       <!-- SLOT -->
-      <div class="slot-card booked" *ngFor="let slot of item.Slots" (click)="onSlotClick(slot)">
+      <div class="slot-card " [ngClass]="slot.prC_BK_ID ? 'booked' : 'available'" *ngFor="let slot of item.Slots" (click)="onSlotClick(slot)">
 
         <div class="slot-left">
           <div class="slot-number">{{slot.token}}</div>

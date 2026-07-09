@@ -1,6 +1,6 @@
 .procedure-page {
-  --background: #f3f6fb;
-  padding: 10px;
+  --background: #f4f7fb;
+  padding: 12px;
 }
 
 
@@ -8,33 +8,117 @@
 
 .page-title {
   font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #000;
+  font-weight: 700;
+  color: #1d2b36;
+  margin-bottom: 14px;
 }
 
 
 /* FILTER BAR */
 
 .filter-bar {
-  background: linear-gradient(90deg,#1c6e7d,#218fa4);
-  border-radius: 14px;
-  padding: 12px;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 14px;
 
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 
-  color: white;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.06);
+
+  margin-bottom: 14px;
 }
 
 .filter-item {
   flex: 1;
-//   min-width: 120px;
+  min-width: 150px;
 }
 
 .filter-item label {
+  display: block;
   font-size: 12px;
+  font-weight: 600;
+  color: #5c6b78;
+  margin-bottom: 6px;
+}
+
+
+/* DATE FIELD */
+
+.custom-datepicker {
+
+  width: 100%;
+  height: 44px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+
+  padding: 0 12px;
+
+  background: #f8fafc;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #1d2b36;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.custom-datepicker:focus {
+
+  border-color: #0f8aa5;
+
+  background: white;
+
+  box-shadow: 0 0 0 3px rgba(15,138,165,0.15);
+}
+
+
+/* ION SELECT */
+
+ion-select {
+
+  --background: #f8fafc;
+
+  --border-radius: 12px;
+
+  --padding-start: 12px;
+
+  --padding-end: 12px;
+
+  min-height: 44px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+}
+
+
+/* BUTTONS */
+
+.filter-actions {
+
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.filter-actions ion-button {
+
+  height: 44px;
+
+  --border-radius: 12px;
+
+  font-weight: 600;
+
+  text-transform: none;
 }
 
 
@@ -43,7 +127,6 @@
 .procedure-grid {
   display: grid;
   gap: 14px;
-  margin-top: 15px;
 }
 
 
@@ -55,6 +138,18 @@
     grid-template-columns: 1fr;
   }
 
+  .filter-bar {
+    flex-direction: column;
+  }
+
+  .filter-actions {
+    width: 100%;
+  }
+
+  .filter-actions ion-button {
+    flex: 1;
+  }
+
 }
 
 
@@ -63,53 +158,84 @@
 @media (min-width:769px) {
 
   .procedure-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2,1fr);
   }
 
 }
 
 
-
-/* COLUMN */
+/* MACHINE COLUMN */
 
 .procedure-column {
+
   background: white;
-  border-radius: 14px;
+
+  border-radius: 18px;
+
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.06);
+
+  border: 1px solid #edf2f7;
 }
 
 
 /* HEADER */
 
 .column-header {
-  background: linear-gradient(90deg,#0f8aa5,#0e6c8b);
+
+  background:
+    linear-gradient(90deg,#0f8aa5,#116d84);
+
   color: white;
-  text-align: center;
-  font-weight: 600;
-  padding: 10px;
+
+  padding: 14px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
 }
 
 
 /* STATS */
 
 .stats-row {
+
   display: flex;
-  background: #6b3745;
-  color: white;
+
+  background: #f7fafc;
+
+  border-bottom: 1px solid #edf2f7;
 }
 
 .stat {
+
   flex: 1;
+
   text-align: center;
-  padding: 8px;
+
+  padding: 10px 6px;
+}
+
+.stat span {
+
+  display: block;
+
+  font-size: 11px;
+
+  color: #718096;
+
+  margin-bottom: 2px;
 }
 
 .stat strong {
-  font-size: 16px;
-  display: block;
-}
 
+  font-size: 15px;
+
+  color: #1a202c;
+}
 
 
 /* SLOT CARD */
@@ -120,35 +246,66 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px;
-  margin: 10px;
-  border-radius: 12px;
+  gap: 12px;
 
-  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  margin: 10px;
+
+  padding: 10px 12px;
+
+  border-radius: 14px;
 
   transition: 0.2s;
+
+  border: 1px solid transparent;
 }
 
 .slot-card:hover {
-  transform: translateY(-2px);
+
+  transform: translateY(-1px);
 }
 
 
-/* LEFT PART */
+/* AVAILABLE */
+
+.slot-card.available {
+
+  background: #ffffff;
+
+  border-color: #e2e8f0;
+}
+
+
+/* BOOKED */
+
+.slot-card.booked {
+
+  background:
+    linear-gradient(135deg,#e8f1ff,#d7e7ff);
+
+  border-color: #bfd6ff;
+}
+
+
+/* LEFT */
 
 .slot-left {
+
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+
+/* TOKEN */
+
 .slot-number {
-  width: 36px;
-  height: 36px;
 
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
 
-  background: #1b6fa8;
+  border-radius: 12px;
+
+  background: #0f8aa5;
 
   color: white;
 
@@ -156,43 +313,104 @@
   align-items: center;
   justify-content: center;
 
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
+
+  flex-shrink: 0;
 }
+
+
+/* TIME */
 
 .slot-time {
+
+  font-size: 14px;
   font-weight: 600;
+
+  color: #1d2b36;
 }
 
 
-/* BOOKED SLOT */
+/* SLOT INFO */
 
-.slot-card.booked {
+.slot-info {
 
-  background: linear-gradient(135deg,#6f96d3,#4e73b7);
-  color: white;
+  flex: 1;
+
+  overflow: hidden;
+}
+
+.slot-info div {
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.patient {
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #1d2b36;
+}
+
+.phone {
+
+  font-size: 12px;
+
+  color: #718096;
 }
 
 
-/* AVAILABLE SLOT */
-
-.slot-card.available {
-
-  background: linear-gradient(135deg,#ffffff,#f2f2f2);
-}
-
-
-/* BADGE */
+/* AVAILABLE BADGE */
 
 .badge {
 
-  background: #27ae60;
+  background: #e6fffa;
 
-  color: white;
+  color: #047857;
 
-  padding: 4px 12px;
+  border: 1px solid #b7f3df;
 
-  border-radius: 20px;
+  padding: 5px 12px;
 
-  font-size: 12px;
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* MOBILE OPTIMIZATION */
+
+@media (max-width:576px) {
+
+  .slot-card {
+
+    padding: 10px;
+
+    gap: 8px;
+  }
+
+  .slot-number {
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 13px;
+  }
+
+  .slot-time {
+    font-size: 13px;
+  }
+
+  .patient {
+    font-size: 12px;
+  }
+
+  .phone {
+    font-size: 11px;
+  }
 
 }
