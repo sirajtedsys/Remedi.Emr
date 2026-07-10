@@ -154,7 +154,7 @@ export class DoctorWiseAppointmentPage implements OnInit {
       console.log(this.selectedBranch);
 
 
-      if (data != '') {
+      if (data != null && data != '') {
         this.LoginedAsDoctor = true
         this.selectedDoctor = data
 
