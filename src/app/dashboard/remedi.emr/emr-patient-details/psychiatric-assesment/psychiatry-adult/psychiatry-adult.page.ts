@@ -9,7 +9,7 @@ import { PAHistoryPage } from "./p-a-history/p-a-history.page";
   templateUrl: './psychiatry-adult.page.html',
   styleUrls: ['./psychiatry-adult.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonItem, IonAccordionGroup, IonAccordion, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, PAHistoryPage]
+  imports: [IonLabel, IonItem, IonAccordionGroup, IonAccordion, CommonModule, FormsModule, PAHistoryPage]
 })
 export class PsychiatryAdultPage implements OnInit {
 

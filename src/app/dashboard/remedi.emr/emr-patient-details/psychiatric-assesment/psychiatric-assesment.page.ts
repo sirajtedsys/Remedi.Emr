@@ -10,7 +10,7 @@ import { Router, RouterOutlet } from '@angular/router';
   templateUrl: './psychiatric-assesment.page.html',
   styleUrls: ['./psychiatric-assesment.page.scss'],
   standalone: true,
-  imports: [IonSegment, IonLabel, IonSegmentButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterOutlet]
+  imports: [IonSegment, IonLabel, IonSegmentButton, CommonModule, FormsModule, RouterOutlet]
 })
 export class PsychiatricAssesmentPage implements OnInit {
 

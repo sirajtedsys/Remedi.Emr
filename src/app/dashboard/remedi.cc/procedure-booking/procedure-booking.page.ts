@@ -21,7 +21,7 @@ import { ProcBookingRegPage } from "./proc-booking-reg/proc-booking-reg.page";
   templateUrl: './procedure-booking.page.html',
   styleUrls: ['./procedure-booking.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonSelect, IonIcon, IonDatetime, IonModal, IonDatetimeButton, IonSelectOption, IonButtons, ProcBookingRegPage]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonSelect, IonIcon, IonDatetime, IonModal, IonSelectOption, IonButtons, ProcBookingRegPage]
 })
 export class ProcedureBookingPage implements OnInit {
 

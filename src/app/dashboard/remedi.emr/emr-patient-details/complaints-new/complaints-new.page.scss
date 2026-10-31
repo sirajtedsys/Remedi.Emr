@@ -1,0 +1,2456 @@
+
+
+:host{
+
+    --primary:#04b5c5;
+    --primary-light:#edf6ff;
+    --text:#243447;
+    --text-light:#64748b;
+    --border:#dce5ef;
+    --bg:#f5f8fc;
+    --danger:#d32f2f;
+  
+  }
+  
+
+  
+  .patient-header{
+  
+    --background:#fff;
+  
+    border-bottom:1px solid var(--border);
+  
+    box-shadow:0 3px 12px rgba(15,95,168,.08);
+  
+    z-index:100;
+  
+  }
+  
+  
+  
+  
+  ion-toolbar{
+  
+    --background:#fff;
+  
+    --padding-start:12px;
+  
+    --padding-end:12px;
+  
+    --min-height:58px;
+  
+  }
+  
+  
+ 
+  
+  .header-container{
+  
+    display:flex;
+  
+    justify-content:space-between;
+  
+    align-items:center;
+  
+    gap:18px;
+  
+  }
+  
+  
+  
+  
+  .patient-info{
+  
+    flex:1;
+  
+    min-width:0;
+  
+  }
+  
+  
+
+  
+  .patient-row{
+  
+    display:flex;
+  
+    flex-wrap:wrap;
+  
+    align-items:center;
+  
+    gap:10px;
+  
+  }
+  
+  
+ 
+  
+  .patient-id{
+  
+    background:var(--primary-light);
+  
+    color:var(--primary);
+  
+    font-size:12px;
+  
+    font-weight:700;
+  
+    padding:5px 10px;
+  
+    border-radius:20px;
+  
+    letter-spacing:.4px;
+  
+  }
+  
+  
+ 
+  
+  .divider{
+  
+    width:1px;
+  
+    height:16px;
+  
+    background:#d9dfe7;
+  
+  }
+  
+  
+ 
+  
+  .patient-name{
+  
+    font-size:18px;
+  
+    font-weight:700;
+  
+    color:var(--text);
+  
+    text-transform:uppercase;
+  
+    letter-spacing:.3px;
+  
+  }
+  
+  
+
+  
+  .gender,
+  .age,
+  .dob,
+  .mobile{
+  
+    display:flex;
+  
+    align-items:center;
+  
+    gap:4px;
+  
+    font-size:13px;
+  
+    color:var(--text-light);
+  
+    white-space:nowrap;
+  
+  }
+  
+  .gender strong,
+  .age strong,
+  .dob strong,
+  .mobile strong{
+  
+    color:var(--text);
+  
+  }
+  
+  
+  
+  
+  .address{
+  
+    display:flex;
+  
+    align-items:center;
+  
+    gap:6px;
+  
+    margin-top:5px;
+  
+    color:#6c7a89;
+  
+    font-size:12px;
+  
+    overflow:hidden;
+  
+    text-overflow:ellipsis;
+  
+    white-space:nowrap;
+  
+  }
+  
+  .address ion-icon{
+  
+    color:var(--primary);
+  
+    font-size:15px;
+  
+  }
+  
+  
+
+  
+  .right-side{
+  
+    display:flex;
+  
+    align-items:center;
+  
+    gap:8px;
+  
+    flex-shrink:0;
+  
+  }
+  
+  
+ 
+  
+  .right-side ion-button{
+  
+    --border-radius:8px;
+  
+    height:34px;
+  
+    margin:0;
+  
+    font-size:12px;
+  
+    font-weight:600;
+    
+
+    ion-icon{
+        color: #05b4c7;
+    }
+   
+  
+  }
+  
+  .right-side ion-button:hover{
+  
+    transform:translateY(-1px);
+  
+    transition:.25s;
+  
+  }
+  .emergency-check{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:4px 10px;
+
+    border:1px solid #ffd5d5;
+
+    background:#fff6f6;
+
+    border-radius:8px;
+
+    height:34px;
+
+}
+
+.emergency-check label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#c62828;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+
+}
+
+.emergency-check ion-checkbox{
+
+    --size:18px;
+
+    --checkbox-background:#fff;
+
+    --checkbox-background-checked:#d32f2f;
+
+    --border-color:#d32f2f;
+
+    --border-color-checked:#d32f2f;
+
+    --checkmark-color:#fff;
+
+}
+  
+
+  
+  .right-side ion-chip{
+  
+    height:30px;
+  
+    font-size:12px;
+  
+    font-weight:600;
+  
+  }
+
+  /*=====================================================
+  SECOND ROW
+======================================================*/
+
+.header-second-row{
+
+    display:flex;
+  
+    justify-content:space-between;
+  
+    align-items:flex-start;
+  
+    gap:16px;
+  
+    padding:8px 12px;
+  
+    background:#f8fafc;
+  
+    border-top:1px solid var(--border);
+  
+  }
+  
+  
+
+  
+  .notes-section{
+  
+    display:flex;
+  
+    align-items:flex-start;
+  
+    gap:10px;
+  
+    flex:1;
+  
+  }
+  
+  
+ 
+  
+  .note-box{
+  
+    width:165px;
+  
+    flex-shrink:0;
+  
+  }
+  
+  
+
+  
+  .note-title{
+  
+    height:22px;
+  
+    display:flex;
+  
+    align-items:center;
+  
+    justify-content:center;
+  
+    background:linear-gradient(135deg, #05b4c7, #05b4c7);
+  
+    color:#fff;
+  
+    font-size:10px;
+  
+    font-weight:700;
+  
+    letter-spacing:.8px;
+  
+    border-radius:6px 6px 0 0;
+  
+    text-transform:uppercase;
+  
+  }
+  
+  
+
+  
+  .note-box ion-textarea{
+  
+    --background:#ffffff;
+  
+    --padding-top:2px;
+  
+    --padding-bottom:6px;
+  
+    --padding-start:8px;
+  
+    --padding-end:8px;
+  
+    border:1px solid var(--border);
+  
+    border-top:none;
+  
+    border-radius:0 0 6px 6px;
+  
+    min-height:20px;
+  
+    font-size:12px;
+  
+    color:#444;
+  
+    transition:.25s;
+  
+  }
+  
+  
+  
+  
+  .note-box ion-textarea{
+  
+    pointer-events:none;
+  
+  }
+  
+  .note-box ion-textarea::part(native){
+  
+    resize:none;
+  
+    cursor:default;
+  
+  }
+  
+  
+  
+  
+  .note-box:hover ion-textarea{
+  
+    background:#fbfdff;
+  
+    border-color:#b8d2ec;
+  
+  }
+  
+  
+ 
+  
+  .actions-section{
+  
+    display:flex;
+  
+    align-items:center;
+  
+    gap:14px;
+  
+    flex-shrink:0;
+  
+  }
+  
+  
+  
+  
+  .actions-section ion-chip{
+  
+    --background:#fff2f2;
+  
+    color:#c62828;
+  
+    border:1px solid #f5b5b5;
+  
+    font-weight:600;
+  
+    height:32px;
+  
+    padding:0 6px;
+  
+  }
+  
+  .actions-section ion-chip ion-icon{
+  
+    color:#d32f2f;
+  
+  }
+  
+  
+ 
+  
+  .icon-group{
+  
+    display:flex;
+  
+    align-items:center;
+  
+    gap:4px;
+  
+    padding:3px;
+  
+    background:#fff;
+  
+    border:1px solid var(--border);
+  
+    border-radius:10px;
+  
+  }
+  
+  
+
+  
+  .icon-group ion-button{
+  
+    --padding-start:5px;
+  
+    --padding-end:5px;
+  
+    --background:transparent;
+  
+    --border-radius:8px;
+  
+    width:34px;
+  
+    height:34px;
+  
+    margin:0;
+  
+    transition:.25s;
+  
+  }
+  
+  
+  
+  
+  .icon-group ion-icon{
+  
+    font-size:18px;
+  
+    color:#58708c;
+  
+    transition:.25s;
+  
+  }
+  
+  
+
+  
+  .icon-group ion-button:hover{
+  
+    --background:#edf5ff;
+  
+    transform:translateY(-2px);
+  
+  }
+  
+  .icon-group ion-button:hover ion-icon{
+  
+    color:var(--primary);
+  
+  }
+  
+  
+  
+  
+  .icon-group .active{
+  
+    --background:var(--primary-light);
+  
+  }
+  
+  .icon-group .active ion-icon{
+  
+    color:var(--primary);
+  
+  }
+  
+  
+  
+  
+  .icon-divider{
+  
+    width:1px;
+  
+    height:22px;
+  
+    background:var(--border);
+  
+    margin:0 3px;
+  
+  }
+
+  /*=====================================================
+  RESPONSIVE - LARGE DESKTOP
+======================================================*/
+
+@media (max-width: 1400px) {
+
+    .patient-name {
+      font-size: 16px;
+    }
+  
+    .note-box {
+      width: 150px;
+    }
+  
+    .icon-group ion-button {
+      width: 32px;
+      height: 32px;
+    }
+  
+  }
+  
+  /*=====================================================
+    LAPTOP
+  ======================================================*/
+  
+  @media (max-width: 1200px) {
+  
+    .header-container {
+      gap: 12px;
+    }
+  
+    .patient-row {
+      gap: 8px;
+    }
+  
+    .patient-name {
+      font-size: 15px;
+    }
+  
+    .note-box {
+      width: 140px;
+    }
+  
+    .actions-section {
+      gap: 8px;
+    }
+  
+  }
+  
+  /*=====================================================
+    TABLET
+  ======================================================*/
+  
+  @media (max-width: 992px) {
+  
+    ion-toolbar {
+      --min-height: auto;
+    }
+  
+    .header-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  
+    .patient-info {
+      width: 100%;
+    }
+  
+    .patient-row {
+      row-gap: 6px;
+    }
+  
+    .right-side {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  
+    .header-second-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    .notes-section {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+  
+    .actions-section {
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+  
+    .patient-row {
+  
+      display: grid;
+  
+      grid-template-columns: repeat(2, 1fr);
+  
+      gap: 6px;
+  
+    }
+  
+    .divider {
+      display: none;
+    }
+  
+    .patient-name {
+      grid-column: span 2;
+      font-size: 16px;
+    }
+  
+    .address {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+      line-height: 1.4;
+    }
+  
+    .notes-section {
+      gap: 8px;
+    }
+  
+    .note-box {
+      min-width: 145px;
+    }
+  
+    .actions-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .icon-group {
+      width: 100%;
+      overflow-x: auto;
+      justify-content: flex-start;
+      scrollbar-width: thin;
+    }
+  
+  }
+  
+  
+  @media (max-width: 480px) {
+  
+    ion-toolbar {
+  
+      --padding-start: 8px;
+      --padding-end: 8px;
+  
+    }
+  
+    .patient-id {
+      font-size: 11px;
+      padding: 4px 8px;
+    }
+  
+    .patient-name {
+      font-size: 15px;
+    }
+  
+    .gender,
+    .age,
+    .dob,
+    .mobile {
+      font-size: 12px;
+    }
+  
+    .address {
+      font-size: 11px;
+    }
+  
+    .note-box {
+      min-width: 135px;
+    }
+  
+    .note-title {
+      font-size: 9px;
+    }
+  
+    .note-box ion-textarea {
+      min-height: 42px;
+      font-size: 11px;
+    }
+  
+    .actions-section ion-chip {
+      font-size: 11px;
+    }
+  
+    .icon-group ion-button {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .icon-group ion-icon {
+      font-size: 16px;
+    }
+  
+  }
+  
+
+  
+  .notes-section::-webkit-scrollbar,
+  .icon-group::-webkit-scrollbar {
+  
+    height: 5px;
+  
+  }
+  
+  .notes-section::-webkit-scrollbar-thumb,
+  .icon-group::-webkit-scrollbar-thumb {
+  
+    background: #c5d4e5;
+  
+    border-radius: 20px;
+  
+  }
+  
+  .notes-section::-webkit-scrollbar-track,
+  .icon-group::-webkit-scrollbar-track {
+  
+    background: transparent;
+  
+  }
+  
+
+  
+  .patient-header,
+  .header-second-row {
+  
+    animation: fadeDown .35s ease;
+  
+  }
+  
+  @keyframes fadeDown {
+  
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+  }
+  
+ 
+  
+  ion-button:focus-visible {
+  
+    outline: 2px solid var(--primary);
+  
+    outline-offset: 2px;
+  
+  }
+  
+ 
+  
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .text-danger {
+    color: var(--danger);
+  }
+  
+  .fw-600 {
+    font-weight: 600;
+  }
+  
+  .fw-700 {
+    font-weight: 700;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  
+  .rounded {
+    border-radius: 8px;
+  }
+
+
+
+
+.summary-page {
+
+    --background: #f5f7fb;
+  
+    padding: 14px 0;
+  
+    min-height: 100%;
+  
+  }
+  
+  
+  
+  /*==================================================
+                      TOP TABS
+  ==================================================*/
+  
+  .summary-tabs {
+  
+    display: flex;
+  
+    align-items: center;
+  
+    gap: 8px;
+  
+    overflow-x: auto;
+  
+    white-space: nowrap;
+  
+    padding-bottom: 12px;
+  
+    scrollbar-width: none;
+  
+    -webkit-overflow-scrolling: touch;
+  
+  }
+  
+  .summary-tabs::-webkit-scrollbar {
+  
+    display: none;
+  
+  }
+  
+  
+  
+  .summary-tab {
+  
+    display: inline-flex;
+  
+    align-items: center;
+  
+    justify-content: center;
+  
+    gap: 6px;
+  
+    flex-shrink: 0;
+  
+    cursor: pointer;
+  
+    padding: 8px 16px;
+  
+    background: #ffffff;
+  
+    border: 1px solid #dfe6ef;
+  
+    border-radius: 30px;
+    margin-top: 5px;
+    color: #536173;
+  
+    font-size: 13px;
+  
+    font-weight: 600;
+  
+    line-height: 1;
+  
+    transition: all .25s ease;
+  
+  }
+  
+  
+  
+  .summary-tab:hover {
+  
+    background: #f3f8ff;
+  
+    border-color: #c9d8ea;
+    transform: translateY(-1px);
+  }
+  
+  
+  
+  .summary-tab.active {
+  
+    color: #ffffff;
+  
+    border-color: transparent;
+  
+    background: linear-gradient(135deg,#00b7c9,#0097a7);
+  
+    box-shadow: 0 8px 18px rgba(0, 151, 167, 0.25);
+  
+  }
+  
+  
+  
+  .summary-tab .dot {
+  
+    width: 8px;
+  
+    height: 8px;
+  
+    border-radius: 50%;
+  
+    background: #b7c4d5;
+  
+  }
+  
+  
+  
+  .summary-tab.active .dot {
+  
+    background: #ffffff;
+  
+  }
+  
+  
+  
+  
+  
+  .tab-container {
+  
+    background: #ffffff;
+  
+    border: 1px solid #e3e8ef;
+  
+    border-radius: 14px;
+  
+    padding: 12px;
+  
+    box-shadow: none;
+  
+  }
+  
+  
+  
+  
+  
+  .option-row {
+  
+    display: flex;
+  
+    align-items: center;
+  
+    flex-wrap: wrap;
+  
+    gap: 20px;
+  
+    margin-bottom: 12px;
+  
+  }
+  
+  
+  
+ 
+  
+  ion-checkbox {
+  
+    --size: 16px;
+  
+    --checkbox-background: #ffffff;
+  
+    --checkbox-background-checked: #0097a7;
+  
+    --border-color: #c7d2df;
+  
+    --checkmark-color: #ffffff;
+  
+    --border-radius: 3px;
+  
+    font-size: 12px;
+  
+    font-weight: 600;
+  
+    color: #465466;
+  
+  }
+  
+  
+  
+ 
+  
+  ion-input,
+  ion-select,
+  ion-textarea {
+  
+    --background: #ff0000;
+  
+    --border-radius: 4px;
+  
+    --padding-start: 8px;
+  
+    --padding-end: 8px;
+  
+    --highlight-height: 0;
+  
+    font-size: 12px;
+  
+    color: #243446;
+  
+  }
+  
+  
+  
+ 
+  
+  label {
+  
+    display: block;
+  
+    margin-bottom: 4px;
+  
+    font-size: 11px;
+  
+    font-weight: 700;
+  
+    color: #445266;
+  
+    line-height: 1.2;
+  
+  }
+
+
+.vital-wrapper {
+
+    display: flex;
+  
+    gap: 12px;
+  
+    align-items: stretch;
+  
+  }
+  
+
+  
+  .vital-card {
+  
+    background: #ffffff;
+  
+    border: 1px solid #dfe6ee;
+  
+    border-radius: 14px;
+  
+    padding: 10px 12px;
+  
+    display: flex;
+  
+    align-items: center;
+  
+    box-shadow: none;
+  
+    min-height: 86px;
+  
+  }
+  
+  .vital-card:first-child {
+  
+    flex: 0 0 31%;
+  
+  }
+  
+  .vital-card.large {
+  
+    flex: 1;
+  
+  }
+  
+
+  
+  .vital-grid {
+  
+    width: 100%;
+  
+    display: grid;
+  
+    gap: 10px;
+  
+    // align-items: end;
+  
+  }
+  
+  
+  
+  .vital-card:first-child .vital-grid {
+  
+    grid-template-columns: repeat(4, 1fr);
+  
+  }
+  
+ 
+  
+  .large-grid {
+  
+    grid-template-columns:
+      1.35fr
+      1.35fr
+      .85fr
+      .95fr
+      .80fr
+      .80fr
+      34px;
+  
+  }
+  
+
+  
+  .field {
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    // justify-content: flex-end;
+  
+  }
+  
+  .field label {
+  
+    font-size: 11px;
+  
+    font-weight: 700;
+  
+    color: #4d5c6d;
+  
+    margin-bottom: 4px;
+  
+    text-align: center;
+  
+  }
+  
+  .field small {
+  
+    margin-top: 4px;
+  
+    font-size: 10px;
+  
+    font-weight: 600;
+  
+    color: #7c8898;
+  
+    text-align: center;
+  
+    line-height: 1;
+  
+  }
+  
+ 
+  
+  ion-input,
+  ion-select {
+  
+    --background: #cceaf557;
+  
+    --border-color: #8be0ffaf;
+  
+    --border-radius: 4px;
+  
+    --padding-start: 6px;
+  
+    --padding-end: 6px;
+  
+    --highlight-height: 0;
+  
+    --min-height: 30px !important;
+  
+    font-size: 12px;
+  
+  }
+  
+ 
+  
+  .bp-box {
+  
+    display: flex;
+  
+    gap: 5px;
+  
+    align-items: center;
+  
+  }
+  
+  .bp-box ion-input {
+  
+    flex: 1;
+  
+  }
+  
+
+  
+  .icon-field {
+  
+    display: flex;
+  
+    justify-content: center;
+  
+    align-items: center;
+  
+  }
+  
+  .icon-field ion-button {
+  
+    width: 30px;
+  
+    height: 30px;
+  
+    min-width: 30px;
+  
+    --padding-start: 0;
+  
+    --padding-end: 0;
+  
+    --background: transparent;
+  
+    --box-shadow: none;
+  
+    --border-radius: 50%;
+  
+  }
+  
+  .icon-field ion-icon {
+  
+    font-size: 22px;
+  
+    color: #00a6b6;
+  
+  }
+  
+  /*==================================================
+              READONLY INPUT STYLE
+  ==================================================*/
+  
+  ion-input[readonly] {
+  
+    opacity: 1;
+  
+  }
+
+  /*==================================================
+                PLACEHOLDER
+==================================================*/
+
+.placeholder {
+
+    background: #ffffff;
+  
+    border: 1px solid #e2e8f0;
+  
+    border-radius: 14px;
+  
+    padding: 16px;
+  
+    box-shadow: none;
+  
+  }
+  
+  .placeholder h3 {
+  
+    margin: 0 0 14px;
+  
+    font-size: 16px;
+  
+    font-weight: 700;
+  
+    color: #2d3a4d;
+  
+  }
+  
+  ion-textarea {
+  
+    --background: #fafafa;
+  
+    --border-color: #cfd8e3;
+  
+    --border-radius: 6px;
+  
+    --padding-top: 10px;
+  
+    --padding-bottom: 10px;
+  
+    --padding-start: 10px;
+  
+    --padding-end: 10px;
+  
+    min-height: 150px;
+  
+    font-size: 13px;
+  
+  }
+  
+  /*==================================================
+                INPUT HOVER / FOCUS
+  ==================================================*/
+  
+  ion-input:hover,
+  ion-select:hover,
+  ion-textarea:hover {
+  
+    --border-color: #00a7b7;
+  
+  }
+  
+  ion-input.ion-focused,
+  ion-select.ion-focused,
+  ion-textarea.ion-focused {
+  
+    --border-color: #00a7b7;
+  
+  }
+  
+  /*==================================================
+                  TABLET
+  ==================================================*/
+  
+  @media (max-width: 992px) {
+  
+    .summary-page {
+  
+      padding: 12px;
+  
+    }
+  
+    .vital-wrapper {
+  
+      flex-direction: column;
+  
+      gap: 14px;
+  
+    }
+  
+    .vital-card:first-child,
+    .vital-card.large {
+  
+      flex: 1 1 100%;
+  
+      width: 100%;
+  
+    }
+  
+    .vital-card {
+  
+      min-height: auto;
+  
+    }
+  
+    .vital-card:first-child .vital-grid {
+  
+      grid-template-columns: repeat(2, 1fr);
+  
+    }
+  
+    .large-grid {
+  
+      grid-template-columns: repeat(2, 1fr);
+  
+    }
+  
+  }
+  
+  /*==================================================
+                  MOBILE
+  ==================================================*/
+  
+  @media (max-width:576px){
+  
+    .summary-page{
+  
+      padding:10px;
+  
+    }
+  
+    .summary-tabs{
+  
+      gap:6px;
+  
+      padding-bottom:10px;
+  
+    }
+  
+    .summary-tab{
+  
+      padding:7px 14px;
+  
+      font-size:12px;
+  
+    }
+  
+    .tab-container{
+  
+      padding:10px;
+  
+    }
+  
+    .option-row{
+  
+      flex-direction:column;
+  
+      align-items:flex-start;
+  
+      gap:10px;
+  
+    }
+  
+    .vital-wrapper{
+  
+      flex-direction:column;
+  
+      gap:12px;
+  
+    }
+  
+    .vital-card{
+  
+      width:100% !important;
+  
+      padding:12px;
+  
+    }
+  
+    .vital-card:first-child .vital-grid,
+  
+    .large-grid{
+  
+      grid-template-columns:1fr;
+  
+      gap:12px;
+  
+    }
+  
+    .bp-box{
+  
+      flex-direction:row;
+  
+      gap:6px;
+  
+    }
+  
+    ion-input,
+  
+    ion-select{
+  
+      min-height:36px;
+  
+    }
+  
+    .field label{
+  
+      text-align:left;
+  
+    }
+  
+    .field small{
+  
+      text-align:left;
+  
+    }
+  
+    .icon-field{
+  
+      justify-content:flex-start;
+  
+    }
+  
+    .placeholder{
+  
+      padding:14px;
+  
+    }
+  
+    ion-textarea{
+  
+      min-height:130px;
+  
+    }
+  
+  }
+
+  /*==================================================
+            IONIC OUTLINE INPUT POLISH
+==================================================*/
+
+:host {
+
+    ion-input,
+    ion-select,
+    ion-textarea {
+  
+      --highlight-color-focused: #00a6b6;
+      --highlight-color-valid: #00a6b6;
+      --highlight-color-invalid: #d32f2f;
+      min-height: 30px;
+    }
+  
+  }
+  
+
+  
+  ion-input,
+  ion-select,
+  ion-textarea,
+  ion-checkbox{
+  
+    box-shadow:none !important;
+  
+  }
+  
+  /*==================================================
+              IONIC OUTLINE BORDER
+  ==================================================*/
+  
+  ion-input::part(native),
+  ion-textarea::part(native){
+  
+    font-size:12px;
+  
+    color:#243447;
+  
+  }
+  
+ 
+  
+  ion-select{
+  
+    width:100%;
+  }
+  
+  ion-select::part(icon){
+  
+    color:#6c7a89;
+  
+    font-size:14px;
+  
+    opacity:.8;
+  
+  }
+  
+  ion-select::part(text){
+  
+    font-size:12px;
+  
+    color:#243447;
+  
+  }
+  
+ 
+  
+  ion-input::part(native)::placeholder,
+  ion-textarea::part(native)::placeholder{
+  
+    color:#9aa5b5;
+  
+    opacity:1;
+  
+  }
+  
+  
+  
+  ion-input[readonly]{
+  
+    --background:#cceaf557;
+  
+    opacity:1;
+  
+  }
+  
+  
+  
+  ion-checkbox{
+  
+    --checkmark-width:2.5px;
+  
+    --border-width:1.5px;
+  
+  }
+  
+
+  
+  ion-button{
+  
+    text-transform:none;
+  
+    font-weight:600;
+  
+    letter-spacing:0;
+  
+  }
+  
+ 
+  
+  .summary-tab,
+  .vital-card,
+  ion-input,
+  ion-select,
+  ion-textarea{
+  
+    transition:all .25s ease;
+  
+  }
+  
+
+  
+  .vital-card:hover{
+  
+    border-color:#b8d8de;
+  
+    background:#fcfefe;
+  
+  }
+  
+  
+  
+  ion-input.ion-focused,
+  ion-select.ion-focused,
+  ion-textarea.ion-focused{
+  
+    transform:translateY(-1px);
+    
+  }
+  
+  
+  
+  .field label{
+  
+    user-select:none;
+  
+    white-space:nowrap;
+  
+  }
+  
+
+  
+  .field small{
+  
+    user-select:none;
+  
+  }
+  
+
+  
+  *::-webkit-scrollbar{
+  
+    width:6px;
+  
+    height:6px;
+  
+  }
+  
+  *::-webkit-scrollbar-thumb{
+  
+    background:#c8d2dd;
+  
+    border-radius:20px;
+  
+  }
+  
+  *::-webkit-scrollbar-track{
+  
+    background:transparent;
+  
+  }
+  
+  /*==================================================
+              DESKTOP (1200+)
+  ==================================================*/
+  
+  @media (min-width:1200px){
+  
+    .summary-page{
+  
+      max-width:100%;
+  
+      margin:auto;
+  
+    }
+  
+    .vital-wrapper{
+  
+      gap:14px;
+  
+    }
+  
+  }
+  
+  /*==================================================
+              LARGE DESKTOP
+  ==================================================*/
+  
+  @media (min-width:1600px){
+  
+    .vital-card{
+  
+      min-height:90px;
+  
+    }
+  
+  }
+
+
+
+
+  /*=====================================================
+            CONSULTATION PAGE
+======================================================*/
+
+.consultation-page {
+  --background: #f4f8fd;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 12px;
+}
+
+/*=====================================================
+                GRID
+======================================================*/
+
+.consultation-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:12px;
+  align-items:start;
+}
+/* Know Case Of */
+.section-card:nth-child(1){
+  grid-column:span 2;
+}
+
+/* Symptoms */
+.section-card:nth-child(2){
+  grid-column:span 2;
+}
+
+/* Cross Consultation */
+.section-card:nth-child(3){
+  grid-column:span 2;
+}
+.section-card:nth-child(n+4){
+  grid-column:span 3;
+}
+/*=====================================================
+                CARD
+======================================================*/
+
+.section-card {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #d9e8f7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+}
+
+/* Right top card */
+
+.wide-card {
+  grid-column: span 2;
+}
+
+/*=====================================================
+                HEADER
+======================================================*/
+
+.section-header {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 4px 10px;
+
+  // background: linear-gradient(#d7ecff, #c7e3fb);
+  background: linear-gradient(#cfebee, #cdeaed);
+  border-bottom: 1px solid #bfd8ee;
+}
+
+.section-header.between {
+  justify-content: space-between;
+}
+
+
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #28526e;
+  white-space: nowrap;
+}
+
+
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.section-header ion-button {
+  margin: 0;
+  height: 24px;
+
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --color: #145d7b;
+}
+
+.section-header ion-button span {
+  font-size: 11px;
+  margin-left: 2px;
+}
+
+.section-header ion-icon {
+  font-size: 17px;
+}
+
+
+
+.section-header ion-select {
+
+  width: 135px;
+
+  min-height: 24px;
+
+  font-size: 11px;
+
+  --padding-start: 8px;
+  --padding-end: 20px;
+
+  border: 1px solid #c7d7e8;
+
+  border-radius: 4px;
+
+  background: #fff;
+}
+
+
+
+ion-checkbox {
+
+  --size: 14px;
+
+  margin-left: 2px;
+}
+
+
+
+.small-label {
+  font-size: 11px;
+  color: #444;
+}
+
+
+
+.section-body {
+  padding: 0px;
+}
+
+
+
+.mini-textarea {
+
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+
+  // min-height: 78px;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius: 3px;
+
+  background: #ffffff;
+
+  font-size: 13px;
+
+  color: #222;
+}
+
+.mini-textarea textarea {
+
+  min-height: 70px !important;
+
+  resize: vertical;
+}
+
+
+ion-textarea {
+
+  width: 100%;
+}
+
+ion-textarea::part(native) {
+
+  min-height: 70px;
+
+  padding: 6px 8px;
+
+  font-size: 13px;
+
+  color: #222;
+}
+
+
+.cross-card{
+
+  padding:0;
+}
+
+
+
+.cross-header{
+
+  display:flex;
+
+  background:linear-gradient(#cfebee, #cdeaed);
+
+  border-bottom:1px solid #b8d8f5;
+
+  min-height:34px;
+
+}
+
+.cross-header .head{
+
+  width:85px;
+
+  padding:6px 4px;
+
+  font-size:10px;
+
+  font-weight:600;
+
+  color:#36526c;
+
+  line-height:1.2;
+
+}
+
+
+
+
+
+.cross-body{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  padding:16px 0;
+
+  gap:8px;
+
+}
+
+.icon-box{
+
+  width:72px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:flex-start;
+
+}
+
+.icon-box ion-icon{
+
+  font-size:30px;
+
+  color:#204d70;
+
+}
+
+.comment-area{
+
+  flex:1;
+
+  min-width:50px;
+
+}
+
+.comment-area ion-textarea{
+
+  width:100%;  
+
+}
+
+.comment-area .mini-textarea{
+
+  width:100%;
+
+  min-height:60px;
+
+}
+
+.comment-area ion-textarea::part(native){
+
+  min-height:60px;
+
+}
+
+
+
+.section-card:nth-child(1),
+.section-card:nth-child(2) {
+  min-height: 0px;
+}
+
+.section-card:nth-child(3) {
+  min-height: 0px;
+}
+
+.section-card:nth-child(4),
+.section-card:nth-child(5),
+.section-card:nth-child(6),
+.section-card:nth-child(7),
+.section-card:nth-child(8),
+.section-card:nth-child(9) {
+  min-height: 0px;
+}
+
+/*=====================================================
+                HOVER
+======================================================*/
+
+.section-card {
+  transition: .18s ease;
+}
+
+.section-card:hover {
+  box-shadow: 0 4px 14px rgba(27, 93, 137, .12);
+}
+
+/*=====================================================
+                TABLET
+======================================================*/
+
+@media (max-width:992px) {
+
+  .consultation-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.section-card,
+.section-card:nth-child(1),
+.section-card:nth-child(2),
+.section-card:nth-child(3),
+.section-card:nth-child(n+4){
+    grid-column:span 1;
+}
+
+  .consultation-grid {
+    gap: 10px;
+  }
+
+  .section-header {
+    padding: 5px 8px;
+  }
+
+  .header-left {
+    gap: 6px;
+  }
+
+  .header-right {
+    gap: 2px;
+  }
+
+  .section-title {
+    font-size: 11px;
+  }
+
+  .section-header ion-select {
+    width: 120px;
+    font-size: 10px;
+  }
+
+  .consult-icons {
+    gap: 12px;
+  }
+
+  .icon-item {
+    min-width: 58px;
+  }
+
+  .icon-item ion-icon {
+    font-size: 20px;
+  }
+
+  .comment-box {
+    width: 160px;
+  }
+}
+
+/*=====================================================
+                MOBILE
+======================================================*/
+
+@media (max-width:768px) {
+
+  .consultation-grid{
+    grid-template-columns:1fr;
+}
+
+.section-card,
+.section-card:nth-child(1),
+.section-card:nth-child(2),
+.section-card:nth-child(3),
+.section-card:nth-child(n+4){
+    grid-column:1/-1;
+}
+
+  .wide-card {
+    grid-column: auto;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%;
+  }
+
+  .header-right {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .section-header ion-select {
+    width: 100%;
+  }
+
+  .consult-icons {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .split-body {
+    flex-direction: column;
+  }
+
+  .left-space {
+    display: none;
+  }
+
+  .comment-box {
+    width: 100%;
+  }
+
+  .mini-textarea {
+    min-height: 72px;
+  }
+
+  ion-textarea::part(native) {
+    min-height: 64px;
+  }
+}
+
+/*=====================================================
+            SMALL MOBILE
+======================================================*/
+
+@media (max-width:480px) {
+
+  .consultation-page {
+    --padding-start: 6px;
+    --padding-end: 6px;
+    --padding-top: 6px;
+  }
+
+  .consultation-grid {
+    gap: 8px;
+  }
+
+  .section-title {
+    font-size: 11px;
+  }
+
+  .section-header ion-button {
+    height: 22px;
+  }
+
+  .section-header ion-icon {
+    font-size: 16px;
+  }
+
+  .icon-item {
+    min-width: 64px;
+  }
+
+  .icon-item span {
+    font-size: 9px;
+  }
+
+  .icon-item ion-icon {
+    font-size: 18px;
+  }
+
+  .mini-textarea {
+    min-height: 68px;
+  }
+
+  ion-textarea::part(native) {
+    min-height: 60px;
+    font-size: 12px;
+  }
+}
+
+
+
+
+
+ion-card {
+  overflow: hidden;
+}
+
+ion-button {
+  text-transform: none;
+}
+
+ion-select {
+  --placeholder-color: #5f6f7d;
+  --placeholder-opacity: 1;
+}
+
+ion-checkbox {
+  --checkbox-background: #ceeaed42;
+  // --checkbox-background-checked: #1976d2;
+  --border-color: #90a4ae;
+  // --border-color-checked: #1976d2;
+}
+
+ion-textarea {
+
+  --background: #fff;
+
+  --color: #222;
+
+  --placeholder-color: #999;
+
+  --placeholder-opacity: 1;
+}
+
+
+
+.mini-textarea {
+
+  transition: .18s;
+
+}
+
+.mini-textarea:hover {
+
+  border-color: #8bbbe6;
+
+}
+
+.mini-textarea:focus-within {
+
+  border-color: #2196f3;
+
+  box-shadow: 0 0 0 2px rgba(33,150,243,.10);
+
+}
+
+/*==========================================================
+                BUTTON EFFECT
+==========================================================*/
+
+.section-header ion-button {
+
+  border-radius: 4px;
+
+}
+
+.section-header ion-button:hover {
+
+  background: rgba(25,118,210,.08);
+
+}
+
+
+
+::-webkit-scrollbar {
+
+  width: 7px;
+
+  height: 7px;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: #b7c9dc;
+
+  border-radius: 20px;
+
+}
+
+::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+/*==========================================================
+                DESKTOP
+==========================================================*/
+
+@media (min-width:1400px){
+
+  .consultation-grid{
+
+    max-width:1600px;
+
+    margin:auto;
+
+  }
+
+}
+
+/*==========================================================
+                LARGE TABLET
+==========================================================*/
+
+@media (max-width:1200px){
+
+  .consultation-grid{
+
+    gap:10px;
+
+  }
+
+}
+
+/*==========================================================
+                MOBILE
+==========================================================*/
+
+@media (max-width:576px){
+
+  .section-body{
+
+    padding:8px;
+
+  }
+
+  .mini-textarea{
+
+    min-height:65px;
+
+  }
+
+}

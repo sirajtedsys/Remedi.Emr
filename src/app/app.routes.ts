@@ -123,6 +123,10 @@ export const routes: Routes = [
             path: 'next-review',
             loadComponent: () => import('./dashboard/remedi.cc/next-review/next-review.page').then(m => m.NextReviewPage)
           },
+          {
+            path: 'home-care',
+            loadComponent: () => import('./dashboard/remedi.cc/home-care/home-care.page').then(m => m.HomeCarePage)
+          },
 
         ],
       },

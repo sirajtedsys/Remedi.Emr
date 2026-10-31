@@ -143,7 +143,7 @@
           [empId]="PrintDocId">
 
         </app-prescription-print-format> -->
-        <app-appointment-actions [DoctorId]="this.CalenderData.DoctId??''"
+        <app-appointment-actions [Slot]="selectedSlot" [sessionId]="CCmoduleConfig.sessionId" [DoctorId]="this.CalenderData.DoctId??''"
           [BranchId]="this.CalenderData.BranchId??''" [doctorName]="this.CalenderData.DoctName??''"
           [selectedDate]="this.selectedDate" [tokenNumber]="this.SelectedToken" [EmpId]="this.CalenderData.empId??''" [bookingId]="this.SelectedBookingId"
           (closePopup)="closeModal()"></app-appointment-actions>

@@ -53,25 +53,18 @@ import { PatientListDatewiseItem } from 'src/app/shared/interfaces/patient-list/
   imports: [
     CommonModule,
     FormsModule,
-    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
     IonButton,
-    IonButtons,
-    IonInput,
-    IonSelect,
-    IonSelectOption,
-    IonIcon,
-    IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle,
-    IonList, IonItem, IonLabel, IonTextarea,
-    IonCheckbox,
-        MatFormFieldModule,
+    IonGrid, IonRow, IonCol, IonCard, IonCardContent,
+    IonItem, IonLabel, IonTextarea,
+    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatOptionModule,
+    MatOptionModule
 ]
 })
 export class ProgressNotePage implements OnInit {

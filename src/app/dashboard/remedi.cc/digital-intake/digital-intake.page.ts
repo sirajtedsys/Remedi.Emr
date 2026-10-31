@@ -34,7 +34,6 @@ import { DigitalIntakeService } from 'src/app/shared/services/digital-intake.ser
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
@@ -50,8 +49,7 @@ import { DigitalIntakeService } from 'src/app/shared/services/digital-intake.ser
     MatOptionModule,
     IonAccordionGroup,
     IonAccordion, IonRadio,
-    IonListHeader
-  ]
+    IonListHeader]
 })
 export class DigitalIntakePage implements OnInit, AfterViewInit {
 

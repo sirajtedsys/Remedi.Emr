@@ -43,4 +43,7 @@ export interface DoctorTokenList
 
   con_Status: string | null;
   patient_Arrived: string | null;
+
+  patI_ID:string | null;
+  docT_ID:string | null;
 }

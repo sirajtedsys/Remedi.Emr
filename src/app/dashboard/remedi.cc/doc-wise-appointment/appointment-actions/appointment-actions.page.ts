@@ -18,6 +18,8 @@ import { LookupService } from 'src/app/shared/services/lookup.service';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { DialogService } from 'src/app/shared/services/notification/dialog.service';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { VisitSaveRequest } from 'src/app/shared/class/remedi.cc/doc-wise-appointment/visit-save-request';
+import { Slots } from 'src/app/shared/class/remedi.cc/doc-wise-appointment/doc-daily-slots/slots';
 
 
 @Component({
@@ -33,8 +35,8 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
   @Input() patientData: any;
   // @Input() tokenNumber: number = 0;
   // @Input() selectedDate: Date = new Date();
-
-
+@Input() Slot = new Slots() 
+  @Input() sessionId:string=''
   @Input() DoctorId: string = ''
   @Input() BranchId: string = ''
   @Input() doctorName = '';
@@ -138,21 +140,43 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
       // this.processConfirmInCancelTab();
       this.realocateSubission()
     }
+    else if (this.activeTab === 'arrived') {
+      const alert = await this.dialogService.showAlert({
+        header: 'Confirmation',
+        message: 'Are you sure you want to mark the patient Arrived?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              this.saveAppointemtVisit()
+              // let asr = new VisitSaveRequest();
+              // asr.APPOINTMENT_ID = 
+              // Send connection request here
+              // this.dwaService.SaveAppoitnemntVisit()
+            },
+          },
+        ],
+      });
+    }
   }
 
   dismiss() {
     // Logic to close modal
-   this.CancelReason = ''
-  this.CancelRemarks = ''
-  this.RADate = '';
-  this.RADoctor = '';
-  this.RAToken = '';
-  this.CallConnectStatus= '';
-  this.CallRemarks = '';
-  this.REANewDate= ''
-  this.READoctor = '';
-  this.REAToken = 0;
-  this.onchangesMethods()
+    this.CancelReason = ''
+    this.CancelRemarks = ''
+    this.RADate = '';
+    this.RADoctor = '';
+    this.RAToken = '';
+    this.CallConnectStatus = '';
+    this.CallRemarks = '';
+    this.REANewDate = ''
+    this.READoctor = '';
+    this.REAToken = 0;
+    this.onchangesMethods()
   }
 
   ngOnInit(): void {
@@ -162,11 +186,14 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.onchangesMethods()
+
   }
 
 
-  onchangesMethods(){
-      this.getAllDoctors(this.BranchId);
+  onchangesMethods() {
+    console.log(this.patientData);
+    
+    this.getAllDoctors(this.BranchId);
     this.GetAppointmentCancelStatusAsync()
     this.GetBookingCallHistoryAsync()
     this.READoctor = this.DoctorId
@@ -177,7 +204,7 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
 
 
   async appointmentCancel() {
-    (await this.dwaService.AppointmentCancel(this.bookingId, this.CancelReason, this.datePipe.transform(this.selectedDate,'dd/MMM/yyyy hh:mm a'), this.BranchId, this.CancelRemarks, this.DoctorId, (this.tokenNumber).toString())).subscribe((response) => {
+    (await this.dwaService.AppointmentCancel(this.bookingId, this.CancelReason, this.datePipe.transform(this.selectedDate, 'dd/MMM/yyyy hh:mm a'), this.BranchId, this.CancelRemarks, this.DoctorId, (this.tokenNumber).toString())).subscribe((response) => {
       console.log('Cancellation Response:', response);
       // Handle response and show success message
       // this.closePopup.emit();
@@ -223,8 +250,7 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
       // this.AppointmentProcedureList = data
       this.TokenTimeList = data
 
-      if(this.TokenTimeList.length==0)
-      {
+      if (this.TokenTimeList.length == 0) {
         this.notification.showNotification('No tokens available for the selected date and doctor', 'info')
       }
 
@@ -357,12 +383,51 @@ export class AppointmentActionsPage implements OnInit, OnChanges {
       this.datePipe.transform(this.selectedDate),
       this.datePipe.transform(this.commonService.combineDateAndTime(this.datePipe.transform(this.REANewDate, 'dd-MM-yyyy') ?? '', selectedToken), 'dd/MMM/yyyy hh:mm a'))).subscribe((response) => {
         console.log('Reallocation Response:', response);
-        if(response.status == 200) {
+        if (response.status == 200) {
           this.notification.showNotification(response.message ?? 'Reallocation successful', 'success')
           this.closePopup.emit();
         }
       })
 
+
+  }
+
+arriveRemarks:string=''
+ async  saveAppointemtVisit() {
+    if(this.Slot.tokenDetils?.bk_Id == 'W'){
+      this.notification.info('This is a Walk-in patient, so you cannot save visit!')
+      return;
+      
+    }
+    console.log(this.Slot);
+    // return
+    let d = new VisitSaveRequest();
+    d.BRANCH_ID = this.BranchId;
+    d.APPOINTMENT_ID = this.Slot.tokenDetils?.bk_Id ?? "";
+    // d.CUST_ID = this.Slot.tokenDetils?.cust_Id ?? "";
+    // d.BARCODE
+    // d.BILL_SERIAL_ID
+    d.DOCTOR_ID = this.DoctorId
+    d.PATI_ID = this.Slot.tokenDetils?.patI_ID ?? "";
+    d.PAY_TYPE  = "C"
+    d.REMARKS = this.arriveRemarks
+    d.TOKEN_NO =  this.tokenNumber.toString();
+    d.SESSION_ID = this.sessionId;
+    
+    console.log(d);
+    
+    // d.SESSION_ID = this.
+
+   (await this.dwaService.SaveAppoitnemntVisit(d)).subscribe((response) => {
+     console.log('Visit Save Response:', response);
+     if (response.success == true) {
+       this.notification.showNotification(response.message ?? 'Visit saved successfully', 'success')
+      //  this.closePopup.emit();
+     }
+     else {
+       this.notification.showNotification(response.message ?? 'Failed to save visit', 'error')
+     }
+   })
 
   }
 }

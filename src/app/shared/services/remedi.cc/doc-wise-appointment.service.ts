@@ -126,4 +126,12 @@ export class DocWiseAppointmentService {
     const endpoint = "docwiseappointment/appnmt-reallocation"
     return this.apiService.get(endpoint, { bookingId: bookingId, branchId: branchId, doctorId: doctorId, tokenNo: tokenNo, visitDate: visitDate, RescheduledDate: RescheduledDate })
   }
+
+   SaveAppoitnemntVisit( appVisit: any) {
+    const endpoint = "docwiseappointment/save-appointment-visit"
+    return this.apiService.post(endpoint, appVisit)
+  }
+
+
+
 }

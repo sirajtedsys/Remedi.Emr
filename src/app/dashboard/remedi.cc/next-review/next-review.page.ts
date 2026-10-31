@@ -29,10 +29,7 @@ import { NextReviewService } from 'src/app/shared/services/next-review/next-revi
   standalone: true,
    imports: [
     IonItem,
-    IonIcon,
     IonButton,
-    IonButtons,
-    IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
@@ -42,7 +39,7 @@ import { NextReviewService } from 'src/app/shared/services/next-review/next-revi
     ReactiveFormsModule,
     IonTextarea,
     IonInput
-  ],
+],
 })
 export class NextReviewPage implements OnInit {
 

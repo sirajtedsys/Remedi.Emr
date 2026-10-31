@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, addOutline, calendarClearOutline, chevronDownOutline, closeCircleOutline, createOutline, documentOutline, documentTextOutline, eyeOutline, listOutline, pencil, saveOutline, searchOutline } from 'ionicons/icons';
+import { add, addOutline, calendarClearOutline, chevronDownOutline, closeCircleOutline, createOutline, documentOutline, documentTextOutline, eyeOutline, listOutline, micOutline, pencil, saveOutline, searchOutline, stopCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,10 @@ export class AppComponent {
       add,
       addOutline,chevronDownOutline,
       eyeOutline,
-      pencil
+      pencil,
+      
+      micOutline,
+      stopCircleOutline,
       
     });
   }

@@ -12,7 +12,7 @@ import {
   IonButtons
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, chevronBackOutline, chevronForwardOutline, closeCircleOutline } from 'ionicons/icons';
+import { arrowBackOutline, chevronBackOutline, chevronForwardOutline, closeCircleOutline, calendarClearOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
 
 import { PatientBookingRegistrationPage } from "../patient-booking-registration/patient-booking-registration.page";
@@ -59,7 +59,7 @@ export class DocDailySlotsPage implements OnInit {
 
   DocScheduleList: DoctorScheduleInfo[] = []
   DoctorTokenList: DoctorTokenList[] = []
-
+selectedSlot = new Slots()
 
   RevisitCount: number = 0
   NewRegCount: number = 0
@@ -93,7 +93,7 @@ export class DocDailySlotsPage implements OnInit {
 
   ) {
 
-    addIcons({ chevronBackOutline, chevronForwardOutline, closeCircleOutline,arrowBackOutline });
+    addIcons({arrowBackOutline,chevronBackOutline,chevronForwardOutline,calendarClearOutline,closeCircleOutline});
 
     this.fetchDataFromState()
 
@@ -537,6 +537,7 @@ export class DocDailySlotsPage implements OnInit {
   SelectedBookingId: string = ''
 
   onSlotClick(slot: Slots) {
+    this.selectedSlot = slot
     console.log('Slot clicked:', slot);
     if (slot.breakSlot) {
       this.notification.showNotification('This is a break slot', 'warning')

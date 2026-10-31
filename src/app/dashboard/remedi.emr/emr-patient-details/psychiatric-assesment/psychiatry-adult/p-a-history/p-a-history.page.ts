@@ -17,7 +17,7 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   templateUrl: './p-a-history.page.html',
   styleUrls: ['./p-a-history.page.scss'],
   standalone: true,
-  imports: [IonAccordionGroup, IonTextarea,IonInput,IonSelect,IonSelectOption, IonAccordion, IonItem, IonLabel, IonCheckbox, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonTextarea, IonInput, IonSelect, IonSelectOption, IonItem, IonLabel, IonCheckbox, CommonModule, FormsModule]
 })
 export class PAHistoryPage implements OnInit {
 

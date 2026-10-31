@@ -1,0 +1,464 @@
+<!-- <ion-header class="no-print">
+  <ion-toolbar>
+    <ion-title>Home Care Assessment</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">Save</ion-button>
+      <ion-button (click)="print()">Print</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content> -->
+<div class="sheet">
+  <!-- <p class="save-status no-print" *ngIf="savedMessage">{{ savedMessage }}</p> -->
+
+  <!-- Header -->
+  <div class="hero">
+    <div>
+      <h1>HOME CARE SERVICE ASSESSMENT</h1>
+      <p>
+        Initial / Follow-up Home Visit • Clinical, Functional, Safety & Care
+        Plan
+      </p>
+    </div>
+    <span>Home-Based Care</span>
+  </div>
+
+  <!-- 1. Visit & Patient Information -->
+  <section>
+    <h2>1. Visit & Patient Information</h2>
+
+    <div class="grid">
+      <ion-input label="Patient Name" labelPlacement="stacked" [(ngModel)]="hc.PATIENT_NAME">
+      </ion-input>
+      <ion-input label="MRN / Patient ID" labelPlacement="stacked" [(ngModel)]="hc.opno">
+      </ion-input>
+
+      <ion-input label="Doctor" labelPlacement="stacked" [(ngModel)]="hc.DocName">
+      </ion-input>
+
+      <!-- <ion-input label="User ID" labelPlacement="stacked" [(ngModel)]="hc.USER_ID">
+      </ion-input> -->
+
+      <ion-input label="Date of Visit" type="date" labelPlacement="stacked" [(ngModel)]="HOME_CARE_DATE">
+      </ion-input>
+
+      <ion-select label="Visit Type" labelPlacement="stacked" [(ngModel)]="hc.VISIT_TYPE">
+        <ion-select-option value="I">
+          Initial Assessment
+        </ion-select-option>
+
+        <ion-select-option value="F">
+          Follow-up Visit
+        </ion-select-option>
+
+        <ion-select-option value="U">
+          Urgent Visit
+        </ion-select-option>
+
+        <ion-select-option value="P">
+          Post-discharge Visit
+        </ion-select-option>
+      </ion-select>
+
+        <ion-input class="wide" label="Home Address / Location" labelPlacement="stacked" [(ngModel)]="hc.Address"></ion-input>
+  <ion-input label="Primary Caregiver" labelPlacement="stacked" [(ngModel)]="hc.PRIMARY_CAREGIVER"></ion-input>
+  <ion-input label="Relationship / Contact" labelPlacement="stacked" [(ngModel)]="hc.CareGiverContact"></ion-input>
+ 
+
+      <!-- <ion-input label="Primary Caregiver" labelPlacement="stacked" [(ngModel)]="hc.">
+      </ion-input> -->
+    </div>
+  </section>
+
+  <!-- 2. Home Care Request & Visit Priority -->
+  <section>
+    <h2>2. Home Care Request & Visit Priority</h2>
+
+    <div class="grid thirds">
+      <ion-textarea voiceText label="Service / Reason for Visit" labelPlacement="stacked" [(ngModel)]="hc.SERVICE_REASON_VISIT">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Main Concerns / Current Complaints" labelPlacement="stacked" [(ngModel)]="hc.MAIN_CONCERNS">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Red Flags / Urgent Concerns" labelPlacement="stacked" [(ngModel)]="hc.RED_FLAGS">
+      </ion-textarea>
+    </div>
+
+    <h3>Requested Services</h3>
+
+    <div class="chips">
+      <ion-checkbox *ngFor="let item of RequestedServices" [(ngModel)]="item.checked">
+        {{ item.homE_CARE }}
+      </ion-checkbox>
+    </div>
+  </section>
+
+  <!-- 3. Clinical History & Medication Review -->
+  <section>
+    <h2>3. Clinical History & Medication Review</h2>
+
+    <div class="grid thirds">
+      <ion-textarea voiceText label="Current Illness / Onset / Progression" labelPlacement="stacked"
+        [(ngModel)]="hc.CURRENT_ILLNESS">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Past Medical / Surgical History" labelPlacement="stacked" [(ngModel)]="hc.PAST_MEDICAL">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Allergies" labelPlacement="stacked" [(ngModel)]="hc.ALLERGIES">
+      </ion-textarea>
+    </div>
+
+    <h3>Medication Assessment</h3>
+
+    <div class="med-row">
+      <ion-input label="Medication 1 / Dose / Route / Frequency" labelPlacement="stacked"
+        [(ngModel)]="hc.MA_MEDICATION_ONE">
+      </ion-input>
+
+      <ion-input label="Adherence / Concern" labelPlacement="stacked" [(ngModel)]="hc.MA_ADHERENCE_ONE">
+      </ion-input>
+
+      <ion-input label="Action / Change" labelPlacement="stacked" [(ngModel)]="hc.MA_ACTION_ONE">
+      </ion-input>
+    </div>
+
+    <div class="med-row">
+      <ion-input label="Medication 2 / Dose / Route / Frequency" labelPlacement="stacked"
+        [(ngModel)]="hc.MA_MEDICATION_TWO">
+      </ion-input>
+
+      <ion-input label="Adherence / Concern" labelPlacement="stacked" [(ngModel)]="hc.MA_ADHERENCE_TWO">
+      </ion-input>
+
+      <ion-input label="Action / Change" labelPlacement="stacked" [(ngModel)]="hc.MA_ACTION_TWO">
+      </ion-input>
+    </div>
+
+    <div class="med-row">
+      <ion-input label="Medication 3 / Dose / Route / Frequency" labelPlacement="stacked"
+        [(ngModel)]="hc.MA_MEDICATION_THREE">
+      </ion-input>
+
+      <ion-input label="Adherence / Concern" labelPlacement="stacked" [(ngModel)]="hc.MA_ADHERENCE_THREE">
+      </ion-input>
+
+      <ion-input label="Action / Change" labelPlacement="stacked" [(ngModel)]="hc.MA_ACTION_THREE">
+      </ion-input>
+    </div>
+  </section>
+
+  <!-- 4. Vitals & General Clinical Assessment -->
+  <section>
+    <h2>4. Vitals & General Clinical Assessment</h2>
+
+    <div class="grid four">
+      <ion-input label="BP (mmHg)" labelPlacement="stacked" [(ngModel)]="hc.BP">
+      </ion-input>
+
+      <ion-input label="Pulse / min" labelPlacement="stacked" [(ngModel)]="hc.PULSE">
+      </ion-input>
+
+      <ion-input label="Respiratory Rate / min" labelPlacement="stacked" [(ngModel)]="hc.RESP_RATE">
+      </ion-input>
+
+      <ion-input label="SpO₂ %" labelPlacement="stacked" [(ngModel)]="hc.SPO2">
+      </ion-input>
+
+      <ion-input label="Temperature °C" labelPlacement="stacked" [(ngModel)]="hc.TEMPERATURE">
+      </ion-input>
+
+      <ion-input label="Weight kg" labelPlacement="stacked" [(ngModel)]="hc.WEIGHT_KG">
+      </ion-input>
+
+      <ion-input label="BMI" labelPlacement="stacked" [(ngModel)]="hc.BMI">
+      </ion-input>
+
+      <ion-input label="Oxygen / Room Air" labelPlacement="stacked" [(ngModel)]="hc.OXYGEN">
+      </ion-input>
+    </div>
+
+    <h3>General Condition</h3>
+
+    <div class="chips">
+      <ion-checkbox *ngFor="let x of GeneralCondition" [(ngModel)]="x.checked">
+        {{ x.homE_CARE }}
+      </ion-checkbox>
+    </div>
+  </section>
+
+  <!-- 5. Systems Examination -->
+  <section>
+    <h2>5. Systems Examination</h2>
+
+    <div class="system" *ngFor="let s of SystemExamination">
+      <b>{{ s.hcM_SYSTEM_NAME }}</b>
+
+      <ion-input  voiceText [label]="s.hcM_SYSTEM_NAME + ' Findings'" labelPlacement="stacked" [(ngModel)]="s.value">
+      </ion-input>
+    </div>
+  </section>
+
+  <!-- 6. Functional, Mobility & Fall Risk -->
+  <section class="page-break">
+    <h2>6. Functional, Mobility & Fall Risk</h2>
+
+    <div class="functional" *ngFor="let a of HomecareFunctionalMaster; let i = index">
+      <b>{{ a.hcM_FUNCTIONAL_NAME }}</b>
+
+      <ion-radio-group [(ngModel)]="a.value" [name]="'functional_' + i" [ngModelOptions]="{ standalone: true }">
+        <ion-radio value="I">Independent</ion-radio>
+
+        <ion-radio value="A">Needs Assistance</ion-radio>
+
+        <ion-radio value="D">Dependent</ion-radio>
+      </ion-radio-group>
+    </div>
+
+    <div class="grid">
+      <div>
+        <h3>Mobility</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of Mobility" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <h3>Fall Risk</h3>
+         <div class="chips">
+          <ion-checkbox *ngFor="let x of FallRisk" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+
+        <!-- <ion-radio-group class="chips">
+          <ion-radio *ngFor="let x of FallRisk" [name]="x.homE_CARE" [value]="x.checked">{{x.homE_CARE}}</ion-radio>
+         
+        </ion-radio-group> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Cognitive, Nutrition & Psychosocial Review -->
+  <section>
+    <h2>7. Cognitive, Nutrition & Psychosocial Review</h2>
+
+    <div class="grid thirds">
+      <div>
+        <h3>Orientation / Cognition</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of OrientationCognition" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <h3>Nutrition / Hydration</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of NutritionHydration" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <h3>Mood / Behaviour</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of MoodBehaviour" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <ion-textarea voiceText label="Nutrition / Hydration Advice" labelPlacement="stacked" [(ngModel)]="hc.ORIENTATION">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Cognitive Screening Tool / Score" labelPlacement="stacked" [(ngModel)]="hc.NUTRITION">
+      </ion-textarea>
+    </div>
+  </section>
+
+  <!-- 8. Home Environment, Equipment & Caregiver Review -->
+  <section>
+    <h2>8. Home Environment, Equipment & Caregiver Review</h2>
+
+    <div class="grid">
+      <div>
+        <h3>Home Safety</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of HomeSafety" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+      </div>
+
+      <div>
+        <h3>Equipment Available</h3>
+
+        <div class="chips">
+          <ion-checkbox *ngFor="let x of Equipment" [(ngModel)]="x.checked">
+            {{ x.homE_CARE }}
+          </ion-checkbox>
+        </div>
+
+        <ion-textarea voiceText label="Additional Equipment Required" labelPlacement="stacked"
+          [(ngModel)]="hc.EQUIPMENT_AVAILABLE">
+        </ion-textarea>
+      </div>
+
+      <ion-select label="Caregiver Availability" labelPlacement="stacked" [(ngModel)]="hc.CAREGIVER_AVAILABILITY">
+        <ion-select-option value="F">Full-time</ion-select-option>
+        <ion-select-option value="P">Part-time</ion-select-option>
+        <ion-select-option value="I">Intermittent</ion-select-option>
+        <ion-select-option value="L">Limited</ion-select-option>
+      </ion-select>
+
+      <ion-select label="Understanding of Condition" labelPlacement="stacked" [(ngModel)]="hc.UNDERSTANDING">
+        <ion-select-option value="G">Good</ion-select-option>
+        <ion-select-option value="A">Partial</ion-select-option>
+        <ion-select-option value="P">Poor</ion-select-option>
+      </ion-select>
+
+      <ion-textarea voiceText label="Caregiver Concerns" labelPlacement="stacked" [(ngModel)]="hc.CAREGIVER_CONCERNS">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Social / Access / Safeguarding Concerns" labelPlacement="stacked" [(ngModel)]="hc.SOCIAL">
+      </ion-textarea>
+    </div>
+  </section>
+
+  <!-- 9. Clinical Assessment & Home Care Risk -->
+  <section>
+    <h2>9. Clinical Assessment & Home Care Risk</h2>
+
+    <div class="grid">
+      <ion-textarea voiceText label="Problem List / Clinical Findings" labelPlacement="stacked" [(ngModel)]="hc.PROBLEM_LIST">
+      </ion-textarea>
+
+      <ion-select label="Overall Risk" labelPlacement="stacked" [(ngModel)]="hc.OVERALL_RISK">
+        <ion-select-option value="S">
+          Stable / Low Risk
+        </ion-select-option>
+
+        <ion-select-option value="M">
+          Moderate Risk
+        </ion-select-option>
+
+        <ion-select-option value="H"> High Risk </ion-select-option>
+
+        <ion-select-option value="U">
+          Urgent Hospital Assessment Required
+        </ion-select-option>
+      </ion-select>
+
+      <ion-select label="Clinical Outlook" labelPlacement="stacked" [(ngModel)]="hc.CLINICAL_OUTLOOK">
+        <ion-select-option value="S">Stable</ion-select-option>
+        <ion-select-option value="G">Good</ion-select-option>
+        <ion-select-option value="u">Guarded</ion-select-option>
+        <ion-select-option value="P">Poor</ion-select-option>
+      </ion-select>
+    </div>
+  </section>
+
+  <!-- 10. Home Care Management Plan -->
+  <section>
+    <h2>10. Home Care Management Plan</h2>
+
+    <div class="grid">
+      <ion-textarea voiceText label="Treatment / Care Plan" labelPlacement="stacked" [(ngModel)]="hc.TREATMENT_CARE_PLAN">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Investigations / Orders" labelPlacement="stacked" [(ngModel)]="hc.INVESTIGATIONS_ORDERS">
+      </ion-textarea>
+    </div>
+
+    <h3>Patient / Caregiver Education & Instructions</h3>
+
+    <ion-textarea voiceText label="Education and Instructions" labelPlacement="stacked" [(ngModel)]="hc.PATIENT_CAREGIVER">
+    </ion-textarea>
+  </section>
+
+  <!-- 11. Follow-up, Safety Net & Escalation -->
+  <section>
+    <h2>11. Follow-up, Safety Net & Escalation</h2>
+
+    <div class="grid thirds">
+      <ion-input type="date" label="Next Home Visit" labelPlacement="stacked" [(ngModel)]="nextHomeVisitDate">
+      </ion-input>
+
+      <ion-input type="date" label="Telephone Follow-up" labelPlacement="stacked" [(ngModel)]="TELEPHONE_FOLLOW_UP">
+      </ion-input>
+
+      <ion-input label="Assigned Home Care Team / Staff" labelPlacement="stacked" [(ngModel)]="hc.ASSIGNED_HOME_CARE">
+      </ion-input>
+    </div>
+
+    <div class="grid">
+      <ion-textarea voiceText label="Warning Signs / When to Seek Emergency Care" labelPlacement="stacked"
+        [(ngModel)]="hc.WARNING_SIGNS">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Hospital / Emergency Referral" labelPlacement="stacked" [(ngModel)]="hc.EMERGENCY_REFERRAL">
+      </ion-textarea>
+    </div>
+  </section>
+
+  <!-- 12. Advance Care / Goals -->
+  <section>
+    <h2>12. Advance Care / Goals</h2>
+
+    <div class="grid thirds">
+      <ion-textarea voiceText label="Patient Goals / Preferences" labelPlacement="stacked" [(ngModel)]="hc.PATIENT_GOALS">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Decision Maker / Health-care Proxy" labelPlacement="stacked" [(ngModel)]="hc.DECISION_MAKER">
+      </ion-textarea>
+
+      <ion-textarea voiceText label="Escalation / Resuscitation Preferences" labelPlacement="stacked" [(ngModel)]="hc.ESCALATION">
+      </ion-textarea>
+    </div>
+  </section>
+
+  <!-- 13. Clinician Acknowledgement -->
+  <section>
+    <h2>13. Clinician Acknowledgement</h2>
+
+    <div class="grid thirds">
+      <ion-input label="Home Care Clinician" labelPlacement="stacked" [(ngModel)]="hc.HOME_CARE_CLINICIAN">
+      </ion-input>
+
+      <ion-input type="date" label="Assessment Date" labelPlacement="stacked" [(ngModel)]="HOME_CARE_DATE">
+      </ion-input>
+
+      <ion-input label="Acknowledgement / Signature Reference" labelPlacement="stacked"
+        [(ngModel)]="hc.ACKNOWLEDGEMENT">
+      </ion-input>
+    </div>
+  </section>
+
+  <!-- Action Buttons --> 
+  <div class="actions no-print">
+    <ion-button expand="block" (click)="save()"> Save Assessment </ion-button>
+
+    <!-- <ion-button expand="block" fill="outline" (click)="print()">
+      Print
+    </ion-button> -->
+
+    <ion-button expand="block" fill="clear" color="danger" (click)="clear()">
+      Clear
+    </ion-button>
+  </div>
+</div>
+<!-- </ion-content> -->

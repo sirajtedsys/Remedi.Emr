@@ -1,0 +1,4057 @@
+
+
+<!-- TAB VIEW -->
+ <section class="patient-visit">
+      <!-- top navigation tabs -->
+
+      
+      <div class="patient-visit-tabs">
+
+            <button
+              *ngFor="let tab of tabs"
+              type="button"
+              class="patient-visit-tab"
+              [class.active]="selectedTab === tab.id"
+              (click)="changeTab(tab.id)">
+            
+                  {{ tab.name }}
+
+            </button>
+
+
+      </div>
+
+      <div *ngIf="selectedTab=='patient'" class="tab-container">
+        
+           <ion-header class="patient-header">
+                  <ion-toolbar>
+                        <div class="top-bar">
+                             <div class="top-left">
+                                 <div class="field-group small">
+                                       <label for="">Reg. Date:</label>
+
+                                       <ion-input 
+                                       fill="outline" [(ngModel)]="regDate">
+                                       </ion-input>
+                                 </div>
+
+                                 <div class="field-group tiny">
+                                    <ion-input fill="outline"
+                                     [(ngModel)]="tokenNo">
+                                     </ion-input>
+                                 </div>
+
+                                 <button class="link-btn">
+                                  Appointment Details
+                                 </button>
+
+                                 <ion-item lines="none" class="check-item">
+                                      <ion-checkbox
+                                      slot="start"
+                                      [(ngModel)]="observation">
+                                      </ion-checkbox>
+                                      <ion-label>Observation</ion-label>
+                                 </ion-item>
+
+                                 <ion-item lines="none" class="check-item">
+                                       <ion-checkbox
+                                       slot="start"
+                                       [(ngModel)]="emergency">
+                                       </ion-checkbox>
+                                       <ion-label>Emergency</ion-label>
+                                 </ion-item>
+                             </div>
+<!-- Right -->
+<div class="top-right">
+
+  <ion-button  size="small" class="rht-btn">
+    <ion-icon
+      slot="start"
+      name="save-outline">
+    </ion-icon>
+
+    Save
+  </ion-button>
+
+  <ion-button
+    fill="outline"
+    
+    size="small" >
+
+    <ion-icon
+      slot="start"
+      name="refresh-outline">
+    </ion-icon>
+
+    Refresh
+
+  </ion-button>
+
+</div>
+
+
+                        </div>
+                  </ion-toolbar>
+           </ion-header>
+
+           <section class="patient-page">
+
+            <div class="patient-card">
+          
+              <!-- LEFT SIDE -->
+          
+              <div class="patient-left1">
+          
+                <h3 class="section-title">
+                  Patient Details
+                </h3>
+          
+                <div class="patient-wrapper">
+          
+                  <!-- Photo -->
+          
+                  <div class="patient-photo">
+          
+                    <img
+                      src="assets/images/woman.png"
+                      alt="patient" />
+          
+                  </div>  
+          
+                  <!-- Details -->
+          
+                  <div class="patient-info">
+          
+                    <h2>
+                      {{patient.name}}
+                    </h2>
+          
+                    <h4>
+                      {{patient.age}}
+                      /
+                      {{patient.gender}}
+          
+                      &nbsp;
+          
+                      (
+                      {{patient.dob}}
+                      )
+          
+                    </h4>
+          
+                    <div class="detail-row">
+          
+                      <span class="label">
+                        Mobile :
+                      </span>
+          
+                      <span>
+                        {{patient.mobile}}
+                      </span>
+          
+                    </div>
+          
+                    <div class="detail-row">
+          
+                      <span class="label">
+                        Email :
+                      </span>
+          
+                      <span>
+                        {{patient.email}}
+                      </span>
+          
+                    </div>
+          
+                    <div class="detail-row">
+          
+                      <span class="label">
+                        Address :
+                      </span>
+          
+                      <span>
+                        {{patient.address}}
+                      </span>
+          
+                    </div>
+          
+                  </div>
+          
+                </div>
+          
+              </div>
+          
+          
+          
+              <!-- CENTER -->
+          
+              <div class="patient-middle">
+          
+                <div class="detail-row">
+                  <span class="label">
+                    Pay Tyre :
+                  </span>
+          
+                  <span>{{patient.payType}}</span>
+                </div>
+          
+                <div class="detail-row">
+                  <span class="label">
+                    Patient Type :
+                  </span>
+          
+                  <span>{{patient.patientType}}</span>
+                </div>
+          
+                <div class="detail-row">
+                  <span class="label">
+                    Customer :
+                  </span>
+          
+                  <span>{{patient.customer}}</span>
+                </div>
+          
+              </div>
+          
+          
+          
+              <!-- RIGHT -->
+          
+              <div class="patient-right">
+          
+                <div class="reference-box">
+          
+                  <label>
+                    Reference Details
+                  </label>  
+          
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    
+                    [(ngModel)]="reference">
+          
+                    <ion-select-option value="">
+                      Select
+                    </ion-select-option>
+          
+                    <ion-select-option value="Doctor">
+                      Doctor
+                    </ion-select-option>
+          
+                    <ion-select-option value="Friend">
+                      Friend
+                    </ion-select-option>
+          
+                    <ion-select-option value="Advertisement">
+                      Advertisement
+                    </ion-select-option>
+          
+                  </ion-select>
+          
+                </div>
+          
+          
+          
+                <div class="source-box">
+          
+                  <h5>
+                    How do you know about us ?
+                  </h5>
+          
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="knowUs">
+          
+                    <ion-select-option value="News Paper">
+                      News Paper
+                    </ion-select-option>
+          
+                    <ion-select-option value="Facebook">
+                      Facebook
+                    </ion-select-option>
+          
+                    <ion-select-option value="Instagram">
+                      Instagram
+                    </ion-select-option>
+          
+                    <ion-select-option value="Doctor">
+                      Doctor
+                    </ion-select-option>
+          
+                  </ion-select>
+          
+                </div>
+          
+              </div>
+          
+            </div>
+          
+          </section>
+
+          <section class="visit-entry-page">
+
+            <div class="visit-wrapper">
+          
+          
+              <div class="visit-card">
+          
+                <div class="card-title">
+                  Visit Entry Details
+                </div>
+          
+               
+                <div class="visit-grid">
+          
+                  <!-- Session -->
+                  <div class="form-group">
+                    <label>Session :</label>
+          
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="session">
+          
+                      <ion-select-option value="General">
+                        General
+                      </ion-select-option>
+          
+                      <ion-select-option value="Emergency">
+                        Emergency
+                      </ion-select-option>
+          
+                    </ion-select>
+                  </div>
+          
+          
+                  <!-- Department -->
+          
+                  <div class="form-group">
+                    <label>Department :</label>
+          
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="department">
+          
+                      <ion-select-option value="Gynaecology">
+                        Gynaecology
+                      </ion-select-option>
+          
+                      <ion-select-option value="Orthopaedics">
+                        Orthopaedics
+                      </ion-select-option>
+          
+                      <ion-select-option value="Cardiology">
+                        Cardiology
+                      </ion-select-option>
+          
+                    </ion-select>
+          
+                  </div>
+          
+          
+                  <!-- Doctor Code -->
+          
+                  <div class="form-group">
+          
+                    <label>Doctor Code :</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="doctorCode">
+                    </ion-input>
+          
+                  </div>
+          
+          
+                  <!-- Doctor -->
+          
+                  <div class="form-group doctor-column">
+          
+                    <label>Doctor :</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="doctor">
+                    </ion-input>
+          
+                  </div>
+          
+          
+          
+                  <!-- Token Type -->
+          
+                  <div class="form-group token-type">
+          
+                    <label>Token Type :</label>
+          
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="tokenType">
+          
+                      <ion-select-option value="Token">
+                        Token
+                      </ion-select-option>
+          
+                      <ion-select-option value="Appointment">
+                        Appointment
+                      </ion-select-option>
+          
+                    </ion-select>
+          
+                  </div>
+          
+          
+          
+                  <!-- Token -->
+          
+                  <div class="form-group token">
+          
+                    <label>Token :</label>
+          
+                    <ion-input
+                      type="number"
+                      fill="outline"
+                      [(ngModel)]="token">
+                    </ion-input>
+          
+                  </div>
+          
+                </div>
+          
+
+                <div class="fee-grid">
+          
+                  <div class="form-group small-field">
+                    <label>Reg Fees:</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="regFees">
+                    </ion-input>
+                  </div>
+          
+          
+                  <div class="form-group small-field">
+          
+                    <label>Disc %</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="discPercent">
+                    </ion-input>
+          
+                  </div>
+          
+          
+                  <div class="form-group small-field">
+          
+                    <label>Disc Amt</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="discAmount">
+                    </ion-input>
+          
+                  </div>
+          
+          
+                  <div class="form-group small-field">
+          
+                    <label>Cons. Fee</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="consultationFee">
+                    </ion-input>
+          
+                  </div>
+          
+          
+          
+                  <div class="form-group small-field">
+          
+                    <label>Cons. Disc %</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="consultationDiscPercent">
+                    </ion-input>
+          
+                  </div>
+          
+          
+                  <div class="form-group small-field">
+          
+                    <label>Cons. Disc Amt</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="consultationDiscAmount">
+                    </ion-input>
+          
+                  </div>
+          
+          
+          
+                  <div class="form-group bill-column">
+          
+                    <label>Bill Amt</label>
+          
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="billAmount">
+                    </ion-input>
+          
+                  </div>
+          
+                </div>
+          
+              </div>
+          
+             
+          
+        
+          
+              <div class="details-card">
+          
+                <div class="card-title">
+                  Details
+                </div>
+          
+          
+          
+                <div class="checkbox-row">
+          
+                  <ion-checkbox
+                    labelPlacement="end"
+                    [(ngModel)]="consPackage">
+                    Cons. Package
+                  </ion-checkbox>
+          
+                  <ion-checkbox
+                    labelPlacement="end"
+                    [(ngModel)]="cpp">
+                    CPP
+                  </ion-checkbox>
+          
+                  <ion-checkbox
+                    labelPlacement="end"
+                    [(ngModel)]="followUp">
+                    Follow up
+                  </ion-checkbox>
+          
+                </div>
+          
+          
+          
+                <!-- Claim Form + Pay Type -->
+          
+          
+                <div class="details-grid">
+          
+                  <div class="form-group">
+          
+                    <label>Claim Form#</label>
+          
+                    <div class="claim-box">
+          
+                      <ion-input
+                        fill="outline"
+                        [(ngModel)]="claimForm">
+                      </ion-input>
+          
+                      <ion-button
+                        fill="clear"
+                        class="search-btn">
+          
+                        <ion-icon
+                          slot="icon-only"
+                          name="search-outline">
+                        </ion-icon>
+          
+                      </ion-button>
+          
+                    </div>
+          
+                  </div>
+          
+          
+                  <div class="form-group">
+          
+                    <label>Pay Type:</label>
+          
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="patient.payType">
+          
+                      <ion-select-option value="Cash">
+                        Cash
+                      </ion-select-option>
+          
+                      <ion-select-option value="Card">
+                        Card
+                      </ion-select-option>
+          
+                      <ion-select-option value="UPI">
+                        UPI
+                      </ion-select-option>
+          
+                    </ion-select>
+          
+                  </div>
+          
+                </div>
+          
+          
+          
+                <!-- Remarks -->
+          
+                <div class="form-group remarks-group">
+          
+                  <label>Remarks</label>
+          
+                  <ion-textarea
+                    autoGrow="false"
+                    rows="1"
+                    fill="outline"
+                    [(ngModel)]="remarks">
+                  </ion-textarea>
+          
+                </div>
+          
+              </div>
+          
+            </div>
+          
+          </section>
+
+          <section class="insurance-page">
+
+            <div class="insurance-card">
+          
+              <!-- Header -->
+          
+              <div class="insurance-header"  (click)="toggleInsurance()">
+          
+                <span>Insurance</span>
+          
+                <ion-icon
+[name]="insuranceExpanded ? 'chevron-down-outline' : 'chevron-forward-outline'">
+</ion-icon>
+          
+              </div>
+          
+              <!-- Body -->
+          
+              <div
+                class="insurance-body"
+                *ngIf="insuranceExpanded">
+          
+                <div class="table-wrapper">
+          
+                  <table>
+          
+                    <thead>
+          
+                      <tr>
+          
+                        <th class="w40">Dflt</th>
+          
+                        <th class="w120">
+                          TPA/Provider
+                        </th>
+          
+                        <th class="w170">
+                          Ins.Company
+                        </th>
+          
+                        <th class="w190">
+                          Card Holder Name
+                        </th>
+          
+                        <th class="w140">
+                          Card/ Scheme
+                        </th>
+          
+                        <th class="w120">
+                          Policy#
+                        </th>
+          
+                        <th class="w110">
+                          Valid from
+                        </th>
+          
+                        <th class="w110">
+                          Valid to
+                        </th>
+          
+                        <th class="w70">
+                          Ded%
+                        </th>
+          
+                        <th class="w90">
+                          Ded Amt
+                        </th>
+          
+                        <th class="w70">
+                          Co Ins%
+                        </th>
+          
+                        <th class="w70">
+                          Ph Co%
+                        </th>
+          
+                        <th class="w70">
+                          Dn Co%
+                        </th>
+          
+                        <th class="w120">
+                          Co-Ins Limit
+                        </th>
+          
+                      </tr>
+          
+                    </thead>
+          
+                    <tbody>
+          
+                      <tr
+                        *ngFor="let row of insuranceRows;let i=index">
+          
+                        <!-- Checkbox -->
+          
+                        <td>
+          
+                          <ion-checkbox
+                            [(ngModel)]="row.default">
+                          </ion-checkbox>
+          
+                        </td>
+          
+                        <!-- TPA -->
+          
+                        <td>
+          
+                          <div class="search-input">
+          
+                            <ion-input
+                              [(ngModel)]="row.tpa">
+                            </ion-input>
+          
+                            <ion-icon
+                              name="search-outline">
+                            </ion-icon>
+          
+                          </div>
+          
+                        </td>
+          
+                        <!-- Company -->
+          
+                        <td>
+          
+                          <div class="search-input">
+          
+                            <ion-input
+                              [(ngModel)]="row.company">
+                            </ion-input>
+          
+                            <ion-icon
+                              name="search-outline">
+                            </ion-icon>
+          
+                          </div>
+          
+                        </td>
+          
+                        <!-- Card Holder -->
+          
+                        <td>
+          
+                          <div class="search-input">
+          
+                            <ion-input
+                              [(ngModel)]="row.cardHolder">
+                            </ion-input>
+          
+                            <ion-icon
+                              name="search-outline">
+                            </ion-icon>
+          
+                          </div>
+          
+                        </td>
+          
+                        <!-- Scheme -->
+          
+                        <td>
+          
+                          <div class="search-input">
+          
+                            <ion-input
+                              [(ngModel)]="row.scheme">
+                            </ion-input>
+          
+                            <ion-icon
+                              name="search-outline">
+                            </ion-icon>
+          
+                          </div>
+          
+                        </td>
+          
+                        <!-- Policy -->
+          
+                        <td>
+          
+                          <div class="search-input">
+          
+                            <ion-input
+                              [(ngModel)]="row.policy">
+                            </ion-input>
+          
+                            <ion-icon
+                              name="search-outline">
+                            </ion-icon>
+          
+                          </div>
+          
+                        </td>
+          
+                        <!-- Valid From -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="date"
+                            [(ngModel)]="row.validFrom">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Valid To -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="date"
+                            [(ngModel)]="row.validTo">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Ded -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="number"
+                            [(ngModel)]="row.ded">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Ded Amt -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="number"
+                            [(ngModel)]="row.dedAmt">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Co -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="number"
+                            [(ngModel)]="row.coIns">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Ph -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="number"
+                            [(ngModel)]="row.phCo">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Dn -->
+          
+                        <td>
+          
+                          <ion-input
+                            type="number"
+                            [(ngModel)]="row.dnCo">
+                          </ion-input>
+          
+                        </td>
+          
+                        <!-- Limit -->
+          
+                        <td>
+          
+                          <ion-input
+                            [(ngModel)]="row.limit">
+                          </ion-input>
+          
+                        </td>
+          
+                      </tr>
+          
+                    </tbody>
+          
+                  </table>
+          
+                </div>
+          
+                <!-- Buttons -->
+          
+                <div class="insurance-buttons">
+          
+                  <div class="left-buttons">
+          
+                    <ion-button fill="solid">
+                      Ins Card. Front
+                    </ion-button>
+          
+                    <ion-button fill="solid">
+                      Ins Card. Back
+                    </ion-button>
+          
+                  </div>
+          
+                  <div class="right-buttons">
+          
+                    <ion-button
+                      fill="solid"
+                      (click)="addInsuranceRow()">
+          
+                      Add New Row
+          
+                    </ion-button>
+          
+                    <ion-button
+                      fill="solid"
+                      (click)="save()">
+          
+                      <ion-icon
+                        slot="start"
+                        name="add-circle-outline">
+                      </ion-icon>
+          
+                      Add
+          
+                    </ion-button>
+          
+                    <ion-button
+                      color="light"
+                      (click)="closeInsurance()">
+          
+                      <ion-icon
+                        slot="start"
+                        name="close-circle-outline">
+                      </ion-icon>
+          
+                      Close
+          
+                    </ion-button>
+          
+                  </div>
+          
+                </div>
+          
+              </div>
+          
+            </div>
+          
+          </section>
+
+<!--=============================
+      Previous Visit Section
+==============================-->
+
+         <div class="previous-section">
+
+ 
+  <div class="previous-header">
+
+    <div class="previous-title">
+
+      <span class="previous-title-text">
+        Previous Visit Details
+      </span>
+
+      <span class="previous-count">
+        [ Total Visits : {{ previousVisits.length }} ]
+      </span>
+
+    </div>
+
+  </div>
+
+  <!--=============================
+          First Row
+  ==============================-->
+
+  <div class="previous-wrapper">
+
+    <div
+      class="previous-card"
+      *ngFor="let visit of visibleVisits">
+
+      <!-- Doctor Icon -->
+      <div class="previous-icon">
+
+        <img
+          [src]="visit.image"
+          [alt]="visit.doctor"
+          class="previous-image">
+      
+      </div>
+
+      <!-- Details -->
+      <div class="previous-details">
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Doctor :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.doctor }}
+          </span>
+
+        </div>
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Visit Date :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.date }}
+          </span>
+
+        </div>
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Visit Type :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.type }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--=============================
+          Second Row
+  ==============================-->
+
+  <div
+    class="previous-wrapper previous-second-row"
+    *ngIf="showMore && remainingVisits.length">
+
+    <div
+      class="previous-card"
+      *ngFor="let visit of remainingVisits">
+
+      <!-- Doctor Icon -->
+      <div class="previous-icon">
+
+        <!-- <ion-icon
+          name="person-circle-outline">
+        </ion-icon> -->
+
+      </div>
+
+      <!-- Details -->
+      <div class="previous-details">
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Doctor :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.doctor }}
+          </span>
+
+        </div>
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Visit Date :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.date }}
+          </span>
+
+        </div>
+
+        <div class="previous-row">
+
+          <span class="previous-label">
+            Visit Type :
+          </span>
+
+          <span class="previous-value">
+            {{ visit.type }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--=============================
+            Button
+  ==============================-->
+
+  <div
+    class="previous-button-area"
+    *ngIf="previousVisits.length > 4">
+
+    <ion-button
+      class="previous-button"
+      size="small"
+      (click)="toggleMoreVisits()">
+
+      <ion-icon
+        slot="start"
+        [name]="showMore ? 'remove-circle-outline' : 'add-circle-outline'">
+      </ion-icon>
+
+      {{ showMore ? 'Show Less' : 'More Visits' }}
+
+    </ion-button>
+
+  </div>
+
+        </div>
+          
+
+      </div>
+
+      <div *ngIf="selectedTab=='registration'" class="tab-container">
+        
+
+        <!-- Patient Registration -->
+        <div class="reg-section">
+
+          <!-- =========================
+                  HEADER
+          ========================== -->
+          <div class="reg-header">
+            <h3>Patient Details</h3>
+          </div>
+        
+          <!-- =========================
+                  BODY
+          ========================== -->
+          <div class="reg-body">
+        
+            <!-- =========================================================
+                                  LEFT PANEL
+            ========================================================== -->
+            <div class="reg-column reg-left-column">
+        
+              <!-- Type & ID -->
+              <div class="reg-row">
+        
+                <div class="reg-field">
+                  <label>Type</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="patientReg.type">
+        
+                    <ion-select-option value="">Select</ion-select-option>
+                    <ion-select-option value="New">New</ion-select-option>
+                    <ion-select-option value="Existing">Existing</ion-select-option>
+        
+                  </ion-select>
+                </div>
+        
+                <div class="reg-field">
+                  <label>ID Card No:</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.idCard">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+              <!-- Salutation -->
+              <div class="reg-row">
+        
+                <div class="reg-field">
+        
+                  <label>Salutation</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="patientReg.salutation">
+        
+                    <ion-select-option value="">Select</ion-select-option>
+                    <ion-select-option value="Mr">Mr</ion-select-option>
+                    <ion-select-option value="Mrs">Mrs</ion-select-option>
+                    <ion-select-option value="Miss">Miss</ion-select-option>
+        
+                  </ion-select>
+        
+                </div>
+        
+                <div class="reg-field">
+        
+                  <label>Initial</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.initial">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+              <!-- DOB -->
+              <div class="reg-row">
+        
+                <div class="reg-field">
+        
+                  <label>DOB</label>
+        
+                  <ion-input
+                    type="date"
+                    fill="outline"
+                    [(ngModel)]="patientReg.dob">
+                  </ion-input>
+        
+                </div>
+        
+                <div class="reg-field">
+        
+                  <label>Blood Group</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="patientReg.bloodGroup">
+        
+                    <ion-select-option value="">Select</ion-select-option>
+                    <ion-select-option>A+</ion-select-option>
+                    <ion-select-option>A-</ion-select-option>
+                    <ion-select-option>B+</ion-select-option>
+                    <ion-select-option>B-</ion-select-option>
+                    <ion-select-option>O+</ion-select-option>
+                    <ion-select-option>O-</ion-select-option>
+                    <ion-select-option>AB+</ion-select-option>
+                    <ion-select-option>AB-</ion-select-option>
+        
+                  </ion-select>
+        
+                </div>
+        
+              </div>
+        
+              <!-- Mobile -->
+              <div class="reg-row reg-full">
+        
+                <div class="reg-field">
+        
+                  <label>Mobile</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.mobile">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+            </div>
+        
+            <!-- =========================================================
+                                CENTER PANEL
+            ========================================================== -->
+            <div class="reg-column reg-center-column">
+        
+              <!-- Name -->
+              <div class="reg-row">
+        
+                <div class="reg-field">
+        
+                  <label>First Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.firstName">
+                  </ion-input>
+        
+                </div>
+        
+                <div class="reg-field">
+        
+                  <label>Last Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.lastName">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+              <!-- Address -->
+              <div class="reg-row">
+        
+                <div class="reg-field reg-address">
+        
+                  <label>Permanent Address</label>
+        
+                  <ion-textarea
+                    rows="2"
+                    autoGrow="true"
+                    fill="outline"
+                    [(ngModel)]="patientReg.address">
+                  </ion-textarea>
+        
+                </div>
+        
+                <div class="reg-right-stack">
+        
+                  <div class="reg-field">
+        
+                    <label>Patient Type</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="patientReg.patientType">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="reg-field">
+        
+                    <label>Status</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="patientReg.status">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+        
+              <!-- Nationality -->
+              <div class="reg-row">
+        
+                <div class="reg-field">
+        
+                  <label>Nationality</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.nationality">
+                  </ion-input>
+        
+                </div>
+        
+                <div class="reg-age">
+        
+                  <div class="reg-age-top">
+        
+                    <label>Age</label>
+        
+                    <div class="reg-approx">
+        
+                      <ion-checkbox
+                        [(ngModel)]="patientReg.approx">
+                      </ion-checkbox>
+        
+                      <span>Age Approx</span>
+        
+                    </div>
+        
+                  </div>
+        
+                  <div class="reg-age-inputs">
+        
+                    <ion-input
+                      placeholder="Date"
+                      fill="outline"
+                      [(ngModel)]="patientReg.ageDay">
+                    </ion-input>
+        
+                    <ion-input
+                      placeholder="Month"
+                      fill="outline"
+                      [(ngModel)]="patientReg.ageMonth">
+                    </ion-input>
+        
+                    <ion-input
+                      placeholder="Years"
+                      fill="outline"
+                      [(ngModel)]="patientReg.ageYear">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+        
+            </div>
+        
+            <!-- =========================================================
+                                RIGHT PANEL
+            ========================================================== -->
+            <div class="reg-column reg-right-column">
+        
+              <div class="reg-field">
+        
+                <label>Customer</label>
+        
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="patientReg.customer">
+                </ion-input>
+        
+              </div>
+        
+              <div class="reg-row">
+        
+                <div class="reg-field">
+        
+                  <label>Gender</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.gender">
+                  </ion-input>
+        
+                </div>
+        
+                <div class="reg-field">
+        
+                  <label>Pay Type</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="patientReg.payType">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+              <div class="reg-field">
+        
+                <label>Pincode</label>
+        
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="patientReg.pincode">
+                </ion-input>
+        
+              </div>
+        
+              <div class="reg-field">
+        
+                <label>Reference Details</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  [(ngModel)]="patientReg.reference">
+        
+                  <ion-select-option value="">
+                    Select
+                  </ion-select-option>
+        
+                  <ion-select-option value="Doctor">
+                    Doctor
+                  </ion-select-option>
+        
+                  <ion-select-option value="Friend">
+                    Friend
+                  </ion-select-option>
+        
+                  <ion-select-option value="Hospital">
+                    Hospital
+                  </ion-select-option>
+        
+                  <ion-select-option value="Advertisement">
+                    Advertisement
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        </div>
+
+        <!-- Patient Registration end here -->
+        <div class="reg-contact-wrapper">
+
+          <!--====================================
+                    CONTACT DETAILS
+          =====================================-->
+        
+          <div class="reg-contact-card">
+        
+            <div class="reg-card-header">
+              Contact Details
+            </div>
+        
+            <div class="reg-card-body">
+        
+              <!-- Row 1 -->
+        
+              <div class="reg-form-grid">
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Mobile</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.mobile">
+                  </ion-input>
+                </div>
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Phone</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.phone">
+                  </ion-input>
+                </div>
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Email</label>
+        
+                  <ion-input
+                    type="email"
+                    fill="outline"
+                    [(ngModel)]="contact.email">
+                  </ion-input>
+                </div>
+        
+              </div>
+        
+              <!-- Row 2 -->
+        
+              <div class="reg-form-grid">
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Father Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.fatherName">
+                  </ion-input>
+                </div>
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Mother Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.motherName">
+                  </ion-input>
+                </div>
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Spouse Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.spouseName">
+                  </ion-input>
+                </div>
+        
+              </div>
+        
+              <!-- Row 3 -->
+        
+              <div class="reg-form-grid">
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Relative Name</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="contact.relativeName">
+                  </ion-input>
+                </div>
+        
+                <div class="reg-form-group">
+                  <label class="reg-label">Relationship</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    justify="space-between"
+                    label-placement="stacked"
+                    [(ngModel)]="contact.relationship">
+        
+                    <ion-select-option
+                      *ngFor="let item of relationshipList"
+                      [value]="item">
+                      {{ item }}
+                    </ion-select-option>
+        
+                  </ion-select>
+
+
+
+
+
+
+
+                </div>
+        
+                <div class="reg-form-group reg-empty-column"></div>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+          <!--====================================
+                EMERGENCY CONTACT PERSON
+          =====================================-->
+        
+          <div class="reg-emergency-card">
+        
+            <div class="reg-card-header">
+              Emergency Contact Person
+            </div>
+        
+            <div class="reg-card-body">
+        
+              <div class="reg-form-group">
+        
+                <label class="reg-label">
+                  Mr/Mrs
+                </label>
+        
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="contactPerson.name">
+                </ion-input>
+        
+              </div>
+        
+              <div class="reg-form-group">
+        
+                <label class="reg-label">
+                  Relationship
+                </label>
+        
+                          <ion-select
+            fill="outline"
+            interface="popover"
+            justify="space-between"
+            label-placement="stacked"
+            [(ngModel)]="contact.relationship">
+
+            <ion-select-option
+              *ngFor="let item of relationshipList"
+              [value]="item">
+              {{ item }}
+            </ion-select-option>
+
+          </ion-select>
+        
+              </div>
+        
+              <div class="reg-form-group">
+        
+                <label class="reg-label">
+                  Telephone
+                </label>
+        
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="contactPerson.telephone">
+                </ion-input>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        </div>
+        <!-- Patient Contact Details end here -->
+
+
+              <!-- additional Details -->
+
+<div class="reg-add-wrapper">
+
+ 
+  <div class="reg-add-header">
+    <span>Additional Details</span>
+  </div>
+
+ 
+  <div class="reg-add-body">
+
+    <div class="reg-add-grid">
+
+
+      <div class="reg-add-column">
+
+        <!-- Religion -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Religion
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.religion">
+
+            <ion-select-option
+              *ngFor="let item of religionList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Official Address -->
+
+        <div class="reg-add-form-group reg-add-grow">
+
+          <label class="reg-add-label">
+            Official Address
+          </label>
+
+          <ion-textarea
+
+            class="reg-add-textarea"
+
+            fill="outline"
+
+            autoGrow="true"
+
+            rows="2"
+
+           
+
+            [(ngModel)]="regAdditionalDetails.officialAddress">
+
+          </ion-textarea>
+
+        </div>
+
+      </div>
+
+      <!--====================================================
+                        COLUMN 2
+      =====================================================-->
+
+      <div class="reg-add-column">
+
+        <!-- Occupation -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Occupation
+          </label>
+
+          <ion-select
+
+            interface="popover"
+
+            fill="outline"
+
+            class="reg-add-select"
+
+           
+
+            [(ngModel)]="regAdditionalDetails.occupation">
+
+            <ion-select-option
+
+              *ngFor="let item of occupationList"
+
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Present Address -->
+
+        <div class="reg-add-form-group reg-add-grow">
+
+          <label class="reg-add-label">
+            Present Address
+          </label>
+
+          <ion-textarea
+
+            class="reg-add-textarea"
+
+            fill="outline"
+
+            autoGrow="true"
+
+            rows="2"
+
+            
+
+            [(ngModel)]="regAdditionalDetails.presentAddress">
+
+          </ion-textarea>
+
+        </div>
+
+      </div>
+            <!--====================================================
+                        COLUMN 3
+      =====================================================-->
+
+      <div class="reg-add-column">
+
+        <!-- Organization -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Organization
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.organization">
+
+            <ion-select-option
+              *ngFor="let item of organizationList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Permanent Address -->
+
+        <div class="reg-add-form-group reg-add-grow">
+
+          <label class="reg-add-label">
+            Permanent Address
+          </label>
+
+          <ion-textarea
+            class="reg-add-textarea"
+            fill="outline"
+            autoGrow="true"
+            rows="2"
+            
+            [(ngModel)]="regAdditionalDetails.permanentAddress">
+
+          </ion-textarea>
+
+        </div>
+
+      </div>
+
+      <!--====================================================
+                        COLUMN 4
+      =====================================================-->
+
+      <div class="reg-add-column">
+
+        <!-- Job Place -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Job Place
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.jobPlace">
+
+            <ion-select-option
+              *ngFor="let item of jobPlaceList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Fax -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Fax
+          </label>
+
+          <ion-input
+            class="reg-add-input"
+            fill="outline"
+            type="text"
+            
+            [(ngModel)]="regAdditionalDetails.fax">
+
+          </ion-input>
+
+        </div>
+
+        <!-- Marital Status -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Marital Status
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.maritalStatus">
+
+            <ion-select-option
+              *ngFor="let item of maritalStatusList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Employee -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Employee
+          </label>
+
+          <ion-input
+            class="reg-add-input"
+            fill="outline"
+            
+            [(ngModel)]="regAdditionalDetails.employee">
+
+          </ion-input>
+
+        </div>
+
+      </div>
+
+            <!--====================================================
+                        COLUMN 5
+      =====================================================-->
+
+      <div class="reg-add-column">
+
+        <!-- Official Phone -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Official Phone
+          </label>
+
+          <ion-input
+            class="reg-add-input"
+            fill="outline"
+            type="tel"
+            
+            [(ngModel)]="regAdditionalDetails.officialPhone">
+
+          </ion-input>
+
+        </div>
+
+        <!-- Block / Location -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Block / Location
+          </label>
+
+          <ion-input
+            class="reg-add-input"
+            fill="outline"
+            
+            [(ngModel)]="regAdditionalDetails.block">
+
+          </ion-input>
+
+        </div>
+
+        <!-- Patient Category -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Patient Category
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.patientCategory">
+
+            <ion-select-option
+              *ngFor="let item of patientCategoryList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <!-- Language -->
+
+        <div class="reg-add-form-group">
+
+          <label class="reg-add-label">
+            Language
+          </label>
+
+          <ion-select
+            interface="popover"
+            fill="outline"
+            class="reg-add-select"
+            
+            [(ngModel)]="regAdditionalDetails.language">
+
+            <ion-select-option
+              *ngFor="let item of languageList"
+              [value]="item">
+
+              {{ item }}
+
+            </ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+              <!-- additional Details end-->
+
+
+
+
+        <section class="visit-entry-page">
+
+          <div class="visit-wrapper">
+        
+        
+            <div class="visit-card">
+        
+              <div class="card-title">
+                Visit Entry Details
+              </div>
+        
+             
+              <div class="visit-grid">
+        
+                <!-- Session -->
+                <div class="form-group">
+                  <label>Session :</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="session">
+        
+                    <ion-select-option value="General">
+                      General
+                    </ion-select-option>
+        
+                    <ion-select-option value="Emergency">
+                      Emergency
+                    </ion-select-option>
+        
+                  </ion-select>
+                </div>
+        
+        
+                <!-- Department -->
+        
+                <div class="form-group">
+                  <label>Department :</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="department">
+        
+                    <ion-select-option value="Gynaecology">
+                      Gynaecology
+                    </ion-select-option>
+        
+                    <ion-select-option value="Orthopaedics">
+                      Orthopaedics
+                    </ion-select-option>
+        
+                    <ion-select-option value="Cardiology">
+                      Cardiology
+                    </ion-select-option>
+        
+                  </ion-select>
+        
+                </div>
+        
+        
+                <!-- Doctor Code -->
+        
+                <div class="form-group">
+        
+                  <label>Doctor Code :</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="doctorCode">
+                  </ion-input>
+        
+                </div>
+        
+        
+                <!-- Doctor -->
+        
+                <div class="form-group doctor-column">
+        
+                  <label>Doctor :</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="doctor">
+                  </ion-input>
+        
+                </div>
+        
+        
+        
+                <!-- Token Type -->
+        
+                <div class="form-group token-type">
+        
+                  <label>Token Type :</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="tokenType">
+        
+                    <ion-select-option value="Token">
+                      Token
+                    </ion-select-option>
+        
+                    <ion-select-option value="Appointment">
+                      Appointment
+                    </ion-select-option>
+        
+                  </ion-select>
+        
+                </div>
+        
+        
+        
+                <!-- Token -->
+        
+                <div class="form-group token">
+        
+                  <label>Token :</label>
+        
+                  <ion-input
+                    type="number"
+                    fill="outline"
+                    [(ngModel)]="token">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+
+              <div class="fee-grid">
+        
+                <div class="form-group small-field">
+                  <label>Reg Fees:</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="regFees">
+                  </ion-input>
+                </div>
+        
+        
+                <div class="form-group small-field">
+        
+                  <label>Disc %</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="discPercent">
+                  </ion-input>
+        
+                </div>
+        
+        
+                <div class="form-group small-field">
+        
+                  <label>Disc Amt</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="discAmount">
+                  </ion-input>
+        
+                </div>
+        
+        
+                <div class="form-group small-field">
+        
+                  <label>Cons. Fee</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="consultationFee">
+                  </ion-input>
+        
+                </div>
+        
+        
+        
+                <div class="form-group small-field">
+        
+                  <label>Cons. Disc %</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="consultationDiscPercent">
+                  </ion-input>
+        
+                </div>
+        
+        
+                <div class="form-group small-field">
+        
+                  <label>Cons. Disc Amt</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="consultationDiscAmount">
+                  </ion-input>
+        
+                </div>
+        
+        
+        
+                <div class="form-group bill-column">
+        
+                  <label>Bill Amt</label>
+        
+                  <ion-input
+                    fill="outline"
+                    [(ngModel)]="billAmount">
+                  </ion-input>
+        
+                </div>
+        
+              </div>
+        
+            </div>
+        
+           
+        
+      
+        
+            <div class="details-card">
+        
+              <div class="card-title">
+                Details
+              </div>
+        
+        
+        
+              <div class="checkbox-row">
+        
+                <ion-checkbox
+                  labelPlacement="end"
+                  [(ngModel)]="consPackage">
+                  Cons. Package
+                </ion-checkbox>
+        
+                <ion-checkbox
+                  labelPlacement="end"
+                  [(ngModel)]="cpp">
+                  CPP
+                </ion-checkbox>
+        
+                <ion-checkbox
+                  labelPlacement="end"
+                  [(ngModel)]="followUp">
+                  Follow up
+                </ion-checkbox>
+        
+              </div>
+        
+        
+        
+              <!-- Claim Form + Pay Type -->
+        
+        
+              <div class="details-grid">
+        
+                <div class="form-group">
+        
+                  <label>Claim Form#</label>
+        
+                  <div class="claim-box">
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="claimForm">
+                    </ion-input>
+        
+                    <ion-button
+                      fill="clear"
+                      class="search-btn">
+        
+                      <ion-icon
+                        slot="icon-only"
+                        name="search-outline">
+                      </ion-icon>
+        
+                    </ion-button>
+        
+                  </div>
+        
+                </div>
+        
+        
+                <div class="form-group">
+        
+                  <label>Pay Type:</label>
+        
+                  <ion-select
+                    interface="popover"
+                    fill="outline"
+                    [(ngModel)]="patient.payType">
+        
+                    <ion-select-option value="Cash">
+                      Cash
+                    </ion-select-option>
+        
+                    <ion-select-option value="Card">
+                      Card
+                    </ion-select-option>
+        
+                    <ion-select-option value="UPI">
+                      UPI
+                    </ion-select-option>
+        
+                  </ion-select>
+        
+                </div>
+        
+              </div>
+        
+        
+        
+              <!-- Remarks -->
+        
+              <div class="form-group remarks-group">
+        
+                <label>Remarks</label>
+        
+                <ion-textarea
+                  autoGrow="false"
+                  rows="1"
+                  fill="outline"
+                  [(ngModel)]="remarks">
+                </ion-textarea>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        </section>
+
+        <section class="insurance-page">
+
+          <div class="insurance-card">
+        
+            <!-- Header -->
+        
+            <div class="insurance-header"  (click)="toggleInsurance()">
+        
+              <span>Insurance</span>
+        
+              <ion-icon
+[name]="insuranceExpanded ? 'chevron-down-outline' : 'chevron-forward-outline'">
+</ion-icon>
+        
+            </div>
+        
+            <!-- Body -->
+        
+            <div
+              class="insurance-body"
+              *ngIf="insuranceExpanded">
+        
+              <div class="table-wrapper">
+        
+                <table>
+        
+                  <thead>
+        
+                    <tr>
+        
+                      <th class="w40">Dflt</th>
+        
+                      <th class="w120">
+                        TPA/Provider
+                      </th>
+        
+                      <th class="w170">
+                        Ins.Company
+                      </th>
+        
+                      <th class="w190">
+                        Card Holder Name
+                      </th>
+        
+                      <th class="w140">
+                        Card/ Scheme
+                      </th>
+        
+                      <th class="w120">
+                        Policy#
+                      </th>
+        
+                      <th class="w110">
+                        Valid from
+                      </th>
+        
+                      <th class="w110">
+                        Valid to
+                      </th>
+        
+                      <th class="w70">
+                        Ded%
+                      </th>
+        
+                      <th class="w90">
+                        Ded Amt
+                      </th>
+        
+                      <th class="w70">
+                        Co Ins%
+                      </th>
+        
+                      <th class="w70">
+                        Ph Co%
+                      </th>
+        
+                      <th class="w70">
+                        Dn Co%
+                      </th>
+        
+                      <th class="w120">
+                        Co-Ins Limit
+                      </th>
+        
+                    </tr>
+        
+                  </thead>
+        
+                  <tbody>
+        
+                    <tr
+                      *ngFor="let row of insuranceRows;let i=index">
+        
+                      <!-- Checkbox -->
+        
+                      <td>
+        
+                        <ion-checkbox
+                          [(ngModel)]="row.default">
+                        </ion-checkbox>
+        
+                      </td>
+        
+                      <!-- TPA -->
+        
+                      <td>
+        
+                        <div class="search-input">
+        
+                          <ion-input
+                            [(ngModel)]="row.tpa">
+                          </ion-input>
+        
+                          <ion-icon
+                            name="search-outline">
+                          </ion-icon>
+        
+                        </div>
+        
+                      </td>
+        
+                      <!-- Company -->
+        
+                      <td>
+        
+                        <div class="search-input">
+        
+                          <ion-input
+                            [(ngModel)]="row.company">
+                          </ion-input>
+        
+                          <ion-icon
+                            name="search-outline">
+                          </ion-icon>
+        
+                        </div>
+        
+                      </td>
+        
+                      <!-- Card Holder -->
+        
+                      <td>
+        
+                        <div class="search-input">
+        
+                          <ion-input
+                            [(ngModel)]="row.cardHolder">
+                          </ion-input>
+        
+                          <ion-icon
+                            name="search-outline">
+                          </ion-icon>
+        
+                        </div>
+        
+                      </td>
+        
+                      <!-- Scheme -->
+        
+                      <td>
+        
+                        <div class="search-input">
+        
+                          <ion-input
+                            [(ngModel)]="row.scheme">
+                          </ion-input>
+        
+                          <ion-icon
+                            name="search-outline">
+                          </ion-icon>
+        
+                        </div>
+        
+                      </td>
+        
+                      <!-- Policy -->
+        
+                      <td>
+        
+                        <div class="search-input">
+        
+                          <ion-input
+                            [(ngModel)]="row.policy">
+                          </ion-input>
+        
+                          <ion-icon
+                            name="search-outline">
+                          </ion-icon>
+        
+                        </div>
+        
+                      </td>
+        
+                      <!-- Valid From -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="date"
+                          [(ngModel)]="row.validFrom">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Valid To -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="date"
+                          [(ngModel)]="row.validTo">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Ded -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="number"
+                          [(ngModel)]="row.ded">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Ded Amt -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="number"
+                          [(ngModel)]="row.dedAmt">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Co -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="number"
+                          [(ngModel)]="row.coIns">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Ph -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="number"
+                          [(ngModel)]="row.phCo">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Dn -->
+        
+                      <td>
+        
+                        <ion-input
+                          type="number"
+                          [(ngModel)]="row.dnCo">
+                        </ion-input>
+        
+                      </td>
+        
+                      <!-- Limit -->
+        
+                      <td>
+        
+                        <ion-input
+                          [(ngModel)]="row.limit">
+                        </ion-input>
+        
+                      </td>
+        
+                    </tr>
+        
+                  </tbody>
+        
+                </table>
+        
+              </div>
+        
+              <!-- Buttons -->
+        
+              <div class="insurance-buttons">
+        
+                <div class="left-buttons">
+        
+                  <ion-button fill="solid">
+                    Ins Card. Front
+                  </ion-button>
+        
+                  <ion-button fill="solid">
+                    Ins Card. Back
+                  </ion-button>
+        
+                </div>
+        
+                <div class="right-buttons">
+        
+                  <ion-button
+                    fill="solid"
+                    (click)="addInsuranceRow()">
+        
+                    Add New Row
+        
+                  </ion-button>
+        
+                  <ion-button
+                    fill="solid"
+                    (click)="save()">
+        
+                    <ion-icon
+                      slot="start"
+                      name="add-circle-outline">
+                    </ion-icon>
+        
+                    Add
+        
+                  </ion-button>
+        
+                  <ion-button
+                    color="light"
+                    (click)="closeInsurance()">
+        
+                    <ion-icon
+                      slot="start"
+                      name="close-circle-outline">
+                    </ion-icon>
+        
+                    Close
+        
+                  </ion-button>
+        
+                </div>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        </section>
+
+
+        <div class="previous-section">
+
+
+<div class="previous-header">
+
+  <div class="previous-title">
+
+    <span class="previous-title-text">
+      Previous Visit Details
+    </span>
+
+    <span class="previous-count">
+      [ Total Visits : {{ previousVisits.length }} ]
+    </span>
+
+  </div>
+
+</div>
+
+<!--=============================
+        First Row
+==============================-->
+
+<div class="previous-wrapper">
+
+  <div
+    class="previous-card"
+    *ngFor="let visit of visibleVisits">
+
+    <!-- Doctor Icon -->
+    <div class="previous-icon">
+
+      <img
+        [src]="visit.image"
+        [alt]="visit.doctor"
+        class="previous-image">
+    
+    </div>
+
+    <!-- Details -->
+    <div class="previous-details">
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Doctor :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.doctor }}
+        </span>
+
+      </div>
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Visit Date :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.date }}
+        </span>
+
+      </div>
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Visit Type :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.type }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--=============================
+        Second Row
+==============================-->
+
+<div
+  class="previous-wrapper previous-second-row"
+  *ngIf="showMore && remainingVisits.length">
+
+  <div
+    class="previous-card"
+    *ngFor="let visit of remainingVisits">
+
+    <!-- Doctor Icon -->
+    <div class="previous-icon">
+
+      <!-- <ion-icon
+        name="person-circle-outline">
+      </ion-icon> -->
+
+    </div>
+
+    <!-- Details -->
+    <div class="previous-details">
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Doctor :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.doctor }}
+        </span>
+
+      </div>
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Visit Date :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.date }}
+        </span>
+
+      </div>
+
+      <div class="previous-row">
+
+        <span class="previous-label">
+          Visit Type :
+        </span>
+
+        <span class="previous-value">
+          {{ visit.type }}
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--=============================
+          Button
+==============================-->
+
+<div
+  class="previous-button-area"
+  *ngIf="previousVisits.length > 4">
+
+  <ion-button
+    class="previous-button"
+    size="small"
+    (click)="toggleMoreVisits()">
+
+    <ion-icon
+      slot="start"
+      [name]="showMore ? 'remove-circle-outline' : 'add-circle-outline'">
+    </ion-icon>
+
+    {{ showMore ? 'Show Less' : 'More Visits' }}
+
+  </ion-button>
+
+</div>
+
+        </div>
+
+
+<!--====================================================
+                SHOW REPORT FILTER
+=====================================================-->
+
+<section class="report-filter-section">
+
+  <div class="report-filter-card">
+
+    <div class="report-filter-row">
+
+      <!--============================
+              FROM DATE
+      =============================-->
+
+      <div class="report-input-group">
+
+        <ion-input
+          class="report-date-input"
+          type="date"
+          fill="outline"
+          [(ngModel)]="fromDate">
+        </ion-input>
+
+      </div>
+
+      <!--============================
+              TO DATE
+      =============================-->
+
+      <div class="report-input-group">
+
+        <ion-input
+          class="report-date-input"
+          type="date"
+          fill="outline"
+          [(ngModel)]="toDate">
+        </ion-input>
+
+      </div>
+
+      <!--============================
+              SHOW BUTTON
+      =============================-->
+
+      <div class="report-btn-group">
+
+        <ion-button
+  class="report-show-btn"
+  (click)="openReportModal()">
+
+  <ion-icon
+    slot="start"
+    name="eye-outline">
+  </ion-icon>
+
+  Show
+
+</ion-button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!--====================================================
+                MODAL
+=====================================================-->
+
+<ion-modal
+  [isOpen]="isReportModalOpen"
+  cssClass="report-modal"
+  [backdropDismiss]="true"
+  [animated]="true"
+  (didDismiss)="closeReportModal()">
+
+  <ng-template>
+
+    <ion-header class="report-modal-header">
+
+      <ion-toolbar>
+
+        <ion-title>
+          Report Details
+        </ion-title>
+
+        <ion-buttons slot="end">
+
+          <ion-button
+            fill="clear"
+            (click)="closeReportModal()">
+
+            <ion-icon
+              slot="icon-only"
+              name="close-outline">
+            </ion-icon>
+
+          </ion-button>
+
+        </ion-buttons>
+
+      </ion-toolbar>
+
+    </ion-header>
+
+    <section
+      class="report-modal-content ion-padding">
+
+      <div class="report-modal-body">
+
+        <div class="report-modal-icon">
+
+          <ion-icon
+            name="eye-outline">
+          </ion-icon>
+
+        </div>
+
+        <h2>Report Preview</h2>
+
+        <div class="report-date-box">
+
+          <div class="report-date-item">
+
+            <span class="label">
+              From Date
+            </span>
+
+            <strong>
+              {{ fromDate }}
+            </strong>
+
+          </div>
+
+          <div class="report-date-item">
+
+            <span class="label">
+              To Date
+            </span>
+
+            <strong>
+              {{ toDate }}
+            </strong>
+
+          </div>
+
+        </div>
+
+        <ion-button
+          expand="block"
+          class="report-close-btn"
+          (click)="closeReportModal()">
+
+          Close
+
+        </ion-button>
+
+      </div>
+
+    </section>
+
+  </ng-template>
+
+</ion-modal>
+
+
+
+
+      </div>
+
+      <div *ngIf="selectedTab=='master'" class="tab-container">          
+      </div>
+
+      <div *ngIf="selectedTab=='customer'" class="tab-container">
+     
+        <div class="cust-details-wrapper">
+
+          <!--=========================================
+                      TITLE
+          ==========================================-->
+          <div class="cust-details-title">
+            Customer Details
+          </div>
+        
+          <!--=========================================
+                      FORM
+          ==========================================-->
+          <div class="cust-details-grid">
+        
+            <!--=========================================
+                      COLUMN 1
+            ==========================================-->
+            <div class="cust-card">
+        
+              <div class="cust-form-group">
+                <label>Customer Name</label>
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="customerReg.customerName">
+                </ion-input>
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Short Name</label>
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="customerReg.shortName">
+                </ion-input>
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Phone No</label>
+                <ion-input
+                  fill="outline"
+                  type="tel"
+                  [(ngModel)]="customerReg.phoneNo">
+                </ion-input>
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Mobile</label>
+                <ion-input
+                  fill="outline"
+                  type="tel"
+                  [(ngModel)]="customerReg.mobile">
+                </ion-input>
+              </div>
+        
+            </div>
+        
+            <!--=========================================
+                      COLUMN 2
+            ==========================================-->
+            <div class="cust-card">
+        
+              <div class="cust-form-group">
+                <label>Category Name</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  placeholder="Select"
+                  [(ngModel)]="customerReg.category">
+        
+                  <ion-select-option
+                    *ngFor="let item of categoryList"
+                    [value]="item">
+                    {{ item }}
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Charge Type</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  placeholder="Select"
+                  [(ngModel)]="customerReg.chargeType">
+        
+                  <ion-select-option
+                    *ngFor="let item of chargeTypeList"
+                    [value]="item">
+                    {{ item }}
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Place</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  placeholder="Select"
+                  [(ngModel)]="customerReg.place">
+        
+                  <ion-select-option
+                    *ngFor="let item of placeList"
+                    [value]="item">
+                    {{ item }}
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Email ID</label>
+        
+                <ion-input
+                  fill="outline"
+                  type="email"
+                  [(ngModel)]="customerReg.email">
+                </ion-input>
+        
+              </div>
+        
+            </div>
+        
+            <!--=========================================
+                      COLUMN 3
+            ==========================================-->
+            <div class="cust-card">
+        
+              <div class="cust-form-group">
+                <label>Pay Type</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  placeholder="Select"
+                  [(ngModel)]="customerReg.payType">
+        
+                  <ion-select-option
+                    *ngFor="let item of payTypeList"
+                    [value]="item">
+                    {{ item }}
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Inpatient Pay Type</label>
+        
+                <ion-select
+                  interface="popover"
+                  fill="outline"
+                  placeholder="Select"
+                  [(ngModel)]="customerReg.inpatientPayType">
+        
+                  <ion-select-option
+                    *ngFor="let item of inpatientPayTypeList1"
+                    [value]="item">
+                    {{ item }}
+                  </ion-select-option>
+        
+                </ion-select>
+        
+              </div>
+        
+              <div class="cust-form-group">
+                <label>Status</label>
+        
+                <ion-input
+                  fill="outline"
+                  [(ngModel)]="customerReg.status">
+                </ion-input>
+        
+              </div>
+        
+              <!-- Bottom Section -->
+              <div class="cust-bottom-row">
+        
+                <!-- Left -->
+                <div class="cust-checkbox-column">
+        
+                  <div class="cust-checkbox-item">
+                    <ion-checkbox
+                      [(ngModel)]="customerReg.camp">
+                    </ion-checkbox>
+        
+                    <span>Camp</span>
+                  </div>
+        
+                  <div class="cust-checkbox-item">
+                    <ion-checkbox
+                      [(ngModel)]="customerReg.makeInactive">
+                    </ion-checkbox>
+        
+                    <span>Make In Active</span>
+                  </div>
+        
+                </div>
+        
+                <!-- Right -->
+                <div class="cust-date-column">
+        
+                  <div class="cust-date-group">
+        
+                    <label>Start Date</label>
+        
+                    <ion-input
+                      fill="outline"
+                      type="date"
+                      [(ngModel)]="customerReg.startDate">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="cust-date-group">
+        
+                    <label>End Date</label>
+        
+                    <ion-input
+                      fill="outline"
+                      type="date"
+                      [(ngModel)]="customerReg.endDate">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+        
+            </div>
+        
+          </div>
+        
+        </div>
+
+         <!-- more details -->
+         <div class="patient-more-wrapper">
+
+          <!--==================================================
+                            HEADER
+          ===================================================-->
+        
+          <div class="patient-more-header">
+            <span>More Details</span>
+          </div>
+        
+          <!--==================================================
+                            BODY
+          ===================================================-->
+        
+          <div class="patient-more-body">
+        
+            <div class="patient-more-grid">
+        
+              <!--======================
+                    LEFT COLUMN
+              =======================-->
+        
+              <div class="patient-left2">
+        
+                <!-- Address -->
+        
+                <div class="patient-row">
+        
+                  <div class="patient-field patient-address">
+        
+                    <label>Address</label>
+        
+                    <ion-textarea
+                      rows="2"
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.address">
+                    </ion-textarea>
+        
+                  </div>
+
+                  <div class="patient-field patient-fax">
+        
+                    <label>Fax</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.fax">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+                <!-- Contact + Fax -->
+        
+                <div class="patient-row patient-two">
+        
+                  <div class="patient-field">
+        
+                    <label>Contact Person</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.contactPerson">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Contact Phone</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.contactPhone">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Contact Mobile</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.contactMobile">
+                    </ion-input>
+        
+                  </div>
+        
+                  
+        
+                </div>
+        
+                <!-- Email / GST -->
+        
+                <div class="patient-row patient-four">
+        
+                  <div class="patient-field">
+        
+                    <label>Contact Email ID</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.email">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>GSTIN</label>
+        
+                    <ion-input
+                      fill="outline"
+                      class="patient-input"
+                      [(ngModel)]="form.gstin">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Type</label>
+        
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="form.type">
+        
+                      <ion-select-option
+                        *ngFor="let item of typeList"
+                        [value]="item">
+        
+                        {{ item }}
+        
+                      </ion-select-option>
+        
+                    </ion-select>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Provider</label>
+        
+                    <ion-select
+                      interface="popover"
+                      fill="outline"
+                      [(ngModel)]="form.provider">
+        
+                      <ion-select-option
+                        *ngFor="let item of providerList"
+                        [value]="item">
+        
+                        {{ item }}
+        
+                      </ion-select-option>
+        
+                    </ion-select>
+        
+                  </div>
+        
+                </div>
+        
+                <!-- Discount -->
+        
+                <div class="patient-row patient-discount">
+        
+                  <div class="patient-field small">
+        
+                    <label>Discount %</label>
+        
+                    <ion-input
+                      type="number"
+                      fill="outline"
+                      [(ngModel)]="form.discount">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field small">
+        
+                    <label>Credit Limit</label>
+        
+                    <ion-input
+                      type="number"
+                      fill="outline"
+                      [(ngModel)]="form.creditLimit">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field small">
+        
+                    <label>TDS %</label>
+        
+                    <ion-input
+                      type="number"
+                      fill="outline"
+                      [(ngModel)]="form.tds">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-inline-check">
+        
+                    <ion-checkbox
+                      [(ngModel)]="form.needDiscount">
+                    </ion-checkbox>
+        
+                    <span>Need Discount</span>
+        
+                  </div>
+        
+                  <div class="patient-inline-check">
+        
+                    <ion-checkbox
+                      [(ngModel)]="form.creditAllowed">
+                    </ion-checkbox>
+        
+                    <span>Credit Allowed</span>
+        
+                  </div>
+        
+                  <div class="patient-inline-check">
+        
+                    <ion-checkbox
+                      [(ngModel)]="form.custCreditAllowed">
+                    </ion-checkbox>
+        
+                    <span>Cust.Credit Allowed</span>
+        
+                  </div>
+        
+                </div>
+        
+                <!-- Description -->
+        
+                <div class="patient-row patient-two">
+        
+                  <div class="patient-field">
+        
+                    <label>Description</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="form.description">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Classification</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="form.classification">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+                <!-- Revisit -->
+        
+                <div class="patient-row patient-two">
+        
+                  <div class="patient-field">
+        
+                    <label>Revisit Caption</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="form.revisitCaption">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-field">
+        
+                    <label>Rate Group</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="form.rateGroup">
+                    </ion-input>
+        
+                  </div>
+        
+                </div>
+        
+                <!-- TPA -->
+        
+                <div class="patient-row patient-two">
+        
+                  <div class="patient-field">
+        
+                    <label>TPA/IC Agreed Discount</label>
+        
+                    <ion-input
+                      fill="outline"
+                      [(ngModel)]="form.tpaDiscount">
+                    </ion-input>
+        
+                  </div>
+        
+                  <div class="patient-inline-check bottom-check">
+        
+                    <ion-checkbox
+                      [(ngModel)]="form.freeConsolidation">
+                    </ion-checkbox>
+        
+                    <span>Free Consolidation Needed</span>
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+        
+              <!--======================
+                  RIGHT COLUMN START
+              ======================-->
+        
+              <div class="patient-right">
+        
+                <div class="patient-check-list">
+        
+                  <div
+                    class="patient-check-item"
+                    *ngFor="let item of settingsList">
+        
+                    <ion-checkbox
+                      [(ngModel)]="item.checked">
+                    </ion-checkbox>
+        
+                    <span>{{ item.label }}</span>
+        
+                  </div>
+        
+                </div>
+      
+                        <!--=========================================
+                      SENIOR CITIZEN PANEL
+              ==========================================-->
+      
+              <div class="patient-senior-card">
+      
+                  <div class="patient-senior-title">
+                    Senior Citizen
+                  </div>
+        
+                  <div class="patient-senior-body">
+        
+                    <div class="patient-check-item">
+        
+                      <ion-checkbox
+                        [(ngModel)]="form.avoidConsultationFee">
+                      </ion-checkbox>
+        
+                      <span>Avoid Consultation Fee</span>
+        
+                    </div>
+        
+                    <div class="patient-check-item">
+        
+                      <ion-checkbox
+                        [(ngModel)]="form.avoidRegistrationFee">
+                      </ion-checkbox>
+        
+                      <span>Avoid Registration Free</span>
+        
+                    </div>
+        
+                  </div>
+        
+                </div>
+        
+              </div>
+              <!-- END RIGHT COLUMN -->
+        
+            </div>
+            <!-- END GRID -->
+        
+          </div>
+          <!-- END BODY -->
+        
+        
+        
+          <!--=========================================
+                          FOOTER BUTTONS
+          ==========================================-->
+        
+          <div class="patient-footer">
+        
+            <ion-button
+              class="patient-save-btn"
+              color="primary"
+              (click)="saveDetails2()">
+        
+              <ion-icon
+                slot="start"
+                name="save-outline">
+              </ion-icon>
+        
+              Save
+        
+            </ion-button>
+        
+        
+            <ion-button
+              fill="outline"
+              class="patient-refresh-btn"
+              color="medium"
+              (click)="refreshForm()">
+        
+              <ion-icon
+                slot="start"
+                name="refresh-outline">
+              </ion-icon>
+        
+              Refresh
+        
+            </ion-button>
+        
+          </div>
+        
+        </div>
+
+<!-- more details end-->
+
+
+<section class="cust-page">
+
+  <div class="cust-wrapper">
+
+    <!--=====================================================
+      TOP TOOLBAR
+    ======================================================-->
+
+    <div class="cust-toolbar">
+
+      <!-- Search -->
+
+      <div class="cust-search">
+
+        <ion-icon
+          name="search-outline"
+          class="cust-search-icon">
+        </ion-icon>
+
+        <input
+          type="text"
+          placeholder="Search"
+          [(ngModel)]="searchText"
+          (input)="filterTable()">
+
+      </div>
+
+      <!-- Export -->
+
+      <button
+        class="cust-export-btn"
+        (click)="exportExcel()">
+
+        <ion-icon
+          name="logo-microsoft">
+        </ion-icon>
+
+        <span>Export to Excel</span>
+
+      </button>
+
+    </div>
+
+    <!--=====================================================
+      TABLE CARD
+    ======================================================-->
+
+    <div class="cust-table-card">
+
+      <div class="cust-table-responsive">
+
+        <table class="cust-table">
+
+          <!--================ HEADER ================-->
+
+          <thead>
+
+            <tr>
+
+              <th style="width:60px;">
+                Sl #
+              </th>
+
+              <th>
+                Customer Name
+              </th>
+
+              <th style="width:110px;">
+                Short Name
+              </th>
+
+              <th style="width:120px;">
+                Category
+              </th>
+
+              <th style="width:170px;">
+                Charge Type
+              </th>
+
+              <th style="width:120px;">
+                Status
+              </th>
+
+              <th style="width:70px;">
+                Edit
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <!--================ BODY ================-->
+
+          <tbody>
+
+            <tr *ngFor="let customer of filteredCustomers; let i = index">
+
+              <td>
+                {{ i + 1 }}
+              </td>
+
+              <td class="cust-name">
+
+                {{ customer.customerName }}
+
+              </td>
+
+              <td>
+
+                {{ customer.shortName }}
+
+              </td>
+
+              <td>
+
+                {{ customer.category }}
+
+              </td>
+
+              <td>
+
+                {{ customer.chargeType }}
+
+              </td>
+
+              <td>
+
+                <span
+                  class="cust-status"
+                  [class.active]="customer.status==='Active'"
+                  [class.inactive]="customer.status==='In Active'">
+
+                  {{ customer.status }}
+
+                </span>
+
+              </td>
+
+              <td>
+
+                <button
+                  class="cust-edit-btn"
+                  (click)="editCustomer(customer)">
+
+                  <ion-icon
+                    name="create-outline">
+                  </ion-icon>
+
+                </button>
+
+              </td>
+
+            </tr>
+
+            <!-- Empty -->
+
+            <tr *ngIf="filteredCustomers.length===0">
+
+              <td
+                colspan="7"
+                class="cust-empty">
+
+                No Records Found
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+        
+      </div> 
+
+ </section>  
+
+
+
+

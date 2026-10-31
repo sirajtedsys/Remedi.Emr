@@ -37,7 +37,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geom:ital,wght@0,300..900;1,300..900&display=swap');
 
 
-@import '@ionic/angular/css/palettes/dark.system.css';
+// @import '@ionic/angular/css/palettes/dark.system.css';
 
 html{
   --ion-font-family: 'Geom', sans-serif;
@@ -79,6 +79,71 @@ ion-app {
 //     color: #000000 !important;
 //   }
 // }
+
+
+/* Voice input for Ionic textareas */
+
+.voice-textarea-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.voice-textarea-wrapper ion-textarea {
+  display: block;
+  width: 100%;
+  --padding-end: 48px;
+}
+
+.voice-textarea-mic {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #b7cad5;
+  border-radius: 50%;
+  background: #e5f0f2;
+  color: #304b6b;
+
+  font-size: 18px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.voice-textarea-mic.recording {
+  background: #f2dfe4;
+  border-color: #c98998;
+  color: #9b4056;
+  animation: voicePulse 1.2s infinite;
+}
+
+@keyframes voicePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 #c9899840;
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px #c9899800;
+  }
+}
+
+@media print {
+  .voice-textarea-mic {
+    display: none !important;
+  }
+}
+
 
 ion-toolbar {
   --background: #2c6f7b;

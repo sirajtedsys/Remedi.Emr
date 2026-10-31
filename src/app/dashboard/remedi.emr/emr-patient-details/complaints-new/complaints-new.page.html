@@ -1,0 +1,944 @@
+<ion-header class="patient-header" translucent="true">
+
+  <ion-toolbar>
+
+    <div class="header-container">
+
+      <!-- LEFT -->
+      <div class="patient-info">
+
+        <div class="patient-row">
+
+          <span class="patient-id">
+            BH-109504
+          </span>
+
+          <span class="divider"></span>
+
+          <span class="patient-name">
+            THANKAMANI
+          </span>
+
+          <span class="gender">
+            Female
+          </span>
+
+          <span class="age">
+            63 Years
+          </span>
+
+          <span class="dob">
+            DOB :
+            <strong>28/07/1962</strong>
+          </span>
+
+          <span class="mobile">
+            9633021389
+          </span>
+
+        </div>
+
+        <div class="address">
+
+          <ion-icon
+            name="location-outline">
+          </ion-icon>
+
+          SREERANGAM KOOTHRAPPALLY P O KOTTAYAM
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT -->
+
+      <div class="right-side">
+
+        <div class="emergency-check">
+
+          <ion-checkbox
+            [(ngModel)]="patient.emergency"
+            color="danger">
+          </ion-checkbox>
+        
+          <label>Emergency Case</label>
+        
+        </div>
+
+        <ion-button fill="solid" size="small">
+          <ion-icon slot="start" name="save"></ion-icon>
+          Save
+        </ion-button>
+
+        <ion-button fill="outline" size="small">
+          <ion-icon slot="start" name="eye"></ion-icon>
+          Preview
+        </ion-button>
+
+      </div>
+
+    </div>
+
+  </ion-toolbar>
+
+  <!-- SECOND ROW -->
+<div class="header-second-row">
+
+  <!-- Left Side -->
+  <div class="notes-section">
+
+    <div class="note-box">
+      <div class="note-title">ALLERGY</div>
+
+      <ion-textarea
+        readonly="true"
+        auto-grow="false"
+        value="">
+      </ion-textarea>
+    </div>
+
+    <div class="note-box">
+      <div class="note-title">DIAGNOSIS</div>
+
+      <ion-textarea
+        readonly="true"
+        auto-grow="false"
+        value="">
+      </ion-textarea>
+    </div>
+
+    <div class="note-box">
+      <div class="note-title">COMMENTS</div>
+
+      <ion-textarea
+        readonly="true"
+        auto-grow="false"
+        value="">
+      </ion-textarea>
+    </div>
+
+  </div>
+
+  <!-- Right Side -->
+
+  <div class="actions-section">
+
+    <!-- <ion-chip color="danger" *ngIf="patient.emergency">
+      <ion-icon name="alert-circle-outline"></ion-icon>
+      <ion-label>Emergency Case</ion-label>
+    </ion-chip> -->
+
+    <div class="icon-group">         
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="play-skip-back-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="print-outline"></ion-icon>   
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="document-text-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="git-network-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" size="small">
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-button>
+
+    </div>
+
+  </div>
+
+</div>
+</ion-header>
+
+ 
+
+
+
+
+
+<!-- TAB VIEW -->
+
+<section class="summary-page">
+
+  <!-- =========================
+        TOP NAVIGATION TABS
+  ========================== -->
+
+  <div class="summary-tabs">
+
+    <button
+      *ngFor="let tab of tabs"
+      type="button"
+      class="summary-tab"
+      [class.active]="selectedTab === tab.id"
+      (click)="changeTab(tab.id)">
+  
+      {{ tab.name }}
+  
+    </button>
+  
+  </div>
+
+
+ 
+
+  <div *ngIf="selectedTab=='treatment'" class="tab-container">
+
+    <!-- Top Options -->
+
+    <div class="option-row">
+
+      <ion-checkbox
+        justify="start"
+        labelPlacement="end">
+        Any Change in Vitals?
+      </ion-checkbox>
+
+      <ion-checkbox
+        justify="start"
+        labelPlacement="end">
+        Previous Vitals Details
+      </ion-checkbox>
+
+    </div>
+
+
+
+    <!-- Vital Cards -->
+
+    <div class="vital-wrapper">
+
+      <!-- Card 1 -->
+
+      <div class="vital-card">
+
+        <div class="vital-grid">
+
+          <div class="field">
+
+            <label>Height</label>
+
+            <ion-input
+              fill="outline"
+              type="number">
+            </ion-input>
+
+            <small>cm</small>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Weight</label>
+
+            <ion-input
+              fill="outline"
+              type="number">
+            </ion-input>
+
+            <small>kg</small>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>BMI</label>
+
+            <ion-input
+              fill="outline"
+              readonly>
+            </ion-input>
+
+            <small>kg/m²</small>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>IBW</label>
+
+            <ion-input
+              fill="outline"
+              readonly>
+            </ion-input>
+
+            <small>kg</small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Card 2 -->
+
+      <div class="vital-card large">
+
+        <div class="vital-grid large-grid">
+
+          <div class="field">
+
+            <label>BP (LT)</label>
+
+            <div class="bp-box">
+
+              <ion-input fill="outline"></ion-input>
+
+              <ion-input fill="outline"></ion-input>
+
+            </div>
+
+            <small>mmHg</small>
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>BP (RT)</label>
+
+            <div class="bp-box">
+
+              <ion-input fill="outline"></ion-input>
+
+              <ion-input fill="outline"></ion-input>
+
+            </div>
+
+            <small>mmHg</small>
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>Pulse</label>
+
+            <ion-input
+              fill="outline">
+            </ion-input>
+
+            <small>bpm</small>
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>B.Group</label>
+
+            <ion-select
+              interface="popover"
+              fill="outline">
+
+              <ion-select-option>A+</ion-select-option>
+              <ion-select-option>A-</ion-select-option>
+              <ion-select-option>B+</ion-select-option>
+              <ion-select-option>B-</ion-select-option>
+              <ion-select-option>O+</ion-select-option>
+              <ion-select-option>O-</ion-select-option>
+              <ion-select-option>AB+</ion-select-option>
+              <ion-select-option>AB-</ion-select-option>
+
+            </ion-select>
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>SpO₂ (%)</label>
+
+            <ion-input
+              fill="outline">
+            </ion-input>
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>GRBS</label>
+
+            <ion-input
+              fill="outline">
+            </ion-input>
+
+            <small>mg/dl</small>
+
+          </div>
+
+
+
+          <div class="field icon-field">
+
+            <ion-button
+              fill="clear"
+              size="small">
+
+              <ion-icon
+                name="mic-circle-outline">
+              </ion-icon>
+
+            </ion-button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        COMPLAINTS
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='complaints'"
+    class="placeholder">
+
+      <h3>Complaints / Examination</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Enter complaints...">
+      </ion-textarea>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        ORDERS
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='orders'"
+    class="placeholder">
+
+      <h3>Orders</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Enter orders...">
+      </ion-textarea>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        RESULTS
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='results'"
+    class="placeholder">
+
+      <h3>Results</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Results...">
+      </ion-textarea>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        MEDICINE
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='medicine'"
+    class="placeholder">
+
+      <h3>Medicine Prescription</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Medicine Prescription...">
+      </ion-textarea>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        ADMISSION
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='admission'"
+    class="placeholder">
+
+      <h3>Admission</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Admission Notes...">
+      </ion-textarea>
+
+  </div>
+
+
+
+  <!-- =========================================================
+        CROSS REFERENCE
+  ========================================================== -->
+
+  <div
+    *ngIf="selectedTab=='cross'"
+    class="placeholder">
+
+      <h3>Cross Reference</h3>
+
+      <ion-textarea
+        rows="5"
+        fill="outline"
+        placeholder="Cross Reference...">
+      </ion-textarea>
+
+  </div>
+
+</section>
+
+
+<section class="consultation-page">
+
+  <div class="consultation-grid">
+
+
+
+    <ion-card class="section-card">
+
+      <div class="section-header">
+
+        <div class="section-title">
+          Know case of (K/C/O)
+        </div>
+
+        <div class="section-actions">
+          <ion-button fill="clear" size="small">
+            <ion-icon name="grid-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          auto-grow="true"
+          rows="3"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        SYMPTOMS
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header">
+
+        <div class="section-title">
+          Symptoms
+        </div>
+
+        <div class="section-actions">
+          <ion-button fill="clear" size="small">
+            <ion-icon name="grid-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          auto-grow="true"
+          rows="3"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ==============
+        CROSS CONSULTATION
+    =======================-->
+
+    <ion-card class="section-card cross-card">
+
+      <!-- Header -->
+      <div class="cross-header">
+    
+        <div class="head">Cross Consultation</div>
+        <div class="head">Cross Reference</div>
+        <div class="head">Surgery Request</div>
+        <div class="head">Clinical Alerts</div>
+        
+    
+      </div>
+    
+      <!-- Body -->
+      <div class="cross-body">
+    
+        <div class="icon-box">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+    
+        <div class="icon-box">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+    
+        <div class="icon-box">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+    
+        <div class="icon-box">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </div>
+    
+       
+    
+      </div>
+    
+    </ion-card>
+
+    <!-- ================== 
+        CHIEF COMPLAINTS
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header between">
+
+        <div class="header-left">
+
+          <div class="section-title">
+            Chief Complaints
+          </div>
+
+          <ion-select
+            interface="popover"
+            placeholder="Complaint Template">
+
+            <ion-select-option>Template 1</ion-select-option>
+            <ion-select-option>Template 2</ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <div class="header-right">
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Create</span>
+          </ion-button>
+
+          <ion-checkbox></ion-checkbox>
+
+          <span class="small-label">Follow Up</span>
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="copy-outline"></ion-icon>
+          </ion-button>
+
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        GENERAL EXAMINATION
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header between">
+
+        <div class="header-left">
+
+          <div class="section-title">
+            General Examinations
+          </div>
+
+          <ion-select
+            interface="popover"
+            placeholder="Gen Ex. Templates">
+
+            <ion-select-option>Template 1</ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <div class="header-right">
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Create</span>
+          </ion-button>
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="copy-outline"></ion-icon>
+          </ion-button>
+
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        IMPRESSION
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header">
+
+        <div class="section-title">
+          Impression
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        SYSTEM EXAMINATION
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header between">
+
+        <div class="header-left">
+
+          <div class="section-title">
+            System Examinations
+          </div>
+
+          <ion-select
+            interface="popover"
+            placeholder="Sys Ex. Templates">
+
+            <ion-select-option>Template 1</ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <div class="header-right">
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Create</span>
+          </ion-button>
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="desktop-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="tv-outline"></ion-icon>
+          </ion-button>
+
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        LOCAL EXAMINATION
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header between">
+
+        <div class="header-left">
+
+          <div class="section-title">
+            Local Examinations
+          </div>
+
+          <ion-select
+            interface="popover"
+            placeholder="Local Ex. Templates">
+
+            <ion-select-option>Template 1</ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <div class="header-right">
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Create</span>
+          </ion-button>
+
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+    <!-- ===========================================================
+        FAMILY HISTORY
+    ============================================================ -->
+
+    <ion-card class="section-card">
+
+      <div class="section-header between">
+
+        <div class="header-left">
+
+          <div class="section-title">
+            Family and Personal History
+          </div>
+
+          <ion-select
+            interface="popover"
+            placeholder="Family Templates">
+
+            <ion-select-option>Template 1</ion-select-option>
+
+          </ion-select>
+
+        </div>
+
+        <div class="header-right">
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <span>Create</span>
+          </ion-button>
+
+          <ion-button fill="clear" size="small">
+            <ion-icon name="desktop-outline"></ion-icon>
+          </ion-button>
+
+        </div>
+
+      </div>
+
+      <div class="section-body">
+
+        <ion-textarea
+          rows="4"
+          auto-grow="true"
+          class="mini-textarea">
+        </ion-textarea>
+
+      </div>
+
+    </ion-card>
+
+  </div>
+
+</section>

@@ -456,8 +456,8 @@ export class PatientTablePage implements OnInit {
 
   NavigatetPatientdetails(patient: PatientListDatewiseItem): void {
     console.log(this.patient)
-    let remedicc = false
-    let remediemr = true
+    let remedicc = true
+    let remediemr = false
 
     if (remedicc) {
       this.router.navigate(['/dashboard/patient-data'], {

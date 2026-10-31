@@ -43,6 +43,7 @@
   </div>
 
   <ion-segment [(ngModel)]="activeTab" class="patient-segment">
+    <ion-segment-button value="arrived">Arrived</ion-segment-button>
     <ion-segment-button value="reallocate">Reallocate</ion-segment-button>
     <ion-segment-button value="call">Call</ion-segment-button>
     <ion-segment-button value="cancel">Cancel/Confirm</ion-segment-button>
@@ -139,6 +140,13 @@
       <ion-item fill="outline">
         <ion-label position="floating">Mobile No</ion-label>
         <ion-input type="number" [(ngModel)]="actionData.reallocateDate"></ion-input>
+      </ion-item>
+    </div>
+
+    <div *ngIf="activeTab === 'arrived'" class="form-grid">
+      <ion-item fill="outline" class="full-width">
+        <ion-label position="floating">Remarks</ion-label>
+        <ion-textarea rows="3" [(ngModel)]="arriveRemarks"></ion-textarea>
       </ion-item>
     </div>
 
